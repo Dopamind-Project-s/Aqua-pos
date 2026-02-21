@@ -9,7 +9,7 @@
     <div class="app-topstrip bg-dark py-6 px-3 w-100 d-lg-flex align-items-center justify-content-between">
       <div class="d-flex align-items-center justify-content-center gap-5 mb-2 mb-lg-0">
         <a class="d-flex justify-content-center" href="#">
-          <img src="./assets/images/logos/logo-wrappixel.svg') }}" alt="" width="150">
+          <img src="{{ asset('dashboard/assets/images/logos/logo-wrappixel.svg') }}" alt="" width="150">
         </a>
       </div>
 
@@ -34,8 +34,8 @@
       <!-- Sidebar scroll-->
       <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
-          <a href="./index.html" class="text-nowrap logo-img">
-            <img src="./assets/images/logos/logo.svg') }}" alt="" />
+          <a href="{{ route('admin.index') }}" class="text-nowrap logo-img">
+            <img src="{{ asset('dashboard/assets/images/logos/logo.svg') }}" alt="" />
           </a>
           <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
             <i class="ti ti-x fs-6"></i>
@@ -49,7 +49,7 @@
               <span class="hide-menu">Home</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./index.html" aria-expanded="false">
+              <a class="sidebar-link" href="{{ route('admin.index') }}" aria-expanded="false">
                 <i class="ti ti-atom"></i>
                 <span class="hide-menu">Dashboard</span>
               </a>
@@ -644,31 +644,31 @@
               <span class="hide-menu">UI</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./ui-buttons.html" aria-expanded="false">
+              <a class="sidebar-link" href="{{ route('admin.ui-buttons') }}" aria-expanded="false">
                 <i class="ti ti-layers-subtract"></i>
                 <span class="hide-menu">Buttons</span>
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./ui-alerts.html" aria-expanded="false">
+              <a class="sidebar-link" href="{{ route('admin.ui-alerts') }}" aria-expanded="false">
                 <i class="ti ti-alert-circle"></i>
                 <span class="hide-menu">Alerts</span>
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./ui-card.html" aria-expanded="false">
+              <a class="sidebar-link" href="{{ route('admin.ui-card') }}" aria-expanded="false">
                 <i class="ti ti-cards"></i>
                 <span class="hide-menu">Card</span>
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./ui-forms.html" aria-expanded="false">
+              <a class="sidebar-link" href="{{ route('admin.ui-forms') }}" aria-expanded="false">
                 <i class="ti ti-file-text"></i>
                 <span class="hide-menu">Forms</span>
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./ui-typography.html" aria-expanded="false">
+              <a class="sidebar-link" href="{{ route('admin.ui-typography') }}" aria-expanded="false">
                 <i class="ti ti-typography"></i>
                 <span class="hide-menu">Typography</span>
               </a>
@@ -1642,7 +1642,7 @@
               <span class="hide-menu">Auth</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
+              <a class="sidebar-link" href="{{ route('admin.authentication-login') }}" aria-expanded="false">
                 <i class="ti ti-login"></i>
                 <span class="hide-menu">Login</span>
               </a>
@@ -1662,7 +1662,7 @@
             </li>
 
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./authentication-register.html" aria-expanded="false">
+              <a class="sidebar-link" href="{{ route('admin.authentication-register') }}" aria-expanded="false">
                 <i class="ti ti-user-plus"></i>
                 <span class="hide-menu">Register</span>
               </a>
@@ -1779,13 +1779,13 @@
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./icon-tabler.html" aria-expanded="false">
+              <a class="sidebar-link" href="{{ route('admin.icon-tabler') }}" aria-expanded="false">
                 <i class="ti ti-archive"></i>
                 <span class="hide-menu">Tabler Icon</span>
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./sample-page.html" aria-expanded="false">
+              <a class="sidebar-link" href="{{ route('admin.sample-page') }}" aria-expanded="false">
                 <i class="ti ti-file"></i>
                 <span class="hide-menu">Sample Page</span>
               </a>
@@ -1831,7 +1831,7 @@
               <li class="nav-item dropdown">
                 <a class="nav-link " href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
                   aria-expanded="false">
-                  <img src="./assets/images/profile/user-1.jpg') }}" alt="" width="35" height="35" class="rounded-circle">
+                  <img src="{{ asset('dashboard/assets/images/profile/user-1.jpg') }}" alt="" width="35" height="35" class="rounded-circle">
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
                   <div class="message-body">
@@ -1847,7 +1847,7 @@
                       <i class="ti ti-list-check fs-6"></i>
                       <p class="mb-0 fs-3">My Task</p>
                     </a>
-                    <a href="./authentication-login.html" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+                    <a href="{{ route('admin.authentication-login') }}" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
                   </div>
                 </div>
               </li>
@@ -1864,7 +1864,7 @@
                 <div class="col-md-4">
                   <h5 class="card-title fw-semibold mb-4">Card</h5>
                   <div class="card">
-                    <img src="./assets/images/products/s4.jpg') }}" class="card-img-top" alt="...">
+                    <img src="{{ asset('dashboard/assets/images/products/s4.jpg') }}" class="card-img-top" alt="...">
                     <div class="card-body">
                       <h5 class="card-title">Card title</h5>
                       <p class="card-text">Some quick example text to build on the card title and make up the bulk of
