@@ -2,10 +2,30 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::view('/', 'home')->name('home');
 
-Route::prefix('admin')->group(function () {
-    Route::view('/', 'admin.dashboard')->name('admin.dashboard');
+Route::view('/about', 'about')->name('about');
+Route::view('/service', 'service')->name('service');
+Route::view('/appointment', 'appointment')->name('appointment');
+Route::view('/feature', 'feature')->name('feature');
+Route::view('/blog', 'blog')->name('blog');
+Route::view('/team', 'team')->name('team');
+Route::view('/testimonial', 'testimonial')->name('testimonial');
+Route::view('/contact', 'contact')->name('contact');
+Route::view('/not-found', '404')->name('not-found');
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::view('/', 'admin.dashboard')->name('dashboard');
+    Route::view('/index', 'admin.index')->name('index');
+    Route::view('/ui-card', 'admin.ui-card')->name('ui-card');
+    Route::view('/ui-forms', 'admin.ui-forms')->name('ui-forms');
+    Route::view('/ui-buttons', 'admin.ui-buttons')->name('ui-buttons');
+    Route::view('/ui-typography', 'admin.ui-typography')->name('ui-typography');
+    Route::view('/ui-alerts', 'admin.ui-alerts')->name('ui-alerts');
+    Route::view('/icon-tabler', 'admin.icon-tabler')->name('icon-tabler');
+    Route::view('/sample-page', 'admin.sample-page')->name('sample-page');
+    Route::view('/docs', 'admin.docs')->name('docs');
+    Route::view('/discount-code', 'admin.discount-code')->name('discount-code');
+    Route::view('/authentication-login', 'admin.authentication-login')->name('authentication-login');
+    Route::view('/authentication-register', 'admin.authentication-register')->name('authentication-register');
 });

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+@php($showCarousel = true)
 
 
         <!-- Services Start -->

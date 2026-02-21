@@ -1,16 +1,7 @@
-<!doctype html>
-<html lang="en">
+@extends('layouts.admin')
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Flexy Free Bootstrap Admin Template by WrapPixel</title>
-  <link rel="shortcut icon" type="image/png" href="./assets/images/logos/favicon.png" />
-  <link rel="stylesheet" href="./assets/css/styles.min.css" />
-</head>
-
-<body>
-  <!--  Body Wrapper -->
+@section('content')
+<!--  Body Wrapper -->
   <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
     data-sidebar-position="fixed" data-header-position="fixed">
 
@@ -18,13 +9,14 @@
     <div class="app-topstrip bg-dark py-6 px-3 w-100 d-lg-flex align-items-center justify-content-between">
       <div class="d-flex align-items-center justify-content-center gap-5 mb-2 mb-lg-0">
         <a class="d-flex justify-content-center" href="#">
-          <img src="./assets/images/logos/logo-wrappixel.svg" alt="" width="150">
+          <img src="./assets/images/logos/logo-wrappixel.svg') }}" alt="" width="150">
         </a>
       </div>
 
       <div class="d-lg-flex align-items-center gap-2">
         <h3 class="text-white mb-2 mb-lg-0 fs-5 text-center">Check Flexy Premium Version</h3>
         <div class="d-flex align-items-center justify-content-center gap-2">
+          
           <div class="dropdown d-flex">
             <a class="btn btn-primary d-flex align-items-center gap-1 " href="javascript:void(0)" id="drop4"
               data-bs-toggle="dropdown" aria-expanded="false">
@@ -32,6 +24,7 @@
               Buy Now
               <i class="ti ti-chevron-down fs-5"></i>
             </a>
+            
           </div>
         </div>
       </div>
@@ -43,7 +36,7 @@
       <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
           <a href="./index.html" class="text-nowrap logo-img">
-            <img src="./assets/images/logos/logo.svg" alt="" />
+            <img src="./assets/images/logos/logo.svg') }}" alt="" />
           </a>
           <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
             <i class="ti ti-x fs-6"></i>
@@ -1148,7 +1141,7 @@
                 
               </a>
               <ul aria-expanded="false" class="collapse first-level">
-
+                
                 <li class="sidebar-item">
                   <a class="sidebar-link justify-content-between"  
                     href="#">
@@ -1800,7 +1793,6 @@
             </li>
           </ul>
         </nav>
-
         <!-- End Sidebar navigation -->
       </div>
       <!-- End Sidebar scroll-->
@@ -1840,7 +1832,7 @@
               <li class="nav-item dropdown">
                 <a class="nav-link " href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
                   aria-expanded="false">
-                  <img src="./assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
+                  <img src="./assets/images/profile/user-1.jpg') }}" alt="" width="35" height="35" class="rounded-circle">
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
                   <div class="message-body">
@@ -1867,24 +1859,15 @@
       <!--  Header End -->
       <div class="body-wrapper-inner">
         <div class="container-fluid">
-          <div class="card w-100 h-100 position-relative overflow-hidden">
+          <div class="card">
             <div class="card-body">
-              <h5 class="card-title fw-semibold mb-4">Icons</h5>
-              <iframe src="https://tabler-icons.io/" frameborder="0" style="height: calc(100vh - 250px); width: 100%;"
-                data-simplebar=""></iframe>
+              <h5 class="card-title fw-semibold mb-4">Sample Page</h5>
+              <p class="mb-0">This is a sample page </p>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <script src="./assets/libs/jquery/dist/jquery.min.js"></script>
-  <script src="./assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="./assets/js/sidebarmenu.js"></script>
-  <script src="./assets/js/app.min.js"></script>
-  <script src="./assets/libs/simplebar/dist/simplebar.js"></script>
   <!-- solar icons -->
-  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
-</body>
-
-</html>
+@endsection
