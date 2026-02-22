@@ -65,14 +65,14 @@
                                             <button class="mega-menu__category-toggle" type="button" aria-expanded="false"><span data-i18n="mega.restaurant">Restaurant</span></button>
                                             <div class="mega-menu__services">
                                                 <a href="#" class="mega-menu__service">
-                                                    <img src="https://via.placeholder.com/60x60.png?text=POS" alt="Restaurant POS">
+                                                    <img src="{{ asset('img/service-1.jpg') }}" alt="Restaurant POS">
                                                     <div>
                                                         <h5><span data-i18n="mega.restaurantPos">Restaurant POS</span></h5>
                                                         <p><span data-i18n="mega.restaurantPosDesc">Smart table, order and kitchen workflows.</span></p>
                                                     </div>
                                                 </a>
                                                 <a href="#" class="mega-menu__service">
-                                                    <img src="https://via.placeholder.com/60x60.png?text=QR" alt="QR Ordering">
+                                                    <img src="{{ asset('img/service-2.jpg') }}" alt="QR Ordering">
                                                     <div>
                                                         <h5><span data-i18n="mega.qrOrdering">QR Ordering</span></h5>
                                                         <p><span data-i18n="mega.qrOrderingDesc">Contactless menu and payment journey.</span></p>
@@ -86,14 +86,14 @@
                                             <button class="mega-menu__category-toggle" type="button" aria-expanded="false"><span data-i18n="mega.retail">Retail</span></button>
                                             <div class="mega-menu__services">
                                                 <a href="#" class="mega-menu__service">
-                                                    <img src="https://via.placeholder.com/60x60.png?text=INV" alt="Inventory Hub">
+                                                    <img src="{{ asset('img/service-3.jpg') }}" alt="Inventory Hub">
                                                     <div>
                                                         <h5><span data-i18n="mega.inventoryHub">Inventory Hub</span></h5>
                                                         <p><span data-i18n="mega.inventoryHubDesc">Centralized stock sync across all stores.</span></p>
                                                     </div>
                                                 </a>
                                                 <a href="#" class="mega-menu__service">
-                                                    <img src="https://via.placeholder.com/60x60.png?text=CRM" alt="Loyalty CRM">
+                                                    <img src="{{ asset('img/service-4.jpg') }}" alt="Loyalty CRM">
                                                     <div>
                                                         <h5><span data-i18n="mega.loyaltyCrm">Loyalty CRM</span></h5>
                                                         <p><span data-i18n="mega.loyaltyCrmDesc">Member tiers, rewards and campaigns.</span></p>
@@ -107,14 +107,14 @@
                                             <button class="mega-menu__category-toggle" type="button" aria-expanded="false"><span data-i18n="mega.hotel">Hotel</span></button>
                                             <div class="mega-menu__services">
                                                 <a href="#" class="mega-menu__service">
-                                                    <img src="https://via.placeholder.com/60x60.png?text=PMS" alt="Property PMS">
+                                                    <img src="{{ asset('img/service-5.jpg') }}" alt="Property PMS">
                                                     <div>
                                                         <h5><span data-i18n="mega.propertyPms">Property PMS</span></h5>
                                                         <p><span data-i18n="mega.propertyPmsDesc">Bookings, front desk and room operations.</span></p>
                                                     </div>
                                                 </a>
                                                 <a href="#" class="mega-menu__service">
-                                                    <img src="https://via.placeholder.com/60x60.png?text=SPA" alt="Spa & Wellness">
+                                                    <img src="{{ asset('img/service-6.jpg') }}" alt="Spa & Wellness">
                                                     <div>
                                                         <h5><span data-i18n="mega.spaWellness">Spa & Wellness</span></h5>
                                                         <p><span data-i18n="mega.spaWellnessDesc">Appointments and service bundles in one place.</span></p>
@@ -128,14 +128,14 @@
                                             <button class="mega-menu__category-toggle" type="button" aria-expanded="false"><span data-i18n="mega.enterprise">Enterprise</span></button>
                                             <div class="mega-menu__services">
                                                 <a href="#" class="mega-menu__service">
-                                                    <img src="https://via.placeholder.com/60x60.png?text=BI" alt="BI Analytics">
+                                                    <img src="{{ asset('img/service-7.jpg') }}" alt="BI Analytics">
                                                     <div>
                                                         <h5><span data-i18n="mega.biAnalytics">BI Analytics</span></h5>
                                                         <p><span data-i18n="mega.biAnalyticsDesc">Executive dashboards with live insights.</span></p>
                                                     </div>
                                                 </a>
                                                 <a href="#" class="mega-menu__service">
-                                                    <img src="https://via.placeholder.com/60x60.png?text=API" alt="API Integrations">
+                                                    <img src="{{ asset('img/service-8.jpg') }}" alt="API Integrations">
                                                     <div>
                                                         <h5><span data-i18n="mega.apiIntegrations">API Integrations</span></h5>
                                                         <p><span data-i18n="mega.apiIntegrationsDesc">Secure integrations with ERP and finance tools.</span></p>
