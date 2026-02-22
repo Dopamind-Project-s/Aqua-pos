@@ -23,7 +23,7 @@
                         <h4 class="sub-title px-3 mb-0">Why Choose Us</h4>
                     </div>
                     <h1 class="display-3 mb-4">Why Choose Us! Get Your Life Style Back</h1>
-                    <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat deleniti amet at atque sequi quibusdam cumque itaque repudiandae temporibus, eius nam mollitia voluptas maxime veniam necessitatibus saepe in ab? Repellat!</p>
+                    <p class="mb-0">AQUA POS is a cloud-based POS and inventory management platform from Amman, Jordan, helping restaurants and retailers run faster with better control and full visibility.</p>
                 </div>
                 <div class="row g-4 justify-content-center">
                     <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
@@ -35,8 +35,8 @@
                                     </div>
                                 </div>
                                 <div class="feature-content d-flex flex-column">
-                                    <h5 class="mb-4">Licensed Therapist</h5>
-                                    <p class="mb-0">Dolor, sit amet consectetur adipisicing elit. Soluta inventore cum accusamus,</p>
+                                    <h5 class="mb-4">Reliable POS Workflows</h5>
+                                    <p class="mb-0">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</p>
                                 </div>
                             </div>
                         </div>
@@ -50,8 +50,8 @@
                                     </div>
                                 </div>
                                 <div class="feature-content d-flex flex-column">
-                                    <h5 class="mb-4">Personalized Treatment</h5>
-                                    <p class="mb-0">Dolor, sit amet consectetur adipisicing elit. Soluta inventore cum accusamus,</p>
+                                    <h5 class="mb-4">Smart Inventory Control</h5>
+                                    <p class="mb-0">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</p>
                                 </div>
                             </div>
                         </div>
@@ -65,8 +65,8 @@
                                     </div>
                                 </div>
                                 <div class="feature-content d-flex flex-column">
-                                    <h5 class="mb-4">Therapy Goals</h5>
-                                    <p class="mb-0">Dolor, sit amet consectetur adipisicing elit. Soluta inventore cum accusamus,</p>
+                                    <h5 class="mb-4">Real-Time Business Insights</h5>
+                                    <p class="mb-0">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</p>
                                 </div>
                             </div>
                         </div>
@@ -80,8 +80,8 @@
                                     </div>
                                 </div>
                                 <div class="feature-content d-flex flex-column">
-                                    <h5 class="mb-4">Practitioners Network</h5>
-                                    <p class="mb-0">Dolor, sit amet consectetur adipisicing elit. Soluta inventore cum accusamus,</p>
+                                    <h5 class="mb-4">Unified Branch Management</h5>
+                                    <p class="mb-0">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</p>
                                 </div>
                             </div>
                         </div>
@@ -95,8 +95,8 @@
                                     </div>
                                 </div>
                                 <div class="feature-content d-flex flex-column">
-                                    <h5 class="mb-4">Comfortable Center</h5>
-                                    <p class="mb-0">Dolor, sit amet consectetur adipisicing elit. Soluta inventore cum accusamus,</p>
+                                    <h5 class="mb-4">Fast Checkout Experience</h5>
+                                    <p class="mb-0">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</p>
                                 </div>
                             </div>
                         </div>
@@ -110,8 +110,8 @@
                                     </div>
                                 </div>
                                 <div class="feature-content d-flex flex-column">
-                                    <h5 class="mb-4">Experienced Stuff</h5>
-                                    <p class="mb-0">Dolor, sit amet consectetur adipisicing elit. Soluta inventore cum accusamus,</p>
+                                    <h5 class="mb-4">Jordan-Based SaaS Team</h5>
+                                    <p class="mb-0">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</p>
                                 </div>
                             </div>
                         </div>
@@ -125,8 +125,8 @@
                                     </div>
                                 </div>
                                 <div class="feature-content d-flex flex-column">
-                                    <h5 class="mb-4">Therapy Goals</h5>
-                                    <p class="mb-0">Dolor, sit amet consectetur adipisicing elit. Soluta inventore cum accusamus,</p>
+                                    <h5 class="mb-4">Real-Time Business Insights</h5>
+                                    <p class="mb-0">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</p>
                                 </div>
                             </div>
                         </div>
@@ -140,8 +140,8 @@
                                     </div>
                                 </div>
                                 <div class="feature-content d-flex flex-column">
-                                    <h5 class="mb-4">Licensed Therapist</h5>
-                                    <p class="mb-0">Dolor, sit amet consectetur adipisicing elit. Soluta inventore cum accusamus,</p>
+                                    <h5 class="mb-4">Reliable POS Workflows</h5>
+                                    <p class="mb-0">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</p>
                                 </div>
                             </div>
                         </div>

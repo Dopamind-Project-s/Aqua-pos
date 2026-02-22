@@ -34,7 +34,7 @@
         <div class="container-fluid position-relative p-0">
             <nav class="navbar navbar-expand-lg navbar-light bg-white px-4 px-lg-5 py-3 py-lg-0">
                 <a href="{{ url('/') }}" class="navbar-brand p-0">
-                    <h1 class="text-primary m-0"><i class="fas fa-star-of-life me-3"></i>Terapia</h1>
+                    <h1 class="text-primary m-0"><i class="fas fa-star-of-life me-3"></i>AQUA POS</h1>
                     <!-- <img src="img/logo.png" alt="Logo"> -->
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -184,7 +184,7 @@
                     <img src="{{ asset('img/carousel-1.jpg') }}" class="img-fluid w-100" alt="Image">
                     <div class="carousel-caption">
                         <div class="carousel-caption-content p-3">
-                            <h5 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;">Physiotherapy Center</h5>
+                            <h5 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;">Cloud POS Platform</h5>
                             <h1 class="display-1 text-capitalize text-white mb-4">Best Solution For Painful Life</h1>
                             <p class="mb-5 fs-5">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
                             </p>
@@ -196,7 +196,7 @@
                     <img src="{{ asset('img/carousel-2.jpg') }}" class="img-fluid w-100" alt="Image">
                     <div class="carousel-caption">
                         <div class="carousel-caption-content p-3">
-                            <h5 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;">Physiotherapy Center</h5>
+                            <h5 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;">Cloud POS Platform</h5>
                             <h1 class="display-1 text-capitalize text-white mb-4">Best Solution For Painful Life</h1>
                             <p class="mb-5 fs-5 animated slideInDown">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
                             </p>

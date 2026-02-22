@@ -22,8 +22,8 @@
                     <div class="sub-style">
                         <h4 class="sub-title px-3 mb-0">Meet our team</h4>
                     </div>
-                    <h1 class="display-3 mb-4">Physiotherapy Services from Professional Therapist</h1>
-                    <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat deleniti amet at atque sequi quibusdam cumque itaque repudiandae temporibus, eius nam mollitia voluptas maxime veniam necessitatibus saepe in ab? Repellat!</p>
+                    <h1 class="display-3 mb-4">Smart Inventory Control for Restaurants & Retail</h1>
+                    <p class="mb-0">AQUA POS is a cloud-based POS and inventory management platform from Amman, Jordan, helping restaurants and retailers run faster with better control and full visibility.</p>
                 </div>
                 <div class="row g-4 justify-content-center">
                     <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
@@ -39,7 +39,7 @@
                             </div>
                             <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4">
                                 <h5>Full Name</h5>
-                                <p class="mb-0">Message Physio Therapist</p>
+                                <p class="mb-0">POS Implementation Specialist</p>
                             </div>
                         </div>
                     </div>
@@ -56,7 +56,7 @@
                             </div>
                             <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4">
                                 <h5>Full Name</h5>
-                                <p class="mb-0">Rehabilitation Therapist</p>
+                                <p class="mb-0">Inventory Operations Specialist</p>
                             </div>
                         </div>
                     </div>
@@ -73,7 +73,7 @@
                             </div>
                             <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4">
                                 <h5>Full Name</h5>
-                                <p class="mb-0">Doctor of Physical therapy</p>
+                                <p class="mb-0">POS & Inventory Consultant</p>
                             </div>
                         </div>
                     </div>
@@ -90,7 +90,7 @@
                             </div>
                             <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4">
                                 <h5>Full Name</h5>
-                                <p class="mb-0">Doctor of Physical therapy</p>
+                                <p class="mb-0">POS & Inventory Consultant</p>
                             </div>
                         </div>
                     </div>

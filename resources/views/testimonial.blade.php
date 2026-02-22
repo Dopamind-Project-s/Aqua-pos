@@ -30,7 +30,7 @@
                             <div class="testimonial-inner-img mb-4">
                                 <img src="{{ asset('img/testimonial-img.jpg') }}" class="img-fluid rounded-circle" alt="">
                             </div>
-                            <p class="text-white fs-7">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores nemo facilis tempora esse explicabo sed! Dignissimos quia ullam pariatur blanditiis sed voluptatum. Totam aut quidem laudantium tempora. Minima, saepe earum!
+                            <p class="text-white fs-7">AQUA POS gave us a clear live view of sales and stock. Our branch teams now work faster with fewer manual errors and stronger daily control.
                             </p>
                             <div class="text-center">
                                 <h5 class="mb-2">John Abraham</h5>
@@ -50,7 +50,7 @@
                             <div class="testimonial-inner-img mb-4">
                                 <img src="{{ asset('img/testimonial-img.jpg') }}" class="img-fluid rounded-circle" alt="">
                             </div>
-                            <p class="text-white fs-7">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores nemo facilis tempora esse explicabo sed! Dignissimos quia ullam pariatur blanditiis sed voluptatum. Totam aut quidem laudantium tempora. Minima, saepe earum!
+                            <p class="text-white fs-7">AQUA POS gave us a clear live view of sales and stock. Our branch teams now work faster with fewer manual errors and stronger daily control.
                             </p>
                             <div class="text-center">
                                 <h5 class="mb-2">John Abraham</h5>
@@ -70,7 +70,7 @@
                             <div class="testimonial-inner-img mb-4">
                                 <img src="{{ asset('img/testimonial-img.jpg') }}" class="img-fluid rounded-circle" alt="">
                             </div>
-                            <p class="text-white fs-7">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores nemo facilis tempora esse explicabo sed! Dignissimos quia ullam pariatur blanditiis sed voluptatum. Totam aut quidem laudantium tempora. Minima, saepe earum!
+                            <p class="text-white fs-7">AQUA POS gave us a clear live view of sales and stock. Our branch teams now work faster with fewer manual errors and stronger daily control.
                             </p>
                             <div class="text-center">
                                 <h5 class="mb-2">John Abraham</h5>
