@@ -1179,3 +1179,215 @@
     background: var(--bs-dark) !important;
 }
 /*** copyright end ***/
+/*** Mega Menu Start ***/
+.mega-menu {
+    position: static;
+}
+
+.mega-menu__trigger {
+    background: transparent;
+    border: 0;
+    color: #0f172a;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 22px 16px;
+    transition: color .3s ease;
+}
+
+.mega-menu__trigger:hover,
+.mega-menu__trigger:focus-visible {
+    color: var(--bs-primary);
+    outline: none;
+}
+
+.mega-menu__caret {
+    font-size: 12px;
+    transition: transform .3s ease;
+}
+
+.mega-menu__panel {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 22px 55px rgba(15, 23, 42, .18);
+    border: 1px solid #e2e8f0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(14px);
+    pointer-events: none;
+    transition: opacity .28s ease, transform .28s ease, visibility .28s ease;
+    z-index: 1040;
+}
+
+.mega-menu:hover .mega-menu__panel,
+.mega-menu:focus-within .mega-menu__panel,
+.mega-menu.is-open .mega-menu__panel {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.mega-menu:hover .mega-menu__caret,
+.mega-menu:focus-within .mega-menu__caret,
+.mega-menu.is-open .mega-menu__caret {
+    transform: rotate(180deg);
+}
+
+.mega-menu__inner {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+.mega-menu__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.mega-menu__category {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 18px;
+}
+
+.mega-menu__heading {
+    margin: 0 0 14px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.mega-menu__category-toggle {
+    display: none;
+}
+
+.mega-menu__services {
+    display: grid;
+    gap: 12px;
+}
+
+.mega-menu__service {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    text-decoration: none;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 10px;
+    transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease;
+}
+
+.mega-menu__service:hover {
+    background: #f0f9ff;
+    box-shadow: 0 10px 24px rgba(14, 116, 144, .13);
+    transform: translateY(-2px);
+}
+
+.mega-menu__service img {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.mega-menu__service h5 {
+    font-size: 15px;
+    margin: 0 0 4px;
+    color: #0f172a;
+    font-weight: 700;
+}
+
+.mega-menu__service p {
+    margin: 0;
+    color: #475569;
+    font-size: 13px;
+    line-height: 1.45;
+}
+
+@media (max-width: 1199.98px) {
+    .mega-menu__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 991.98px) {
+    .mega-menu {
+        width: 100%;
+    }
+
+    .mega-menu__trigger {
+        width: 100%;
+        justify-content: space-between;
+        padding: 12px 0;
+    }
+
+    .mega-menu__panel {
+        position: static;
+        width: 100%;
+        box-shadow: none;
+        border-radius: 14px;
+        margin: 8px 0 12px;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        transition: max-height .35s ease;
+    }
+
+    .mega-menu.is-open .mega-menu__panel {
+        max-height: 1800px;
+    }
+
+    .mega-menu__inner {
+        padding: 12px;
+    }
+
+    .mega-menu__grid {
+        display: block;
+    }
+
+    .mega-menu__category {
+        margin-bottom: 10px;
+    }
+
+    .mega-menu__heading {
+        display: none;
+    }
+
+    .mega-menu__category-toggle {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+        border: 0;
+        border-radius: 10px;
+        padding: 10px 12px;
+        background: #e2e8f0;
+        color: #0f172a;
+        font-weight: 700;
+        margin-bottom: 8px;
+    }
+
+    .mega-menu__services {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height .3s ease;
+    }
+
+    .mega-menu__category.is-open .mega-menu__services {
+        max-height: 480px;
+    }
+}
+/*** Mega Menu End ***/

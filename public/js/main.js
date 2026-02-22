@@ -127,3 +127,70 @@
 
 })(jQuery);
 
+
+// Mega menu interactions (mobile accordion + mobile open/close)
+document.addEventListener('DOMContentLoaded', function () {
+    var megaMenu = document.getElementById('productsMegaMenu');
+
+    if (!megaMenu) {
+        return;
+    }
+
+    var trigger = megaMenu.querySelector('.mega-menu__trigger');
+    var categoryItems = megaMenu.querySelectorAll('.mega-menu__category');
+    var categoryButtons = megaMenu.querySelectorAll('.mega-menu__category-toggle');
+
+    var isMobile = function () {
+        return window.matchMedia('(max-width: 991.98px)').matches;
+    };
+
+    var closeMegaMenu = function () {
+        megaMenu.classList.remove('is-open');
+        trigger.setAttribute('aria-expanded', 'false');
+    };
+
+    trigger.addEventListener('click', function (event) {
+        if (!isMobile()) {
+            return;
+        }
+
+        event.preventDefault();
+        var openState = megaMenu.classList.toggle('is-open');
+        trigger.setAttribute('aria-expanded', openState ? 'true' : 'false');
+    });
+
+    categoryButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            if (!isMobile()) {
+                return;
+            }
+
+            var category = button.closest('.mega-menu__category');
+            var isOpen = category.classList.toggle('is-open');
+
+            button.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+    });
+
+    document.addEventListener('click', function (event) {
+        if (!isMobile()) {
+            return;
+        }
+
+        if (!megaMenu.contains(event.target)) {
+            closeMegaMenu();
+        }
+    });
+
+    window.addEventListener('resize', function () {
+        if (!isMobile()) {
+            closeMegaMenu();
+            categoryItems.forEach(function (item) {
+                item.classList.remove('is-open');
+            });
+            categoryButtons.forEach(function (button) {
+                button.setAttribute('aria-expanded', 'false');
+            });
+        }
+    });
+});
