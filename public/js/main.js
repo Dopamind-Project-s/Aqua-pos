@@ -194,3 +194,158 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
+// Theme + language + direction controls
+(function () {
+    var THEME_KEY = 'aqua_theme';
+    var LANG_KEY = 'aqua_lang';
+    var defaultLang = 'en';
+
+    var translations = {
+        en: {
+            'topbar.location': 'Find A Location',
+            'nav.home': 'Home',
+            'nav.about': 'About',
+            'nav.services': 'Services',
+            'nav.products': 'Products',
+            'nav.pages': 'Pages',
+            'nav.appointment': 'Appointment',
+            'nav.features': 'Features',
+            'nav.blog': 'Our Blog',
+            'nav.team': 'Our Team',
+            'nav.testimonial': 'Testimonial',
+            'nav.notfound': '404 Page',
+            'nav.contact': 'Contact Us',
+            'nav.book': 'Book Appointment',
+            'controls.dark': 'Dark',
+            'controls.light': 'Light',
+            'mega.restaurant': 'Restaurant',
+            'mega.retail': 'Retail',
+            'mega.hotel': 'Hotel',
+            'mega.enterprise': 'Enterprise',
+            'mega.restaurantPos': 'Restaurant POS',
+            'mega.restaurantPosDesc': 'Smart table, order and kitchen workflows.',
+            'mega.qrOrdering': 'QR Ordering',
+            'mega.qrOrderingDesc': 'Contactless menu and payment journey.',
+            'mega.inventoryHub': 'Inventory Hub',
+            'mega.inventoryHubDesc': 'Centralized stock sync across all stores.',
+            'mega.loyaltyCrm': 'Loyalty CRM',
+            'mega.loyaltyCrmDesc': 'Member tiers, rewards and campaigns.',
+            'mega.propertyPms': 'Property PMS',
+            'mega.propertyPmsDesc': 'Bookings, front desk and room operations.',
+            'mega.spaWellness': 'Spa & Wellness',
+            'mega.spaWellnessDesc': 'Appointments and service bundles in one place.',
+            'mega.biAnalytics': 'BI Analytics',
+            'mega.biAnalyticsDesc': 'Executive dashboards with live insights.',
+            'mega.apiIntegrations': 'API Integrations',
+            'mega.apiIntegrationsDesc': 'Secure integrations with ERP and finance tools.'
+        },
+        ar: {
+            'topbar.location': 'ابحث عن موقع',
+            'nav.home': 'الرئيسية',
+            'nav.about': 'من نحن',
+            'nav.services': 'الخدمات',
+            'nav.products': 'المنتجات',
+            'nav.pages': 'الصفحات',
+            'nav.appointment': 'حجز موعد',
+            'nav.features': 'المميزات',
+            'nav.blog': 'مدونتنا',
+            'nav.team': 'فريقنا',
+            'nav.testimonial': 'آراء العملاء',
+            'nav.notfound': 'صفحة 404',
+            'nav.contact': 'اتصل بنا',
+            'nav.book': 'احجز موعد',
+            'controls.dark': 'داكن',
+            'controls.light': 'فاتح',
+            'mega.restaurant': 'المطاعم',
+            'mega.retail': 'التجزئة',
+            'mega.hotel': 'الفنادق',
+            'mega.enterprise': 'المؤسسات',
+            'mega.restaurantPos': 'نقطة بيع المطاعم',
+            'mega.restaurantPosDesc': 'إدارة الطاولات والطلبات والمطبخ بذكاء.',
+            'mega.qrOrdering': 'الطلب عبر QR',
+            'mega.qrOrderingDesc': 'رحلة طلب ودفع بدون تلامس.',
+            'mega.inventoryHub': 'مركز المخزون',
+            'mega.inventoryHubDesc': 'مزامنة مركزية للمخزون عبر الفروع.',
+            'mega.loyaltyCrm': 'ولاء العملاء CRM',
+            'mega.loyaltyCrmDesc': 'شرائح العملاء والمكافآت والحملات.',
+            'mega.propertyPms': 'إدارة المنشأة PMS',
+            'mega.propertyPmsDesc': 'الحجوزات والاستقبال وتشغيل الغرف.',
+            'mega.spaWellness': 'السبا والعافية',
+            'mega.spaWellnessDesc': 'المواعيد وباقات الخدمات في منصة واحدة.',
+            'mega.biAnalytics': 'تحليلات BI',
+            'mega.biAnalyticsDesc': 'لوحات تنفيذية برؤى فورية.',
+            'mega.apiIntegrations': 'تكاملات API',
+            'mega.apiIntegrationsDesc': 'تكامل آمن مع أنظمة ERP والمالية.'
+        }
+    };
+
+    var setTheme = function (theme) {
+        var body = document.body;
+        var themeIcon = document.getElementById('themeIcon');
+        var themeLabel = document.getElementById('themeLabel');
+        var lang = localStorage.getItem(LANG_KEY) || defaultLang;
+
+        body.classList.add('theme-fade');
+        if (theme === 'dark') {
+            body.classList.add('dark-theme');
+            if (themeIcon) themeIcon.textContent = '☀';
+            if (themeLabel) themeLabel.textContent = lang === 'ar' ? translations.ar['controls.light'] : translations.en['controls.light'];
+        } else {
+            body.classList.remove('dark-theme');
+            if (themeIcon) themeIcon.textContent = '🌙';
+            if (themeLabel) themeLabel.textContent = lang === 'ar' ? translations.ar['controls.dark'] : translations.en['controls.dark'];
+        }
+        setTimeout(function () {
+            body.classList.remove('theme-fade');
+        }, 300);
+        localStorage.setItem(THEME_KEY, theme);
+    };
+
+    var setLanguage = function (lang) {
+        var html = document.documentElement;
+        var langLabel = document.getElementById('languageLabel');
+        var currentTheme = localStorage.getItem(THEME_KEY) || 'light';
+
+        html.setAttribute('lang', lang);
+        html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+
+        document.querySelectorAll('[data-i18n]').forEach(function (el) {
+            var key = el.getAttribute('data-i18n');
+            if (translations[lang][key]) {
+                el.textContent = translations[lang][key];
+            }
+        });
+
+        if (langLabel) {
+            langLabel.textContent = lang === 'ar' ? 'EN' : 'AR';
+        }
+
+        localStorage.setItem(LANG_KEY, lang);
+        setTheme(currentTheme);
+    };
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var savedTheme = localStorage.getItem(THEME_KEY) || 'light';
+        var savedLang = localStorage.getItem(LANG_KEY) || defaultLang;
+        var themeToggle = document.getElementById('themeToggle');
+        var languageToggle = document.getElementById('languageToggle');
+
+        setLanguage(savedLang);
+        setTheme(savedTheme);
+
+        if (themeToggle) {
+            themeToggle.addEventListener('click', function () {
+                var currentTheme = document.body.classList.contains('dark-theme') ? 'dark' : 'light';
+                setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+            });
+        }
+
+        if (languageToggle) {
+            languageToggle.addEventListener('click', function () {
+                var currentLang = document.documentElement.getAttribute('lang') || defaultLang;
+                setLanguage(currentLang === 'ar' ? 'en' : 'ar');
+            });
+        }
+    });
+})();

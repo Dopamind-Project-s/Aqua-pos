@@ -12,7 +12,7 @@
             <div class="row gx-0 align-items-center" style="height: 45px;">
                 <div class="col-lg-8 text-center text-lg-start mb-lg-0">
                     <div class="d-flex flex-wrap">
-                        <a href="#" class="text-light me-4"><i class="fas fa-map-marker-alt text-primary me-2"></i>Find A Location</a>
+                        <a href="#" class="text-light me-4"><i class="fas fa-map-marker-alt text-primary me-2"></i><span data-i18n="topbar.location">Find A Location</span></a>
                         <a href="#" class="text-light me-4"><i class="fas fa-phone-alt text-primary me-2"></i>+01234567890</a>
                         <a href="#" class="text-light me-0"><i class="fas fa-envelope text-primary me-2"></i>Example@gmail.com</a>
                     </div>
@@ -42,9 +42,9 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0">
-                        <a href="{{ url('/') }}" class="nav-item nav-link active">Home</a>
-                        <a href="{{ url('/about') }}" class="nav-item nav-link">About</a>
-                        <a href="{{ url('/service') }}" class="nav-item nav-link">Services</a>
+                        <a href="{{ url('/') }}" class="nav-item nav-link active"><span data-i18n="nav.home">Home</span></a>
+                        <a href="{{ url('/about') }}" class="nav-item nav-link"><span data-i18n="nav.about">About</span></a>
+                        <a href="{{ url('/service') }}" class="nav-item nav-link"><span data-i18n="nav.services">Services</span></a>
 
                         <div class="nav-item mega-menu" id="productsMegaMenu">
                             <button
@@ -53,7 +53,7 @@
                                 aria-expanded="false"
                                 aria-controls="productsMegaPanel"
                             >
-                                Products
+                                <span data-i18n="nav.products">Products</span>
                                 <span class="mega-menu__caret" aria-hidden="true">▾</span>
                             </button>
 
@@ -61,84 +61,84 @@
                                 <div class="mega-menu__inner">
                                     <div class="mega-menu__grid">
                                         <article class="mega-menu__category">
-                                            <h4 class="mega-menu__heading">Restaurant</h4>
-                                            <button class="mega-menu__category-toggle" type="button" aria-expanded="false">Restaurant</button>
+                                            <h4 class="mega-menu__heading"><span data-i18n="mega.restaurant">Restaurant</span></h4>
+                                            <button class="mega-menu__category-toggle" type="button" aria-expanded="false"><span data-i18n="mega.restaurant">Restaurant</span></button>
                                             <div class="mega-menu__services">
                                                 <a href="#" class="mega-menu__service">
                                                     <img src="https://via.placeholder.com/60x60.png?text=POS" alt="Restaurant POS">
                                                     <div>
-                                                        <h5>Restaurant POS</h5>
-                                                        <p>Smart table, order and kitchen workflows.</p>
+                                                        <h5><span data-i18n="mega.restaurantPos">Restaurant POS</span></h5>
+                                                        <p><span data-i18n="mega.restaurantPosDesc">Smart table, order and kitchen workflows.</span></p>
                                                     </div>
                                                 </a>
                                                 <a href="#" class="mega-menu__service">
                                                     <img src="https://via.placeholder.com/60x60.png?text=QR" alt="QR Ordering">
                                                     <div>
-                                                        <h5>QR Ordering</h5>
-                                                        <p>Contactless menu and payment journey.</p>
+                                                        <h5><span data-i18n="mega.qrOrdering">QR Ordering</span></h5>
+                                                        <p><span data-i18n="mega.qrOrderingDesc">Contactless menu and payment journey.</span></p>
                                                     </div>
                                                 </a>
                                             </div>
                                         </article>
 
                                         <article class="mega-menu__category">
-                                            <h4 class="mega-menu__heading">Retail</h4>
-                                            <button class="mega-menu__category-toggle" type="button" aria-expanded="false">Retail</button>
+                                            <h4 class="mega-menu__heading"><span data-i18n="mega.retail">Retail</span></h4>
+                                            <button class="mega-menu__category-toggle" type="button" aria-expanded="false"><span data-i18n="mega.retail">Retail</span></button>
                                             <div class="mega-menu__services">
                                                 <a href="#" class="mega-menu__service">
                                                     <img src="https://via.placeholder.com/60x60.png?text=INV" alt="Inventory Hub">
                                                     <div>
-                                                        <h5>Inventory Hub</h5>
-                                                        <p>Centralized stock sync across all stores.</p>
+                                                        <h5><span data-i18n="mega.inventoryHub">Inventory Hub</span></h5>
+                                                        <p><span data-i18n="mega.inventoryHubDesc">Centralized stock sync across all stores.</span></p>
                                                     </div>
                                                 </a>
                                                 <a href="#" class="mega-menu__service">
                                                     <img src="https://via.placeholder.com/60x60.png?text=CRM" alt="Loyalty CRM">
                                                     <div>
-                                                        <h5>Loyalty CRM</h5>
-                                                        <p>Member tiers, rewards and campaigns.</p>
+                                                        <h5><span data-i18n="mega.loyaltyCrm">Loyalty CRM</span></h5>
+                                                        <p><span data-i18n="mega.loyaltyCrmDesc">Member tiers, rewards and campaigns.</span></p>
                                                     </div>
                                                 </a>
                                             </div>
                                         </article>
 
                                         <article class="mega-menu__category">
-                                            <h4 class="mega-menu__heading">Hotel</h4>
-                                            <button class="mega-menu__category-toggle" type="button" aria-expanded="false">Hotel</button>
+                                            <h4 class="mega-menu__heading"><span data-i18n="mega.hotel">Hotel</span></h4>
+                                            <button class="mega-menu__category-toggle" type="button" aria-expanded="false"><span data-i18n="mega.hotel">Hotel</span></button>
                                             <div class="mega-menu__services">
                                                 <a href="#" class="mega-menu__service">
                                                     <img src="https://via.placeholder.com/60x60.png?text=PMS" alt="Property PMS">
                                                     <div>
-                                                        <h5>Property PMS</h5>
-                                                        <p>Bookings, front desk and room operations.</p>
+                                                        <h5><span data-i18n="mega.propertyPms">Property PMS</span></h5>
+                                                        <p><span data-i18n="mega.propertyPmsDesc">Bookings, front desk and room operations.</span></p>
                                                     </div>
                                                 </a>
                                                 <a href="#" class="mega-menu__service">
                                                     <img src="https://via.placeholder.com/60x60.png?text=SPA" alt="Spa & Wellness">
                                                     <div>
-                                                        <h5>Spa & Wellness</h5>
-                                                        <p>Appointments and service bundles in one place.</p>
+                                                        <h5><span data-i18n="mega.spaWellness">Spa & Wellness</span></h5>
+                                                        <p><span data-i18n="mega.spaWellnessDesc">Appointments and service bundles in one place.</span></p>
                                                     </div>
                                                 </a>
                                             </div>
                                         </article>
 
                                         <article class="mega-menu__category">
-                                            <h4 class="mega-menu__heading">Enterprise</h4>
-                                            <button class="mega-menu__category-toggle" type="button" aria-expanded="false">Enterprise</button>
+                                            <h4 class="mega-menu__heading"><span data-i18n="mega.enterprise">Enterprise</span></h4>
+                                            <button class="mega-menu__category-toggle" type="button" aria-expanded="false"><span data-i18n="mega.enterprise">Enterprise</span></button>
                                             <div class="mega-menu__services">
                                                 <a href="#" class="mega-menu__service">
                                                     <img src="https://via.placeholder.com/60x60.png?text=BI" alt="BI Analytics">
                                                     <div>
-                                                        <h5>BI Analytics</h5>
-                                                        <p>Executive dashboards with live insights.</p>
+                                                        <h5><span data-i18n="mega.biAnalytics">BI Analytics</span></h5>
+                                                        <p><span data-i18n="mega.biAnalyticsDesc">Executive dashboards with live insights.</span></p>
                                                     </div>
                                                 </a>
                                                 <a href="#" class="mega-menu__service">
                                                     <img src="https://via.placeholder.com/60x60.png?text=API" alt="API Integrations">
                                                     <div>
-                                                        <h5>API Integrations</h5>
-                                                        <p>Secure integrations with ERP and finance tools.</p>
+                                                        <h5><span data-i18n="mega.apiIntegrations">API Integrations</span></h5>
+                                                        <p><span data-i18n="mega.apiIntegrationsDesc">Secure integrations with ERP and finance tools.</span></p>
                                                     </div>
                                                 </a>
                                             </div>
@@ -149,19 +149,29 @@
                         </div>
 
                         <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><span data-i18n="nav.pages">Pages</span></a>
                             <div class="dropdown-menu m-0">
-                                <a href="{{ url('/appointment') }}" class="dropdown-item">Appointment</a>
-                                <a href="{{ url('/feature') }}" class="dropdown-item">Features</a>
-                                <a href="{{ url('/blog') }}" class="dropdown-item">Our Blog</a>
-                                <a href="{{ url('/team') }}" class="dropdown-item">Our Team</a>
-                                <a href="{{ url('/testimonial') }}" class="dropdown-item">Testimonial</a>
-                                <a href="{{ url('/not-found') }}" class="dropdown-item">404 Page</a>
+                                <a href="{{ url('/appointment') }}" class="dropdown-item"><span data-i18n="nav.appointment">Appointment</span></a>
+                                <a href="{{ url('/feature') }}" class="dropdown-item"><span data-i18n="nav.features">Features</span></a>
+                                <a href="{{ url('/blog') }}" class="dropdown-item"><span data-i18n="nav.blog">Our Blog</span></a>
+                                <a href="{{ url('/team') }}" class="dropdown-item"><span data-i18n="nav.team">Our Team</span></a>
+                                <a href="{{ url('/testimonial') }}" class="dropdown-item"><span data-i18n="nav.testimonial">Testimonial</span></a>
+                                <a href="{{ url('/not-found') }}" class="dropdown-item"><span data-i18n="nav.notfound">404 Page</span></a>
                             </div>
                         </div>
-                        <a href="{{ url('/contact') }}" class="nav-item nav-link">Contact Us</a>
+                        <a href="{{ url('/contact') }}" class="nav-item nav-link"><span data-i18n="nav.contact">Contact Us</span></a>
                     </div>
-                    <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 flex-wrap flex-sm-shrink-0">Book Appointment</a>
+                    <div class="nav-toolbar" aria-label="Quick controls">
+                        <button class="nav-toolbar__btn" id="themeToggle" type="button" aria-label="Toggle theme">
+                            <span class="nav-toolbar__icon" id="themeIcon">🌙</span>
+                            <span class="nav-toolbar__text" id="themeLabel" data-i18n="controls.dark">Dark</span>
+                        </button>
+                        <button class="nav-toolbar__btn" id="languageToggle" type="button" aria-label="Toggle language">
+                            <span class="nav-toolbar__icon">🌍</span>
+                            <span class="nav-toolbar__text" id="languageLabel">AR</span>
+                        </button>
+                    </div>
+                    <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 flex-wrap flex-sm-shrink-0"><span data-i18n="nav.book">Book Appointment</span></a>
                 </div>
             </nav>
 
@@ -178,7 +188,7 @@
                             <h1 class="display-1 text-capitalize text-white mb-4">Best Solution For Painful Life</h1>
                             <p class="mb-5 fs-5">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
                             </p>
-                            <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="#">Book Appointment</a>
+                            <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="#"><span data-i18n="nav.book">Book Appointment</span></a>
                         </div>
                     </div>
                 </div>
@@ -190,7 +200,7 @@
                             <h1 class="display-1 text-capitalize text-white mb-4">Best Solution For Painful Life</h1>
                             <p class="mb-5 fs-5 animated slideInDown">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
                             </p>
-                            <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="#">Book Appointment</a>
+                            <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="#"><span data-i18n="nav.book">Book Appointment</span></a>
                         </div>
                     </div>
                 </div>
