@@ -45,6 +45,109 @@
                         <a href="{{ url('/') }}" class="nav-item nav-link active">Home</a>
                         <a href="{{ url('/about') }}" class="nav-item nav-link">About</a>
                         <a href="{{ url('/service') }}" class="nav-item nav-link">Services</a>
+
+                        <div class="nav-item mega-menu" id="productsMegaMenu">
+                            <button
+                                class="nav-link mega-menu__trigger"
+                                type="button"
+                                aria-expanded="false"
+                                aria-controls="productsMegaPanel"
+                            >
+                                Products
+                                <span class="mega-menu__caret" aria-hidden="true">▾</span>
+                            </button>
+
+                            <section class="mega-menu__panel" id="productsMegaPanel" aria-label="Products Mega Menu">
+                                <div class="mega-menu__inner">
+                                    <div class="mega-menu__grid">
+                                        <article class="mega-menu__category">
+                                            <h4 class="mega-menu__heading">Restaurant</h4>
+                                            <button class="mega-menu__category-toggle" type="button" aria-expanded="false">Restaurant</button>
+                                            <div class="mega-menu__services">
+                                                <a href="#" class="mega-menu__service">
+                                                    <img src="https://via.placeholder.com/60x60.png?text=POS" alt="Restaurant POS">
+                                                    <div>
+                                                        <h5>Restaurant POS</h5>
+                                                        <p>Smart table, order and kitchen workflows.</p>
+                                                    </div>
+                                                </a>
+                                                <a href="#" class="mega-menu__service">
+                                                    <img src="https://via.placeholder.com/60x60.png?text=QR" alt="QR Ordering">
+                                                    <div>
+                                                        <h5>QR Ordering</h5>
+                                                        <p>Contactless menu and payment journey.</p>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </article>
+
+                                        <article class="mega-menu__category">
+                                            <h4 class="mega-menu__heading">Retail</h4>
+                                            <button class="mega-menu__category-toggle" type="button" aria-expanded="false">Retail</button>
+                                            <div class="mega-menu__services">
+                                                <a href="#" class="mega-menu__service">
+                                                    <img src="https://via.placeholder.com/60x60.png?text=INV" alt="Inventory Hub">
+                                                    <div>
+                                                        <h5>Inventory Hub</h5>
+                                                        <p>Centralized stock sync across all stores.</p>
+                                                    </div>
+                                                </a>
+                                                <a href="#" class="mega-menu__service">
+                                                    <img src="https://via.placeholder.com/60x60.png?text=CRM" alt="Loyalty CRM">
+                                                    <div>
+                                                        <h5>Loyalty CRM</h5>
+                                                        <p>Member tiers, rewards and campaigns.</p>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </article>
+
+                                        <article class="mega-menu__category">
+                                            <h4 class="mega-menu__heading">Hotel</h4>
+                                            <button class="mega-menu__category-toggle" type="button" aria-expanded="false">Hotel</button>
+                                            <div class="mega-menu__services">
+                                                <a href="#" class="mega-menu__service">
+                                                    <img src="https://via.placeholder.com/60x60.png?text=PMS" alt="Property PMS">
+                                                    <div>
+                                                        <h5>Property PMS</h5>
+                                                        <p>Bookings, front desk and room operations.</p>
+                                                    </div>
+                                                </a>
+                                                <a href="#" class="mega-menu__service">
+                                                    <img src="https://via.placeholder.com/60x60.png?text=SPA" alt="Spa & Wellness">
+                                                    <div>
+                                                        <h5>Spa & Wellness</h5>
+                                                        <p>Appointments and service bundles in one place.</p>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </article>
+
+                                        <article class="mega-menu__category">
+                                            <h4 class="mega-menu__heading">Enterprise</h4>
+                                            <button class="mega-menu__category-toggle" type="button" aria-expanded="false">Enterprise</button>
+                                            <div class="mega-menu__services">
+                                                <a href="#" class="mega-menu__service">
+                                                    <img src="https://via.placeholder.com/60x60.png?text=BI" alt="BI Analytics">
+                                                    <div>
+                                                        <h5>BI Analytics</h5>
+                                                        <p>Executive dashboards with live insights.</p>
+                                                    </div>
+                                                </a>
+                                                <a href="#" class="mega-menu__service">
+                                                    <img src="https://via.placeholder.com/60x60.png?text=API" alt="API Integrations">
+                                                    <div>
+                                                        <h5>API Integrations</h5>
+                                                        <p>Secure integrations with ERP and finance tools.</p>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </article>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu m-0">
