@@ -11,8 +11,8 @@
                     <div class="sub-style">
                         <h4 class="sub-title px-3 mb-0">What We Do</h4>
                     </div>
-                    <h1 class="display-3 mb-4">Our Service Given Physio Therapy By Expert.</h1>
-                    <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat deleniti amet at atque sequi quibusdam cumque itaque repudiandae temporibus, eius nam mollitia voluptas maxime veniam necessitatibus saepe in ab? Repellat!</p>
+                    <h1 class="display-3 mb-4">Powerful POS System for Restaurants & Retail.</h1>
+                    <p class="mb-0">AQUA POS is a cloud-based POS and inventory management platform from Amman, Jordan, helping restaurants and retailers run faster with better control and full visibility.</p>
                 </div>
                 <div class="row g-4 justify-content-center">
                     <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
@@ -22,8 +22,8 @@
                            </div>
                             <div class="service-content rounded-bottom bg-light p-4">
                                 <div class="service-content-inner">
-                                    <h5 class="mb-4">Message Therapy</h5>
-                                    <p class="mb-4">Dolor, sit amet consectetur adipisicing elit. Soluta inventore cum accusamus, dolor qui ullam</p>
+                                    <h5 class="mb-4">Powerful POS System</h5>
+                                    <p class="mb-4">Designed to reduce errors, simplify workflows, and keep every sale and stock movement synchronized in real time.</p>
                                     <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
                                 </div>
                             </div>
@@ -36,8 +36,8 @@
                            </div>
                             <div class="service-content rounded-bottom bg-light p-4">
                                 <div class="service-content-inner">
-                                    <h5 class="mb-4">Physiotherapy</h5>
-                                    <p class="mb-4">Dolor, sit amet consectetur adipisicing elit. Soluta inventore cum accusamus, dolor qui ullam</p>
+                                    <h5 class="mb-4">Smart Inventory Control</h5>
+                                    <p class="mb-4">Designed to reduce errors, simplify workflows, and keep every sale and stock movement synchronized in real time.</p>
                                     <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
                                 </div>
                             </div>
@@ -50,8 +50,8 @@
                            </div>
                             <div class="service-content rounded-bottom bg-light p-4">
                                 <div class="service-content-inner">
-                                    <h5 class="mb-4">Heat & Cold Therapy</h5>
-                                    <p class="mb-4">Dolor, sit amet consectetur adipisicing elit. Soluta inventore cum accusamus, dolor qui ullam</p>
+                                    <h5 class="mb-4">Unified Branch Management</h5>
+                                    <p class="mb-4">Designed to reduce errors, simplify workflows, and keep every sale and stock movement synchronized in real time.</p>
                                     <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
                                 </div>
                             </div>
@@ -64,8 +64,8 @@
                            </div>
                             <div class="service-content rounded-bottom bg-light p-4">
                                 <div class="service-content-inner">
-                                    <h5 class="mb-4">Chiropatic Therapy</h5>
-                                    <p class="mb-4">Dolor, sit amet consectetur adipisicing elit. Soluta inventore cum accusamus, dolor qui ullam</p>
+                                    <h5 class="mb-4">Cloud-Based Platform</h5>
+                                    <p class="mb-4">Designed to reduce errors, simplify workflows, and keep every sale and stock movement synchronized in real time.</p>
                                     <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
                                 </div>
                             </div>
@@ -78,8 +78,8 @@
                            </div>
                             <div class="service-content rounded-bottom bg-light p-4">
                                 <div class="service-content-inner">
-                                    <h5 class="mb-4">Work Injuries</h5>
-                                    <p class="mb-4">Dolor, sit amet consectetur adipisicing elit. Soluta inventore cum accusamus, dolor qui ullam</p>
+                                    <h5 class="mb-4">Restaurant Operations</h5>
+                                    <p class="mb-4">Designed to reduce errors, simplify workflows, and keep every sale and stock movement synchronized in real time.</p>
                                     <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
                                 </div>
                             </div>
@@ -92,8 +92,8 @@
                            </div>
                             <div class="service-content rounded-bottom bg-light p-4">
                                 <div class="service-content-inner">
-                                    <h5 class="mb-4">Spot Injuries</h5>
-                                    <p class="mb-4">Dolor, sit amet consectetur adipisicing elit. Soluta inventore cum accusamus, dolor qui ullam</p>
+                                    <h5 class="mb-4">Retail Operations</h5>
+                                    <p class="mb-4">Designed to reduce errors, simplify workflows, and keep every sale and stock movement synchronized in real time.</p>
                                     <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
                                 </div>
                             </div>
@@ -106,8 +106,8 @@
                            </div>
                             <div class="service-content rounded-bottom bg-light p-4">
                                 <div class="service-content-inner">
-                                    <h5 class="mb-4">Regular Therapy</h5>
-                                    <p class="mb-4">Dolor, sit amet consectetur adipisicing elit. Soluta inventore cum accusamus, dolor qui ullam</p>
+                                    <h5 class="mb-4">Real-Time Analytics</h5>
+                                    <p class="mb-4">Designed to reduce errors, simplify workflows, and keep every sale and stock movement synchronized in real time.</p>
                                     <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
                                 </div>
                             </div>
@@ -120,8 +120,8 @@
                            </div>
                             <div class="service-content rounded-bottom bg-light p-4">
                                 <div class="service-content-inner">
-                                    <h5 class="mb-4">Back Pain</h5>
-                                    <p class="mb-4">Dolor, sit amet consectetur adipisicing elit. Soluta inventore cum accusamus, dolor qui ullam</p>
+                                    <h5 class="mb-4">Control & Visibility</h5>
+                                    <p class="mb-4">Designed to reduce errors, simplify workflows, and keep every sale and stock movement synchronized in real time.</p>
                                     <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
                                 </div>
                             </div>
@@ -146,18 +146,18 @@
                             <div class="about-img-inner">
                                 <img src="{{ asset('img/about-2.jpg') }}" class="img-fluid rounded-circle w-100 h-100" alt="Image">
                             </div>
-                            <div class="about-experience">15 years experience</div>
+                            <div class="about-experience">Trusted in Amman, Jordan</div>
                         </div>
                     </div>
                     <div class="col-lg-7 wow fadeInRight" data-wow-delay="0.4s">
                         <div class="section-title text-start mb-5">
                             <h4 class="sub-title pe-3 mb-0">About Us</h4>
-                            <h1 class="display-3 mb-4">We are Ready to Help Improve Your Treatment.</h1>
-                            <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat deleniti amet at atque sequi quibusdam cumque itaque repudiandae temporibus, eius nam mollitia voluptas maxime veniam necessitatibus saepe in ab? Repellat!</p>
+                            <h1 class="display-3 mb-4">Jordanian SaaS Team Building Better POS Operations.</h1>
+                            <p class="mb-4">AQUA POS is a cloud-based POS and inventory management platform from Amman, Jordan, helping restaurants and retailers run faster with better control and full visibility.</p>
                             <div class="mb-4">
-                                <p class="text-secondary"><i class="fa fa-check text-primary me-2"></i> Refresing to get such a personal touch.</p>
-                                <p class="text-secondary"><i class="fa fa-check text-primary me-2"></i> Duis aute irure dolor in reprehenderit in voluptate.</p>
-                                <p class="text-secondary"><i class="fa fa-check text-primary me-2"></i> Velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                                <p class="text-secondary"><i class="fa fa-check text-primary me-2"></i> Built for restaurants and retail businesses.</p>
+                                <p class="text-secondary"><i class="fa fa-check text-primary me-2"></i> Reduce billing and stock errors across teams.</p>
+                                <p class="text-secondary"><i class="fa fa-check text-primary me-2"></i> Improve speed, control, and daily visibility.</p>
                             </div>
                             <a href="#" class="btn btn-primary rounded-pill text-white py-3 px-5">Discover More</a>
                         </div>
@@ -174,8 +174,8 @@
                     <div class="sub-style">
                         <h4 class="sub-title px-3 mb-0">Why Choose Us</h4>
                     </div>
-                    <h1 class="display-3 mb-4">Why Choose Us? Get Your Life Style Back</h1>
-                    <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat deleniti amet at atque sequi quibusdam cumque itaque repudiandae temporibus, eius nam mollitia voluptas maxime veniam necessitatibus saepe in ab? Repellat!</p>
+                    <h1 class="display-3 mb-4">Why Choose Us? Run Smarter Operations Every Day</h1>
+                    <p class="mb-0">AQUA POS is a cloud-based POS and inventory management platform from Amman, Jordan, helping restaurants and retailers run faster with better control and full visibility.</p>
                 </div>
                 <div class="row g-4 justify-content-center">
                     <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
@@ -187,8 +187,8 @@
                                     </div>
                                 </div>
                                 <div class="feature-content d-flex flex-column">
-                                    <h5 class="mb-4">Licensed Therapist</h5>
-                                    <p class="mb-0">Dolor, sit amet consectetur adipisicing elit. Soluta inventore cum accusamus,</p>
+                                    <h5 class="mb-4">Reliable POS Workflows</h5>
+                                    <p class="mb-0">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</p>
                                 </div>
                             </div>
                         </div>
@@ -202,8 +202,8 @@
                                     </div>
                                 </div>
                                 <div class="feature-content d-flex flex-column">
-                                    <h5 class="mb-4">Personalized Treatment</h5>
-                                    <p class="mb-0">Dolor, sit amet consectetur adipisicing elit. Soluta inventore cum accusamus,</p>
+                                    <h5 class="mb-4">Smart Inventory Control</h5>
+                                    <p class="mb-0">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</p>
                                 </div>
                             </div>
                         </div>
@@ -217,8 +217,8 @@
                                     </div>
                                 </div>
                                 <div class="feature-content d-flex flex-column">
-                                    <h5 class="mb-4">Therapy Goals</h5>
-                                    <p class="mb-0">Dolor, sit amet consectetur adipisicing elit. Soluta inventore cum accusamus,</p>
+                                    <h5 class="mb-4">Real-Time Business Insights</h5>
+                                    <p class="mb-0">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</p>
                                 </div>
                             </div>
                         </div>
@@ -232,8 +232,8 @@
                                     </div>
                                 </div>
                                 <div class="feature-content d-flex flex-column">
-                                    <h5 class="mb-4">Practitioners Network</h5>
-                                    <p class="mb-0">Dolor, sit amet consectetur adipisicing elit. Soluta inventore cum accusamus,</p>
+                                    <h5 class="mb-4">Unified Branch Management</h5>
+                                    <p class="mb-0">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</p>
                                 </div>
                             </div>
                         </div>
@@ -247,8 +247,8 @@
                                     </div>
                                 </div>
                                 <div class="feature-content d-flex flex-column">
-                                    <h5 class="mb-4">Comfortable Center</h5>
-                                    <p class="mb-0">Dolor, sit amet consectetur adipisicing elit. Soluta inventore cum accusamus,</p>
+                                    <h5 class="mb-4">Fast Checkout Experience</h5>
+                                    <p class="mb-0">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</p>
                                 </div>
                             </div>
                         </div>
@@ -262,8 +262,8 @@
                                     </div>
                                 </div>
                                 <div class="feature-content d-flex flex-column">
-                                    <h5 class="mb-4">Experienced Stuff</h5>
-                                    <p class="mb-0">Dolor, sit amet consectetur adipisicing elit. Soluta inventore cum accusamus,</p>
+                                    <h5 class="mb-4">Jordan-Based SaaS Team</h5>
+                                    <p class="mb-0">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</p>
                                 </div>
                             </div>
                         </div>
@@ -277,8 +277,8 @@
                                     </div>
                                 </div>
                                 <div class="feature-content d-flex flex-column">
-                                    <h5 class="mb-4">Therapy Goals</h5>
-                                    <p class="mb-0">Dolor, sit amet consectetur adipisicing elit. Soluta inventore cum accusamus,</p>
+                                    <h5 class="mb-4">Real-Time Business Insights</h5>
+                                    <p class="mb-0">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</p>
                                 </div>
                             </div>
                         </div>
@@ -292,8 +292,8 @@
                                     </div>
                                 </div>
                                 <div class="feature-content d-flex flex-column">
-                                    <h5 class="mb-4">Licensed Therapist</h5>
-                                    <p class="mb-0">Dolor, sit amet consectetur adipisicing elit. Soluta inventore cum accusamus,</p>
+                                    <h5 class="mb-4">Reliable POS Workflows</h5>
+                                    <p class="mb-0">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</p>
                                 </div>
                             </div>
                         </div>
@@ -315,17 +315,17 @@
                         <div class="section-title text-start">
                             <h4 class="sub-title pe-3 mb-0">Solutions To Your Pain</h4>
                             <h1 class="display-4 mb-4">Best Quality Services With Minimal Pain Rate</h1>
-                            <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat deleniti amet at atque sequi quibusdam cumque itaque repudiandae temporibus, eius nam mollitia voluptas maxime veniam necessitatibus saepe in ab? Repellat!</p>
+                            <p class="mb-4">AQUA POS is a cloud-based POS and inventory management platform from Amman, Jordan, helping restaurants and retailers run faster with better control and full visibility.</p>
                             <div class="row g-4">
                                 <div class="col-sm-6">
                                     <div class="d-flex flex-column h-100">
                                         <div class="mb-4">
                                             <h5 class="mb-3"><i class="fa fa-check text-primary me-2"></i> Body Relaxation</h5>
-                                            <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et deserunt qui cupiditate veritatis enim ducimus.</p>
+                                            <p class="mb-0">From onboarding to go-live, our team ensures a smooth deployment with clear workflows and measurable operational improvements.</p>
                                         </div>
                                         <div class="mb-4">
                                             <h5 class="mb-3"><i class="fa fa-check text-primary me-2"></i> Body Relaxation</h5>
-                                            <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et deserunt qui cupiditate veritatis enim ducimus.</p>
+                                            <p class="mb-0">From onboarding to go-live, our team ensures a smooth deployment with clear workflows and measurable operational improvements.</p>
                                         </div>
                                         <div class="text-start mb-4">
                                             <a href="#" class="btn btn-primary rounded-pill text-white py-3 px-5">More Details</a>
@@ -372,7 +372,7 @@
                                     <div class="col-xl-6">
                                         <select class="form-select py-3 border-primary bg-transparent" aria-label="Default select example">
                                             <option selected>Department</option>
-                                            <option value="1">Physiotherapy</option>
+                                            <option value="1">Smart Inventory Control</option>
                                             <option value="2">Physical Helth</option>
                                             <option value="2">Treatments</option>
                                         </select>
@@ -418,8 +418,8 @@
                     <div class="sub-style">
                         <h4 class="sub-title px-3 mb-0">Meet our team</h4>
                     </div>
-                    <h1 class="display-3 mb-4">Physiotherapy Services from Professional Therapist</h1>
-                    <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat deleniti amet at atque sequi quibusdam cumque itaque repudiandae temporibus, eius nam mollitia voluptas maxime veniam necessitatibus saepe in ab? Repellat!</p>
+                    <h1 class="display-3 mb-4">Smart Inventory Control for Restaurants & Retail</h1>
+                    <p class="mb-0">AQUA POS is a cloud-based POS and inventory management platform from Amman, Jordan, helping restaurants and retailers run faster with better control and full visibility.</p>
                 </div>
                 <div class="row g-4 justify-content-center">
                     <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
@@ -435,7 +435,7 @@
                             </div>
                             <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4">
                                 <h5>Full Name</h5>
-                                <p class="mb-0">Message Physio Therapist</p>
+                                <p class="mb-0">POS Implementation Specialist</p>
                             </div>
                         </div>
                     </div>
@@ -452,7 +452,7 @@
                             </div>
                             <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4">
                                 <h5>Full Name</h5>
-                                <p class="mb-0">Rehabilitation Therapist</p>
+                                <p class="mb-0">Inventory Operations Specialist</p>
                             </div>
                         </div>
                     </div>
@@ -469,7 +469,7 @@
                             </div>
                             <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4">
                                 <h5>Full Name</h5>
-                                <p class="mb-0">Doctor of Physical therapy</p>
+                                <p class="mb-0">POS & Inventory Consultant</p>
                             </div>
                         </div>
                     </div>
@@ -486,7 +486,7 @@
                             </div>
                             <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4">
                                 <h5>Full Name</h5>
-                                <p class="mb-0">Doctor of Physical therapy</p>
+                                <p class="mb-0">POS & Inventory Consultant</p>
                             </div>
                         </div>
                     </div>
@@ -511,7 +511,7 @@
                             <div class="testimonial-inner-img mb-4">
                                 <img src="{{ asset('img/testimonial-img.jpg') }}" class="img-fluid rounded-circle" alt="">
                             </div>
-                            <p class="text-white fs-7">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores nemo facilis tempora esse explicabo sed! Dignissimos quia ullam pariatur blanditiis sed voluptatum. Totam aut quidem laudantium tempora. Minima, saepe earum!
+                            <p class="text-white fs-7">AQUA POS gave us a clear live view of sales and stock. Our branch teams now work faster with fewer manual errors and stronger daily control.
                             </p>
                             <div class="text-center">
                                 <h5 class="mb-2">John Abraham</h5>
@@ -531,7 +531,7 @@
                             <div class="testimonial-inner-img mb-4">
                                 <img src="{{ asset('img/testimonial-img.jpg') }}" class="img-fluid rounded-circle" alt="">
                             </div>
-                            <p class="text-white fs-7">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores nemo facilis tempora esse explicabo sed! Dignissimos quia ullam pariatur blanditiis sed voluptatum. Totam aut quidem laudantium tempora. Minima, saepe earum!
+                            <p class="text-white fs-7">AQUA POS gave us a clear live view of sales and stock. Our branch teams now work faster with fewer manual errors and stronger daily control.
                             </p>
                             <div class="text-center">
                                 <h5 class="mb-2">John Abraham</h5>
@@ -551,7 +551,7 @@
                             <div class="testimonial-inner-img mb-4">
                                 <img src="{{ asset('img/testimonial-img.jpg') }}" class="img-fluid rounded-circle" alt="">
                             </div>
-                            <p class="text-white fs-7">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores nemo facilis tempora esse explicabo sed! Dignissimos quia ullam pariatur blanditiis sed voluptatum. Totam aut quidem laudantium tempora. Minima, saepe earum!
+                            <p class="text-white fs-7">AQUA POS gave us a clear live view of sales and stock. Our branch teams now work faster with fewer manual errors and stronger daily control.
                             </p>
                             <div class="text-center">
                                 <h5 class="mb-2">John Abraham</h5>
@@ -579,8 +579,8 @@
                     <div class="sub-style">
                         <h4 class="sub-title px-3 mb-0">Our Blog</h4>
                     </div>
-                    <h1 class="display-3 mb-4">Excellent Facility and High Quality Therapy</h1>
-                    <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat deleniti amet at atque sequi quibusdam cumque itaque repudiandae temporibus, eius nam mollitia voluptas maxime veniam necessitatibus saepe in ab? Repellat!</p>
+                    <h1 class="display-3 mb-4">Real-Time Business Insights for Faster Decisions</h1>
+                    <p class="mb-0">AQUA POS is a cloud-based POS and inventory management platform from Amman, Jordan, helping restaurants and retailers run faster with better control and full visibility.</p>
                 </div>
                 <div class="row g-4 justify-content-center">
                     <div class="col-md-6 col-lg-6 col-xl-4 wow fadeInUp" data-wow-delay="0.1s">
@@ -594,7 +594,7 @@
                                     <a href="#" class="text-muted"><span class="fa fa-comments text-primary"></span> 3 Comments</a>
                                 </div>
                                 <a href="#" class="h4">Remove back Pain While Working on o physio</a>
-                                <p class="my-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium hic consequatur beatae architecto,</p>
+                                <p class="my-4">Practical strategies for improving checkout speed, stock accuracy, and branch coordination using a modern SaaS POS platform.</p>
                                 <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-1">Read More</a>
                             </div>
                         </div>
@@ -609,8 +609,8 @@
                                     <p class="mb-0 text-muted"><i class="fa fa-calendar-alt text-primary"></i> 01 Jan 2045</p>
                                     <a href="#" class="text-muted"><span class="fa fa-comments text-primary"></span> 3 Comments</a>
                                 </div>
-                                <a href="#" class="h4">Benefits of a weekly physiotherapy session</a>
-                                <p class="my-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium hic consequatur beatae architecto,</p>
+                                <a href="#" class="h4">Inventory accuracy tips for multi-branch stores</a>
+                                <p class="my-4">Practical strategies for improving checkout speed, stock accuracy, and branch coordination using a modern SaaS POS platform.</p>
                                 <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-1">Read More</a>
                             </div>
                         </div>
@@ -626,7 +626,7 @@
                                     <a href="#" class="text-muted"><span class="fa fa-comments text-primary"></span> 3 Comments</a>
                                 </div>
                                 <a href="#" class="h4">Regular excercise can slow ageing process</a>
-                                <p class="my-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium hic consequatur beatae architecto,</p>
+                                <p class="my-4">Practical strategies for improving checkout speed, stock accuracy, and branch coordination using a modern SaaS POS platform.</p>
                                 <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-1">Read More</a>
                             </div>
                         </div>

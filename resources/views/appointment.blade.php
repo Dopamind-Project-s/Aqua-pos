@@ -23,17 +23,17 @@
                         <div class="section-title text-start">
                             <h4 class="sub-title pe-3 mb-0">Solutions To Your Pain</h4>
                             <h1 class="display-4 mb-4">Best Quality Services With Minimal Pain Rate</h1>
-                            <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat deleniti amet at atque sequi quibusdam cumque itaque repudiandae temporibus, eius nam mollitia voluptas maxime veniam necessitatibus saepe in ab? Repellat!</p>
+                            <p class="mb-4">AQUA POS is a cloud-based POS and inventory management platform from Amman, Jordan, helping restaurants and retailers run faster with better control and full visibility.</p>
                             <div class="row g-4">
                                 <div class="col-sm-6">
                                     <div class="d-flex flex-column h-100">
                                         <div class="mb-4">
                                             <h5 class="mb-3"><i class="fa fa-check text-primary me-2"></i> Body Relaxation</h5>
-                                            <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et deserunt qui cupiditate veritatis enim ducimus.</p>
+                                            <p class="mb-0">From onboarding to go-live, our team ensures a smooth deployment with clear workflows and measurable operational improvements.</p>
                                         </div>
                                         <div class="mb-4">
                                             <h5 class="mb-3"><i class="fa fa-check text-primary me-2"></i> Body Relaxation</h5>
-                                            <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et deserunt qui cupiditate veritatis enim ducimus.</p>
+                                            <p class="mb-0">From onboarding to go-live, our team ensures a smooth deployment with clear workflows and measurable operational improvements.</p>
                                         </div>
                                         <div class="text-start mb-4">
                                             <a href="#" class="btn btn-primary rounded-pill text-white py-3 px-5">More Details</a>
@@ -80,7 +80,7 @@
                                     <div class="col-xl-6">
                                         <select class="form-select py-3 border-primary bg-transparent" aria-label="Default select example">
                                             <option selected>Department</option>
-                                            <option value="1">Physiotherapy</option>
+                                            <option value="1">Smart Inventory Control</option>
                                             <option value="2">Physical Helth</option>
                                             <option value="2">Treatments</option>
                                         </select>

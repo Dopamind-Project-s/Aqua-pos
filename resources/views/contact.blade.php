@@ -22,12 +22,12 @@
                     <div class="sub-style mb-4">
                         <h4 class="sub-title text-white px-3 mb-0">Contact Us</h4>
                     </div>
-                    <p class="mb-0 text-black-50">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat deleniti amet at atque sequi quibusdam cumque itaque repudiandae temporibus, eius nam mollitia voluptas maxime veniam necessitatibus saepe in ab? Repellat!</p>
+                    <p class="mb-0 text-black-50">AQUA POS is a cloud-based POS and inventory management platform from Amman, Jordan, helping restaurants and retailers run faster with better control and full visibility.</p>
                 </div>
                 <div class="row g-4 align-items-center">
                     <div class="col-lg-5 col-xl-5 contact-form wow fadeInLeft" data-wow-delay="0.1s">
                         <h2 class="display-5 text-white mb-2">Get in Touch</h2>
-                        <p class="mb-4 text-white">The contact form is currently inactive. Get a functional and working contact form with Ajax & PHP in a few minutes. Just copy and paste the files, add a little code and you're done. <a class="text-dark fw-bold" href="https://htmlcodex.com/contact-form">Download Now</a>.</p>
+                        <p class="mb-4 text-white">Our team in Amman, Jordan helps restaurants and retailers deploy AQUA POS quickly. Share your requirements and we will contact you soon.</p>
                         <form>
                             <div class="row g-3">
                                 <div class="col-lg-12 col-xl-6">
