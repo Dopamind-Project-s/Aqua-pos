@@ -77,28 +77,28 @@
                             <div class="d-flex flex-column align-items-center text-center mb-4">
                                 <div class="bg-white d-flex align-items-center justify-content-center mb-3" style="width: 90px; height: 90px; border-radius: 50px;"><i class="fa fa-map-marker-alt fa-2x text-primary"></i></div>
                                 <h4 class="text-dark">Addresses</h4>
-                                <p class="mb-0 text-white">123 ranking Street, New York, USA</p>
+                                <p class="mb-0 text-white">Amman , Jordan</p>
                             </div>
                             <div class="d-flex flex-column align-items-center text-center mb-4">
                                 <div class="bg-white d-flex align-items-center justify-content-center mb-3" style="width: 90px; height: 90px; border-radius: 50px;"><i class="fa fa-phone-alt fa-2x text-primary"></i></div>
-                                <h4 class="text-dark">Mobile</h4>
-                                <p class="mb-0 text-white">+012 345 67890</p>
-                                <p class="mb-0 text-white">+012 345 67890</p>
+                                <h4 class="text-dark">Head Quarter</h4>
+                                <p class="mb-0 text-white">+962-791888655</p>
+                                <p class="mb-0 text-white">+962 79 1888655</p>
                             </div>
                            
                             <div class="d-flex flex-column align-items-center text-center">
                                 <div class="bg-white d-flex align-items-center justify-content-center mb-3" style="width: 90px; height: 90px; border-radius: 50px;"><i class="fa fa-envelope-open fa-2x text-primary"></i></div>
                                 <h4 class="text-dark">Email</h4>
-                                <p class="mb-0 text-white">info@example.com</p>
-                                <p class="mb-0 text-white">info@example.com</p>
+                                <p class="mb-0 text-white">info@aqua-pos.com</p>
+                                <p class="mb-0 text-white">sales@aqua-pos.com</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-5 col-xl-5 wow fadeInRight" data-wow-delay="0.3s">
                         <div class="d-flex justify-content-center mb-4">
-                            <a class="btn btn-lg-square btn-light rounded-circle mx-2" href=""><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-lg-square btn-light rounded-circle mx-2" href="https://www.facebook.com/aqua.software.co/" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
                             <a class="btn btn-lg-square btn-light rounded-circle mx-2" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-lg-square btn-light rounded-circle mx-2" href=""><i class="fab fa-instagram"></i></a>
+                            <a class="btn btn-lg-square btn-light rounded-circle mx-2" href="https://www.instagram.com/aqua_software/?igsh=MWwzOGM2cDliY3Zydw%3D%3D" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
                             <a class="btn btn-lg-square btn-light rounded-circle mx-2" href=""><i class="fab fa-linkedin-in"></i></a>
                         </div>
                         <div class="rounded h-100">

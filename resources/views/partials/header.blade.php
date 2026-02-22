@@ -12,16 +12,16 @@
             <div class="row gx-0 align-items-center" style="height: 45px;">
                 <div class="col-lg-8 text-center text-lg-start mb-lg-0">
                     <div class="d-flex flex-wrap">
-                        <a href="#" class="text-light me-4"><i class="fas fa-map-marker-alt text-primary me-2"></i><span data-i18n="topbar.location">Find A Location</span></a>
-                        <a href="#" class="text-light me-4"><i class="fas fa-phone-alt text-primary me-2"></i>+01234567890</a>
-                        <a href="#" class="text-light me-0"><i class="fas fa-envelope text-primary me-2"></i>Example@gmail.com</a>
+                        <a href="#" class="text-light me-4"><i class="fas fa-map-marker-alt text-primary me-2"></i><span data-i18n="topbar.location">Amman, Jordan</span></a>
+                        <a href="#" class="text-light me-4"><i class="fas fa-phone-alt text-primary me-2"></i>+962-791888655</a>
+                        <a href="#" class="text-light me-0"><i class="fas fa-envelope text-primary me-2"></i>info@aqua-pos.com</a>
                     </div>
                 </div>
                 <div class="col-lg-4 text-center text-lg-end">
                     <div class="d-flex align-items-center justify-content-end">
-                        <a href="#" class="btn btn-light btn-square border rounded-circle nav-fill me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.facebook.com/aqua.software.co/" target="_blank" rel="noopener" class="btn btn-light btn-square border rounded-circle nav-fill me-3"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="btn btn-light btn-square border rounded-circle nav-fill me-3"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="btn btn-light btn-square border rounded-circle nav-fill me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/aqua_software/?igsh=MWwzOGM2cDliY3Zydw%3D%3D" target="_blank" rel="noopener" class="btn btn-light btn-square border rounded-circle nav-fill me-3"><i class="fab fa-instagram"></i></a>
                         <a href="#" class="btn btn-light btn-square border rounded-circle nav-fill me-0"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
@@ -185,8 +185,8 @@
                     <div class="carousel-caption">
                         <div class="carousel-caption-content p-3">
                             <h5 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;">Cloud POS Platform</h5>
-                            <h1 class="display-1 text-capitalize text-white mb-4">Best Solution For Painful Life</h1>
-                            <p class="mb-5 fs-5">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+                            <h1 class="display-1 text-capitalize text-white mb-4">Powerful POS & Inventory Management Software</h1>
+                            <p class="mb-5 fs-5">Built in Amman, Jordan, AQUA POS helps restaurants and retailers manage sales, stock, and branches with speed, control, and real-time visibility. 
                             </p>
                             <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="#"><span data-i18n="nav.book">Book Appointment</span></a>
                         </div>
@@ -197,8 +197,8 @@
                     <div class="carousel-caption">
                         <div class="carousel-caption-content p-3">
                             <h5 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;">Cloud POS Platform</h5>
-                            <h1 class="display-1 text-capitalize text-white mb-4">Best Solution For Painful Life</h1>
-                            <p class="mb-5 fs-5 animated slideInDown">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+                            <h1 class="display-1 text-capitalize text-white mb-4">Powerful POS & Inventory Management Software</h1>
+                            <p class="mb-5 fs-5 animated slideInDown">Built in Amman, Jordan, AQUA POS helps restaurants and retailers manage sales, stock, and branches with speed, control, and real-time visibility. 
                             </p>
                             <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="#"><span data-i18n="nav.book">Book Appointment</span></a>
                         </div>
