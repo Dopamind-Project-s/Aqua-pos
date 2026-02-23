@@ -45,8 +45,6 @@
                         <a href="{{ url('/') }}" class="nav-item nav-link active"><span data-i18n="nav.home">Home</span></a>
                         <a href="{{ url('/about') }}" class="nav-item nav-link"><span data-i18n="nav.about">About</span></a>
                         <a href="{{ url('/service') }}" class="nav-item nav-link"><span data-i18n="nav.services">Services</span></a>
-                        <a href="{{ url('/products') }}" class="nav-item nav-link"><span data-i18n="nav.products">Products</span></a>
-
                         <div class="nav-item mega-menu" id="productsMegaMenu">
                             <button
                                 class="nav-link mega-menu__trigger"

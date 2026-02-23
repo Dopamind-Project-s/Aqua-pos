@@ -22,7 +22,10 @@
             @forelse($products as $product)
                 <div class="col-md-6 col-lg-4 col-xl-3">
                     <div class="service-item rounded h-100">
-                        <div class="service-content rounded bg-light p-4 h-100">
+                        <div class="service-img rounded-top">
+                            <img src="{{ $product->image ? Storage::url($product->image) : asset('img/service-1.jpg') }}" class="img-fluid rounded-top w-100" style="height: 220px; object-fit: cover;" alt="{{ $product->name }}">
+                        </div>
+                        <div class="service-content rounded-bottom bg-light p-4 h-100">
                             <div class="service-content-inner">
                                 <h5 class="mb-3">{{ $product->name }}</h5>
                                 <p class="mb-2"><strong>Category:</strong> {{ $product->category?->name }}</p>
