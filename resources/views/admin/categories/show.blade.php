@@ -1,46 +1,20 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="container-fluid py-4">
-    <div class="row">
-        @include('admin.partials.sidebar')
-
-        <main class="col-md-9 col-lg-10 p-4">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <h2 class="mb-0">Category Details</h2>
-                <a href="{{ route('admin.categories.index') }}" class="btn btn-secondary">Back</a>
-            </div>
-
-            @include('admin.partials.flash-messages')
-
-            <div class="card">
-                <div class="card-body">
-                    <dl class="row mb-0">
-                        <dt class="col-sm-3">Name</dt>
-                        <dd class="col-sm-9">{{ $category->name }}</dd>
-
-                        <dt class="col-sm-3">Slug</dt>
-                        <dd class="col-sm-9">{{ $category->slug }}</dd>
-
-                        <dt class="col-sm-3">Description</dt>
-                        <dd class="col-sm-9">{{ $category->description ?: '-' }}</dd>
-
-                        <dt class="col-sm-3">Status</dt>
-                        <dd class="col-sm-9">
-                            <span class="badge {{ $category->is_active ? 'bg-success' : 'bg-secondary' }}">
-                                {{ $category->is_active ? 'Active' : 'Inactive' }}
-                            </span>
-                        </dd>
-
-                        <dt class="col-sm-3">Created At</dt>
-                        <dd class="col-sm-9">{{ $category->created_at?->format('Y-m-d H:i') }}</dd>
-
-                        <dt class="col-sm-3">Updated At</dt>
-                        <dd class="col-sm-9">{{ $category->updated_at?->format('Y-m-d H:i') }}</dd>
-                    </dl>
-                </div>
-            </div>
-        </main>
-    </div>
-</div>
+@include('admin.partials.flexy-shell-start')
+@include('admin.partials.flash-messages')
+<div class="card"><div class="card-body">
+    <div class="d-flex justify-content-between align-items-center mb-3"><h4 class="card-title mb-0">Category Details</h4><a href="{{ route('admin.categories.index') }}" class="btn btn-outline-primary">Back</a></div>
+    <div class="table-responsive"><table class="table text-nowrap mb-0 align-middle">
+        <tbody>
+            <tr><th>Name</th><td>{{ $category->name }}</td></tr>
+            <tr><th>Slug</th><td>{{ $category->slug }}</td></tr>
+            <tr><th>Description</th><td>{{ $category->description ?: '-' }}</td></tr>
+            <tr><th>Status</th><td><span class="badge {{ $category->is_active ? 'bg-success' : 'bg-secondary' }}">{{ $category->is_active ? 'Active' : 'Inactive' }}</span></td></tr>
+            <tr><th>Products</th><td>{{ $category->products_count ?? 0 }}</td></tr>
+            <tr><th>Created At</th><td>{{ $category->created_at?->format('Y-m-d H:i') }}</td></tr>
+        </tbody>
+    </table></div>
+</div></div>
+@include('admin.partials.flexy-shell-end')
 @endsection

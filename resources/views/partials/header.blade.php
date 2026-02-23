@@ -45,6 +45,7 @@
                         <a href="{{ url('/') }}" class="nav-item nav-link active"><span data-i18n="nav.home">Home</span></a>
                         <a href="{{ url('/about') }}" class="nav-item nav-link"><span data-i18n="nav.about">About</span></a>
                         <a href="{{ url('/service') }}" class="nav-item nav-link"><span data-i18n="nav.services">Services</span></a>
+                        <a href="{{ url('/products') }}" class="nav-item nav-link"><span data-i18n="nav.products">Products</span></a>
 
                         <div class="nav-item mega-menu" id="productsMegaMenu">
                             <button
@@ -60,6 +61,34 @@
                             <section class="mega-menu__panel" id="productsMegaPanel" aria-label="Products Mega Menu">
                                 <div class="mega-menu__inner">
                                     <div class="mega-menu__grid">
+                                        @forelse($activeCategoriesMenu ?? collect() as $menuCategory)
+                                            <article class="mega-menu__category">
+                                                <h4 class="mega-menu__heading">{{ $menuCategory->name }}</h4>
+                                                <button class="mega-menu__category-toggle" type="button" aria-expanded="false">{{ $menuCategory->name }}</button>
+                                                <div class="mega-menu__services">
+                                                    @foreach($menuCategory->products->take(6) as $menuProduct)
+                                                        <a href="{{ route('products') }}" class="mega-menu__service">
+                                                            <img src="{{ asset('img/service-1.jpg') }}" alt="{{ $menuProduct->name }}">
+                                                            <div>
+                                                                <h5>{{ $menuProduct->name }}</h5>
+                                                                <p>{{ $menuProduct->short_description ?: 'Active product' }}</p>
+                                                            </div>
+                                                        </a>
+                                                    @endforeach
+                                                </div>
+                                            </article>
+                                        @empty
+                                            <article class="mega-menu__category">
+                                                <h4 class="mega-menu__heading">Products</h4>
+                                                <div class="mega-menu__services">
+                                                    <a href="{{ route('products') }}" class="mega-menu__service">
+                                                        <img src="{{ asset('img/service-1.jpg') }}" alt="Products">
+                                                        <div><h5>No active products yet</h5><p>Please check again soon.</p></div>
+                                                    </a>
+                                                </div>
+                                            </article>
+                                        @endforelse
+
                                         <article class="mega-menu__category">
                                             <h4 class="mega-menu__heading"><span data-i18n="mega.restaurant">Restaurant</span></h4>
                                             <button class="mega-menu__category-toggle" type="button" aria-expanded="false"><span data-i18n="mega.restaurant">Restaurant</span></button>

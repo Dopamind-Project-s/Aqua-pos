@@ -2,23 +2,38 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
     public function register(): void
     {
         //
     }
 
-    /**
-     * Bootstrap any application services.
-     */
     public function boot(): void
     {
-        //
+        View::composer('partials.header', function ($view): void {
+            $activeCategories = collect();
+
+            if (Schema::hasTable('categories') && Schema::hasTable('products')) {
+                $activeCategories = Category::query()
+                    ->where('is_active', true)
+                    ->whereNull('deleted_at')
+                    ->whereHas('products', function ($query): void {
+                        $query->where('is_active', true)->whereNull('deleted_at');
+                    })
+                    ->with(['products' => function ($query): void {
+                        $query->where('is_active', true)->whereNull('deleted_at')->latest();
+                    }])
+                    ->orderBy('name')
+                    ->get();
+            }
+
+            $view->with('activeCategoriesMenu', $activeCategories);
+        });
     }
 }

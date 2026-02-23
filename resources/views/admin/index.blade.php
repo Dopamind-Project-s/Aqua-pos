@@ -57,10 +57,16 @@
               </a>
             </li>
 
-            <li>
-              <a href="{{ route('admin.categories.index') }}">
-                <i class="fas fa-layer-group"></i>
-                <span>Categories</span>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="{{ route('admin.categories.index') }}" aria-expanded="false">
+                <i class="ti ti-category"></i>
+                <span class="hide-menu">Categories</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="{{ route('admin.products.index') }}" aria-expanded="false">
+                <i class="ti ti-package"></i>
+                <span class="hide-menu">Products</span>
               </a>
             </li>
             <!-- ---------------------------------- -->

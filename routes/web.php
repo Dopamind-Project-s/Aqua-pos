@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'home')->name('home');
@@ -15,6 +16,18 @@ Route::view('/team', 'team')->name('team');
 Route::view('/testimonial', 'testimonial')->name('testimonial');
 Route::view('/contact', 'contact')->name('contact');
 Route::view('/not-found', '404')->name('not-found');
+
+Route::get('/products', function () {
+    $products = Product::query()
+        ->with(['category'])
+        ->where('is_active', true)
+        ->whereNull('deleted_at')
+        ->whereHas('category', fn ($query) => $query->where('is_active', true)->whereNull('deleted_at'))
+        ->latest()
+        ->paginate(12);
+
+    return view('products', compact('products'));
+})->name('products');
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::view('/', 'admin.dashboard')->name('dashboard');
