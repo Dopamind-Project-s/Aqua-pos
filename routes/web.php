@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'home')->name('home');
@@ -28,4 +29,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::view('/discount-code', 'admin.discount-code')->name('discount-code');
     Route::view('/authentication-login', 'admin.authentication-login')->name('authentication-login');
     Route::view('/authentication-register', 'admin.authentication-register')->name('authentication-register');
+
+    Route::resource('categories', CategoryController::class);
+    Route::post('categories/{category}/toggle-status', [CategoryController::class, 'toggleStatus'])->name('categories.toggle-status');
+    Route::delete('categories/{category}/force-delete', [CategoryController::class, 'forceDelete'])->name('categories.force-delete');
 });

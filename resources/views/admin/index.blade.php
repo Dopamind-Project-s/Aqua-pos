@@ -56,6 +56,13 @@
                 <span class="hide-menu">Dashboard</span>
               </a>
             </li>
+
+            <li>
+              <a href="{{ route('admin.categories.index') }}">
+                <i class="fas fa-layer-group"></i>
+                <span>Categories</span>
+              </a>
+            </li>
             <!-- ---------------------------------- -->
             <!-- Dashboard -->
             <!-- ---------------------------------- -->
