@@ -10,5 +10,11 @@
                 <span>Categories</span>
             </a>
         </li>
+        <li>
+            <a href="{{ route('admin.products.index') }}">
+                <i class="fas fa-box"></i>
+                <span>Products</span>
+            </a>
+        </li>
     </ul>
 </aside>
