@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 
 @section('content')
-@include('admin.partials.flexy-shell-start')
 
 @include('admin.partials.flash-messages')
 
@@ -95,7 +94,6 @@
     </div>
 </form>
 
-@include('admin.partials.flexy-shell-end')
 @endsection
 
 @push('scripts')

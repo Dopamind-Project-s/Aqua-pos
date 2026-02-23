@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 
 @section('content')
-@include('admin.partials.flexy-shell-start')
 @include('admin.partials.flash-messages')
 <div class="card"><div class="card-body">
     <h4 class="card-title mb-3">Create Product</h4>
@@ -18,5 +17,4 @@
         <button class="btn btn-primary" type="submit">Save</button> <a href="{{ route('admin.products.index') }}" class="btn btn-outline-primary">Cancel</a>
     </form>
 </div></div>
-@include('admin.partials.flexy-shell-end')
 @endsection

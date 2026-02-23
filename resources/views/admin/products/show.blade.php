@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 
 @section('content')
-@include('admin.partials.flexy-shell-start')
 @include('admin.partials.flash-messages')
 <div class="card"><div class="card-body">
     <div class="d-flex justify-content-between align-items-center mb-3"><h4 class="card-title mb-0">Product Details</h4><a href="{{ route('admin.products.index') }}" class="btn btn-outline-primary">Back</a></div>
@@ -15,5 +14,4 @@
         <tr><th>Status</th><td><span class="badge {{ $product->is_active ? 'bg-success' : 'bg-secondary' }}">{{ $product->is_active ? 'Active' : 'Inactive' }}</span></td></tr>
     </tbody></table></div>
 </div></div>
-@include('admin.partials.flexy-shell-end')
 @endsection
