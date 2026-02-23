@@ -18,26 +18,36 @@
             <h1 class="display-3 mb-4">Our Active Products</h1>
         </div>
 
-        <div class="row g-4">
+        <div class="row g-4 product-grid">
             @forelse($products as $product)
-                <div class="col-md-6 col-lg-4 col-xl-3">
-                    <div class="service-item rounded h-100">
-                        <div class="service-img rounded-top">
-                            <img src="{{ $product->image ? Storage::url($product->image) : asset('img/service-1.jpg') }}" class="img-fluid rounded-top w-100" style="height: 220px; object-fit: cover;" alt="{{ $product->name }}">
+                <div class="col-12 col-md-6 col-xl-4 product-grid-col">
+                    <article class="product-grid-card service-item rounded h-100">
+                        <div class="service-img rounded-top product-grid-media-wrap">
+                            <img
+                                src="{{ $product->image ? Storage::url($product->image) : asset('img/service-1.jpg') }}"
+                                class="img-fluid rounded-top w-100 product-grid-media"
+                                alt="{{ $product->name }}"
+                                loading="lazy"
+                            >
                         </div>
-                        <div class="service-content rounded-bottom bg-light p-4 h-100">
-                            <div class="service-content-inner">
-                                <h5 class="mb-3">{{ $product->name }}</h5>
-                                <p class="mb-2"><strong>Category:</strong> {{ $product->category?->name }}</p>
+
+                        <div class="service-content rounded-bottom bg-light p-4 h-100 d-flex">
+                            <div class="service-content-inner product-grid-content d-flex flex-column w-100">
+                                <h5 class="mb-3 product-grid-title">{{ $product->name }}</h5>
+                                <p class="mb-2 product-grid-category"><strong>Category:</strong> {{ $product->category?->name }}</p>
+
                                 @if($product->short_description)
-                                    <p class="mb-2">{{ $product->short_description }}</p>
+                                    <p class="mb-3 product-grid-description">{{ $product->short_description }}</p>
+                                @else
+                                    <p class="mb-3 product-grid-description text-muted">No description available.</p>
                                 @endif
+
                                 @if(!is_null($product->price))
-                                    <p class="mb-0 text-primary fw-bold">{{ number_format((float)$product->price, 2) }}</p>
+                                    <p class="mb-0 mt-auto text-primary fw-bold product-grid-price">{{ number_format((float)$product->price, 2) }}</p>
                                 @endif
                             </div>
                         </div>
-                    </div>
+                    </article>
                 </div>
             @empty
                 <div class="col-12"><div class="alert alert-info">No active products available right now.</div></div>

@@ -66,7 +66,7 @@
                                                 <div class="mega-menu__services">
                                                     @foreach($menuCategory->products->take(6) as $menuProduct)
                                                         <a href="{{ route('products') }}" class="mega-menu__service">
-                                                            <img src="{{ asset('img/service-1.jpg') }}" alt="{{ $menuProduct->name }}">
+                                                            <img class="mega-menu__service-thumb" src="{{ $menuProduct->image ? Storage::url($menuProduct->image) : asset('img/service-1.jpg') }}" alt="{{ $menuProduct->name }}">
                                                             <div>
                                                                 <h5>{{ $menuProduct->name }}</h5>
                                                                 <p>{{ $menuProduct->short_description ?: 'Active product' }}</p>
@@ -80,7 +80,7 @@
                                                 <h4 class="mega-menu__heading">Products</h4>
                                                 <div class="mega-menu__services">
                                                     <a href="{{ route('products') }}" class="mega-menu__service">
-                                                        <img src="{{ asset('img/service-1.jpg') }}" alt="Products">
+                                                        <img class="mega-menu__service-thumb" src="{{ asset('img/service-1.jpg') }}" alt="Products">
                                                         <div><h5>No active products yet</h5><p>Please check again soon.</p></div>
                                                     </a>
                                                 </div>
