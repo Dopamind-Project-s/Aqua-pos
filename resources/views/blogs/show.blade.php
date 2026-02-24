@@ -3,17 +3,7 @@
 @section('blog-content')
 <section class="mb-4">
     <div class="container">
-        <div class="post-mini-nav d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4">
-            <div class="d-flex flex-wrap gap-2">
-                <a href="{{ route('blog') }}" class="chip text-decoration-none"><i class="fas fa-blog"></i> Blog</a>
-                <a href="{{ route('news') }}" class="chip text-decoration-none"><i class="far fa-newspaper"></i> News</a>
-                <span class="chip"><i class="far fa-calendar-alt"></i> {{ $post->published_at?->format('d M Y') ?? $post->created_at?->format('d M Y') }}</span>
-                <span class="chip"><i class="far fa-clock"></i> {{ $post->published_at?->format('h:i A') ?? $post->created_at?->format('h:i A') }}</span>
-            </div>
-            <div>
-                <a href="{{ ($type === 'blog' ? route('blog') : route('news')) . ($post->category?->slug ? '?category=' . $post->category->slug : '') }}" class="chip text-decoration-none"><i class="fas fa-folder"></i> {{ $post->category?->name ?? 'General' }}</a>
-            </div>
-        </div>
+        @include('blogs.partials.inner-nav', ['type' => $type, 'post' => $post])
 
         <div class="row g-4">
             <div class="col-lg-8">

@@ -28,6 +28,10 @@
 
 <section>
     <div class="container">
+        @php
+            $selectedCategoryName = $categories->firstWhere('slug', $selectedCategory)?->name ?? 'All Categories';
+        @endphp
+        @include('blogs.partials.inner-nav', ['type' => $type, 'selectedCategoryName' => $selectedCategoryName])
         <div class="row g-4">
             <div class="col-lg-8">
                 <div class="row g-4">

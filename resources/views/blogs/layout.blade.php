@@ -22,6 +22,36 @@
     .article-cover { border-radius: 16px; max-height: 440px; width: 100%; object-fit: cover; }
     .article-content { line-height: 1.95; color: #1d2939; font-size: 17px; }
     .social-share a { width: 38px; height: 38px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: #f1f5ff; color: #1454a8; text-decoration: none; }
+
+    .inner-mini-nav-wrap { display: flex; justify-content: center; }
+    .inner-mini-nav {
+        width: 50%;
+        min-width: 320px;
+        background: #ffffff;
+        border: 1px solid #e4e7ec;
+        border-radius: 16px;
+        padding: 10px 12px;
+        box-shadow: 0 10px 20px rgba(15, 23, 42, .08);
+    }
+    .mini-nav-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        text-decoration: none;
+        color: #1856a9;
+        background: #eef4ff;
+        border-radius: 999px;
+        padding: 6px 10px;
+        font-size: 12px;
+        font-weight: 700;
+    }
+    .mini-nav-chip.active {
+        background: #1856a9;
+        color: #fff;
+    }
+    @media (max-width: 992px) {
+        .inner-mini-nav { width: 100%; }
+    }
 </style>
 @endpush
 
