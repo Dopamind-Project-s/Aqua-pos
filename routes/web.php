@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ServiceRequestController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
@@ -19,7 +20,10 @@ Route::get('/news', [BlogController::class, 'newsIndex'])->name('news');
 Route::get('/news/{post:slug}', [BlogController::class, 'newsShow'])->name('news.show');
 Route::view('/team', 'team')->name('team');
 Route::view('/testimonial', 'testimonial')->name('testimonial');
-Route::view('/contact', 'contact')->name('contact');
+Route::get('/contact', [ServiceRequestController::class, 'contactForm'])->name('contact');
+Route::get('/support', [ServiceRequestController::class, 'supportForm'])->name('support');
+Route::get('/request-product-demo', [ServiceRequestController::class, 'demoForm'])->name('request-product-demo');
+Route::post('/requests', [ServiceRequestController::class, 'store'])->name('requests.store');
 Route::view('/not-found', '404')->name('not-found');
 
 Route::get('/products', function () {

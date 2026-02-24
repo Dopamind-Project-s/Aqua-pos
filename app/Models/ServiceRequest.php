@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ContactRequest extends Model
+class ServiceRequest extends Model
 {
     use HasFactory;
 
@@ -16,6 +16,10 @@ class ContactRequest extends Model
         'phone',
         'company',
         'country',
+        'product_interest',
+        'branch_count',
+        'preferred_contact_time',
+        'subject',
         'message',
         'source_page',
         'status',

@@ -184,6 +184,8 @@
                                 <a href="{{ url('/feature') }}" class="dropdown-item"><span data-i18n="nav.features">Features</span></a>
                                 <a href="{{ route('blog') }}" class="dropdown-item">Our Blog</a>
                                 <a href="{{ route('news') }}" class="dropdown-item">News</a>
+                                <a href="{{ route('support') }}" class="dropdown-item">Support Request</a>
+                                <a href="{{ route('request-product-demo') }}" class="dropdown-item">Request Product Demo</a>
                                 <a href="{{ url('/team') }}" class="dropdown-item"><span data-i18n="nav.team">Our Team</span></a>
                                 <a href="{{ url('/testimonial') }}" class="dropdown-item"><span data-i18n="nav.testimonial">Testimonial</span></a>
                                 <a href="{{ url('/not-found') }}" class="dropdown-item"><span data-i18n="nav.notfound">404 Page</span></a>
@@ -201,7 +203,7 @@
                             <span class="nav-toolbar__text" id="languageLabel">AR</span>
                         </button>
                     </div>
-                    <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 flex-wrap flex-sm-shrink-0"><span data-i18n="nav.book">Book Appointment</span></a>
+                    <a href="{{ route('request-product-demo') }}" class="btn btn-primary rounded-pill text-white py-2 px-4 flex-wrap flex-sm-shrink-0">Request Demo</a>
                 </div>
             </nav>
 
