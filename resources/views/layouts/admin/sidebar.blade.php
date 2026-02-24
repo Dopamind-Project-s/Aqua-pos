@@ -39,6 +39,12 @@
                         <span class="hide-menu">Posts</span>
                     </a>
                 </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('admin.requests.index') }}" aria-expanded="false">
+                        <i class="ti ti-mail"></i>
+                        <span class="hide-menu">Requests</span>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>

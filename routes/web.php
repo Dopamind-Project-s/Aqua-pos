@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\ServiceRequestController as AdminServiceRequestController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ServiceRequestController;
 use App\Models\Product;
@@ -60,4 +61,5 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::resource('products', ProductController::class);
     Route::resource('posts', PostController::class);
+    Route::get('requests', [AdminServiceRequestController::class, 'index'])->name('requests.index');
 });
