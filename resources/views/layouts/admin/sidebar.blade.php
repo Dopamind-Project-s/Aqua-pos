@@ -33,6 +33,12 @@
                         <span class="hide-menu">Products</span>
                     </a>
                 </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('admin.posts.index') }}" aria-expanded="false">
+                        <i class="ti ti-article"></i>
+                        <span class="hide-menu">Posts</span>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>

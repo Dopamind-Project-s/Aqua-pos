@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\PostController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
@@ -50,4 +51,5 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::post('categories/bulk-action', [CategoryController::class, 'bulkAction'])->name('categories.bulk-action');
 
     Route::resource('products', ProductController::class);
+    Route::resource('posts', PostController::class);
 });
