@@ -175,12 +175,15 @@
                             </section>
                         </div>
 
+                        <a href="{{ route('blog') }}" class="nav-item nav-link">Blog</a>
+                        <a href="{{ route('news') }}" class="nav-item nav-link">News</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><span data-i18n="nav.pages">Pages</span></a>
                             <div class="dropdown-menu m-0">
                                 <a href="{{ url('/appointment') }}" class="dropdown-item"><span data-i18n="nav.appointment">Appointment</span></a>
                                 <a href="{{ url('/feature') }}" class="dropdown-item"><span data-i18n="nav.features">Features</span></a>
-                                <a href="{{ url('/blog') }}" class="dropdown-item"><span data-i18n="nav.blog">Our Blog</span></a>
+                                <a href="{{ route('blog') }}" class="dropdown-item">Our Blog</a>
+                                <a href="{{ route('news') }}" class="dropdown-item">News</a>
                                 <a href="{{ url('/team') }}" class="dropdown-item"><span data-i18n="nav.team">Our Team</span></a>
                                 <a href="{{ url('/testimonial') }}" class="dropdown-item"><span data-i18n="nav.testimonial">Testimonial</span></a>
                                 <a href="{{ url('/not-found') }}" class="dropdown-item"><span data-i18n="nav.notfound">404 Page</span></a>

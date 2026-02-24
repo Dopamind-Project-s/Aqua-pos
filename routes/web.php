@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\BlogController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
@@ -12,7 +13,10 @@ Route::view('/about', 'about')->name('about');
 Route::view('/service', 'service')->name('service');
 Route::view('/appointment', 'appointment')->name('appointment');
 Route::view('/feature', 'feature')->name('feature');
-Route::view('/blog', 'blog')->name('blog');
+Route::get('/blog', [BlogController::class, 'blogIndex'])->name('blog');
+Route::get('/blog/{post:slug}', [BlogController::class, 'blogShow'])->name('blog.show');
+Route::get('/news', [BlogController::class, 'newsIndex'])->name('news');
+Route::get('/news/{post:slug}', [BlogController::class, 'newsShow'])->name('news.show');
 Route::view('/team', 'team')->name('team');
 Route::view('/testimonial', 'testimonial')->name('testimonial');
 Route::view('/contact', 'contact')->name('contact');
