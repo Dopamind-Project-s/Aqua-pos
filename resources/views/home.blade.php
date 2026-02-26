@@ -195,14 +195,14 @@
                 </div>
                 <div class="row g-4 justify-content-center">
                     <div class="col-md-6 col-lg-4 col-xl-3 d-flex wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="row-cols-1 feature-item p-4">
+                        <div class="row-cols-1 feature-item p-4 h-100 d-flex flex-column">
                             <div class="col-12">
                                 <div class="feature-icon mb-4">
                                     <div class="p-3 d-inline-flex bg-white rounded">
-                                        <i class="fas fa-diagnoses fa-4x text-primary"></i>
+                                        <i class="fas fa-cash-register text-primary"></i>
                                     </div>
                                 </div>
-                                <div class="feature-content d-flex flex-column">
+                                <div class="feature-content d-flex flex-column flex-grow-1">
                                     <h5 class="mb-4">Reliable POS Workflows</h5>
                                     <p class="mb-0">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</p>
                                 </div>
@@ -210,14 +210,14 @@
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-4 col-xl-3 d-flex wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="row-cols-1 feature-item p-4">
+                        <div class="row-cols-1 feature-item p-4 h-100 d-flex flex-column">
                             <div class="col-12">
                                 <div class="feature-icon mb-4">
                                     <div class="p-3 d-inline-flex bg-white rounded">
-                                        <i class="fas fa-briefcase-medical fa-4x text-primary"></i>
+                                        <i class="fas fa-boxes text-primary"></i>
                                     </div>
                                 </div>
-                                <div class="feature-content d-flex flex-column">
+                                <div class="feature-content d-flex flex-column flex-grow-1">
                                     <h5 class="mb-4">Smart Inventory Control</h5>
                                     <p class="mb-0">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</p>
                                 </div>
@@ -225,14 +225,14 @@
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-4 col-xl-3 d-flex wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="row-cols-1 feature-item p-4">
+                        <div class="row-cols-1 feature-item p-4 h-100 d-flex flex-column">
                             <div class="col-12">
                                 <div class="feature-icon mb-4">
                                     <div class="p-3 d-inline-flex bg-white rounded">
-                                        <i class="fas fa-hospital-user fa-4x text-primary"></i>
+                                        <i class="fas fa-chart-line text-primary"></i>
                                     </div>
                                 </div>
-                                <div class="feature-content d-flex flex-column">
+                                <div class="feature-content d-flex flex-column flex-grow-1">
                                     <h5 class="mb-4">Real-Time Business Insights</h5>
                                     <p class="mb-0">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</p>
                                 </div>
@@ -240,14 +240,14 @@
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-4 col-xl-3 d-flex wow fadeInUp" data-wow-delay="0.7s">
-                        <div class="row-cols-1 feature-item p-4">
+                        <div class="row-cols-1 feature-item p-4 h-100 d-flex flex-column">
                             <div class="col-12">
                                 <div class="feature-icon mb-4">
                                     <div class="p-3 d-inline-flex bg-white rounded">
-                                        <i class="fas fa-users fa-4x text-primary"></i>
+                                        <i class="fas fa-code-branch text-primary"></i>
                                     </div>
                                 </div>
-                                <div class="feature-content d-flex flex-column">
+                                <div class="feature-content d-flex flex-column flex-grow-1">
                                     <h5 class="mb-4">Unified Branch Management</h5>
                                     <p class="mb-0">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</p>
                                 </div>
@@ -255,14 +255,14 @@
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-4 col-xl-3 d-flex wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="row-cols-1 feature-item p-4">
+                        <div class="row-cols-1 feature-item p-4 h-100 d-flex flex-column">
                             <div class="col-12">
                                 <div class="feature-icon mb-4">
                                     <div class="p-3 d-inline-flex bg-white rounded">
-                                        <i class="fas fa-spa fa-4x text-primary"></i>
+                                        <i class="fas fa-bolt text-primary"></i>
                                     </div>
                                 </div>
-                                <div class="feature-content d-flex flex-column">
+                                <div class="feature-content d-flex flex-column flex-grow-1">
                                     <h5 class="mb-4">Fast Checkout Experience</h5>
                                     <p class="mb-0">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</p>
                                 </div>
@@ -270,14 +270,14 @@
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-4 col-xl-3 d-flex wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="row-cols-1 feature-item p-4">
+                        <div class="row-cols-1 feature-item p-4 h-100 d-flex flex-column">
                             <div class="col-12">
                                 <div class="feature-icon mb-4">
                                     <div class="p-3 d-inline-flex bg-white rounded">
-                                        <i class="fas fa-heart fa-4x text-primary"></i>
+                                        <i class="fas fa-users text-primary"></i>
                                     </div>
                                 </div>
-                                <div class="feature-content d-flex flex-column">
+                                <div class="feature-content d-flex flex-column flex-grow-1">
                                     <h5 class="mb-4">Jordan-Based SaaS Team</h5>
                                     <p class="mb-0">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</p>
                                 </div>
@@ -285,30 +285,30 @@
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-4 col-xl-3 d-flex wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="row-cols-1 feature-item p-4">
+                        <div class="row-cols-1 feature-item p-4 h-100 d-flex flex-column">
                             <div class="col-12">
                                 <div class="feature-icon mb-4">
                                     <div class="p-3 d-inline-flex bg-white rounded">
-                                        <i class="fab fa-pied-piper fa-4x text-primary"></i>
+                                        <i class="fas fa-chart-pie text-primary"></i>
                                     </div>
                                 </div>
-                                <div class="feature-content d-flex flex-column">
-                                    <h5 class="mb-4">Real-Time Business Insights</h5>
+                                <div class="feature-content d-flex flex-column flex-grow-1">
+                                    <h5 class="mb-4">Real-Time Analytics</h5>
                                     <p class="mb-0">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-4 col-xl-3 d-flex wow fadeInUp" data-wow-delay="0.7s">
-                        <div class="row-cols-1 feature-item p-4">
+                        <div class="row-cols-1 feature-item p-4 h-100 d-flex flex-column">
                             <div class="col-12">
                                 <div class="feature-icon mb-4">
                                     <div class="p-3 d-inline-flex bg-white rounded">
-                                        <i class="fas fa-user-md fa-4x text-primary"></i>
+                                        <i class="fas fa-eye text-primary"></i>
                                     </div>
                                 </div>
-                                <div class="feature-content d-flex flex-column">
-                                    <h5 class="mb-4">Reliable POS Workflows</h5>
+                                <div class="feature-content d-flex flex-column flex-grow-1">
+                                    <h5 class="mb-4">Control & Visibility</h5>
                                     <p class="mb-0">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</p>
                                 </div>
                             </div>

@@ -602,6 +602,8 @@
 .feature .feature-item {
     position: relative;
     display: flex;
+    flex-direction: column;
+    height: 100%;
     border: 1px solid var(--bs-primary);
     border-radius: 10px;
     background: var(--bs-light);
@@ -626,9 +628,35 @@
 }
 
 .feature .feature-item .feature-icon {
-    display: inline-flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 82px;
     border-radius: 10px;
     transition: 0.5s;
+}
+
+.feature .feature-item .feature-icon > div {
+    width: 82px;
+    height: 82px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.feature .feature-item .feature-icon i {
+    font-size: 44px;
+    line-height: 1;
+}
+
+.feature .feature-item .feature-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.feature .feature-item .feature-content h5 {
+    min-height: 48px;
 }
 
 .feature .feature-item:hover .feature-icon {
