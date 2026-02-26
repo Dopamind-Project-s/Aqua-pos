@@ -157,8 +157,8 @@
             <div class="container py-5">
                 <div class="row g-5 align-items-center">
                     <div class="col-lg-5 wow fadeInLeft" data-wow-delay="0.2s">
-                        <div class="about-img pb-5 ps-5">
-                            <img src="{{ asset('img/about-1.jpg') }}" class="img-fluid rounded w-100" style="object-fit: cover;" alt="Image">
+                        <div class="about-img">
+                            <img src="{{ asset('img/about-1.jpg') }}" class="img-fluid rounded w-100 h-100 about-img-main" alt="Image">
                             <div class="about-img-inner">
                                 <img src="{{ asset('img/about-2.jpg') }}" class="img-fluid rounded-circle w-100 h-100" alt="Image">
                             </div>
