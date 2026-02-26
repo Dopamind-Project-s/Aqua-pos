@@ -10,15 +10,20 @@ use Illuminate\Support\Str;
 
 class PartnerService
 {
-    public function create(array $data): Partner
-    {
-        return DB::transaction(function () use ($data): Partner {
-            $data['slug'] = $this->generateUniqueSlug($data['name']);
-            $data['logo'] = $this->storeLogo($data['logo']);
+public function create(array $data): Partner
+{
+    return DB::transaction(function () use ($data): Partner {
 
-            return Partner::query()->create($data);
-        });
-    }
+        $data['slug'] = $this->generateUniqueSlug($data['name']);
+        $data['logo'] = $this->storeLogo($data['logo']);
+
+        // 🔥 حل مشكلة sort_order مع SQLite
+        $data['sort_order'] = $data['sort_order']
+            ?? (Partner::max('sort_order') + 1);
+
+        return Partner::query()->create($data);
+    });
+}
 
     public function update(Partner $partner, array $data): Partner
     {

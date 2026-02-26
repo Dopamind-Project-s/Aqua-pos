@@ -11,23 +11,36 @@ use App\Http\Controllers\ServiceRequestController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
+/*
+|--------------------------------------------------------------------------
+| Public Routes
+|--------------------------------------------------------------------------
+*/
+
 Route::view('/', 'home')->name('home');
 
 Route::view('/about', 'about')->name('about');
 Route::view('/service', 'service')->name('service');
 Route::view('/appointment', 'appointment')->name('appointment');
 Route::view('/feature', 'feature')->name('feature');
+
 Route::get('/blog', [BlogController::class, 'blogIndex'])->name('blog');
 Route::get('/blog/{post:slug}', [BlogController::class, 'blogShow'])->name('blog.show');
+
 Route::get('/news', [BlogController::class, 'newsIndex'])->name('news');
 Route::get('/news/{post:slug}', [BlogController::class, 'newsShow'])->name('news.show');
+
 Route::view('/team', 'team')->name('team');
 Route::view('/testimonial', 'testimonial')->name('testimonial');
+
 Route::get('/partners', [PartnerController::class, 'index'])->name('partners.index');
+
 Route::get('/contact', [ServiceRequestController::class, 'contactForm'])->name('contact');
 Route::get('/support', [ServiceRequestController::class, 'supportForm'])->name('support');
 Route::get('/request-product-demo', [ServiceRequestController::class, 'demoForm'])->name('request-product-demo');
+
 Route::post('/requests', [ServiceRequestController::class, 'store'])->name('requests.store');
+
 Route::view('/not-found', '404')->name('not-found');
 
 Route::get('/products', function () {
@@ -35,14 +48,24 @@ Route::get('/products', function () {
         ->with(['category'])
         ->where('is_active', true)
         ->whereNull('deleted_at')
-        ->whereHas('category', fn ($query) => $query->where('is_active', true)->whereNull('deleted_at'))
+        ->whereHas('category', fn ($query) =>
+            $query->where('is_active', true)->whereNull('deleted_at')
+        )
         ->latest()
         ->paginate(12);
 
     return view('products', compact('products'));
 })->name('products');
 
+
+/*
+|--------------------------------------------------------------------------
+| Admin Routes (No Auth Middleware Yet)
+|--------------------------------------------------------------------------
+*/
+
 Route::prefix('admin')->name('admin.')->group(function () {
+
     Route::view('/', 'admin.dashboard')->name('dashboard');
     Route::view('/index', 'admin.index')->name('index');
     Route::view('/ui-card', 'admin.ui-card')->name('ui-card');
@@ -57,19 +80,41 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::view('/authentication-login', 'admin.authentication-login')->name('authentication-login');
     Route::view('/authentication-register', 'admin.authentication-register')->name('authentication-register');
 
+    /*
+    |--------------------------------------------------------------------------
+    | Categories
+    |--------------------------------------------------------------------------
+    */
+
     Route::resource('categories', CategoryController::class);
     Route::post('categories/{category}/toggle-status', [CategoryController::class, 'toggleStatus'])->name('categories.toggle-status');
     Route::delete('categories/{category}/force-delete', [CategoryController::class, 'forceDelete'])->name('categories.force-delete');
     Route::post('categories/bulk-action', [CategoryController::class, 'bulkAction'])->name('categories.bulk-action');
 
+    /*
+    |--------------------------------------------------------------------------
+    | Products & Posts
+    |--------------------------------------------------------------------------
+    */
+
     Route::resource('products', ProductController::class);
     Route::resource('posts', PostController::class);
 
-    Route::middleware('admin')->group(function (): void {
-        Route::resource('partners', AdminPartnerController::class)->except(['show']);
-        Route::post('partners/{partner}/toggle-status', [AdminPartnerController::class, 'toggleStatus'])->name('partners.toggle-status');
-        Route::post('partners/reorder', [AdminPartnerController::class, 'reorder'])->name('partners.reorder');
-    });
+    /*
+    |--------------------------------------------------------------------------
+    | Partners (TEMP: No Middleware)
+    |--------------------------------------------------------------------------
+    */
+
+    Route::resource('partners', AdminPartnerController::class)->except(['show']);
+    Route::post('partners/{partner}/toggle-status', [AdminPartnerController::class, 'toggleStatus'])->name('partners.toggle-status');
+    Route::post('partners/reorder', [AdminPartnerController::class, 'reorder'])->name('partners.reorder');
+
+    /*
+    |--------------------------------------------------------------------------
+    | Requests
+    |--------------------------------------------------------------------------
+    */
 
     Route::get('requests', [AdminServiceRequestController::class, 'index'])->name('requests.index');
 });
