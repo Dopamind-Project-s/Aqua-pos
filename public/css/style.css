@@ -1772,7 +1772,7 @@ body.dark-mode .dropdown-menu .dropdown-item:focus {
 
 .partners-hero {
     padding-block: clamp(5.5rem, 9vw, 8.5rem) clamp(2.5rem, 5vw, 4rem);
-    background: linear-gradient(135deg, #f8fbff, #ffffff 45%, #edf5ff);
+    background: var(--partners-hero-bg);
 }
 
 .partners-hero__content {
@@ -1798,7 +1798,7 @@ body.dark-mode .dropdown-menu .dropdown-item:focus {
 .partners-hero__subtitle {
     max-width: 760px;
     margin: 0 auto;
-    color: #5d6b82;
+    color: var(--partners-subtitle-color);
     line-height: 1.85;
     font-size: clamp(.98rem, 1.5vw, 1.15rem);
 }
@@ -1823,23 +1823,23 @@ body.dark-mode .dropdown-menu .dropdown-item:focus {
     height: 100%;
     display: flex;
     flex-direction: column;
-    background: #fff;
-    border: 1px solid rgba(17, 24, 39, 0.08);
+    background: var(--partners-card-bg);
+    border: 1px solid var(--partners-card-border);
     border-radius: 18px;
-    box-shadow: 0 10px 34px rgba(15, 23, 42, 0.06);
+    box-shadow: var(--partners-card-shadow);
     overflow: hidden;
     transition: transform .25s ease, box-shadow .25s ease;
 }
 
 .partner-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 20px 44px rgba(15, 23, 42, 0.12);
+    box-shadow: var(--partners-card-shadow-hover);
 }
 
 .partner-card__logo-wrap {
     min-height: clamp(130px, 22vw, 170px);
     max-height: clamp(130px, 22vw, 170px);
-    background: #f8fbff;
+    background: var(--partners-card-logo-bg);
     display: grid;
     place-items: center;
     overflow: hidden;
@@ -1869,10 +1869,11 @@ body.dark-mode .dropdown-menu .dropdown-item:focus {
 .partner-card__title {
     font-size: clamp(1rem, 1.5vw, 1.1rem);
     margin-bottom: .65rem;
+    color: var(--partners-card-title);
 }
 
 .partner-card__description {
-    color: #62748d;
+    color: var(--partners-card-description);
     margin-bottom: 1rem;
     line-height: 1.65;
     flex: 1;
@@ -1884,22 +1885,22 @@ body.dark-mode .dropdown-menu .dropdown-item:focus {
     align-items: center;
     gap: .45rem;
     margin-top: .35rem;
-    color: var(--bs-primary);
+    color: var(--partners-card-link);
     font-weight: 700;
     text-decoration: none;
     transition: color .2s ease, transform .2s ease;
 }
 
 .partner-card__link:hover {
-    color: #0b7cdb;
+    color: var(--partners-card-link-hover);
     transform: translateX(2px);
 }
 
 .partners-empty-state {
-    border: 1px dashed rgba(17,24,39,.2);
+    border: 1px dashed var(--partners-empty-border);
     border-radius: 20px;
     padding: 3.5rem 2rem;
-    background: #fff;
+    background: var(--partners-empty-bg);
 }
 
 .partners-empty-state__icon {
