@@ -1,0 +1,111 @@
+/* =========================================================
+   Aqua POS Theme System
+   - Light mode defaults on :root
+   - Dark mode activated via .dark-mode on <body>
+   - All UI tokens are centralized for scalability
+   ========================================================= */
+
+:root {
+  color-scheme: light;
+  --color-bg: #f3f6fb;
+  --color-surface: #ffffff;
+  --color-surface-elevated: #ffffff;
+  --color-surface-muted: #eaf0f8;
+  --color-primary: #0ea5c6;
+  --color-primary-hover: #0891b2;
+  --color-secondary: #1d4ed8;
+  --color-accent: #8b5cf6;
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #475569;
+  --color-text-inverse: #f8fafc;
+  --color-border: #d6deea;
+  --color-hover: #dfe9f5;
+  --color-success: #059669;
+  --color-warning: #d97706;
+  --color-danger: #dc2626;
+  --shadow-sm: 0 4px 14px rgba(15, 23, 42, 0.08);
+  --shadow-md: 0 14px 34px rgba(15, 23, 42, 0.12);
+  --bs-primary: var(--color-primary);
+  --bs-secondary: var(--color-secondary);
+  --bs-light: var(--color-surface-muted);
+  --bs-dark: var(--color-text-primary);
+  --bs-white: var(--color-text-inverse);
+  --bg-color: var(--color-bg);
+  --surface-color: var(--color-surface);
+  --surface-muted: var(--color-surface-muted);
+  --text-color: var(--color-text-primary);
+  --text-muted: var(--color-text-secondary);
+  --border-color: var(--color-border);
+  --shadow-color: rgba(15, 23, 42, 0.18);
+  --primary-color: var(--color-primary);
+}
+
+body.dark-mode {
+  color-scheme: dark;
+  --color-bg: #0d1422;
+  --color-surface: #131d31;
+  --color-surface-elevated: #18243b;
+  --color-surface-muted: #1d2a44;
+  --color-primary: #38bdf8;
+  --color-primary-hover: #60cdfa;
+  --color-secondary: #93c5fd;
+  --color-accent: #a78bfa;
+  --color-text-primary: #e2e8f0;
+  --color-text-secondary: #a8b6cc;
+  --color-text-inverse: #f1f5f9;
+  --color-border: #2a3a58;
+  --color-hover: #243350;
+  --color-success: #34d399;
+  --color-warning: #fbbf24;
+  --color-danger: #f87171;
+  --shadow-sm: 0 8px 22px rgba(2, 8, 22, 0.35);
+  --shadow-md: 0 16px 40px rgba(2, 8, 22, 0.45);
+  --bs-primary: var(--color-primary);
+  --bs-secondary: var(--color-secondary);
+  --bs-light: var(--color-surface-muted);
+  --bs-dark: var(--color-text-primary);
+  --bs-white: var(--color-text-inverse);
+  --shadow-color: rgba(2, 8, 22, 0.45);
+}
+
+body { background-color: var(--color-bg); color: var(--color-text-primary); }
+h1, h2, h3, h4, h5, h6 { color: var(--color-text-primary); }
+p { color: var(--color-text-secondary); }
+a { color: var(--color-primary); }
+a:hover { color: var(--color-primary-hover); }
+
+button, .btn, input, textarea, select {
+  transition: background-color .25s ease, border-color .25s ease, color .25s ease, box-shadow .25s ease;
+}
+
+.btn-primary { background-color: var(--color-primary); border-color: var(--color-primary); color: var(--color-text-inverse); }
+.btn-primary:hover, .btn-primary:focus { background-color: var(--color-primary-hover); border-color: var(--color-primary-hover); color: var(--color-text-inverse); }
+
+.card, .service .service-item, .feature .feature-item, .blog-item, .team-item {
+  background-color: var(--color-surface);
+  border-color: var(--color-border);
+  box-shadow: var(--shadow-sm);
+}
+
+input, textarea, select, .form-control {
+  color: var(--color-text-primary);
+  background-color: var(--color-surface);
+  border-color: var(--color-border);
+}
+input::placeholder, textarea::placeholder { color: var(--color-text-secondary); }
+
+.navbar, .dropdown-menu, .mega-menu__panel {
+  background-color: var(--color-surface) !important;
+  border-color: var(--color-border);
+}
+
+.bg-light, .about.bg-light, .service-content.bg-light, .team .team-item .team-content, .blog .blog-item .blog-content {
+  background-color: var(--color-surface-muted) !important;
+}
+.bg-white, .feature .feature-icon > div { background-color: var(--color-surface) !important; }
+.text-white, .text-white-50 { color: var(--color-text-inverse) !important; }
+.text-secondary, .text-muted { color: var(--color-text-secondary) !important; }
+.border, .border-primary, .form-control, .nav-toolbar__btn { border-color: var(--color-border) !important; }
+
+.nav-toolbar__btn { background-color: var(--color-surface-muted); color: var(--color-text-primary); }
+.nav-toolbar__btn:hover { background-color: var(--color-hover); box-shadow: var(--shadow-sm); }

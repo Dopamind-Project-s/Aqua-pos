@@ -288,11 +288,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
         body.classList.add('theme-fade');
         if (theme === 'dark') {
-            body.classList.add('dark-theme');
+            body.classList.add('dark-mode');
             if (themeIcon) themeIcon.textContent = '☀';
             if (themeLabel) themeLabel.textContent = lang === 'ar' ? translations.ar['controls.light'] : translations.en['controls.light'];
         } else {
-            body.classList.remove('dark-theme');
+            body.classList.remove('dark-mode');
             if (themeIcon) themeIcon.textContent = '🌙';
             if (themeLabel) themeLabel.textContent = lang === 'ar' ? translations.ar['controls.dark'] : translations.en['controls.dark'];
         }
@@ -336,7 +336,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (themeToggle) {
             themeToggle.addEventListener('click', function () {
-                var currentTheme = document.body.classList.contains('dark-theme') ? 'dark' : 'light';
+                var currentTheme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
                 setTheme(currentTheme === 'dark' ? 'light' : 'dark');
             });
         }

@@ -22,6 +22,9 @@
     <!-- Bootstrap -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 
+    <!-- Theme Tokens -->
+    <link href="{{ asset('assets/css/theme.css') }}" rel="stylesheet">
+
     <!-- Main Style -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
