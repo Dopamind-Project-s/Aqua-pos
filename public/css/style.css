@@ -273,7 +273,7 @@
 
     .navbar-light .navbar-collapse {
         margin-top: 15px;
-        border-top: 1px solid #DDDDDD;
+        border-top: 1px solid var(--color-border);
     }
 
     .navbar-light .navbar-nav .nav-link,
@@ -294,7 +294,7 @@
         width: 100%;
         top: 0;
         left: 0;
-        border-bottom: 1px solid rgba(255, 255, 255, .1);
+        border-bottom: 1px solid var(--section-nav-border);
         z-index: 999;
     }
     
@@ -425,7 +425,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(0, 0, 0, .5);
+    background: var(--color-overlay);
 }
 
 .header-carousel .header-carousel-item .carousel-caption .carousel-caption-content {
@@ -870,7 +870,7 @@
 
 /*** testimonial Start ***/
 .testimonial {
-    background: linear-gradient(rgba(21, 185, 217, 0.9), rgba(21, 185, 217, 0.9)), url(../img/carousel-1.jpg);
+    background: linear-gradient(var(--color-overlay-soft), var(--color-overlay-soft)), url(../img/carousel-1.jpg);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -1090,7 +1090,7 @@
     flex-direction: column;
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 0 45px rgba(0, 0, 0, .2);
+    box-shadow: var(--shadow-md);
 }
 
 .blog .blog-item .blog-img {
@@ -1170,7 +1170,7 @@
 
 /*** Contact Start ***/
 .contact {
-    background: linear-gradient(rgba(21, 185, 217, 0.9), rgba(21, 185, 217, 0.9)), url(../img/carousel-1.jpg);
+    background: linear-gradient(var(--color-overlay-soft), var(--color-overlay-soft)), url(../img/carousel-1.jpg);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -1268,7 +1268,7 @@
 
 /*** Footer Start ***/
 .footer {
-    background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url(../img/carousel-2.jpg);
+    background: linear-gradient(var(--color-overlay), var(--color-overlay)), url(../img/carousel-2.jpg);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -1303,7 +1303,7 @@
 .mega-menu__trigger {
     background: transparent;
     border: 0;
-    color: #0f172a;
+    color: var(--text-color);
     font-weight: 600;
     display: inline-flex;
     align-items: center;
@@ -1589,17 +1589,17 @@ body.dark-mode .dropdown-menu {
 }
 
 body.dark-mode .mega-menu__category {
-    background: #131f33;
+    background: var(--color-surface-elevated);
     border-color: var(--border-color);
 }
 
 body.dark-mode .mega-menu__service {
-    background: #162238;
+    background: var(--color-surface-muted);
     border-color: var(--border-color);
 }
 
 body.dark-mode .mega-menu__service:hover {
-    background: #1c2b45;
+    background: var(--color-hover);
 }
 
 body.dark-mode .mega-menu__service h5,

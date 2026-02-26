@@ -20,6 +20,8 @@
   --color-text-inverse: #f8fafc;
   --color-border: #d6deea;
   --color-hover: #dfe9f5;
+  --color-overlay: rgba(10, 20, 38, 0.55);
+  --color-overlay-soft: rgba(14, 165, 198, 0.82);
   --color-success: #059669;
   --color-warning: #d97706;
   --color-danger: #dc2626;
@@ -38,6 +40,16 @@
   --border-color: var(--color-border);
   --shadow-color: rgba(15, 23, 42, 0.18);
   --primary-color: var(--color-primary);
+
+  /* Section specific */
+  --section-hero-text: #f8fafc;
+  --section-nav-bg: rgba(255, 255, 255, 0.9);
+  --section-nav-border: rgba(15, 23, 42, 0.1);
+  --section-topbar-bg: #111b2e;
+  --section-topbar-text: #e2e8f0;
+  --section-footer-bg: #111b2e;
+  --section-footer-text: #c7d2e5;
+  --section-footer-heading: #f1f5f9;
 }
 
 body.dark-mode {
@@ -55,6 +67,8 @@ body.dark-mode {
   --color-text-inverse: #f1f5f9;
   --color-border: #2a3a58;
   --color-hover: #243350;
+  --color-overlay: rgba(4, 10, 22, 0.68);
+  --color-overlay-soft: rgba(13, 38, 70, 0.84);
   --color-success: #34d399;
   --color-warning: #fbbf24;
   --color-danger: #f87171;
@@ -66,6 +80,15 @@ body.dark-mode {
   --bs-dark: var(--color-text-primary);
   --bs-white: var(--color-text-inverse);
   --shadow-color: rgba(2, 8, 22, 0.45);
+
+  --section-hero-text: #e2e8f0;
+  --section-nav-bg: rgba(19, 29, 49, 0.92);
+  --section-nav-border: rgba(148, 163, 184, 0.22);
+  --section-topbar-bg: #0b1220;
+  --section-topbar-text: #cbd5e1;
+  --section-footer-bg: #0a1220;
+  --section-footer-text: #9fb0c8;
+  --section-footer-heading: #e2e8f0;
 }
 
 body { background-color: var(--color-bg); color: var(--color-text-primary); }
@@ -97,6 +120,70 @@ input::placeholder, textarea::placeholder { color: var(--color-text-secondary); 
 .navbar, .dropdown-menu, .mega-menu__panel {
   background-color: var(--color-surface) !important;
   border-color: var(--color-border);
+}
+
+.navbar {
+  background-color: var(--section-nav-bg) !important;
+  border-bottom: 1px solid var(--section-nav-border);
+  backdrop-filter: blur(8px);
+}
+
+.topbar,
+.topbar-shell {
+  background-color: var(--section-topbar-bg) !important;
+}
+
+.topbar a,
+.topbar a i,
+.topbar-shell a,
+.topbar-shell a i {
+  color: var(--section-topbar-text) !important;
+}
+
+.header-carousel .header-carousel-item .carousel-caption {
+  background: linear-gradient(var(--color-overlay), var(--color-overlay));
+}
+
+.header-carousel .carousel-caption h1,
+.header-carousel .carousel-caption h5,
+.header-carousel .carousel-caption p {
+  color: var(--section-hero-text) !important;
+}
+
+.service,
+.about,
+.feature,
+.blog,
+.team {
+  background-color: var(--color-bg);
+}
+
+.service .service-content,
+.about .bg-light,
+.feature .feature-item,
+.blog .blog-item .blog-centent,
+.team .team-item .team-content {
+  background-color: var(--color-surface-muted) !important;
+  border-color: var(--color-border) !important;
+}
+
+.footer {
+  background: linear-gradient(var(--color-overlay), var(--color-overlay)), var(--section-footer-bg);
+}
+
+.footer .footer-item h4,
+.footer .footer-item h4 i {
+  color: var(--section-footer-heading) !important;
+}
+
+.footer .footer-item p,
+.footer .footer-item a {
+  color: var(--section-footer-text) !important;
+}
+
+.copyright {
+  background-color: var(--color-surface) !important;
+  color: var(--color-text-secondary);
 }
 
 .bg-light, .about.bg-light, .service-content.bg-light, .team .team-item .team-content, .blog .blog-item .blog-content {
