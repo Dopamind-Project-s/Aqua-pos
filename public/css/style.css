@@ -1653,6 +1653,7 @@ body.dark-theme .mega-menu__service p {
 
 .partners-hero__content {
     width: min(100%, 860px);
+    padding-inline: clamp(.25rem, 2vw, 1rem);
 }
 
 .partners-hero__eyebrow {
@@ -1679,7 +1680,7 @@ body.dark-theme .mega-menu__service p {
 }
 
 .partners-section {
-    padding-block: 1rem 4rem;
+    padding-block: clamp(1rem, 2vw, 1.5rem) clamp(2.75rem, 6vw, 4.5rem);
 }
 
 .partners-grid,
@@ -1688,6 +1689,10 @@ body.dark-theme .mega-menu__service p {
     gap: 1.5rem;
     grid-template-columns: 1fr;
     align-items: stretch;
+}
+
+.partners-grid {
+    margin-inline: auto;
 }
 
 .partner-card {
@@ -1708,8 +1713,8 @@ body.dark-theme .mega-menu__service p {
 }
 
 .partner-card__logo-wrap {
-    min-height: 170px;
-    max-height: 170px;
+    min-height: clamp(130px, 22vw, 170px);
+    max-height: clamp(130px, 22vw, 170px);
     background: #f8fbff;
     display: grid;
     place-items: center;
@@ -1731,27 +1736,39 @@ body.dark-theme .mega-menu__service p {
 }
 
 .partner-card__body {
-    padding: 1.35rem;
+    padding: clamp(1rem, 2.2vw, 1.35rem);
     display: flex;
     flex: 1;
     flex-direction: column;
 }
 
 .partner-card__title {
-    font-size: 1.08rem;
+    font-size: clamp(1rem, 1.5vw, 1.1rem);
     margin-bottom: .65rem;
 }
 
 .partner-card__description {
     color: #62748d;
     margin-bottom: 1rem;
-    line-height: 1.7;
+    line-height: 1.65;
     flex: 1;
+    font-size: clamp(.92rem, 1.2vw, 1rem);
 }
 
 .partner-card__link {
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    margin-top: .35rem;
     color: var(--bs-primary);
     font-weight: 700;
+    text-decoration: none;
+    transition: color .2s ease, transform .2s ease;
+}
+
+.partner-card__link:hover {
+    color: #0b7cdb;
+    transform: translateX(2px);
 }
 
 .partners-empty-state {
@@ -1787,6 +1804,18 @@ body.dark-theme .mega-menu__service p {
     }
 }
 
+@media (max-width: 767.98px) {
+    .partners-grid,
+    .partner-skeleton-grid {
+        gap: 1rem;
+    }
+
+    .partners-empty-state {
+        padding: 2.25rem 1.1rem;
+        border-radius: 16px;
+    }
+}
+
 @media (min-width: 992px) {
     .partners-grid,
     .partner-skeleton-grid {
@@ -1811,9 +1840,34 @@ body.dark-theme .mega-menu__service p {
 @media (max-width: 575.98px) {
     .partners-hero {
         padding-top: 5rem;
+        padding-bottom: 2rem;
+    }
+
+    .partners-hero__eyebrow {
+        margin-bottom: .6rem;
+        letter-spacing: .1rem;
+    }
+
+    .partners-hero__title {
+        line-height: 1.2;
+        margin-bottom: .8rem;
+    }
+
+    .partners-hero__subtitle {
+        line-height: 1.7;
+        font-size: .95rem;
     }
 
     .partners-section {
-        padding-bottom: 3rem;
+        padding-bottom: 2.75rem;
+    }
+
+    .partner-card {
+        border-radius: 16px;
+    }
+
+    .partner-skeleton-card {
+        min-height: 280px;
+        border-radius: 16px;
     }
 }
