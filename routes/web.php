@@ -3,8 +3,10 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\PartnerController as AdminPartnerController;
 use App\Http\Controllers\Admin\ServiceRequestController as AdminServiceRequestController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\ServiceRequestController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +23,7 @@ Route::get('/news', [BlogController::class, 'newsIndex'])->name('news');
 Route::get('/news/{post:slug}', [BlogController::class, 'newsShow'])->name('news.show');
 Route::view('/team', 'team')->name('team');
 Route::view('/testimonial', 'testimonial')->name('testimonial');
+Route::get('/partners', [PartnerController::class, 'index'])->name('partners.index');
 Route::get('/contact', [ServiceRequestController::class, 'contactForm'])->name('contact');
 Route::get('/support', [ServiceRequestController::class, 'supportForm'])->name('support');
 Route::get('/request-product-demo', [ServiceRequestController::class, 'demoForm'])->name('request-product-demo');
@@ -61,5 +64,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::resource('products', ProductController::class);
     Route::resource('posts', PostController::class);
+
+    Route::middleware('admin')->group(function (): void {
+        Route::resource('partners', AdminPartnerController::class)->except(['show']);
+        Route::post('partners/{partner}/toggle-status', [AdminPartnerController::class, 'toggleStatus'])->name('partners.toggle-status');
+        Route::post('partners/reorder', [AdminPartnerController::class, 'reorder'])->name('partners.reorder');
+    });
+
     Route::get('requests', [AdminServiceRequestController::class, 'index'])->name('requests.index');
 });

@@ -1631,3 +1631,89 @@ body.dark-theme .mega-menu__service p {
         min-height: 0;
     }
 }
+
+.navbar .nav-link {
+    transition: color .25s ease, transform .25s ease;
+}
+
+.navbar .nav-link:hover {
+    color: var(--bs-primary);
+    transform: translateY(-1px);
+}
+
+.navbar .nav-link.active {
+    color: var(--bs-primary) !important;
+    font-weight: 700;
+}
+
+.partners-hero {
+    padding: 8rem 0 4rem;
+    background: linear-gradient(135deg, #f8fbff, #ffffff 45%, #edf5ff);
+}
+
+.partners-hero__eyebrow {
+    color: var(--bs-primary);
+    text-transform: uppercase;
+    letter-spacing: .12rem;
+    font-weight: 700;
+    margin-bottom: .75rem;
+}
+
+.partners-hero__title { font-size: clamp(2rem, 4.4vw, 3.4rem); margin-bottom: 1rem; }
+.partners-hero__subtitle { max-width: 760px; margin: 0 auto; color: #5d6b82; line-height: 1.8; }
+
+.partners-grid,
+.partner-skeleton-grid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1.4rem;
+}
+
+.partner-card {
+    background: #fff;
+    border: 1px solid rgba(17, 24, 39, 0.08);
+    border-radius: 18px;
+    box-shadow: 0 10px 34px rgba(15, 23, 42, 0.06);
+    overflow: hidden;
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.partner-card:hover { transform: translateY(-4px); box-shadow: 0 20px 44px rgba(15, 23, 42, 0.12); }
+.partner-card__logo-wrap { aspect-ratio: 16/10; background: #f8fbff; display: grid; place-items: center; overflow: hidden; padding: 1.5rem; }
+.partner-card__logo { max-height: 120px; max-width: 100%; object-fit: contain; transition: transform .35s ease; filter: drop-shadow(0 6px 16px rgba(11, 18, 32, .12)); }
+.partner-card:hover .partner-card__logo { transform: scale(1.06); }
+.partner-card__body { padding: 1.25rem; }
+.partner-card__title { font-size: 1.05rem; margin-bottom: .65rem; }
+.partner-card__description { color: #62748d; margin-bottom: 1rem; min-height: 72px; }
+.partner-card__link { color: var(--bs-primary); font-weight: 700; }
+
+.partners-empty-state { border: 1px dashed rgba(17,24,39,.2); border-radius: 20px; padding: 3.5rem 2rem; background: #fff; }
+.partners-empty-state__icon { font-size: 2.2rem; color: var(--bs-primary); margin-bottom: 1rem; }
+
+.partner-skeleton-card {
+    border-radius: 18px;
+    min-height: 250px;
+    background: linear-gradient(90deg, #f5f7fa 25%, #eef2f8 37%, #f5f7fa 63%);
+    background-size: 400% 100%;
+    animation: partner-skeleton 1.2s ease infinite;
+}
+
+@keyframes partner-skeleton {
+    0% { background-position: 100% 50%; }
+    100% { background-position: 0 50%; }
+}
+
+@media (min-width: 768px) {
+    .partners-grid,
+    .partner-skeleton-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (min-width: 992px) {
+    .partners-grid,
+    .partner-skeleton-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (min-width: 1200px) {
+    .partners-grid,
+    .partner-skeleton-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}

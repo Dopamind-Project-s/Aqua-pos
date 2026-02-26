@@ -42,9 +42,9 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0">
-                        <a href="{{ url('/') }}" class="nav-item nav-link active"><span data-i18n="nav.home">Home</span></a>
-                        <a href="{{ url('/about') }}" class="nav-item nav-link"><span data-i18n="nav.about">About</span></a>
-                        <a href="{{ url('/service') }}" class="nav-item nav-link"><span data-i18n="nav.services">Services</span></a>
+                        <a href="{{ route('home') }}" class="nav-item nav-link {{ request()->routeIs('home') ? 'active' : '' }}"><span data-i18n="nav.home">Home</span></a>
+                        <a href="{{ route('about') }}" class="nav-item nav-link {{ request()->routeIs('about') ? 'active' : '' }}"><span data-i18n="nav.about">About</span></a>
+                        <a href="{{ route('service') }}" class="nav-item nav-link {{ request()->routeIs('service') ? 'active' : '' }}"><span data-i18n="nav.services">Services</span></a>
                         <div class="nav-item mega-menu" id="productsMegaMenu">
                             <button
                                 class="nav-link mega-menu__trigger"
@@ -175,8 +175,9 @@
                             </section>
                         </div>
 
-                        <a href="{{ route('blog') }}" class="nav-item nav-link">Blog</a>
-                        <a href="{{ route('news') }}" class="nav-item nav-link">News</a>
+                        <a href="{{ route('blog') }}" class="nav-item nav-link {{ request()->routeIs('blog*') ? 'active' : '' }}">Blog</a>
+                        <a href="{{ route('news') }}" class="nav-item nav-link {{ request()->routeIs('news*') ? 'active' : '' }}">News</a>
+                        <a href="{{ route('partners.index') }}" class="nav-item nav-link {{ request()->routeIs('partners.*') ? 'active' : '' }} nav-link--partners">Partners</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><span data-i18n="nav.pages">Pages</span></a>
                             <div class="dropdown-menu m-0">
@@ -191,7 +192,7 @@
                                 <a href="{{ url('/not-found') }}" class="dropdown-item"><span data-i18n="nav.notfound">404 Page</span></a>
                             </div>
                         </div>
-                        <a href="{{ url('/contact') }}" class="nav-item nav-link"><span data-i18n="nav.contact">Contact Us</span></a>
+                        <a href="{{ route('contact') }}" class="nav-item nav-link {{ request()->routeIs('contact') ? 'active' : '' }}"><span data-i18n="nav.contact">Contact Us</span></a>
                     </div>
                     <div class="nav-toolbar" aria-label="Quick controls">
                         <button class="nav-toolbar__btn" id="themeToggle" type="button" aria-label="Toggle theme">

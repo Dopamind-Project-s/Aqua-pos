@@ -40,6 +40,12 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('admin.partners.index') }}" aria-expanded="false">
+                        <i class="ti ti-hand-stop"></i>
+                        <span class="hide-menu">Partners</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('admin.requests.index') }}" aria-expanded="false">
                         <i class="ti ti-mail"></i>
                         <span class="hide-menu">Requests</span>

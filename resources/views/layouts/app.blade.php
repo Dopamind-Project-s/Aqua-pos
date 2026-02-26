@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Aqua POS</title>
+    <title>{{ $metaTitle ?? "Aqua POS" }}</title>
+    <meta name="description" content="{{ $metaDescription ?? "Aqua POS cloud platform for POS, inventory, and business operations." }}">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
