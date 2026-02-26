@@ -15,114 +15,130 @@
                     <p class="mb-0">AQUA POS is a cloud-based POS and inventory management platform from Amman, Jordan, helping restaurants and retailers run faster with better control and full visibility.</p>
                 </div>
                 <div class="row g-4 justify-content-center">
-                    <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="service-item rounded">
+                    <div class="col-md-6 col-lg-4 col-xl-3 d-flex wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="service-item rounded h-100 d-flex flex-column">
                            <div class="service-img rounded-top">
                                 <img src="{{ asset('img/service-1.jpg') }}" class="img-fluid rounded-top w-100" alt="">
                            </div>
-                            <div class="service-content rounded-bottom bg-light p-4">
-                                <div class="service-content-inner">
+                            <div class="service-content rounded-bottom bg-light p-4 d-flex flex-column flex-grow-1">
+                                <div class="service-content-inner d-flex flex-column h-100">
                                     <h5 class="mb-4">Powerful POS System</h5>
                                     <p class="mb-4">Designed to reduce errors, simplify workflows, and keep every sale and stock movement synchronized in real time.</p>
-                                    <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
+                                    <div class="mt-auto pt-2">
+                                        <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="service-item rounded">
+                    <div class="col-md-6 col-lg-4 col-xl-3 d-flex wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="service-item rounded h-100 d-flex flex-column">
                            <div class="service-img rounded-top">
                                 <img src="{{ asset('img/service-2.jpg') }}" class="img-fluid rounded-top w-100" alt="">
                            </div>
-                            <div class="service-content rounded-bottom bg-light p-4">
-                                <div class="service-content-inner">
+                            <div class="service-content rounded-bottom bg-light p-4 d-flex flex-column flex-grow-1">
+                                <div class="service-content-inner d-flex flex-column h-100">
                                     <h5 class="mb-4">Smart Inventory Control</h5>
                                     <p class="mb-4">Designed to reduce errors, simplify workflows, and keep every sale and stock movement synchronized in real time.</p>
-                                    <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
+                                    <div class="mt-auto pt-2">
+                                        <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="service-item rounded">
+                    <div class="col-md-6 col-lg-4 col-xl-3 d-flex wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="service-item rounded h-100 d-flex flex-column">
                            <div class="service-img rounded-top">
                                 <img src="{{ asset('img/service-3.jpg') }}" class="img-fluid rounded-top w-100" alt="">
                            </div>
-                            <div class="service-content rounded-bottom bg-light p-4">
-                                <div class="service-content-inner">
+                            <div class="service-content rounded-bottom bg-light p-4 d-flex flex-column flex-grow-1">
+                                <div class="service-content-inner d-flex flex-column h-100">
                                     <h5 class="mb-4">Unified Branch Management</h5>
                                     <p class="mb-4">Designed to reduce errors, simplify workflows, and keep every sale and stock movement synchronized in real time.</p>
-                                    <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
+                                    <div class="mt-auto pt-2">
+                                        <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.7s">
-                        <div class="service-item rounded">
+                    <div class="col-md-6 col-lg-4 col-xl-3 d-flex wow fadeInUp" data-wow-delay="0.7s">
+                        <div class="service-item rounded h-100 d-flex flex-column">
                            <div class="service-img rounded-top">
                                 <img src="{{ asset('img/service-4.jpg') }}" class="img-fluid rounded-top w-100" alt="">
                            </div>
-                            <div class="service-content rounded-bottom bg-light p-4">
-                                <div class="service-content-inner">
+                            <div class="service-content rounded-bottom bg-light p-4 d-flex flex-column flex-grow-1">
+                                <div class="service-content-inner d-flex flex-column h-100">
                                     <h5 class="mb-4">Cloud-Based Platform</h5>
                                     <p class="mb-4">Designed to reduce errors, simplify workflows, and keep every sale and stock movement synchronized in real time.</p>
-                                    <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
+                                    <div class="mt-auto pt-2">
+                                        <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="service-item rounded">
+                    <div class="col-md-6 col-lg-4 col-xl-3 d-flex wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="service-item rounded h-100 d-flex flex-column">
                            <div class="service-img rounded-top">
                                 <img src="{{ asset('img/service-5.jpg') }}" class="img-fluid rounded-top w-100" alt="">
                            </div>
-                            <div class="service-content rounded-bottom bg-light p-4">
-                                <div class="service-content-inner">
+                            <div class="service-content rounded-bottom bg-light p-4 d-flex flex-column flex-grow-1">
+                                <div class="service-content-inner d-flex flex-column h-100">
                                     <h5 class="mb-4">Restaurant Operations</h5>
                                     <p class="mb-4">Designed to reduce errors, simplify workflows, and keep every sale and stock movement synchronized in real time.</p>
-                                    <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
+                                    <div class="mt-auto pt-2">
+                                        <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="service-item rounded">
+                    <div class="col-md-6 col-lg-4 col-xl-3 d-flex wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="service-item rounded h-100 d-flex flex-column">
                            <div class="service-img rounded-top">
                                 <img src="{{ asset('img/service-6.jpg') }}" class="img-fluid rounded-top w-100" alt="">
                            </div>
-                            <div class="service-content rounded-bottom bg-light p-4">
-                                <div class="service-content-inner">
+                            <div class="service-content rounded-bottom bg-light p-4 d-flex flex-column flex-grow-1">
+                                <div class="service-content-inner d-flex flex-column h-100">
                                     <h5 class="mb-4">Retail Operations</h5>
                                     <p class="mb-4">Designed to reduce errors, simplify workflows, and keep every sale and stock movement synchronized in real time.</p>
-                                    <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
+                                    <div class="mt-auto pt-2">
+                                        <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="service-item rounded">
+                    <div class="col-md-6 col-lg-4 col-xl-3 d-flex wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="service-item rounded h-100 d-flex flex-column">
                            <div class="service-img rounded-top">
                                 <img src="{{ asset('img/service-7.jpg') }}" class="img-fluid rounded-top w-100" alt="">
                            </div>
-                            <div class="service-content rounded-bottom bg-light p-4">
-                                <div class="service-content-inner">
+                            <div class="service-content rounded-bottom bg-light p-4 d-flex flex-column flex-grow-1">
+                                <div class="service-content-inner d-flex flex-column h-100">
                                     <h5 class="mb-4">Real-Time Analytics</h5>
                                     <p class="mb-4">Designed to reduce errors, simplify workflows, and keep every sale and stock movement synchronized in real time.</p>
-                                    <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
+                                    <div class="mt-auto pt-2">
+                                        <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.7s">
-                        <div class="service-item rounded">
+                    <div class="col-md-6 col-lg-4 col-xl-3 d-flex wow fadeInUp" data-wow-delay="0.7s">
+                        <div class="service-item rounded h-100 d-flex flex-column">
                            <div class="service-img rounded-top">
                                 <img src="{{ asset('img/service-8.jpg') }}" class="img-fluid rounded-top w-100" alt="">
                            </div>
-                            <div class="service-content rounded-bottom bg-light p-4">
-                                <div class="service-content-inner">
+                            <div class="service-content rounded-bottom bg-light p-4 d-flex flex-column flex-grow-1">
+                                <div class="service-content-inner d-flex flex-column h-100">
                                     <h5 class="mb-4">Control & Visibility</h5>
                                     <p class="mb-4">Designed to reduce errors, simplify workflows, and keep every sale and stock movement synchronized in real time.</p>
-                                    <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
+                                    <div class="mt-auto pt-2">
+                                        <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -178,7 +194,7 @@
                     <p class="mb-0">AQUA POS is a cloud-based POS and inventory management platform from Amman, Jordan, helping restaurants and retailers run faster with better control and full visibility.</p>
                 </div>
                 <div class="row g-4 justify-content-center">
-                    <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="col-md-6 col-lg-4 col-xl-3 d-flex wow fadeInUp" data-wow-delay="0.1s">
                         <div class="row-cols-1 feature-item p-4">
                             <div class="col-12">
                                 <div class="feature-icon mb-4">
@@ -193,7 +209,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="col-md-6 col-lg-4 col-xl-3 d-flex wow fadeInUp" data-wow-delay="0.3s">
                         <div class="row-cols-1 feature-item p-4">
                             <div class="col-12">
                                 <div class="feature-icon mb-4">
@@ -208,7 +224,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="col-md-6 col-lg-4 col-xl-3 d-flex wow fadeInUp" data-wow-delay="0.5s">
                         <div class="row-cols-1 feature-item p-4">
                             <div class="col-12">
                                 <div class="feature-icon mb-4">
@@ -223,7 +239,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.7s">
+                    <div class="col-md-6 col-lg-4 col-xl-3 d-flex wow fadeInUp" data-wow-delay="0.7s">
                         <div class="row-cols-1 feature-item p-4">
                             <div class="col-12">
                                 <div class="feature-icon mb-4">
@@ -238,7 +254,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="col-md-6 col-lg-4 col-xl-3 d-flex wow fadeInUp" data-wow-delay="0.1s">
                         <div class="row-cols-1 feature-item p-4">
                             <div class="col-12">
                                 <div class="feature-icon mb-4">
@@ -253,7 +269,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="col-md-6 col-lg-4 col-xl-3 d-flex wow fadeInUp" data-wow-delay="0.3s">
                         <div class="row-cols-1 feature-item p-4">
                             <div class="col-12">
                                 <div class="feature-icon mb-4">
@@ -268,7 +284,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="col-md-6 col-lg-4 col-xl-3 d-flex wow fadeInUp" data-wow-delay="0.5s">
                         <div class="row-cols-1 feature-item p-4">
                             <div class="col-12">
                                 <div class="feature-icon mb-4">
@@ -283,7 +299,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.7s">
+                    <div class="col-md-6 col-lg-4 col-xl-3 d-flex wow fadeInUp" data-wow-delay="0.7s">
                         <div class="row-cols-1 feature-item p-4">
                             <div class="col-12">
                                 <div class="feature-icon mb-4">
@@ -583,51 +599,57 @@
                     <p class="mb-0">AQUA POS is a cloud-based POS and inventory management platform from Amman, Jordan, helping restaurants and retailers run faster with better control and full visibility.</p>
                 </div>
                 <div class="row g-4 justify-content-center">
-                    <div class="col-md-6 col-lg-6 col-xl-4 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="blog-item rounded">
+                    <div class="col-md-6 col-lg-6 col-xl-4 d-flex wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="blog-item rounded h-100 d-flex flex-column">
                             <div class="blog-img">
                                 <img src="{{ asset('img/blog-1.jpg') }}" class="img-fluid w-100" alt="Image">
                             </div>
-                            <div class="blog-centent p-4">
+                            <div class="blog-centent p-4 d-flex flex-column flex-grow-1">
                                 <div class="d-flex justify-content-between mb-4">
                                     <p class="mb-0 text-muted"><i class="fa fa-calendar-alt text-primary"></i> 01 Jan 2045</p>
                                     <a href="#" class="text-muted"><span class="fa fa-comments text-primary"></span> 3 Comments</a>
                                 </div>
-                                <a href="#" class="h4">Remove back Pain While Working on o physio</a>
+                                <a href="#" class="h4 d-block mb-3">Remove back Pain While Working on o physio</a>
                                 <p class="my-4">Practical strategies for improving checkout speed, stock accuracy, and branch coordination using a modern SaaS POS platform.</p>
-                                <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-1">Read More</a>
+                                <div class="mt-auto pt-2">
+                                    <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-1">Read More</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-6 col-xl-4 wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="blog-item rounded">
+                    <div class="col-md-6 col-lg-6 col-xl-4 d-flex wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="blog-item rounded h-100 d-flex flex-column">
                             <div class="blog-img">
                                 <img src="{{ asset('img/blog-2.jpg') }}" class="img-fluid w-100" alt="Image">
                             </div>
-                            <div class="blog-centent p-4">
+                            <div class="blog-centent p-4 d-flex flex-column flex-grow-1">
                                 <div class="d-flex justify-content-between mb-4">
                                     <p class="mb-0 text-muted"><i class="fa fa-calendar-alt text-primary"></i> 01 Jan 2045</p>
                                     <a href="#" class="text-muted"><span class="fa fa-comments text-primary"></span> 3 Comments</a>
                                 </div>
-                                <a href="#" class="h4">Inventory accuracy tips for multi-branch stores</a>
+                                <a href="#" class="h4 d-block mb-3">Inventory accuracy tips for multi-branch stores</a>
                                 <p class="my-4">Practical strategies for improving checkout speed, stock accuracy, and branch coordination using a modern SaaS POS platform.</p>
-                                <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-1">Read More</a>
+                                <div class="mt-auto pt-2">
+                                    <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-1">Read More</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-6 col-xl-4 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="blog-item rounded">
+                    <div class="col-md-6 col-lg-6 col-xl-4 d-flex wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="blog-item rounded h-100 d-flex flex-column">
                             <div class="blog-img">
                                 <img src="{{ asset('img/blog-3.jpg') }}" class="img-fluid w-100" alt="Image">
                             </div>
-                            <div class="blog-centent p-4">
+                            <div class="blog-centent p-4 d-flex flex-column flex-grow-1">
                                 <div class="d-flex justify-content-between mb-4">
                                     <p class="mb-0 text-muted"><i class="fa fa-calendar-alt text-primary"></i> 01 Jan 2045</p>
                                     <a href="#" class="text-muted"><span class="fa fa-comments text-primary"></span> 3 Comments</a>
                                 </div>
-                                <a href="#" class="h4">Regular excercise can slow ageing process</a>
+                                <a href="#" class="h4 d-block mb-3">Regular excercise can slow ageing process</a>
                                 <p class="my-4">Practical strategies for improving checkout speed, stock accuracy, and branch coordination using a modern SaaS POS platform.</p>
-                                <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-1">Read More</a>
+                                <div class="mt-auto pt-2">
+                                    <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-1">Read More</a>
+                                </div>
                             </div>
                         </div>
                     </div>
