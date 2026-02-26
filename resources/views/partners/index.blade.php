@@ -3,7 +3,7 @@
 @section('content')
 <section class="partners-hero">
     <div class="container">
-        <div class="partners-hero__content text-center">
+        <div class="partners-hero__content text-center mx-auto">
             <p class="partners-hero__eyebrow">Strategic Ecosystem</p>
             <h1 class="partners-hero__title">Our Trusted Partners</h1>
             <p class="partners-hero__subtitle">We collaborate with high-impact brands and technology leaders to deliver seamless, scalable, and future-ready solutions.</p>
@@ -11,7 +11,7 @@
     </div>
 </section>
 
-<section class="partners-section py-5">
+<section class="partners-section">
     <div class="container">
         <div class="partner-skeleton-grid" id="partnerSkeleton" aria-hidden="true">
             @for($i = 0; $i < 8; $i++)
