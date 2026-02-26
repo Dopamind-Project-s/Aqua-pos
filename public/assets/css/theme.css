@@ -54,6 +54,10 @@
   --section-appointment-form: rgba(14, 165, 198, 0.16);
   --section-card-heading: #0f172a;
   --section-card-text: #475569;
+  --nav-dropdown-title: #0f172a;
+  --nav-dropdown-text: #475569;
+  --nav-dropdown-text-strong: #1e293b;
+  --nav-dropdown-hover-bg: #e2eefc;
 }
 
 body.dark-mode {
@@ -97,6 +101,10 @@ body.dark-mode {
   --section-appointment-form: rgba(30, 58, 98, 0.55);
   --section-card-heading: #e2e8f0;
   --section-card-text: #c0cde0;
+  --nav-dropdown-title: #e2e8f0;
+  --nav-dropdown-text: #c0cde0;
+  --nav-dropdown-text-strong: #f1f5f9;
+  --nav-dropdown-hover-bg: #263754;
 }
 
 body { background-color: var(--color-bg); color: var(--color-text-primary); }
