@@ -7,6 +7,17 @@
     <title>{{ $metaTitle ?? "Aqua POS" }}</title>
     <meta name="description" content="{{ $metaDescription ?? "Aqua POS cloud platform for POS, inventory, and business operations." }}">
 
+    <script>
+        (function () {
+            try {
+                var savedTheme = localStorage.getItem('aqua_theme');
+                if (savedTheme === 'dark') {
+                    document.documentElement.style.colorScheme = 'dark';
+                }
+            } catch (error) {}
+        })();
+    </script>
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet"> 
@@ -32,6 +43,15 @@
 </head>
 
 <body>
+<script>
+    (function () {
+        try {
+            if (localStorage.getItem('aqua_theme') === 'dark') {
+                document.body.classList.add('dark-mode');
+            }
+        } catch (error) {}
+    })();
+</script>
 
 @include('partials.header')
 

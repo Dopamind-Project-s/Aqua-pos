@@ -686,7 +686,7 @@
 
 /*** Appointment Start ***/
 .appointment {
-    background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url(../img/carousel-2.jpg);
+    background: linear-gradient(var(--section-appointment-overlay), var(--section-appointment-overlay)), url(../img/carousel-2.jpg);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -694,7 +694,7 @@
 }
 
 .appointment .appointment-form {
-    background: rgba(239, 162, 134, 0.3);
+    background: var(--section-appointment-form);
 }
 
 .appointment .appointment-form .btn.btn-primary {

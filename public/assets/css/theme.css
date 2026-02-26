@@ -50,6 +50,10 @@
   --section-footer-bg: #111b2e;
   --section-footer-text: #c7d2e5;
   --section-footer-heading: #f1f5f9;
+  --section-appointment-overlay: rgba(244, 248, 255, 0.86);
+  --section-appointment-form: rgba(14, 165, 198, 0.16);
+  --section-card-heading: #0f172a;
+  --section-card-text: #475569;
 }
 
 body.dark-mode {
@@ -89,6 +93,10 @@ body.dark-mode {
   --section-footer-bg: #0a1220;
   --section-footer-text: #9fb0c8;
   --section-footer-heading: #e2e8f0;
+  --section-appointment-overlay: rgba(8, 15, 29, 0.84);
+  --section-appointment-form: rgba(30, 58, 98, 0.55);
+  --section-card-heading: #e2e8f0;
+  --section-card-text: #c0cde0;
 }
 
 body { background-color: var(--color-bg); color: var(--color-text-primary); }
@@ -128,6 +136,13 @@ input::placeholder, textarea::placeholder { color: var(--color-text-secondary); 
   backdrop-filter: blur(8px);
 }
 
+.navbar.bg-white,
+.sticky-top.navbar-light,
+.sticky-top.navbar-light.bg-white {
+  background-color: var(--section-nav-bg) !important;
+  border-bottom: 1px solid var(--section-nav-border);
+}
+
 .topbar,
 .topbar-shell {
   background-color: var(--section-topbar-bg) !important;
@@ -165,6 +180,28 @@ input::placeholder, textarea::placeholder { color: var(--color-text-secondary); 
 .team .team-item .team-content {
   background-color: var(--color-surface-muted) !important;
   border-color: var(--color-border) !important;
+}
+
+.service .service-item h5,
+.feature .feature-item h5,
+.blog .blog-item .h4,
+.team .team-item .team-content h5 {
+  color: var(--section-card-heading) !important;
+}
+
+.service .service-item p,
+.feature .feature-item p,
+.blog .blog-item p,
+.team .team-item .team-content p {
+  color: var(--section-card-text) !important;
+}
+
+.appointment {
+  background: linear-gradient(var(--section-appointment-overlay), var(--section-appointment-overlay)), url(../img/carousel-2.jpg);
+}
+
+.appointment .appointment-form {
+  background: var(--section-appointment-form);
 }
 
 .footer {
