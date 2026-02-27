@@ -3,11 +3,13 @@
 @push('styles')
 <style>
     .product-show-page { background: linear-gradient(180deg, #f3f7ff 0%, #fff 100%); padding-top: clamp(5.2rem, 7vw, 6.6rem); }
-    .section-card { border: 1px solid #e1eaf9; border-radius: 18px; background: #fff; box-shadow: 0 10px 24px rgba(13,33,67,.08); }
+    .section-card { border: 1px solid #e1eaf9; border-radius: 20px; background: #fff; box-shadow: 0 10px 24px rgba(13,33,67,.08); }
     .show-hero { background: linear-gradient(130deg, #0f2f62 0%, #176ac4 58%, #3e91f3 100%); color: #fff; border-radius: 0 0 30px 30px; }
+    .show-cta { display: flex; flex-wrap: wrap; gap: .6rem; }
     .feature-chip { border: 1px solid #d3e4fc; background: #f3f8ff; color: #175cad; border-radius: 999px; padding: .5rem .8rem; font-weight: 700; font-size: 13px; }
     .journey-step { border-inline-start: 4px solid #2d7edf; padding-inline-start: 1rem; }
-    .related-item { border: 1px solid #e2ebfa; border-radius: 12px; padding: 1rem; background: #fff; }
+    .related-item { border: 1px solid #e2ebfa; border-radius: 14px; padding: 1rem; background: #fff; height: 100%; box-shadow: 0 8px 18px rgba(13,33,67,.06); }
+    .related-item h6 { margin-bottom: .55rem; }
 
     body.dark-mode .product-show-page { background: linear-gradient(180deg, #0e1728 0%, #0b1420 100%); }
     body.dark-mode .section-card,
@@ -24,9 +26,10 @@
             <span class="badge bg-light text-dark mb-3">{{ $product->category?->localized_name }}</span>
             <h1 class="display-5 fw-bold mb-2">{{ $product->localized_name }}</h1>
             <p class="lead mb-3">{{ $product->localized_tagline ?: $product->localized_short_description }}</p>
-            <div class="d-flex gap-2 flex-wrap">
+            <div class="show-cta">
                 <a href="{{ route('request-product-demo') }}" class="btn btn-light rounded-pill" data-i18n="products.requestDemo">Request Demo</a>
                 <a href="{{ route('products') }}" class="btn btn-outline-light rounded-pill" data-i18n="products.back">Back to Products</a>
+                <a href="{{ route('products') }}" class="btn btn-primary rounded-pill" data-i18n="products.allProducts">View All Products</a>
             </div>
         </div>
     </section>
@@ -65,22 +68,25 @@
                 </div>
             </div>
 
-            @if($relatedProducts->isNotEmpty())
-                <div class="section-card p-4">
-                    <h3 class="h5 mb-3" data-i18n="products.related">Related Products</h3>
-                    <div class="row g-3">
-                        @foreach($relatedProducts as $related)
-                            <div class="col-md-6 col-xl-3">
-                                <article class="related-item h-100">
-                                    <h6>{{ $related->localized_name }}</h6>
-                                    <p class="small text-muted">{{ $related->localized_short_description }}</p>
-                                    <a href="{{ route('products.show', $related->slug) }}" class="btn btn-sm btn-outline-primary rounded-pill" data-i18n="products.viewDetails">View Details</a>
-                                </article>
-                            </div>
-                        @endforeach
-                    </div>
+            <div class="section-card p-4">
+                <div class="d-flex justify-content-between align-items-center mb-3 gap-2 flex-wrap">
+                    <h3 class="h5 mb-0" data-i18n="products.related">Related Products</h3>
+                    <a href="{{ route('products') }}" class="btn btn-outline-primary rounded-pill btn-sm" data-i18n="products.allProducts">View All Products</a>
                 </div>
-            @endif
+                <div class="row g-3">
+                    @forelse($relatedProducts as $related)
+                        <div class="col-md-6 col-xl-3">
+                            <article class="related-item">
+                                <h6>{{ $related->localized_name }}</h6>
+                                <p class="small text-muted">{{ $related->localized_short_description }}</p>
+                                <a href="{{ route('products.show', $related->slug) }}" class="btn btn-sm btn-outline-primary rounded-pill" data-i18n="products.viewDetails">View Details</a>
+                            </article>
+                        </div>
+                    @empty
+                        <div class="col-12"><div class="alert alert-light border" data-i18n="products.noRelated">No related products available yet.</div></div>
+                    @endforelse
+                </div>
+            </div>
         </div>
     </section>
 </div>

@@ -7,9 +7,11 @@
     .products-section-card { border: 1px solid #e2ebfa; border-radius: 18px; background: #fff; box-shadow: 0 10px 24px rgba(13, 33, 67, .08); }
     .catalog-filter-chip { border: 1px solid #d6e4fa; color: #1a5bab; background: #f3f8ff; padding: .45rem .9rem; border-radius: 999px; text-decoration: none; font-weight: 700; font-size: 13px; }
     .catalog-filter-chip.active { background: #1f67c0; color: #fff; border-color: transparent; }
-    .product-card { border: 1px solid #e2ebfa; border-radius: 16px; overflow: hidden; background: #fff; box-shadow: 0 10px 24px rgba(13,33,67,.08); height: 100%; }
+    .product-card { border: 1px solid #e2ebfa; border-radius: 18px; overflow: hidden; background: #fff; box-shadow: 0 10px 24px rgba(13,33,67,.08); height: 100%; transition: .25s ease; }
+    .product-card:hover { transform: translateY(-4px); box-shadow: 0 14px 32px rgba(13,33,67,.14); }
     .product-card img { width: 100%; height: 220px; object-fit: cover; }
     .product-price { font-weight: 800; color: #125ab0; }
+    .product-actions { display: flex; gap: .5rem; flex-wrap: wrap; }
     .value-pill { border: 1px dashed #bfd5f6; background: #f5f9ff; border-radius: 14px; padding: 1rem; }
 
     body.dark-mode .products-page { background: linear-gradient(180deg, #0e1728 0%, #0b1420 100%); }
@@ -90,7 +92,10 @@
                                 @if(!is_null($product->price))
                                     <p class="product-price mb-3">{{ $product->price_note ?: 'Starting from' }} {{ number_format((float) $product->price, 0) }}</p>
                                 @endif
-                                <a href="{{ route('products.show', $product->slug) }}" class="btn btn-outline-primary rounded-pill mt-auto" data-i18n="products.viewDetails">View Details</a>
+                                <div class="product-actions mt-auto">
+                                    <a href="{{ route('products.show', $product->slug) }}" class="btn btn-primary rounded-pill" data-i18n="products.goToProduct">Go to Product Page</a>
+                                    <a href="{{ route('products.show', $product->slug) }}" class="btn btn-outline-primary rounded-pill" data-i18n="products.viewDetails">View Details</a>
+                                </div>
                             </div>
                         </article>
                     </div>
