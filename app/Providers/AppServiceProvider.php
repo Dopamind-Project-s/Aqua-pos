@@ -27,8 +27,9 @@ class AppServiceProvider extends ServiceProvider
                         $query->where('is_active', true)->whereNull('deleted_at');
                     })
                     ->with(['products' => function ($query): void {
-                        $query->where('is_active', true)->whereNull('deleted_at')->latest();
+                        $query->where('is_active', true)->whereNull('deleted_at')->orderByDesc('is_featured')->orderBy('sort_order')->latest();
                     }])
+                    ->orderBy('sort_order')
                     ->orderBy('name')
                     ->get();
             }

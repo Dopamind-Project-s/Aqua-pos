@@ -23,7 +23,13 @@ class CategoryController extends Controller
         $categories = Category::query()
             ->withTrashed()
             ->withCount(['products' => fn (Builder $query) => $query->whereNull('deleted_at')])
-            ->when($search !== '', fn (Builder $query) => $query->where('name', 'like', "%{$search}%"))
+            ->when($search !== '', function (Builder $query) use ($search): void {
+                $query->where(function (Builder $nested) use ($search): void {
+                    $nested->where('name', 'like', "%{$search}%")
+                        ->orWhere('name_ar', 'like', "%{$search}%")
+                        ->orWhere('name_en', 'like', "%{$search}%");
+                });
+            })
             ->when($status === 'active', fn (Builder $query) => $query->whereNull('deleted_at')->where('is_active', true))
             ->when($status === 'inactive', fn (Builder $query) => $query->whereNull('deleted_at')->where('is_active', false))
             ->when($status === 'deleted', fn (Builder $query) => $query->onlyTrashed())

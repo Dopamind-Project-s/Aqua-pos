@@ -12,7 +12,6 @@ class UpdateCategoryRequest extends FormRequest
         return true;
     }
 
-
     protected function prepareForValidation(): void
     {
         $this->merge([
@@ -22,12 +21,16 @@ class UpdateCategoryRequest extends FormRequest
 
     public function rules(): array
     {
-        $categoryId = $this->route('category')?->id;
+        $categoryId = $this->route('category');
 
         return [
             'name' => ['required', 'string', 'max:255'],
+            'name_ar' => ['nullable', 'string', 'max:255'],
+            'name_en' => ['nullable', 'string', 'max:255'],
             'slug' => ['required', 'string', 'max:255', Rule::unique('categories', 'slug')->ignore($categoryId)],
             'description' => ['nullable', 'string'],
+            'description_ar' => ['nullable', 'string'],
+            'description_en' => ['nullable', 'string'],
             'is_active' => ['required', 'boolean'],
         ];
     }

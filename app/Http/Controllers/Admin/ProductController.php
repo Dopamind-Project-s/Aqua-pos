@@ -8,16 +8,40 @@ use App\Http\Requests\Admin\UpdateProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class ProductController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
-        $products = Product::query()->with(['category'])->latest()->paginate(10);
+        $search = trim((string) $request->string('search'));
+        $status = (string) $request->string('status', 'all');
+        $categoryId = (int) $request->integer('category_id');
 
-        return view('admin.products.index', compact('products'));
+        $products = Product::query()
+            ->with(['category'])
+            ->when($search !== '', function ($query) use ($search): void {
+                $query->where(function ($nested) use ($search): void {
+                    $nested->where('name', 'like', "%{$search}%")
+                        ->orWhere('name_ar', 'like', "%{$search}%")
+                        ->orWhere('name_en', 'like', "%{$search}%")
+                        ->orWhere('slug', 'like', "%{$search}%");
+                });
+            })
+            ->when($status === 'active', fn ($query) => $query->where('is_active', true))
+            ->when($status === 'inactive', fn ($query) => $query->where('is_active', false))
+            ->when($categoryId > 0, fn ($query) => $query->where('category_id', $categoryId))
+            ->orderByDesc('is_featured')
+            ->orderBy('sort_order')
+            ->latest()
+            ->paginate(10)
+            ->withQueryString();
+
+        $categories = Category::query()->whereNull('deleted_at')->orderBy('name')->get();
+
+        return view('admin.products.index', compact('products', 'categories', 'search', 'status', 'categoryId'));
     }
 
     public function create(): View

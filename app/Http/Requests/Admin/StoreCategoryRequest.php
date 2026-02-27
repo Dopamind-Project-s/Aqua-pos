@@ -12,7 +12,6 @@ class StoreCategoryRequest extends FormRequest
         return true;
     }
 
-
     protected function prepareForValidation(): void
     {
         $this->merge([
@@ -24,8 +23,12 @@ class StoreCategoryRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
+            'name_ar' => ['nullable', 'string', 'max:255'],
+            'name_en' => ['nullable', 'string', 'max:255'],
             'slug' => ['required', 'string', 'max:255', Rule::unique('categories', 'slug')],
             'description' => ['nullable', 'string'],
+            'description_ar' => ['nullable', 'string'],
+            'description_en' => ['nullable', 'string'],
             'is_active' => ['required', 'boolean'],
         ];
     }

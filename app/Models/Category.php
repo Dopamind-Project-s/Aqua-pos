@@ -13,7 +13,11 @@ class Category extends Model
 
     protected $fillable = [
         'name',
+        'name_ar',
+        'name_en',
         'description',
+        'description_ar',
+        'description_en',
         'image',
         'slug',
         'sort_order',
@@ -25,6 +29,28 @@ class Category extends Model
         return [
             'is_active' => 'boolean',
         ];
+    }
+
+    public function getLocalizedNameAttribute(): string
+    {
+        $locale = app()->getLocale();
+
+        if ($locale === 'ar') {
+            return $this->name_ar ?: $this->name_en ?: $this->name;
+        }
+
+        return $this->name_en ?: $this->name_ar ?: $this->name;
+    }
+
+    public function getLocalizedDescriptionAttribute(): ?string
+    {
+        $locale = app()->getLocale();
+
+        if ($locale === 'ar') {
+            return $this->description_ar ?: $this->description_en ?: $this->description;
+        }
+
+        return $this->description_en ?: $this->description_ar ?: $this->description;
     }
 
     public function products(): HasMany

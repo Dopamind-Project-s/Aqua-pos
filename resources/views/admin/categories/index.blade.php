@@ -64,7 +64,7 @@
                     @forelse($categories as $category)
                         <tr class="{{ $category->trashed() ? 'table-danger' : '' }}">
                             <td><input type="checkbox" name="category_ids[]" value="{{ $category->id }}" class="category-checkbox"></td>
-                            <td>{{ $category->name }}</td>
+                            <td>{{ $category->localized_name }}<div class='small text-muted'>AR: {{ $category->name_ar ?: '-' }} | EN: {{ $category->name_en ?: '-' }}</div></td>
                             <td>{{ $category->slug }}</td>
                             <td>
                                 <span class="badge {{ $category->is_active ? 'bg-success' : 'bg-secondary' }}">{{ $category->is_active ? 'Active' : 'Inactive' }}</span>

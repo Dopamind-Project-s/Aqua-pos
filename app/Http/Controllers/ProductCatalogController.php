@@ -12,6 +12,8 @@ class ProductCatalogController extends Controller
     public function index(Request $request): View
     {
         $categorySlug = (string) $request->query('category', '');
+        $search = trim((string) $request->query('search', ''));
+        $sort = (string) $request->query('sort', 'featured');
 
         $categories = Category::query()
             ->where('is_active', true)
@@ -22,25 +24,40 @@ class ProductCatalogController extends Controller
             ->orderBy('name')
             ->get();
 
-        $products = Product::query()
+        $productsQuery = Product::query()
             ->with(['category'])
             ->where('is_active', true)
             ->whereNull('deleted_at')
-            ->whereHas('category', fn ($query) =>
-                $query->where('is_active', true)->whereNull('deleted_at')
-            )
-            ->when($categorySlug !== '', fn ($query) =>
-                $query->whereHas('category', fn ($q) => $q->where('slug', $categorySlug))
-            )
-            ->orderByDesc('is_featured')
-            ->latest()
-            ->paginate(12)
+            ->whereHas('category', fn ($query) => $query->where('is_active', true)->whereNull('deleted_at'))
+            ->when($categorySlug !== '', fn ($query) => $query->whereHas('category', fn ($q) => $q->where('slug', $categorySlug)))
+            ->when($search !== '', function ($query) use ($search): void {
+                $query->where(function ($nested) use ($search): void {
+                    $nested->where('name', 'like', "%{$search}%")
+                        ->orWhere('name_ar', 'like', "%{$search}%")
+                        ->orWhere('name_en', 'like', "%{$search}%")
+                        ->orWhere('tagline', 'like', "%{$search}%")
+                        ->orWhere('tagline_ar', 'like', "%{$search}%")
+                        ->orWhere('tagline_en', 'like', "%{$search}%");
+                });
+            });
+
+        match ($sort) {
+            'price_low' => $productsQuery->orderBy('price'),
+            'price_high' => $productsQuery->orderByDesc('price'),
+            'newest' => $productsQuery->latest(),
+            default => $productsQuery->orderByDesc('is_featured')->orderBy('sort_order')->latest(),
+        };
+
+        $products = $productsQuery
+            ->paginate(9)
             ->withQueryString();
 
-        return view('products', [
+        return view('products.index', [
             'products' => $products,
             'categories' => $categories,
             'selectedCategory' => $categorySlug,
+            'search' => $search,
+            'sort' => $sort,
         ]);
     }
 
@@ -55,11 +72,13 @@ class ProductCatalogController extends Controller
             ->whereNull('deleted_at')
             ->where('id', '!=', $product->id)
             ->where('category_id', $product->category_id)
+            ->orderByDesc('is_featured')
+            ->orderBy('sort_order')
             ->latest()
             ->take(4)
             ->get();
 
-        return view('products-show', [
+        return view('products.show', [
             'product' => $product,
             'relatedProducts' => $relatedProducts,
         ]);
