@@ -275,6 +275,25 @@ document.addEventListener('DOMContentLoaded', function () {
             'partners.emptySubtitle': 'We are currently onboarding exceptional partners. Please check back soon.',
             'partners.visitWebsite': 'Visit Website',
             'partners.defaultDescription': 'Trusted partner supporting our ecosystem with reliable services.',
+            'support.badge': 'Support Center',
+            'support.title': 'How can we help you today?',
+            'support.subtitle': 'Raise a technical or operational issue and our support team will respond quickly.',
+            'support.tile1Title': 'Technical Support',
+            'support.tile1Desc': 'POS devices, printers, and app issues.',
+            'support.tile2Title': 'Setup Assistance',
+            'support.tile2Desc': 'Configuration and integration support.',
+            'support.tile3Title': 'Account Help',
+            'support.tile3Desc': 'Users, permissions, and access issues.',
+            'support.formTitle': 'Submit Support Request',
+            'support.formSubtitle': 'Please provide as much detail as possible so we can resolve your issue faster.',
+            'support.fullName': 'Full Name',
+            'support.email': 'Email',
+            'support.phone': 'Phone',
+            'support.company': 'Company',
+            'support.subject': 'Subject',
+            'support.subjectPlaceholder': 'Issue title',
+            'support.details': 'Support Details',
+            'support.submit': 'Submit Support Request',
             'controls.dark': 'Dark',
             'controls.light': 'Light',
             'mega.restaurant': 'Restaurant',
@@ -371,6 +390,25 @@ document.addEventListener('DOMContentLoaded', function () {
             'partners.emptySubtitle': 'نعمل حالياً على ضم شركاء مميزين. يرجى زيارة الصفحة قريبًا.',
             'partners.visitWebsite': 'زيارة الموقع',
             'partners.defaultDescription': 'شريك موثوق يدعم منظومتنا بخدمات احترافية مستقرة.',
+            'support.badge': 'مركز الدعم',
+            'support.title': 'كيف يمكننا مساعدتك اليوم؟',
+            'support.subtitle': 'ارفع مشكلة تقنية أو تشغيلية وسيقوم فريق الدعم بالرد بسرعة.',
+            'support.tile1Title': 'الدعم التقني',
+            'support.tile1Desc': 'مشكلات أجهزة نقاط البيع والطابعات والتطبيق.',
+            'support.tile2Title': 'مساعدة الإعداد',
+            'support.tile2Desc': 'دعم التهيئة والتكاملات.',
+            'support.tile3Title': 'مساعدة الحساب',
+            'support.tile3Desc': 'مشكلات المستخدمين والصلاحيات والوصول.',
+            'support.formTitle': 'إرسال طلب دعم',
+            'support.formSubtitle': 'يرجى تزويدنا بأكبر قدر من التفاصيل حتى نتمكن من حل المشكلة بشكل أسرع.',
+            'support.fullName': 'الاسم الكامل',
+            'support.email': 'البريد الإلكتروني',
+            'support.phone': 'الهاتف',
+            'support.company': 'الشركة',
+            'support.subject': 'عنوان المشكلة',
+            'support.subjectPlaceholder': 'عنوان مختصر للمشكلة',
+            'support.details': 'تفاصيل الدعم',
+            'support.submit': 'إرسال طلب الدعم',
             'controls.dark': 'داكن',
             'controls.light': 'فاتح',
             'mega.restaurant': 'المطاعم',
@@ -430,6 +468,13 @@ document.addEventListener('DOMContentLoaded', function () {
             var key = el.getAttribute('data-i18n');
             if (translations[lang][key]) {
                 el.textContent = translations[lang][key];
+            }
+        });
+
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
+            var key = el.getAttribute('data-i18n-placeholder');
+            if (translations[lang][key]) {
+                el.setAttribute('placeholder', translations[lang][key]);
             }
         });
 
