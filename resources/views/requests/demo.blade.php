@@ -4,6 +4,7 @@
 <style>
     .demo-page {
         background: radial-gradient(circle at top right, #eff5ff 0%, #f8fbff 48%, #ffffff 100%);
+        padding-top: clamp(5.3rem, 7vw, 6.8rem);
     }
 
     .demo-hero {
@@ -11,6 +12,7 @@
         color: #fff;
         position: relative;
         overflow: hidden;
+        border-radius: 0 0 22px 22px;
     }
 
     .demo-hero::after {
@@ -120,11 +122,24 @@
     body.dark-mode .demo-layout-card h3,
     body.dark-mode .demo-layout-card p,
     body.dark-mode .demo-feature-box .fw-bold,
-    body.dark-mode .demo-feature-box small { color: #dce8fb !important; }
-    body.dark-mode .demo-checklist { background: #f4f8ff; }
+    body.dark-mode .demo-feature-box small,
+    body.dark-mode .demo-checklist,
+    body.dark-mode .demo-checklist li { color: #dce8fb !important; }
+    body.dark-mode .demo-checklist {
+        background: rgba(18, 28, 44, .9);
+        border-color: #2a3f5d;
+    }
+    body.dark-mode .demo-feature-icon {
+        background: linear-gradient(135deg, #21324c, #1b2940);
+        color: #9bc2ff;
+    }
 
     @media (max-width: 576px) {
-        .demo-hero { text-align: center; }
+        .demo-page {
+            padding-top: 4.7rem;
+        }
+
+        .demo-hero { text-align: center; border-radius: 0 0 18px 18px; }
         .demo-hero-badge { justify-content: center; }
     }
 </style>
@@ -136,17 +151,17 @@
     <div class="container py-4">
         <div class="row align-items-center g-4">
             <div class="col-lg-7">
-                <span class="demo-hero-badge mb-3"><i class="fas fa-magic"></i> Aqua POS Demo</span>
-                <h1 class="display-5 fw-bold mb-3">Book a Personalized POS Demo</h1>
-                <p class="lead mb-0">Discover how Aqua POS transforms operations with faster billing, smart inventory, and branch-level control in one connected platform.</p>
+                <span class="demo-hero-badge mb-3"><i class="fas fa-magic"></i><span data-i18n="demo.badge">Aqua POS Demo</span></span>
+                <h1 class="display-5 fw-bold mb-3" data-i18n="demo.title">Book a Personalized POS Demo</h1>
+                <p class="lead mb-0" data-i18n="demo.subtitle">Discover how Aqua POS transforms operations with faster billing, smart inventory, and branch-level control in one connected platform.</p>
             </div>
             <div class="col-lg-5">
                 <div class="demo-checklist">
-                    <div class="fw-bold mb-2"><i class="fas fa-check-circle me-2 text-success"></i>What you’ll get in the demo</div>
+                    <div class="fw-bold mb-2"><i class="fas fa-check-circle me-2 text-success"></i><span data-i18n="demo.whatYouGet">What you’ll get in the demo</span></div>
                     <ul class="mb-0 ps-3">
-                        <li><i class="fas fa-circle-check text-primary me-2"></i>Live walkthrough of POS, inventory, and reports</li>
-                        <li><i class="fas fa-circle-check text-primary me-2"></i>Branch setup, roles, and permissions flow</li>
-                        <li><i class="fas fa-circle-check text-primary me-2"></i>Implementation timeline and pricing options</li>
+                        <li><i class="fas fa-circle-check text-primary me-2"></i><span data-i18n="demo.benefit1">Live walkthrough of POS, inventory, and reports</span></li>
+                        <li><i class="fas fa-circle-check text-primary me-2"></i><span data-i18n="demo.benefit2">Branch setup, roles, and permissions flow</span></li>
+                        <li><i class="fas fa-circle-check text-primary me-2"></i><span data-i18n="demo.benefit3">Implementation timeline and pricing options</span></li>
                     </ul>
                 </div>
             </div>
@@ -160,60 +175,60 @@
         <div class="row g-4">
             <div class="col-lg-7">
                 <div class="demo-layout-card p-4 p-lg-5">
-                    <h3 class="mb-2"><i class="fas fa-laptop-code text-primary me-2"></i>Request Product Demo</h3>
-                    <p class="text-muted mb-4">Share your business details and a product specialist will contact you shortly.</p>
+                    <h3 class="mb-2"><i class="fas fa-laptop-code text-primary me-2"></i><span data-i18n="demo.formTitle">Request Product Demo</span></h3>
+                    <p class="text-muted mb-4" data-i18n="demo.formSubtitle">Share your business details and a product specialist will contact you shortly.</p>
 
                     <form method="POST" action="{{ route('requests.store') }}" class="row g-3">@csrf
                         <input type="hidden" name="type" value="demo_request">
                         <input type="hidden" name="source_page" value="/request-product-demo">
 
                         <div class="col-md-6 demo-input-group">
-                            <label class="form-label"><i class="far fa-user"></i>Full Name</label>
+                            <label class="form-label"><i class="far fa-user"></i><span data-i18n="demo.fullName">Full Name</span></label>
                             <input class="form-control demo-input" name="full_name" required>
                         </div>
 
                         <div class="col-md-6 demo-input-group">
-                            <label class="form-label"><i class="far fa-envelope"></i>Email</label>
+                            <label class="form-label"><i class="far fa-envelope"></i><span data-i18n="demo.email">Email</span></label>
                             <input type="email" class="form-control demo-input" name="email">
                         </div>
 
                         <div class="col-md-6 demo-input-group">
-                            <label class="form-label"><i class="fas fa-phone"></i>Phone</label>
+                            <label class="form-label"><i class="fas fa-phone"></i><span data-i18n="demo.phone">Phone</span></label>
                             <input class="form-control demo-input" name="phone">
                         </div>
 
                         <div class="col-md-6 demo-input-group">
-                            <label class="form-label"><i class="far fa-building"></i>Company</label>
+                            <label class="form-label"><i class="far fa-building"></i><span data-i18n="demo.company">Company</span></label>
                             <input class="form-control demo-input" name="company">
                         </div>
 
                         <div class="col-md-6 demo-input-group">
-                            <label class="form-label"><i class="fas fa-globe"></i>Country</label>
+                            <label class="form-label"><i class="fas fa-globe"></i><span data-i18n="demo.country">Country</span></label>
                             <input class="form-control demo-input" name="country">
                         </div>
 
                         <div class="col-md-6 demo-input-group">
-                            <label class="form-label"><i class="fas fa-code-branch"></i>Branches</label>
+                            <label class="form-label"><i class="fas fa-code-branch"></i><span data-i18n="demo.branches">Branches</span></label>
                             <input type="number" min="1" class="form-control demo-input" name="branch_count">
                         </div>
 
                         <div class="col-md-6 demo-input-group">
-                            <label class="form-label"><i class="fas fa-box-open"></i>Product Interest</label>
+                            <label class="form-label"><i class="fas fa-box-open"></i><span data-i18n="demo.productInterest">Product Interest</span></label>
                             <input class="form-control demo-input" name="product_interest">
                         </div>
 
                         <div class="col-md-6 demo-input-group">
-                            <label class="form-label"><i class="far fa-clock"></i>Preferred Contact Time</label>
+                            <label class="form-label"><i class="far fa-clock"></i><span data-i18n="demo.preferredContactTime">Preferred Contact Time</span></label>
                             <input class="form-control demo-input" name="preferred_contact_time" placeholder="e.g. 10:00 AM">
                         </div>
 
                         <div class="col-12 demo-input-group">
-                            <label class="form-label"><i class="far fa-comment-dots"></i>Notes</label>
+                            <label class="form-label"><i class="far fa-comment-dots"></i><span data-i18n="demo.notes">Notes</span></label>
                             <textarea class="form-control demo-textarea" name="message" rows="5"></textarea>
                         </div>
 
                         <div class="col-12 d-grid">
-                            <button class="btn btn-primary demo-submit"><i class="fas fa-paper-plane me-2"></i>Submit Demo Request</button>
+                            <button class="btn btn-primary demo-submit"><i class="fas fa-paper-plane me-2"></i><span data-i18n="demo.submit">Submit Demo Request</span></button>
                         </div>
                     </form>
                 </div>
@@ -224,21 +239,21 @@
                     <div class="demo-feature-box">
                         <div class="d-flex gap-3 align-items-start">
                             <span class="demo-feature-icon"><i class="fas fa-store"></i></span>
-                            <div><div class="fw-bold">Built for multi-branch businesses</div><small class="text-muted">Operate all branches from a unified dashboard with full cashier control.</small></div>
+                            <div><div class="fw-bold" data-i18n="demo.feature1Title">Built for multi-branch businesses</div><small class="text-muted" data-i18n="demo.feature1Desc">Operate all branches from a unified dashboard with full cashier control.</small></div>
                         </div>
                     </div>
 
                     <div class="demo-feature-box">
                         <div class="d-flex gap-3 align-items-start">
                             <span class="demo-feature-icon"><i class="fas fa-boxes-stacked"></i></span>
-                            <div><div class="fw-bold">Advanced inventory management</div><small class="text-muted">Monitor stock in real time and receive proactive low-stock alerts.</small></div>
+                            <div><div class="fw-bold" data-i18n="demo.feature2Title">Advanced inventory management</div><small class="text-muted" data-i18n="demo.feature2Desc">Monitor stock in real time and receive proactive low-stock alerts.</small></div>
                         </div>
                     </div>
 
                     <div class="demo-feature-box">
                         <div class="d-flex gap-3 align-items-start">
                             <span class="demo-feature-icon"><i class="fas fa-headset"></i></span>
-                            <div><div class="fw-bold">Local onboarding & support</div><small class="text-muted">Dedicated assistance for setup, staff training, and smooth go-live.</small></div>
+                            <div><div class="fw-bold" data-i18n="demo.feature3Title">Local onboarding & support</div><small class="text-muted" data-i18n="demo.feature3Desc">Dedicated assistance for setup, staff training, and smooth go-live.</small></div>
                         </div>
                     </div>
                 </div>
