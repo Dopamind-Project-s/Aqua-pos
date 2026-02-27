@@ -15,6 +15,12 @@ class UpdateProductRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
+            // Keep legacy default columns synced from EN automatically.
+            'name' => (string) $this->input('name_en', ''),
+            'tagline' => $this->input('tagline_en'),
+            'short_description' => $this->input('short_description_en'),
+            'description' => $this->input('description_en'),
+            'use_cases' => $this->input('use_cases_en'),
             'is_active' => $this->boolean('is_active'),
             'is_featured' => $this->boolean('is_featured'),
             'key_features' => $this->filled('key_features')
@@ -31,7 +37,7 @@ class UpdateProductRequest extends FormRequest
             'category_id' => ['required', 'integer', Rule::exists('categories', 'id')->whereNull('deleted_at')],
             'name' => ['required', 'string', 'max:255'],
             'name_ar' => ['nullable', 'string', 'max:255'],
-            'name_en' => ['nullable', 'string', 'max:255'],
+            'name_en' => ['required', 'string', 'max:255'],
             'slug' => ['required', 'string', 'max:255', Rule::unique('products', 'slug')->ignore($productId)],
             'image' => ['nullable', 'image', 'max:2048'],
             'tagline' => ['nullable', 'string', 'max:255'],
