@@ -3,7 +3,7 @@
 @section('blog-content')
 <section class="mb-4">
     <div class="container">
-        @include('blogs.partials.inner-nav', ['type' => $type, 'post' => $post])
+        @include('blogs.partials.inner-nav', ['type' => $type, 'post' => $post, 'categories' => $categories])
 
         <div class="row g-4">
             <div class="col-lg-8">
@@ -21,7 +21,14 @@
                     <h1 class="display-6 fw-bold mb-3">{{ $post->title }}</h1>
                     <p class="text-muted mb-4"><i class="fas fa-user-edit me-2"></i>{{ $post->author?->name ?? 'Aqua Team' }}</p>
 
-                    <img class="article-cover mb-4" src="{{ $post->cover_image ? Storage::url($post->cover_image) : asset('img/blog-2.jpg') }}" alt="{{ $post->title }}">
+                    @if($post->cover_image)
+                        <img class="article-cover mb-4" src="{{ Storage::url($post->cover_image) }}" alt="{{ $post->title }}">
+                    @else
+                        <div class="article-cover article-cover--placeholder mb-4" role="img" aria-label="Default post image">
+                            <i class="far fa-image"></i>
+                            <span data-i18n="blog.defaultImage">No image available</span>
+                        </div>
+                    @endif
 
                     @if($post->excerpt)
                         <blockquote class="border-start border-4 border-primary ps-3 mb-4 text-dark fw-semibold">{{ $post->excerpt }}</blockquote>
@@ -34,7 +41,7 @@
             <div class="col-lg-4">
                 <aside class="d-flex flex-column gap-4">
                     <div class="blog-sidebar-card">
-                        <h6 class="fw-bold mb-3"><i class="fas fa-layer-group me-2"></i>Categories</h6>
+                        <h6 class="fw-bold mb-3"><i class="fas fa-layer-group me-2"></i><span data-i18n="blog.nav.category">Category</span></h6>
                         @foreach($categories as $category)
                             <a href="{{ ($type === 'blog' ? route('blog') : route('news')) . '?category=' . $category->slug }}" class="d-flex justify-content-between text-decoration-none mb-2 text-dark">
                                 <span>{{ $category->name }}</span>
@@ -44,10 +51,14 @@
                     </div>
 
                     <div class="blog-sidebar-card">
-                        <h6 class="fw-bold mb-3"><i class="fas fa-th-large me-2"></i>Similar {{ ucfirst($type) }}</h6>
+                        <h6 class="fw-bold mb-3"><i class="fas fa-th-large me-2"></i><span data-i18n="blog.related">Similar Posts</span></h6>
                         @foreach($relatedPosts as $related)
                             <a class="d-flex gap-2 text-decoration-none mb-3" href="{{ $type === 'blog' ? route('blog.show', $related->slug) : route('news.show', $related->slug) }}">
-                                <img src="{{ $related->cover_image ? Storage::url($related->cover_image) : asset('img/blog-1.jpg') }}" alt="{{ $related->title }}" style="width:68px;height:68px;object-fit:cover;border-radius:10px;">
+                                @if($related->cover_image)
+                                    <img class="sidebar-thumb" src="{{ Storage::url($related->cover_image) }}" alt="{{ $related->title }}">
+                                @else
+                                    <span class="sidebar-thumb sidebar-thumb--placeholder" aria-hidden="true"><i class="far fa-image"></i></span>
+                                @endif
                                 <div>
                                     <div class="fw-semibold text-dark">{{ \Illuminate\Support\Str::limit($related->title, 72) }}</div>
                                     <small class="text-muted">{{ $related->published_at?->format('d M Y') ?? $related->created_at?->format('d M Y') }}</small>
@@ -57,10 +68,14 @@
                     </div>
 
                     <div class="blog-sidebar-card">
-                        <h6 class="fw-bold mb-3"><i class="fas fa-clock me-2"></i>Latest</h6>
+                        <h6 class="fw-bold mb-3"><i class="fas fa-clock me-2"></i><span data-i18n="blog.latest">Latest Posts</span></h6>
                         @foreach($latestPosts as $latest)
                             <a class="d-flex gap-2 text-decoration-none mb-3" href="{{ $type === 'blog' ? route('blog.show', $latest->slug) : route('news.show', $latest->slug) }}">
-                                <img src="{{ $latest->cover_image ? Storage::url($latest->cover_image) : asset('img/blog-3.jpg') }}" alt="{{ $latest->title }}" style="width:68px;height:68px;object-fit:cover;border-radius:10px;">
+                                @if($latest->cover_image)
+                                    <img class="sidebar-thumb" src="{{ Storage::url($latest->cover_image) }}" alt="{{ $latest->title }}">
+                                @else
+                                    <span class="sidebar-thumb sidebar-thumb--placeholder" aria-hidden="true"><i class="far fa-image"></i></span>
+                                @endif
                                 <div class="fw-semibold text-dark">{{ \Illuminate\Support\Str::limit($latest->title, 72) }}</div>
                             </a>
                         @endforeach

@@ -31,30 +31,37 @@
         @php
             $selectedCategoryName = $categories->firstWhere('slug', $selectedCategory)?->name ?? 'All Categories';
         @endphp
-        @include('blogs.partials.inner-nav', ['type' => $type, 'selectedCategoryName' => $selectedCategoryName])
+        @include('blogs.partials.inner-nav', ['type' => $type, 'selectedCategoryName' => $selectedCategoryName, 'categories' => $categories])
         <div class="row g-4">
             <div class="col-lg-8">
                 <div class="row g-4">
                     @forelse($posts as $post)
                         <div class="col-md-6">
                             <article class="card blog-card h-100">
-                                <img class="thumb" src="{{ $post->cover_image ? Storage::url($post->cover_image) : asset('img/blog-3.jpg') }}" alt="{{ $post->title }}">
+                                @if($post->cover_image)
+                                    <img class="thumb" src="{{ Storage::url($post->cover_image) }}" alt="{{ $post->title }}">
+                                @else
+                                    <div class="thumb thumb--placeholder" role="img" aria-label="Default post image">
+                                        <i class="far fa-image"></i>
+                                        <span data-i18n="blog.defaultImage">No image available</span>
+                                    </div>
+                                @endif
                                 <div class="card-body d-flex flex-column">
                                     <div class="meta mb-2"><i class="far fa-calendar-alt me-1"></i>{{ $post->published_at?->format('d M Y') ?? $post->created_at?->format('d M Y') }} <span class="mx-1">•</span> <i class="fas fa-folder-open me-1"></i>{{ $post->category?->name ?? 'General' }}</div>
                                     <h5 class="card-title mb-2">{{ $post->title }}</h5>
                                     <p class="text-muted mb-3">{{ \Illuminate\Support\Str::limit($post->excerpt ?: strip_tags($post->content), 120) }}</p>
-                                    <a class="mt-auto btn btn-outline-primary rounded-pill" href="{{ $type === 'blog' ? route('blog.show', $post->slug) : route('news.show', $post->slug) }}"><i class="fas fa-arrow-right me-2"></i>Read More</a>
+                                    <a class="mt-auto btn btn-outline-primary rounded-pill" href="{{ $type === 'blog' ? route('blog.show', $post->slug) : route('news.show', $post->slug) }}"><i class="fas fa-arrow-right me-2"></i><span data-i18n="blog.readMore">Read More</span></a>
                                 </div>
                             </article>
                         </div>
                     @empty
-                        <div class="col-12"><div class="alert alert-info">No {{ $type }} posts found.</div></div>
+                        <div class="col-12"><div class="alert alert-info"><span data-i18n="blog.noPosts">No posts found.</span></div></div>
                     @endforelse
                 </div>
 
                 @if($posts->hasMorePages())
                     <div class="text-center mt-4">
-                        <a href="{{ $posts->nextPageUrl() }}" class="btn btn-primary rounded-pill px-4"><i class="fas fa-sync-alt me-2"></i>Load More</a>
+                        <a href="{{ $posts->nextPageUrl() }}" class="btn btn-primary rounded-pill px-4"><i class="fas fa-sync-alt me-2"></i><span data-i18n="blog.loadMore">Load More</span></a>
                     </div>
                 @endif
             </div>
@@ -62,9 +69,9 @@
             <div class="col-lg-4">
                 <aside class="d-flex flex-column gap-4">
                     <div class="blog-sidebar-card">
-                        <h6 class="fw-bold mb-3"><i class="fas fa-filter me-2"></i>Filter by Category</h6>
+                        <h6 class="fw-bold mb-3"><i class="fas fa-filter me-2"></i><span data-i18n="blog.filterByCategory">Filter by Category</span></h6>
                         <a href="{{ $type === 'blog' ? route('blog') : route('news') }}" class="d-flex justify-content-between text-decoration-none mb-2 {{ $selectedCategory === '' ? 'fw-bold text-primary' : 'text-dark' }}">
-                            <span>All Categories</span>
+                            <span data-i18n="blog.nav.allCategories">All Categories</span>
                         </a>
                         @foreach($categories as $category)
                             <a href="{{ ($type === 'blog' ? route('blog') : route('news')) . '?category=' . $category->slug }}" class="d-flex justify-content-between text-decoration-none mb-2 {{ $selectedCategory === $category->slug ? 'fw-bold text-primary' : 'text-dark' }}">
@@ -75,11 +82,18 @@
                     </div>
 
                     <div class="blog-sidebar-card">
-                        <h6 class="fw-bold mb-3"><i class="far fa-newspaper me-2"></i>Latest {{ ucfirst($type) }}</h6>
+                        <h6 class="fw-bold mb-3"><i class="far fa-newspaper me-2"></i><span data-i18n="blog.latest">Latest Posts</span></h6>
                         @foreach($latestPosts as $latest)
-                            <a class="d-block text-decoration-none mb-3" href="{{ $type === 'blog' ? route('blog.show', $latest->slug) : route('news.show', $latest->slug) }}">
-                                <div class="fw-semibold text-dark">{{ \Illuminate\Support\Str::limit($latest->title, 70) }}</div>
-                                <small class="text-muted">{{ $latest->published_at?->format('d M Y') ?? $latest->created_at?->format('d M Y') }}</small>
+                            <a class="d-flex gap-2 text-decoration-none mb-3" href="{{ $type === 'blog' ? route('blog.show', $latest->slug) : route('news.show', $latest->slug) }}">
+                                @if($latest->cover_image)
+                                    <img class="sidebar-thumb" src="{{ Storage::url($latest->cover_image) }}" alt="{{ $latest->title }}">
+                                @else
+                                    <span class="sidebar-thumb sidebar-thumb--placeholder" aria-hidden="true"><i class="far fa-image"></i></span>
+                                @endif
+                                <span>
+                                    <span class="fw-semibold text-dark d-block">{{ \Illuminate\Support\Str::limit($latest->title, 70) }}</span>
+                                    <small class="text-muted">{{ $latest->published_at?->format('d M Y') ?? $latest->created_at?->format('d M Y') }}</small>
+                                </span>
                             </a>
                         @endforeach
                     </div>
