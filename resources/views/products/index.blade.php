@@ -33,10 +33,10 @@
                 </div>
                 <div class="col-lg-5">
                     <div class="products-section-card p-4 text-dark">
-                        <h5 class="fw-bold mb-3">Why teams pick Aqua</h5>
-                        <div class="value-pill mb-2">Unified POS + inventory + reporting</div>
-                        <div class="value-pill mb-2">Operational visibility by branch and shift</div>
-                        <div class="value-pill">Scale-ready workflows and integrations</div>
+                        <h5 class="fw-bold mb-3" data-i18n="products.whyTitle">Why teams pick Aqua</h5>
+                        <div class="value-pill mb-2" data-i18n="products.why1">Unified POS + inventory + reporting</div>
+                        <div class="value-pill mb-2" data-i18n="products.why2">Operational visibility by branch and shift</div>
+                        <div class="value-pill" data-i18n="products.why3">Scale-ready workflows and integrations</div>
                     </div>
                 </div>
             </div>
@@ -48,27 +48,27 @@
             <div class="products-section-card p-4 mb-4">
                 <form method="GET" class="row g-3 align-items-end">
                     <div class="col-lg-4">
-                        <label class="form-label fw-semibold">Search</label>
-                        <input type="text" name="search" value="{{ $search }}" class="form-control" placeholder="Product name or keyword">
+                        <label class="form-label fw-semibold" data-i18n="products.search">Search</label>
+                        <input type="text" name="search" value="{{ $search }}" class="form-control" placeholder="Product name or keyword" data-i18n-placeholder="products.searchPlaceholder">
                     </div>
                     <div class="col-lg-3">
-                        <label class="form-label fw-semibold">Sort</label>
+                        <label class="form-label fw-semibold" data-i18n="products.sort">Sort</label>
                         <select name="sort" class="form-select">
-                            <option value="featured" @selected($sort==='featured')>Featured</option>
-                            <option value="newest" @selected($sort==='newest')>Newest</option>
-                            <option value="price_low" @selected($sort==='price_low')>Price: Low to High</option>
-                            <option value="price_high" @selected($sort==='price_high')>Price: High to Low</option>
+                            <option value="featured" @selected($sort==='featured') data-i18n="products.sortFeatured">Featured</option>
+                            <option value="newest" @selected($sort==='newest') data-i18n="products.sortNewest">Newest</option>
+                            <option value="price_low" @selected($sort==='price_low') data-i18n="products.sortPriceLow">Price: Low to High</option>
+                            <option value="price_high" @selected($sort==='price_high') data-i18n="products.sortPriceHigh">Price: High to Low</option>
                         </select>
                     </div>
                     <div class="col-lg-5 d-flex gap-2">
-                        <button class="btn btn-primary px-4" type="submit">Apply</button>
-                        <a href="{{ route('products') }}" class="btn btn-outline-primary">Clear</a>
-                        <div class="ms-auto text-muted small align-self-center">{{ $products->total() }} products</div>
+                        <button class="btn btn-primary px-4" type="submit" data-i18n="products.apply">Apply</button>
+                        <a href="{{ route('products') }}" class="btn btn-outline-primary" data-i18n="products.clear">Clear</a>
+                        <div class="ms-auto text-muted small align-self-center">{{ $products->total() }} <span data-i18n="products.items">products</span></div>
                     </div>
                 </form>
                 <hr>
                 <div class="d-flex flex-wrap gap-2">
-                    <a href="{{ route('products', array_filter(['search' => $search, 'sort' => $sort])) }}" class="catalog-filter-chip {{ $selectedCategory === '' ? 'active' : '' }}">All</a>
+                    <a href="{{ route('products', array_filter(['search' => $search, 'sort' => $sort])) }}" class="catalog-filter-chip {{ $selectedCategory === '' ? 'active' : '' }}" data-i18n="products.all">All</a>
                     @foreach($categories as $category)
                         <a href="{{ route('products', array_filter(['category' => $category->slug, 'search' => $search, 'sort' => $sort])) }}" class="catalog-filter-chip {{ $selectedCategory === $category->slug ? 'active' : '' }}">{{ $category->localized_name }}</a>
                     @endforeach

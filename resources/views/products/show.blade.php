@@ -26,7 +26,7 @@
             <p class="lead mb-3">{{ $product->localized_tagline ?: $product->localized_short_description }}</p>
             <div class="d-flex gap-2 flex-wrap">
                 <a href="{{ route('request-product-demo') }}" class="btn btn-light rounded-pill" data-i18n="products.requestDemo">Request Demo</a>
-                <a href="{{ route('products') }}" class="btn btn-outline-light rounded-pill">Back to Products</a>
+                <a href="{{ route('products') }}" class="btn btn-outline-light rounded-pill" data-i18n="products.back">Back to Products</a>
             </div>
         </div>
     </section>
@@ -53,15 +53,15 @@
 
             <div class="section-card p-4">
                 <h3 class="h5 mb-3" data-i18n="products.useCases">Use Cases</h3>
-                <p class="text-muted mb-0">{{ $product->localized_use_cases ?: 'Designed to streamline operations, improve checkout speed, and unify reporting across outlets.' }}</p>
+                <p class="text-muted mb-0">{{ $product->localized_use_cases ?: __('Designed to streamline operations, improve checkout speed, and unify reporting across outlets.') }}</p>
             </div>
 
             <div class="section-card p-4">
-                <h3 class="h5 mb-3">Implementation Journey</h3>
+                <h3 class="h5 mb-3" data-i18n="products.journeyTitle">Implementation Journey</h3>
                 <div class="row g-3">
-                    <div class="col-md-4"><div class="journey-step"><h6>Discover</h6><p class="small text-muted mb-0">Understand your current operation model and branch requirements.</p></div></div>
-                    <div class="col-md-4"><div class="journey-step"><h6>Deploy</h6><p class="small text-muted mb-0">Configure products, users, inventory, printers, and integrations.</p></div></div>
-                    <div class="col-md-4"><div class="journey-step"><h6>Optimize</h6><p class="small text-muted mb-0">Track KPIs and continuously refine staff and process performance.</p></div></div>
+                    <div class="col-md-4"><div class="journey-step"><h6 data-i18n="products.journey1Title">Discover</h6><p class="small text-muted mb-0" data-i18n="products.journey1Desc">Understand your current operation model and branch requirements.</p></div></div>
+                    <div class="col-md-4"><div class="journey-step"><h6 data-i18n="products.journey2Title">Deploy</h6><p class="small text-muted mb-0" data-i18n="products.journey2Desc">Configure products, users, inventory, printers, and integrations.</p></div></div>
+                    <div class="col-md-4"><div class="journey-step"><h6 data-i18n="products.journey3Title">Optimize</h6><p class="small text-muted mb-0" data-i18n="products.journey3Desc">Track KPIs and continuously refine staff and process performance.</p></div></div>
                 </div>
             </div>
 
