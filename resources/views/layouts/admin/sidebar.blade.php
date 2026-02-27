@@ -51,6 +51,12 @@
                         <span class="hide-menu">Requests</span>
                     </a>
                 </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('admin.settings.edit') }}" aria-expanded="false">
+                        <i class="ti ti-settings"></i>
+                        <span class="hide-menu">Settings</span>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>
