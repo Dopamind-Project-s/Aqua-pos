@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\PartnerController as AdminPartnerController;
 use App\Http\Controllers\Admin\ServiceRequestController as AdminServiceRequestController;
+use App\Http\Controllers\Admin\SiteSettingController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\ServiceRequestController;
@@ -106,4 +107,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     */
 
     Route::get('requests', [AdminServiceRequestController::class, 'index'])->name('requests.index');
+    Route::get('settings', [SiteSettingController::class, 'edit'])->name('settings.edit');
+    Route::put('settings', [SiteSettingController::class, 'update'])->name('settings.update');
+
 });

@@ -4,57 +4,55 @@
                 <div class="row g-5">
                     <div class="col-md-6 col-lg-6 col-xl-3">
                         <div class="footer-item d-flex flex-column">
-                            <h4 class="text-white mb-4"><i class="fas fa-star-of-life me-3"></i>AQUA POS</h4>
-                            <p>AQUA POS is a Jordanian SaaS company in Amman delivering reliable POS and inventory software that helps businesses operate with speed and accuracy
-                            </p>
+                            <h4 class="text-white mb-4"><i class="fas fa-star-of-life me-3"></i>{{ $siteSetting?->footer_company_title ?: 'AQUA POS' }}</h4>
+                            <p>{{ $siteSetting?->footer_company_description ?: 'AQUA POS is a Jordanian SaaS company in Amman delivering reliable POS and inventory software that helps businesses operate with speed and accuracy' }}</p>
                             <div class="d-flex align-items-center">
                                 <i class="fas fa-share fa-2x text-white me-2"></i>
-                                <a class="btn-square btn btn-primary text-white rounded-circle mx-1" href="https://www.facebook.com/aqua.software.co/" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn-square btn btn-primary text-white rounded-circle mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn-square btn btn-primary text-white rounded-circle mx-1" href="https://www.instagram.com/aqua_software/?igsh=MWwzOGM2cDliY3Zydw%3D%3D" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
-                                <a class="btn-square btn btn-primary text-white rounded-circle mx-1" href=""><i class="fab fa-linkedin-in"></i></a>
+                                @if($siteSetting?->facebook_url)<a class="btn-square btn btn-primary text-white rounded-circle mx-1" href="{{ $siteSetting->facebook_url }}" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>@endif
+                                @if($siteSetting?->twitter_url)<a class="btn-square btn btn-primary text-white rounded-circle mx-1" href="{{ $siteSetting->twitter_url }}" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>@endif
+                                @if($siteSetting?->instagram_url)<a class="btn-square btn btn-primary text-white rounded-circle mx-1" href="{{ $siteSetting->instagram_url }}" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>@endif
+                                @if($siteSetting?->linkedin_url)<a class="btn-square btn btn-primary text-white rounded-circle mx-1" href="{{ $siteSetting->linkedin_url }}" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>@endif
+                                @if($siteSetting?->youtube_url)<a class="btn-square btn btn-primary text-white rounded-circle mx-1" href="{{ $siteSetting->youtube_url }}" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>@endif
+                                @if($siteSetting?->tiktok_url)<a class="btn-square btn btn-primary text-white rounded-circle mx-1" href="{{ $siteSetting->tiktok_url }}" target="_blank" rel="noopener"><i class="fab fa-tiktok"></i></a>@endif
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-6 col-xl-3">
                         <div class="footer-item d-flex flex-column">
                             <h4 class="mb-4 text-white">Quick Links</h4>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> About Us</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Contact Us</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Privacy Policy</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Terms & Conditions</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Our Blog & News</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Our Team</a>
+                            <a href="{{ route('about') }}"><i class="fas fa-angle-right me-2"></i> About Us</a>
+                            <a href="{{ route('contact') }}"><i class="fas fa-angle-right me-2"></i> Contact Us</a>
+                            <a href="{{ route('blog') }}"><i class="fas fa-angle-right me-2"></i> Our Blog & News</a>
+                            <a href="{{ route('partners.index') }}"><i class="fas fa-angle-right me-2"></i> Partners</a>
+                            <a href="{{ route('products') }}"><i class="fas fa-angle-right me-2"></i> Products</a>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-6 col-xl-3">
                         <div class="footer-item d-flex flex-column">
                             <h4 class="mb-4 text-white">AQUA POS Services</h4>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> POS & Inventory Platform</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Smart Inventory Control</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Real-Time Analytics</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Multi-Branch Management</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Restaurant POS</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Retail POS</a>
+                            <a href="{{ route('products') }}"><i class="fas fa-angle-right me-2"></i> POS & Inventory Platform</a>
+                            <a href="{{ route('products') }}"><i class="fas fa-angle-right me-2"></i> Smart Inventory Control</a>
+                            <a href="{{ route('products') }}"><i class="fas fa-angle-right me-2"></i> Real-Time Analytics</a>
+                            <a href="{{ route('products') }}"><i class="fas fa-angle-right me-2"></i> Multi-Branch Management</a>
+                            <a href="{{ route('products') }}"><i class="fas fa-angle-right me-2"></i> Restaurant POS</a>
+                            <a href="{{ route('products') }}"><i class="fas fa-angle-right me-2"></i> Retail POS</a>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-6 col-xl-3">
                         <div class="footer-item d-flex flex-column">
-                            <h4 class="mb-4 text-white">Head Quarter</h4>
-                            <a href=""><i class="fa fa-map-marker-alt me-2"></i> AQUA POS Amman, Jordan</a>
-                            <a href=""><i class="fas fa-envelope me-2"></i> info@aqua-pos.com</a>
-                            <a href=""><i class="fas fa-envelope me-2"></i> support@aqua-pos.com</a>
-                            <a href=""><i class="fas fa-phone me-2"></i> +962 79 1888655</a>
-                            <a href="" class="mb-3"><i class="fas fa-print me-2"></i> +962-791888655</a>
+                            <h4 class="mb-4 text-white">{{ $siteSetting?->hq_title ?: 'Head Quarter' }}</h4>
+                            <a href="{{ $siteSetting?->google_map_embed ?: '#' }}"><i class="fa fa-map-marker-alt me-2"></i> {{ $siteSetting?->hq_address ?: 'AQUA POS Amman, Jordan' }}</a>
+                            <a href="mailto:{{ $siteSetting?->info_email ?: 'info@aqua-pos.com' }}"><i class="fas fa-envelope me-2"></i> {{ $siteSetting?->info_email ?: 'info@aqua-pos.com' }}</a>
+                            <a href="mailto:{{ $siteSetting?->support_email ?: 'support@aqua-pos.com' }}"><i class="fas fa-envelope me-2"></i> {{ $siteSetting?->support_email ?: 'support@aqua-pos.com' }}</a>
+                            <a href="tel:{{ preg_replace('/\s+/', '', $siteSetting?->phone_primary ?: '+962 79 1888655') }}"><i class="fas fa-phone me-2"></i> {{ $siteSetting?->phone_primary ?: '+962 79 1888655' }}</a>
+                            <a href="tel:{{ preg_replace('/\s+/', '', $siteSetting?->phone_secondary ?: '+962-791888655') }}" class="mb-2"><i class="fas fa-print me-2"></i> {{ $siteSetting?->phone_secondary ?: '+962-791888655' }}</a>
+                            <a href="https://wa.me/{{ preg_replace('/\D+/', '', $siteSetting?->whatsapp_number ?: '+962791888655') }}" target="_blank" rel="noopener"><i class="fab fa-whatsapp me-2"></i> {{ $siteSetting?->whatsapp_number ?: '+962791888655' }}</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <!-- Footer End -->
-        
- 
 
         <!-- Back to Top -->
-        <a href="#" class="btn btn-primary btn-lg-square back-to-top"><i class="fa fa-arrow-up"></i></a>   
-
+        <a href="#" class="btn btn-primary btn-lg-square back-to-top"><i class="fa fa-arrow-up"></i></a>

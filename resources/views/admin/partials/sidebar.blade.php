@@ -16,5 +16,11 @@
                 <span>Products</span>
             </a>
         </li>
+        <li>
+            <a href="{{ route('admin.settings.edit') }}">
+                <i class="fas fa-gear"></i>
+                <span>Settings</span>
+            </a>
+        </li>
     </ul>
 </aside>

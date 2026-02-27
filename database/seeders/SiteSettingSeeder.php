@@ -9,20 +9,41 @@ class SiteSettingSeeder extends Seeder
 {
     public function run(): void
     {
-        $rows = [
-            ['key' => 'contact_phone', 'value' => '+966500000000', 'type' => 'string', 'group' => 'contact', 'is_public' => true],
-            ['key' => 'whatsapp', 'value' => '+966500000000', 'type' => 'string', 'group' => 'contact', 'is_public' => true],
-            ['key' => 'contact_email', 'value' => 'info@aquapos.com', 'type' => 'string', 'group' => 'contact', 'is_public' => true],
-            ['key' => 'social_links', 'value' => json_encode([
-                'instagram' => 'https://instagram.com/aquapos',
-                'facebook' => 'https://facebook.com/aquapos',
-                'linkedin' => 'https://linkedin.com/company/aquapos',
-            ]), 'type' => 'json', 'group' => 'social', 'is_public' => true],
-            ['key' => 'business_hours', 'value' => 'Sun-Thu 09:00-18:00', 'type' => 'string', 'group' => 'contact', 'is_public' => true],
-        ];
+        SiteSetting::query()->updateOrCreate(
+            ['id' => 1],
+            [
+                'site_name' => 'AQUA POS',
+                'meta_title' => 'AQUA POS | POS & Inventory Software in Jordan',
+                'meta_description' => 'AQUA POS is a Jordanian SaaS company in Amman delivering reliable POS and inventory software that helps businesses operate with speed and accuracy.',
+                'meta_keywords' => 'AQUA POS, POS Jordan, Inventory Software, Retail POS, Restaurant POS',
 
-        foreach ($rows as $row) {
-            SiteSetting::updateOrCreate(['key' => $row['key']], $row);
-        }
+                'facebook_url' => 'https://www.facebook.com/aqua.software.co/',
+                'instagram_url' => 'https://www.instagram.com/aqua_software/',
+                'linkedin_url' => 'https://www.linkedin.com/company/aqua-software/',
+                'twitter_url' => null,
+                'youtube_url' => null,
+                'tiktok_url' => null,
+
+                'whatsapp_number' => '+962791888655',
+                'google_map_embed' => 'https://maps.google.com/?q=Amman+Jordan',
+
+                'hq_title' => 'Head Quarter',
+                'hq_address' => 'AQUA POS Amman, Jordan',
+                'info_email' => 'info@aqua-pos.com',
+                'support_email' => 'support@aqua-pos.com',
+                'phone_primary' => '+962 79 1888655',
+                'phone_secondary' => '+962-791888655',
+
+                'footer_company_title' => 'AQUA POS',
+                'footer_company_description' => 'AQUA POS is a Jordanian SaaS company in Amman delivering reliable POS and inventory software that helps businesses operate with speed and accuracy',
+
+                // Legacy KV compatibility columns
+                'key' => 'global',
+                'value' => null,
+                'type' => 'json',
+                'group' => 'global',
+                'is_public' => true,
+            ]
+        );
     }
 }

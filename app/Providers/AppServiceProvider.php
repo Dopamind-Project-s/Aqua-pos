@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Category;
+use App\Models\SiteSetting;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -35,6 +36,31 @@ class AppServiceProvider extends ServiceProvider
             }
 
             $view->with('activeCategoriesMenu', $activeCategories);
+        });
+
+
+        View::composer('layouts.app', function ($view): void {
+            $metaTitle = null;
+            $metaDescription = null;
+
+            if (Schema::hasTable('site_settings')) {
+                $setting = SiteSetting::query()->first();
+                $metaTitle = $setting?->meta_title ?: $setting?->site_name;
+                $metaDescription = $setting?->meta_description;
+            }
+
+            $view->with('metaTitle', $metaTitle);
+            $view->with('metaDescription', $metaDescription);
+        });
+
+        View::composer('partials.footer', function ($view): void {
+            $siteSetting = null;
+
+            if (Schema::hasTable('site_settings')) {
+                $siteSetting = SiteSetting::query()->first();
+            }
+
+            $view->with('siteSetting', $siteSetting);
         });
     }
 }
