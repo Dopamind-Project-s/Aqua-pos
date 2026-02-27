@@ -33,6 +33,7 @@ class CategoryController extends Controller
             ->when($status === 'active', fn (Builder $query) => $query->whereNull('deleted_at')->where('is_active', true))
             ->when($status === 'inactive', fn (Builder $query) => $query->whereNull('deleted_at')->where('is_active', false))
             ->when($status === 'deleted', fn (Builder $query) => $query->onlyTrashed())
+            ->orderBy('sort_order')
             ->latest()
             ->paginate(10)
             ->withQueryString();

@@ -55,6 +55,7 @@
                         <th>Name</th>
                         <th>Slug</th>
                         <th>Status</th>
+                        <th>Sort</th>
                         <th>Products</th>
                         <th>Created At</th>
                         <th class="text-end">Actions</th>
@@ -70,6 +71,7 @@
                                 <span class="badge {{ $category->is_active ? 'bg-success' : 'bg-secondary' }}">{{ $category->is_active ? 'Active' : 'Inactive' }}</span>
                                 @if($category->trashed())<span class="badge bg-danger">Deleted</span>@endif
                             </td>
+                            <td>{{ $category->sort_order }}</td>
                             <td>{{ $category->products_count }}</td>
                             <td>{{ $category->created_at?->format('Y-m-d H:i') }}</td>
                             <td class="text-end">
@@ -84,7 +86,7 @@
                             </td>
                         </tr>
                     @empty
-                        <tr><td colspan="7" class="text-center">No categories found.</td></tr>
+                        <tr><td colspan="8" class="text-center">No categories found.</td></tr>
                     @endforelse
                     </tbody>
                 </table>

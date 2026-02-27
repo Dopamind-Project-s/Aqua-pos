@@ -31,6 +31,7 @@ class UpdateCategoryRequest extends FormRequest
             'description' => ['nullable', 'string'],
             'description_ar' => ['nullable', 'string'],
             'description_en' => ['nullable', 'string'],
+            'sort_order' => ['nullable', 'integer', 'min:0'],
             'is_active' => ['required', 'boolean'],
         ];
     }
