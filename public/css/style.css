@@ -1125,8 +1125,8 @@
     content: "";
     position: absolute;
     top: 0;
-    left: 0;
-    width: 100%;
+    left: 50%;
+    width: 70%;
     height: 100%;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
@@ -1327,15 +1327,15 @@
 .mega-menu__panel {
     position: absolute;
     top: 100%;
-    left: 0;
-    width: 100%;
+    left: 50%;
+    width: 70%;
     background: #ffffff;
     border-radius: 16px;
     box-shadow: 0 22px 55px rgba(15, 23, 42, .18);
     border: 1px solid #e2e8f0;
     opacity: 0;
     visibility: hidden;
-    transform: translateY(14px);
+    transform: translate(-50%, 14px);
     pointer-events: none;
     transition: opacity .28s ease, transform .28s ease, visibility .28s ease;
     z-index: 1040;
@@ -1346,7 +1346,7 @@
 .mega-menu.is-open .mega-menu__panel {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
+    transform: translate(-50%, 0);
     pointer-events: auto;
 }
 
@@ -1450,6 +1450,7 @@
 
     .mega-menu__panel {
         position: static;
+        left: 0;
         width: 100%;
         box-shadow: none;
         border-radius: 14px;

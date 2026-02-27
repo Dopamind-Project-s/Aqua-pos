@@ -175,24 +175,36 @@
                             </section>
                         </div>
 
-                        <a href="{{ route('blog') }}" class="nav-item nav-link {{ request()->routeIs('blog*') ? 'active' : '' }}">Blog</a>
-                        <a href="{{ route('news') }}" class="nav-item nav-link {{ request()->routeIs('news*') ? 'active' : '' }}">News</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle {{ request()->routeIs('blog*') || request()->routeIs('news*') ? 'active' : '' }}" data-bs-toggle="dropdown">
+                                <i class="fas fa-newspaper me-2"></i>Insights
+                            </a>
+                            <div class="dropdown-menu m-0">
+                                <a href="{{ route('blog') }}" class="dropdown-item {{ request()->routeIs('blog*') ? 'active' : '' }}"><i class="fas fa-blog me-2"></i>Blog</a>
+                                <a href="{{ route('news') }}" class="dropdown-item {{ request()->routeIs('news*') ? 'active' : '' }}"><i class="fas fa-rss me-2"></i>News</a>
+                            </div>
+                        </div>
                         <a href="{{ route('partners.index') }}" class="nav-item nav-link {{ request()->routeIs('partners.*') ? 'active' : '' }} nav-link--partners">Partners</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle {{ request()->routeIs('support') || request()->routeIs('contact') ? 'active' : '' }}" data-bs-toggle="dropdown">
+                                <i class="fas fa-headset me-2"></i>Help
+                            </a>
+                            <div class="dropdown-menu m-0">
+                                <a href="{{ route('support') }}" class="dropdown-item {{ request()->routeIs('support') ? 'active' : '' }}"><i class="fas fa-life-ring me-2"></i>Support</a>
+                                <a href="{{ route('contact') }}" class="dropdown-item {{ request()->routeIs('contact') ? 'active' : '' }}"><i class="fas fa-envelope me-2"></i>Contact</a>
+                            </div>
+                        </div>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><span data-i18n="nav.pages">Pages</span></a>
                             <div class="dropdown-menu m-0">
                                 <a href="{{ url('/appointment') }}" class="dropdown-item"><span data-i18n="nav.appointment">Appointment</span></a>
                                 <a href="{{ url('/feature') }}" class="dropdown-item"><span data-i18n="nav.features">Features</span></a>
-                                <a href="{{ route('blog') }}" class="dropdown-item">Our Blog</a>
-                                <a href="{{ route('news') }}" class="dropdown-item">News</a>
-                                <a href="{{ route('support') }}" class="dropdown-item">Support Request</a>
                                 <a href="{{ route('request-product-demo') }}" class="dropdown-item">Request Product Demo</a>
                                 <a href="{{ url('/team') }}" class="dropdown-item"><span data-i18n="nav.team">Our Team</span></a>
                                 <a href="{{ url('/testimonial') }}" class="dropdown-item"><span data-i18n="nav.testimonial">Testimonial</span></a>
                                 <a href="{{ url('/not-found') }}" class="dropdown-item"><span data-i18n="nav.notfound">404 Page</span></a>
                             </div>
                         </div>
-                        <a href="{{ route('contact') }}" class="nav-item nav-link {{ request()->routeIs('contact') ? 'active' : '' }}"><span data-i18n="nav.contact">Contact Us</span></a>
                     </div>
                     <div class="nav-toolbar" aria-label="Quick controls">
                         <button class="nav-toolbar__btn" id="themeToggle" type="button" aria-label="Toggle theme">
@@ -204,7 +216,7 @@
                             <span class="nav-toolbar__text" id="languageLabel">AR</span>
                         </button>
                     </div>
-                    <a href="{{ route('request-product-demo') }}" class="btn btn-primary rounded-pill text-white py-2 px-4 flex-wrap flex-sm-shrink-0">Request Demo</a>
+                    <a href="{{ route('request-product-demo') }}" class="btn btn-primary rounded-pill text-white py-2 px-4 flex-wrap flex-sm-shrink-0"><i class="fas fa-calendar-check me-2"></i>Request Demo</a>
                 </div>
             </nav>
 
