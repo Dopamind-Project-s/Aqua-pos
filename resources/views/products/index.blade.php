@@ -93,8 +93,7 @@
                                     <p class="product-price mb-3">{{ $product->price_note ?: 'Starting from' }} {{ number_format((float) $product->price, 0) }}</p>
                                 @endif
                                 <div class="product-actions mt-auto">
-                                    <a href="{{ route('products.show', $product->slug) }}" class="btn btn-primary rounded-pill" data-i18n="products.goToProduct">Go to Product Page</a>
-                                    <a href="{{ route('products.show', $product->slug) }}" class="btn btn-outline-primary rounded-pill" data-i18n="products.viewDetails">View Details</a>
+                                    <a href="{{ route('products.show', $product->slug) }}" class="btn btn-primary rounded-pill w-100" data-i18n="products.openShow"><i class="fas fa-arrow-up-right-from-square me-1"></i>Open Product Page</a>
                                 </div>
                             </div>
                         </article>
