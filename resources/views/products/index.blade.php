@@ -9,7 +9,9 @@
     .catalog-filter-chip.active { background: #1f67c0; color: #fff; border-color: transparent; }
     .product-card { border: 1px solid #e2ebfa; border-radius: 18px; overflow: hidden; background: #fff; box-shadow: 0 10px 24px rgba(13,33,67,.08); height: 100%; transition: .25s ease; }
     .product-card:hover { transform: translateY(-4px); box-shadow: 0 14px 32px rgba(13,33,67,.14); }
+    .product-card-media { position: relative; }
     .product-card img { width: 100%; height: 220px; object-fit: cover; }
+    .product-open-float { position: absolute; top: 12px; inset-inline-end: 12px; }
     .product-price { font-weight: 800; color: #125ab0; }
     .product-actions { display: flex; gap: .5rem; flex-wrap: wrap; }
     .value-pill { border: 1px dashed #bfd5f6; background: #f5f9ff; border-radius: 14px; padding: 1rem; }
@@ -81,7 +83,10 @@
                 @forelse($products as $product)
                     <div class="col-md-6 col-xl-4">
                         <article class="product-card">
-                            <img src="{{ $product->image ? Storage::url($product->image) : asset('img/service-1.jpg') }}" alt="{{ $product->localized_name }}">
+                            <div class="product-card-media">
+                                <img src="{{ $product->image ? Storage::url($product->image) : asset('img/service-1.jpg') }}" alt="{{ $product->localized_name }}">
+                                <a href="{{ route('products.show', $product->slug) }}" class="btn btn-light btn-sm rounded-pill product-open-float" data-i18n="products.openShow">Open Product Page</a>
+                            </div>
                             <div class="p-3 d-flex flex-column h-100">
                                 <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
                                     <h3 class="h5 mb-0">{{ $product->localized_name }}</h3>
@@ -94,6 +99,7 @@
                                 @endif
                                 <div class="product-actions mt-auto">
                                     <a href="{{ route('products.show', $product->slug) }}" class="btn btn-primary rounded-pill w-100" data-i18n="products.openShow"><i class="fas fa-arrow-up-right-from-square me-1"></i>Open Product Page</a>
+                                    <a href="{{ route('products.show', $product->slug) }}" class="btn btn-outline-primary rounded-pill w-100" data-i18n="products.viewDetails">View Details</a>
                                 </div>
                             </div>
                         </article>
