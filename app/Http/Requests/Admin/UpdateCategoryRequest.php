@@ -15,6 +15,9 @@ class UpdateCategoryRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
+            // Keep legacy default columns synced from EN automatically.
+            'name' => (string) $this->input('name_en', ''),
+            'description' => $this->input('description_en'),
             'is_active' => $this->boolean('is_active'),
         ]);
     }
@@ -26,7 +29,7 @@ class UpdateCategoryRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255'],
             'name_ar' => ['nullable', 'string', 'max:255'],
-            'name_en' => ['nullable', 'string', 'max:255'],
+            'name_en' => ['required', 'string', 'max:255'],
             'slug' => ['required', 'string', 'max:255', Rule::unique('categories', 'slug')->ignore($categoryId)],
             'description' => ['nullable', 'string'],
             'description_ar' => ['nullable', 'string'],
