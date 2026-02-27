@@ -42,9 +42,9 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0">
-                        <a href="{{ route('home') }}" class="nav-item nav-link {{ request()->routeIs('home') ? 'active' : '' }}"><span data-i18n="nav.home">Home</span></a>
-                        <a href="{{ route('about') }}" class="nav-item nav-link {{ request()->routeIs('about') ? 'active' : '' }}"><span data-i18n="nav.about">About</span></a>
-                        <a href="{{ route('service') }}" class="nav-item nav-link {{ request()->routeIs('service') ? 'active' : '' }}"><span data-i18n="nav.services">Services</span></a>
+                        <a href="{{ route('home') }}" class="nav-item nav-link {{ request()->routeIs('home') ? 'active' : '' }}"><i class="fas fa-house me-2"></i><span data-i18n="nav.home">Home</span></a>
+                        <a href="{{ route('about') }}" class="nav-item nav-link {{ request()->routeIs('about') ? 'active' : '' }}"><i class="fas fa-circle-info me-2"></i><span data-i18n="nav.about">About</span></a>
+                        <a href="{{ route('service') }}" class="nav-item nav-link {{ request()->routeIs('service') ? 'active' : '' }}"><i class="fas fa-concierge-bell me-2"></i><span data-i18n="nav.services">Services</span></a>
                         <div class="nav-item mega-menu" id="productsMegaMenu">
                             <button
                                 class="nav-link mega-menu__trigger"
@@ -52,7 +52,7 @@
                                 aria-expanded="false"
                                 aria-controls="productsMegaPanel"
                             >
-                                <span data-i18n="nav.products">Products</span>
+                                <i class="fas fa-box-open me-2"></i><span data-i18n="nav.products">Products</span>
                                 <span class="mega-menu__caret" aria-hidden="true">▾</span>
                             </button>
 
@@ -69,7 +69,7 @@
                                                             <img class="mega-menu__service-thumb" src="{{ $menuProduct->image ? Storage::url($menuProduct->image) : asset('img/service-1.jpg') }}" alt="{{ $menuProduct->name }}">
                                                             <div>
                                                                 <h5>{{ $menuProduct->name }}</h5>
-                                                                <p>{{ $menuProduct->short_description ?: 'Active product' }}</p>
+                                                                
                                                             </div>
                                                         </a>
                                                     @endforeach
@@ -81,7 +81,7 @@
                                                 <div class="mega-menu__services">
                                                     <a href="{{ route('products') }}" class="mega-menu__service">
                                                         <img class="mega-menu__service-thumb" src="{{ asset('img/service-1.jpg') }}" alt="Products">
-                                                        <div><h5>No active products yet</h5><p>Please check again soon.</p></div>
+                                                        <div><h5>No active products yet</h5></div>
                                                     </a>
                                                 </div>
                                             </article>
@@ -95,14 +95,14 @@
                                                     <img src="{{ asset('img/service-1.jpg') }}" alt="Restaurant POS">
                                                     <div>
                                                         <h5><span data-i18n="mega.restaurantPos">Restaurant POS</span></h5>
-                                                        <p><span data-i18n="mega.restaurantPosDesc">Smart table, order and kitchen workflows.</span></p>
+                                                        
                                                     </div>
                                                 </a>
                                                 <a href="#" class="mega-menu__service">
                                                     <img src="{{ asset('img/service-2.jpg') }}" alt="QR Ordering">
                                                     <div>
                                                         <h5><span data-i18n="mega.qrOrdering">QR Ordering</span></h5>
-                                                        <p><span data-i18n="mega.qrOrderingDesc">Contactless menu and payment journey.</span></p>
+                                                        
                                                     </div>
                                                 </a>
                                             </div>
@@ -116,14 +116,14 @@
                                                     <img src="{{ asset('img/service-3.jpg') }}" alt="Inventory Hub">
                                                     <div>
                                                         <h5><span data-i18n="mega.inventoryHub">Inventory Hub</span></h5>
-                                                        <p><span data-i18n="mega.inventoryHubDesc">Centralized stock sync across all stores.</span></p>
+                                                        
                                                     </div>
                                                 </a>
                                                 <a href="#" class="mega-menu__service">
                                                     <img src="{{ asset('img/service-4.jpg') }}" alt="Loyalty CRM">
                                                     <div>
                                                         <h5><span data-i18n="mega.loyaltyCrm">Loyalty CRM</span></h5>
-                                                        <p><span data-i18n="mega.loyaltyCrmDesc">Member tiers, rewards and campaigns.</span></p>
+                                                        
                                                     </div>
                                                 </a>
                                             </div>
@@ -137,14 +137,14 @@
                                                     <img src="{{ asset('img/service-5.jpg') }}" alt="Property PMS">
                                                     <div>
                                                         <h5><span data-i18n="mega.propertyPms">Property PMS</span></h5>
-                                                        <p><span data-i18n="mega.propertyPmsDesc">Bookings, front desk and room operations.</span></p>
+                                                        
                                                     </div>
                                                 </a>
                                                 <a href="#" class="mega-menu__service">
                                                     <img src="{{ asset('img/service-6.jpg') }}" alt="Spa & Wellness">
                                                     <div>
                                                         <h5><span data-i18n="mega.spaWellness">Spa & Wellness</span></h5>
-                                                        <p><span data-i18n="mega.spaWellnessDesc">Appointments and service bundles in one place.</span></p>
+                                                        
                                                     </div>
                                                 </a>
                                             </div>
@@ -158,14 +158,14 @@
                                                     <img src="{{ asset('img/service-7.jpg') }}" alt="BI Analytics">
                                                     <div>
                                                         <h5><span data-i18n="mega.biAnalytics">BI Analytics</span></h5>
-                                                        <p><span data-i18n="mega.biAnalyticsDesc">Executive dashboards with live insights.</span></p>
+                                                        
                                                     </div>
                                                 </a>
                                                 <a href="#" class="mega-menu__service">
                                                     <img src="{{ asset('img/service-8.jpg') }}" alt="API Integrations">
                                                     <div>
                                                         <h5><span data-i18n="mega.apiIntegrations">API Integrations</span></h5>
-                                                        <p><span data-i18n="mega.apiIntegrationsDesc">Secure integrations with ERP and finance tools.</span></p>
+                                                        
                                                     </div>
                                                 </a>
                                             </div>
@@ -184,7 +184,7 @@
                                 <a href="{{ route('news') }}" class="dropdown-item {{ request()->routeIs('news*') ? 'active' : '' }}"><i class="fas fa-rss me-2"></i>News</a>
                             </div>
                         </div>
-                        <a href="{{ route('partners.index') }}" class="nav-item nav-link {{ request()->routeIs('partners.*') ? 'active' : '' }} nav-link--partners">Partners</a>
+                        <a href="{{ route('partners.index') }}" class="nav-item nav-link {{ request()->routeIs('partners.*') ? 'active' : '' }} nav-link--partners"><i class="fas fa-handshake me-2"></i>Partners</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle {{ request()->routeIs('support') || request()->routeIs('contact') ? 'active' : '' }}" data-bs-toggle="dropdown">
                                 <i class="fas fa-headset me-2"></i>Help
@@ -195,14 +195,14 @@
                             </div>
                         </div>
                         <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><span data-i18n="nav.pages">Pages</span></a>
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fas fa-layer-group me-2"></i><span data-i18n="nav.pages">Pages</span></a>
                             <div class="dropdown-menu m-0">
-                                <a href="{{ url('/appointment') }}" class="dropdown-item"><span data-i18n="nav.appointment">Appointment</span></a>
-                                <a href="{{ url('/feature') }}" class="dropdown-item"><span data-i18n="nav.features">Features</span></a>
-                                <a href="{{ route('request-product-demo') }}" class="dropdown-item">Request Product Demo</a>
-                                <a href="{{ url('/team') }}" class="dropdown-item"><span data-i18n="nav.team">Our Team</span></a>
-                                <a href="{{ url('/testimonial') }}" class="dropdown-item"><span data-i18n="nav.testimonial">Testimonial</span></a>
-                                <a href="{{ url('/not-found') }}" class="dropdown-item"><span data-i18n="nav.notfound">404 Page</span></a>
+                                <a href="{{ url('/appointment') }}" class="dropdown-item"><i class="fas fa-calendar-days me-2"></i><span data-i18n="nav.appointment">Appointment</span></a>
+                                <a href="{{ url('/feature') }}" class="dropdown-item"><i class="fas fa-star me-2"></i><span data-i18n="nav.features">Features</span></a>
+                                <a href="{{ route('request-product-demo') }}" class="dropdown-item"><i class="fas fa-display me-2"></i>Request Product Demo</a>
+                                <a href="{{ url('/team') }}" class="dropdown-item"><i class="fas fa-users me-2"></i><span data-i18n="nav.team">Our Team</span></a>
+                                <a href="{{ url('/testimonial') }}" class="dropdown-item"><i class="fas fa-comments me-2"></i><span data-i18n="nav.testimonial">Testimonial</span></a>
+                                <a href="{{ url('/not-found') }}" class="dropdown-item"><i class="fas fa-triangle-exclamation me-2"></i><span data-i18n="nav.notfound">404 Page</span></a>
                             </div>
                         </div>
                     </div>

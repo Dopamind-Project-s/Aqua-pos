@@ -1388,18 +1388,18 @@
 
 .mega-menu__services {
     display: grid;
-    gap: 12px;
+    gap: 14px;
 }
 
 .mega-menu__service {
     display: flex;
-    align-items: flex-start;
-    gap: 12px;
+    align-items: center;
+    gap: 14px;
     text-decoration: none;
     background: #fff;
     border: 1px solid #e2e8f0;
     border-radius: 12px;
-    padding: 10px;
+    padding: 12px;
     transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease;
 }
 
@@ -1410,8 +1410,8 @@
 }
 
 .mega-menu__service img {
-    width: 60px;
-    height: 60px;
+    width: 68px;
+    height: 68px;
     border-radius: 10px;
     object-fit: cover;
     flex-shrink: 0;
@@ -1419,16 +1419,16 @@
 
 .mega-menu__service h5 {
     font-size: 15px;
-    margin: 0 0 4px;
+    margin: 0;
     color: #0f172a;
     font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .mega-menu__service p {
-    margin: 0;
-    color: #475569;
-    font-size: 13px;
-    line-height: 1.45;
+    display: none;
 }
 
 @media (max-width: 1199.98px) {
