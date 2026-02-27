@@ -95,21 +95,21 @@
 
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle {{ request()->routeIs('blog*') || request()->routeIs('news*') ? 'active' : '' }}" data-bs-toggle="dropdown">
-                                <i class="fas fa-newspaper me-2"></i>Insights
+                                <i class="fas fa-newspaper me-2"></i><span data-i18n="nav.insights">Insights</span>
                             </a>
                             <div class="dropdown-menu m-0">
-                                <a href="{{ route('blog') }}" class="dropdown-item {{ request()->routeIs('blog*') ? 'active' : '' }}"><i class="fas fa-blog me-2"></i>Blog</a>
-                                <a href="{{ route('news') }}" class="dropdown-item {{ request()->routeIs('news*') ? 'active' : '' }}"><i class="fas fa-rss me-2"></i>News</a>
+                                <a href="{{ route('blog') }}" class="dropdown-item {{ request()->routeIs('blog*') ? 'active' : '' }}"><i class="fas fa-blog me-2"></i><span data-i18n="nav.blog">Blog</span></a>
+                                <a href="{{ route('news') }}" class="dropdown-item {{ request()->routeIs('news*') ? 'active' : '' }}"><i class="fas fa-rss me-2"></i><span data-i18n="nav.news">News</span></a>
                             </div>
                         </div>
-                        <a href="{{ route('partners.index') }}" class="nav-item nav-link {{ request()->routeIs('partners.*') ? 'active' : '' }} nav-link--partners"><i class="fas fa-handshake me-2"></i>Partners</a>
+                        <a href="{{ route('partners.index') }}" class="nav-item nav-link {{ request()->routeIs('partners.*') ? 'active' : '' }} nav-link--partners"><i class="fas fa-handshake me-2"></i><span data-i18n="nav.partners">Partners</span></a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle {{ request()->routeIs('support') || request()->routeIs('contact') ? 'active' : '' }}" data-bs-toggle="dropdown">
-                                <i class="fas fa-headset me-2"></i>Help
+                                <i class="fas fa-headset me-2"></i><span data-i18n="nav.help">Help</span>
                             </a>
                             <div class="dropdown-menu m-0">
-                                <a href="{{ route('support') }}" class="dropdown-item {{ request()->routeIs('support') ? 'active' : '' }}"><i class="fas fa-life-ring me-2"></i>Support</a>
-                                <a href="{{ route('contact') }}" class="dropdown-item {{ request()->routeIs('contact') ? 'active' : '' }}"><i class="fas fa-envelope me-2"></i>Contact</a>
+                                <a href="{{ route('support') }}" class="dropdown-item {{ request()->routeIs('support') ? 'active' : '' }}"><i class="fas fa-life-ring me-2"></i><span data-i18n="nav.support">Support</span></a>
+                                <a href="{{ route('contact') }}" class="dropdown-item {{ request()->routeIs('contact') ? 'active' : '' }}"><i class="fas fa-envelope me-2"></i><span data-i18n="nav.contact">Contact</span></a>
                             </div>
                         </div>
                         <div class="nav-item dropdown">
@@ -119,7 +119,7 @@
                                 <a href="{{ route('service') }}" class="dropdown-item {{ request()->routeIs('service') ? 'active' : '' }}"><i class="fas fa-concierge-bell me-2"></i><span data-i18n="nav.services">Services</span></a>
                                 <a href="{{ url('/appointment') }}" class="dropdown-item"><i class="fas fa-calendar-days me-2"></i><span data-i18n="nav.appointment">Appointment</span></a>
                                 <a href="{{ url('/feature') }}" class="dropdown-item"><i class="fas fa-star me-2"></i><span data-i18n="nav.features">Features</span></a>
-                                <a href="{{ route('request-product-demo') }}" class="dropdown-item"><i class="fas fa-display me-2"></i>Request Product Demo</a>
+                                <a href="{{ route('request-product-demo') }}" class="dropdown-item"><i class="fas fa-display me-2"></i><span data-i18n="nav.requestDemo">Request Product Demo</span></a>
                                 <a href="{{ url('/team') }}" class="dropdown-item"><i class="fas fa-users me-2"></i><span data-i18n="nav.team">Our Team</span></a>
                                 <a href="{{ url('/testimonial') }}" class="dropdown-item"><i class="fas fa-comments me-2"></i><span data-i18n="nav.testimonial">Testimonial</span></a>
                                 <a href="{{ url('/not-found') }}" class="dropdown-item"><i class="fas fa-triangle-exclamation me-2"></i><span data-i18n="nav.notfound">404 Page</span></a>
