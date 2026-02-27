@@ -53,7 +53,7 @@
 
             <div class="section-card p-4">
                 <h3 class="h5 mb-3" data-i18n="products.useCases">Use Cases</h3>
-                <p class="text-muted mb-0">{{ $product->localized_use_cases ?: __('Designed to streamline operations, improve checkout speed, and unify reporting across outlets.') }}</p>
+                <p class="text-muted mb-0">{{ $product->localized_use_cases ?: '' }}<span @if($product->localized_use_cases) class="d-none" @endif data-i18n="products.useCasesFallback">Designed to streamline operations, improve checkout speed, and unify reporting across outlets.</span></p>
             </div>
 
             <div class="section-card p-4">
