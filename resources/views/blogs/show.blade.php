@@ -3,23 +3,26 @@
 @section('blog-content')
 <section class="mb-4">
     <div class="container">
+        <div class="article-page-head mb-4">
+            <span class="article-page-head__eyebrow mb-2"><i class="far fa-newspaper"></i>{{ strtoupper($type) }}</span>
+            <h1 class="h2 fw-bold mb-2">{{ $post->title }}</h1>
+            <p class="mb-0 text-muted"><i class="far fa-calendar-alt me-2"></i>{{ $post->published_at?->format('d M Y') ?? $post->created_at?->format('d M Y') }} <span class="mx-2">•</span><i class="fas fa-folder-open me-2"></i>{{ $post->category?->name ?? 'General' }}</p>
+        </div>
+
         @include('blogs.partials.inner-nav', ['type' => $type, 'post' => $post, 'categories' => $categories])
 
         <div class="row g-4">
             <div class="col-lg-8">
                 <article class="article-shell">
-                    <div class="mb-3 d-flex align-items-center justify-content-between gap-2 flex-wrap">
-                        <span class="badge bg-primary px-3 py-2">{{ strtoupper($type) }}</span>
+                    <div class="mb-4 d-flex align-items-center justify-content-between gap-2 flex-wrap">
+                        <p class="text-muted mb-0"><i class="fas fa-user-edit me-2"></i>{{ $post->author?->name ?? 'Aqua Team' }}</p>
                         <div class="social-share d-flex gap-2">
-                            <a href="#" aria-label="Share on Facebook"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" aria-label="Share on Twitter"><i class="fab fa-twitter"></i></a>
-                            <a href="#" aria-label="Share on LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" aria-label="Share on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                            <a href="#" class="social-facebook" aria-label="Share on Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-twitter" aria-label="Share on Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-linkedin" aria-label="Share on LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="social-whatsapp" aria-label="Share on WhatsApp"><i class="fab fa-whatsapp"></i></a>
                         </div>
                     </div>
-
-                    <h1 class="display-6 fw-bold mb-3">{{ $post->title }}</h1>
-                    <p class="text-muted mb-4"><i class="fas fa-user-edit me-2"></i>{{ $post->author?->name ?? 'Aqua Team' }}</p>
 
                     @if($post->cover_image)
                         <img class="article-cover mb-4" src="{{ Storage::url($post->cover_image) }}" alt="{{ $post->title }}">
