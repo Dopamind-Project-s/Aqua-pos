@@ -19,6 +19,7 @@ class AppServiceProvider extends ServiceProvider
     {
         View::composer('partials.header', function ($view): void {
             $activeCategories = collect();
+            $siteSetting = null;
 
             if (Schema::hasTable('categories') && Schema::hasTable('products')) {
                 $activeCategories = Category::query()
@@ -35,7 +36,12 @@ class AppServiceProvider extends ServiceProvider
                     ->get();
             }
 
+            if (Schema::hasTable('site_settings')) {
+                $siteSetting = SiteSetting::query()->first();
+            }
+
             $view->with('activeCategoriesMenu', $activeCategories);
+            $view->with('siteSetting', $siteSetting);
         });
 
 

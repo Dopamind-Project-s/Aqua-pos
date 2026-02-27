@@ -9,20 +9,41 @@
 
         <!-- Topbar Start -->
         <div class="container-fluid topbar-shell px-5 d-none d-lg-block">
-            <div class="row gx-0 align-items-center" style="height: 45px;">
+            <div class="row gx-0 align-items-center" style="min-height: 52px;">
                 <div class="col-lg-8 text-center text-lg-start mb-lg-0">
-                    <div class="d-flex flex-wrap">
-                        <a href="#" class="text-light me-4"><i class="fas fa-map-marker-alt text-primary me-2"></i><span data-i18n="topbar.location">Amman, Jordan</span></a>
-                        <a href="#" class="text-light me-4"><i class="fas fa-phone-alt text-primary me-2"></i>+962-791888655</a>
-                        <a href="#" class="text-light me-0"><i class="fas fa-envelope text-primary me-2"></i>info@aqua-pos.com</a>
+                    <div class="d-flex flex-wrap align-items-center topbar-contact-list">
+                        <a href="{{ $siteSetting?->google_map_embed ?: '#' }}" class="text-light me-4" target="_blank" rel="noopener">
+                            <i class="fas fa-map-marker-alt text-primary me-2"></i>
+                            <span>{{ $siteSetting?->hq_address ?: 'Amman, Jordan' }}</span>
+                        </a>
+                        <a href="tel:{{ preg_replace('/\D+/', '', $siteSetting?->phone_primary ?: '+962791888655') }}" class="text-light me-4">
+                            <i class="fas fa-phone-alt text-primary me-2"></i>{{ $siteSetting?->phone_primary ?: '+962-791888655' }}
+                        </a>
+                        <a href="mailto:{{ $siteSetting?->info_email ?: 'info@aqua-pos.com' }}" class="text-light me-0">
+                            <i class="fas fa-envelope text-primary me-2"></i>{{ $siteSetting?->info_email ?: 'info@aqua-pos.com' }}
+                        </a>
                     </div>
                 </div>
                 <div class="col-lg-4 text-center text-lg-end">
-                    <div class="d-flex align-items-center justify-content-end">
-                        <a href="https://www.facebook.com/aqua.software.co/" target="_blank" rel="noopener" class="btn btn-light btn-square border rounded-circle nav-fill me-3"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="btn btn-light btn-square border rounded-circle nav-fill me-3"><i class="fab fa-twitter"></i></a>
-                        <a href="https://www.instagram.com/aqua_software/?igsh=MWwzOGM2cDliY3Zydw%3D%3D" target="_blank" rel="noopener" class="btn btn-light btn-square border rounded-circle nav-fill me-3"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="btn btn-light btn-square border rounded-circle nav-fill me-0"><i class="fab fa-linkedin-in"></i></a>
+                    <div class="d-flex align-items-center justify-content-end topbar-social-list">
+                        @if($siteSetting?->facebook_url)
+                            <a href="{{ $siteSetting->facebook_url }}" target="_blank" rel="noopener" class="btn btn-light btn-square border rounded-circle nav-fill me-2"><i class="fab fa-facebook-f"></i></a>
+                        @endif
+                        @if($siteSetting?->twitter_url)
+                            <a href="{{ $siteSetting->twitter_url }}" target="_blank" rel="noopener" class="btn btn-light btn-square border rounded-circle nav-fill me-2"><i class="fab fa-twitter"></i></a>
+                        @endif
+                        @if($siteSetting?->instagram_url)
+                            <a href="{{ $siteSetting->instagram_url }}" target="_blank" rel="noopener" class="btn btn-light btn-square border rounded-circle nav-fill me-2"><i class="fab fa-instagram"></i></a>
+                        @endif
+                        @if($siteSetting?->linkedin_url)
+                            <a href="{{ $siteSetting->linkedin_url }}" target="_blank" rel="noopener" class="btn btn-light btn-square border rounded-circle nav-fill me-2"><i class="fab fa-linkedin-in"></i></a>
+                        @endif
+                        @if($siteSetting?->youtube_url)
+                            <a href="{{ $siteSetting->youtube_url }}" target="_blank" rel="noopener" class="btn btn-light btn-square border rounded-circle nav-fill me-2"><i class="fab fa-youtube"></i></a>
+                        @endif
+                        @if($siteSetting?->tiktok_url)
+                            <a href="{{ $siteSetting->tiktok_url }}" target="_blank" rel="noopener" class="btn btn-light btn-square border rounded-circle nav-fill"><i class="fab fa-tiktok"></i></a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -34,7 +55,7 @@
         <div class="container-fluid position-relative p-0">
             <nav class="navbar navbar-expand-lg navbar-light bg-white px-4 px-lg-5 py-3 py-lg-0">
                 <a href="{{ url('/') }}" class="navbar-brand p-0">
-                    <h1 class="navbar-brand__title text-primary m-0"><i class="fas fa-star-of-life me-2"></i>AQUA POS</h1>
+                    <h1 class="navbar-brand__title text-primary m-0"><i class="fas fa-star-of-life me-2"></i>{{ $siteSetting?->site_name ?: "AQUA POS" }}</h1>
                     <!-- <img src="img/logo.png" alt="Logo"> -->
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">

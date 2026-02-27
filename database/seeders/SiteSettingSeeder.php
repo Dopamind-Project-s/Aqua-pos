@@ -13,21 +13,21 @@ class SiteSettingSeeder extends Seeder
             ['id' => 1],
             [
                 'site_name' => 'AQUA POS',
-                'meta_title' => 'AQUA POS | POS & Inventory Software in Jordan',
-                'meta_description' => 'AQUA POS is a Jordanian SaaS company in Amman delivering reliable POS and inventory software that helps businesses operate with speed and accuracy.',
-                'meta_keywords' => 'AQUA POS, POS Jordan, Inventory Software, Retail POS, Restaurant POS',
+                'meta_title' => 'AQUA POS | Cloud POS, Inventory & ERP Integrations',
+                'meta_description' => 'AQUA POS helps restaurants and retailers run billing, inventory, multi-branch operations, and analytics from one cloud platform.',
+                'meta_keywords' => 'AQUA POS, POS Jordan, Inventory Software, Retail POS, Restaurant POS, Cloud POS, ERP Integration',
 
                 'facebook_url' => 'https://www.facebook.com/aqua.software.co/',
                 'instagram_url' => 'https://www.instagram.com/aqua_software/',
                 'linkedin_url' => 'https://www.linkedin.com/company/aqua-software/',
-                'twitter_url' => null,
-                'youtube_url' => null,
-                'tiktok_url' => null,
+                'twitter_url' => 'https://x.com/aqua_pos',
+                'youtube_url' => 'https://www.youtube.com/@aquapos',
+                'tiktok_url' => 'https://www.tiktok.com/@aquapos',
 
                 'whatsapp_number' => '+962791888655',
-                'google_map_embed' => 'https://maps.google.com/?q=Amman+Jordan',
+                'google_map_embed' => 'https://maps.google.com/?q=Aqua+POS+Amman+Jordan',
 
-                'hq_title' => 'Head Quarter',
+                'hq_title' => 'Head Office',
                 'hq_address' => 'AQUA POS Amman, Jordan',
                 'info_email' => 'info@aqua-pos.com',
                 'support_email' => 'support@aqua-pos.com',
@@ -35,7 +35,7 @@ class SiteSettingSeeder extends Seeder
                 'phone_secondary' => '+962-791888655',
 
                 'footer_company_title' => 'AQUA POS',
-                'footer_company_description' => 'AQUA POS is a Jordanian SaaS company in Amman delivering reliable POS and inventory software that helps businesses operate with speed and accuracy',
+                'footer_company_description' => 'AQUA POS delivers cloud POS, inventory, and business automation tools that improve speed, control, and growth for modern businesses.',
 
                 // Legacy KV compatibility columns
                 'key' => 'global',
