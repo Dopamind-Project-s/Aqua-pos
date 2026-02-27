@@ -12,11 +12,16 @@
     </div>
     <div class="partner-card__body">
         <h3 class="partner-card__title">{{ $partner->name }}</h3>
-        <p class="partner-card__description">{{ $partner->description ?: 'Trusted partner supporting our ecosystem with reliable services.' }}</p>
+        @if($partner->description)
+            <p class="partner-card__description">{{ $partner->description }}</p>
+        @else
+            <p class="partner-card__description" data-i18n="partners.defaultDescription">Trusted partner supporting our ecosystem with reliable services.</p>
+        @endif
 
         @if($partner->website_url)
             <a href="{{ $partner->website_url }}" class="partner-card__link" target="_blank" rel="noopener noreferrer">
-                Visit Website <i class="fas fa-external-link-alt ms-1" aria-hidden="true"></i>
+                <span data-i18n="partners.visitWebsite">Visit Website</span>
+                <i class="fas fa-arrow-up-right-from-square ms-1" aria-hidden="true"></i>
             </a>
         @endif
     </div>
