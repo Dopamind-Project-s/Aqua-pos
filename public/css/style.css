@@ -195,35 +195,40 @@
 .navbar-light .navbar-nav .nav-link {
     font-family: 'Open Sans', sans-serif;
     position: relative;
-    margin-right: 20px;
-    padding: 28px 0;
+    margin-right: 14px;
+    padding: 22px 0;
     color: var(--bs-dark) !important;
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 500;
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     outline: none;
-    transition: .5s;
+    transition: .35s;
+}
+
+.navbar.navbar-expand-lg {
+    width: min(100%, 1220px);
+    margin-inline: auto;
 }
 
 .navbar-brand__title {
-    font-size: clamp(1.15rem, 1.6vw, 1.55rem);
+    font-size: clamp(1rem, 1.3vw, 1.35rem);
     line-height: 1.2;
 }
 
 .nav-link--home {
-    min-width: 38px;
+    min-width: 34px;
     justify-content: center;
     padding-inline: 0 !important;
 }
 
 .nav-link--home i {
-    font-size: 1.05rem;
+    font-size: .95rem;
 }
 
 .sticky-top.navbar-light .navbar-nav .nav-link {
-    padding: 16px 0;
+    padding: 12px 0;
     color: var(--dark) !important;
 }
 
@@ -296,15 +301,19 @@
 
     .navbar-light .navbar-nav .nav-link,
     .sticky-top.navbar-light .navbar-nav .nav-link {
-        padding: 10px 0;
+        padding: 8px 0;
         margin-left: 0;
         margin-right: 0;
         color: var(--bs-dark) !important;
-        font-size: 15px;
+        font-size: 13px;
+    }
+
+    .navbar.navbar-expand-lg {
+        width: 100%;
     }
 
     .navbar-brand__title {
-        font-size: 1.15rem;
+        font-size: 1.05rem;
     }
 
     .navbar-light .navbar-brand img {
@@ -1352,7 +1361,7 @@
     position: absolute;
     top: 100%;
     left: 50%;
-    width: min(70vw, 1100px);
+    width: min(68vw, 980px);
     background: #ffffff;
     border-radius: 16px;
     box-shadow: 0 22px 55px rgba(15, 23, 42, .18);
@@ -1383,25 +1392,25 @@
 .mega-menu__inner {
     max-width: 1320px;
     margin: 0 auto;
-    padding: 30px;
+    padding: 22px;
 }
 
 .mega-menu__grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 18px;
+    gap: 14px;
 }
 
 .mega-menu__category {
     background: #f8fafc;
     border: 1px solid #e2e8f0;
     border-radius: 14px;
-    padding: 18px;
+    padding: 14px;
 }
 
 .mega-menu__heading {
     margin: 0 0 14px;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
     color: #0f172a;
 }
@@ -1412,18 +1421,18 @@
 
 .mega-menu__services {
     display: grid;
-    gap: 10px;
+    gap: 8px;
 }
 
 .mega-menu__service {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     text-decoration: none;
     background: #fff;
     border: 1px solid #e2e8f0;
     border-radius: 12px;
-    padding: 12px;
+    padding: 10px;
     transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease;
 }
 
@@ -1434,7 +1443,7 @@
 }
 
 .mega-menu__service h5 {
-    font-size: 14px;
+    font-size: 13px;
     margin: 0;
     color: #0f172a;
     font-weight: 700;
@@ -1456,7 +1465,7 @@
 
 @media (max-width: 1199.98px) {
     .mega-menu__panel {
-        width: min(86vw, 980px);
+        width: min(90vw, 860px);
     }
 
     .mega-menu__grid {
@@ -1495,7 +1504,7 @@
     }
 
     .mega-menu__inner {
-        padding: 12px;
+        padding: 10px;
     }
 
     .mega-menu__grid {
@@ -1541,13 +1550,13 @@
     }
 
     .navbar-light .navbar-nav .nav-link {
-        font-size: 14px;
+        font-size: 13px;
         gap: 6px;
     }
 
     .mega-menu__service {
         padding: 10px;
-        gap: 10px;
+        gap: 8px;
     }
 }
 /*** Mega Menu End ***/

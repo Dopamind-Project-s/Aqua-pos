@@ -46,8 +46,6 @@
                             <i class="fas fa-house"></i>
                             <span class="visually-hidden" data-i18n="nav.home">Home</span>
                         </a>
-                        <a href="{{ route('about') }}" class="nav-item nav-link {{ request()->routeIs('about') ? 'active' : '' }}"><i class="fas fa-circle-info me-2"></i><span data-i18n="nav.about">About</span></a>
-                        <a href="{{ route('service') }}" class="nav-item nav-link {{ request()->routeIs('service') ? 'active' : '' }}"><i class="fas fa-concierge-bell me-2"></i><span data-i18n="nav.services">Services</span></a>
                         <div class="nav-item mega-menu" id="productsMegaMenu">
                             <button
                                 class="nav-link mega-menu__trigger"
@@ -198,8 +196,10 @@
                             </div>
                         </div>
                         <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fas fa-layer-group me-2"></i><span data-i18n="nav.pages">Pages</span></a>
+                            <a href="#" class="nav-link dropdown-toggle {{ request()->routeIs('about') || request()->routeIs('service') ? 'active' : '' }}" data-bs-toggle="dropdown"><i class="fas fa-layer-group me-2"></i><span data-i18n="nav.pages">Pages</span></a>
                             <div class="dropdown-menu m-0">
+                                <a href="{{ route('about') }}" class="dropdown-item {{ request()->routeIs('about') ? 'active' : '' }}"><i class="fas fa-circle-info me-2"></i><span data-i18n="nav.about">About</span></a>
+                                <a href="{{ route('service') }}" class="dropdown-item {{ request()->routeIs('service') ? 'active' : '' }}"><i class="fas fa-concierge-bell me-2"></i><span data-i18n="nav.services">Services</span></a>
                                 <a href="{{ url('/appointment') }}" class="dropdown-item"><i class="fas fa-calendar-days me-2"></i><span data-i18n="nav.appointment">Appointment</span></a>
                                 <a href="{{ url('/feature') }}" class="dropdown-item"><i class="fas fa-star me-2"></i><span data-i18n="nav.features">Features</span></a>
                                 <a href="{{ route('request-product-demo') }}" class="dropdown-item"><i class="fas fa-display me-2"></i>Request Product Demo</a>
