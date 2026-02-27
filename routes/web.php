@@ -8,7 +8,7 @@ use App\Http\Controllers\Admin\ServiceRequestController as AdminServiceRequestCo
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\ServiceRequestController;
-use App\Models\Product;
+use App\Http\Controllers\ProductCatalogController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,19 +43,8 @@ Route::post('/requests', [ServiceRequestController::class, 'store'])->name('requ
 
 Route::view('/not-found', '404')->name('not-found');
 
-Route::get('/products', function () {
-    $products = Product::query()
-        ->with(['category'])
-        ->where('is_active', true)
-        ->whereNull('deleted_at')
-        ->whereHas('category', fn ($query) =>
-            $query->where('is_active', true)->whereNull('deleted_at')
-        )
-        ->latest()
-        ->paginate(12);
-
-    return view('products', compact('products'));
-})->name('products');
+Route::get('/products', [ProductCatalogController::class, 'index'])->name('products');
+Route::get('/products/{product:slug}', [ProductCatalogController::class, 'show'])->name('products.show');
 
 
 /*

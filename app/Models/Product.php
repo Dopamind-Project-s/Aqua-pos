@@ -15,12 +15,16 @@ class Product extends Model
     protected $fillable = [
         'category_id',
         'name',
+        'tagline',
         'slug',
         'image',
         'short_description',
         'description',
+        'key_features',
+        'use_cases',
         'price',
         'price_note',
+        'sort_order',
         'is_featured',
         'is_active',
     ];
@@ -29,6 +33,7 @@ class Product extends Model
     {
         return [
             'price' => 'decimal:2',
+            'key_features' => 'array',
             'is_featured' => 'boolean',
             'is_active' => 'boolean',
         ];

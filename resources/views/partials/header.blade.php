@@ -66,7 +66,7 @@
                                                 <button class="mega-menu__category-toggle" type="button" aria-expanded="false">{{ $menuCategory->name }}</button>
                                                 <div class="mega-menu__services">
                                                     @foreach($menuCategory->products->take(6) as $menuProduct)
-                                                        <a href="{{ route('products') }}" class="mega-menu__service">
+                                                        <a href="{{ route('products.show', $menuProduct->slug) }}" class="mega-menu__service">
                                                             <img class="mega-menu__service-thumb" src="{{ $menuProduct->image ? Storage::url($menuProduct->image) : asset('img/service-1.jpg') }}" alt="{{ $menuProduct->name }}">
                                                             <div class="mega-menu__service-content">
                                                                 <h5>{{ $menuProduct->name }}</h5>
@@ -87,90 +87,6 @@
                                                 </div>
                                             </article>
                                         @endforelse
-
-                                        <article class="mega-menu__category">
-                                            <h4 class="mega-menu__heading"><span data-i18n="mega.restaurant">Restaurant</span></h4>
-                                            <button class="mega-menu__category-toggle" type="button" aria-expanded="false"><span data-i18n="mega.restaurant">Restaurant</span></button>
-                                            <div class="mega-menu__services">
-                                                <a href="#" class="mega-menu__service">
-                                                    <img src="{{ asset('img/service-1.jpg') }}" alt="Restaurant POS">
-                                                    <div class="mega-menu__service-content">
-                                                        <h5><span data-i18n="mega.restaurantPos">Restaurant POS</span></h5>
-                                                        
-                                                    </div>
-                                                </a>
-                                                <a href="#" class="mega-menu__service">
-                                                    <img src="{{ asset('img/service-2.jpg') }}" alt="QR Ordering">
-                                                    <div class="mega-menu__service-content">
-                                                        <h5><span data-i18n="mega.qrOrdering">QR Ordering</span></h5>
-                                                        
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </article>
-
-                                        <article class="mega-menu__category">
-                                            <h4 class="mega-menu__heading"><span data-i18n="mega.retail">Retail</span></h4>
-                                            <button class="mega-menu__category-toggle" type="button" aria-expanded="false"><span data-i18n="mega.retail">Retail</span></button>
-                                            <div class="mega-menu__services">
-                                                <a href="#" class="mega-menu__service">
-                                                    <img src="{{ asset('img/service-3.jpg') }}" alt="Inventory Hub">
-                                                    <div class="mega-menu__service-content">
-                                                        <h5><span data-i18n="mega.inventoryHub">Inventory Hub</span></h5>
-                                                        
-                                                    </div>
-                                                </a>
-                                                <a href="#" class="mega-menu__service">
-                                                    <img src="{{ asset('img/service-4.jpg') }}" alt="Loyalty CRM">
-                                                    <div class="mega-menu__service-content">
-                                                        <h5><span data-i18n="mega.loyaltyCrm">Loyalty CRM</span></h5>
-                                                        
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </article>
-
-                                        <article class="mega-menu__category">
-                                            <h4 class="mega-menu__heading"><span data-i18n="mega.hotel">Hotel</span></h4>
-                                            <button class="mega-menu__category-toggle" type="button" aria-expanded="false"><span data-i18n="mega.hotel">Hotel</span></button>
-                                            <div class="mega-menu__services">
-                                                <a href="#" class="mega-menu__service">
-                                                    <img src="{{ asset('img/service-5.jpg') }}" alt="Property PMS">
-                                                    <div class="mega-menu__service-content">
-                                                        <h5><span data-i18n="mega.propertyPms">Property PMS</span></h5>
-                                                        
-                                                    </div>
-                                                </a>
-                                                <a href="#" class="mega-menu__service">
-                                                    <img src="{{ asset('img/service-6.jpg') }}" alt="Spa & Wellness">
-                                                    <div class="mega-menu__service-content">
-                                                        <h5><span data-i18n="mega.spaWellness">Spa & Wellness</span></h5>
-                                                        
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </article>
-
-                                        <article class="mega-menu__category">
-                                            <h4 class="mega-menu__heading"><span data-i18n="mega.enterprise">Enterprise</span></h4>
-                                            <button class="mega-menu__category-toggle" type="button" aria-expanded="false"><span data-i18n="mega.enterprise">Enterprise</span></button>
-                                            <div class="mega-menu__services">
-                                                <a href="#" class="mega-menu__service">
-                                                    <img src="{{ asset('img/service-7.jpg') }}" alt="BI Analytics">
-                                                    <div class="mega-menu__service-content">
-                                                        <h5><span data-i18n="mega.biAnalytics">BI Analytics</span></h5>
-                                                        
-                                                    </div>
-                                                </a>
-                                                <a href="#" class="mega-menu__service">
-                                                    <img src="{{ asset('img/service-8.jpg') }}" alt="API Integrations">
-                                                    <div class="mega-menu__service-content">
-                                                        <h5><span data-i18n="mega.apiIntegrations">API Integrations</span></h5>
-                                                        
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </article>
                                     </div>
                                 </div>
                             </section>
