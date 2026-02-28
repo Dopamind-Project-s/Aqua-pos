@@ -227,7 +227,8 @@
 }
 
 .navbar.navbar-expand-lg {
-    width: min(100%, 1220px);
+    width: min(100%);
+    height: min(100px);
     margin-inline: auto;
 }
 

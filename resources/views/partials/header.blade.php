@@ -67,8 +67,7 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0">
                         <a href="{{ route('home') }}" class="nav-item nav-link nav-link--home {{ request()->routeIs('home') ? 'active' : '' }}" aria-label="Home">
-                            <i class="fas fa-house"></i>
-                            <span class="visually-hidden" data-i18n="nav.home">Home</span>
+                            <i class="fas fa-home"></i>
                         </a>
                         <div class="nav-item mega-menu" id="productsMegaMenu">
                             <button
@@ -143,10 +142,8 @@
                                 <a href="{{ route('service') }}" class="dropdown-item {{ request()->routeIs('service') ? 'active' : '' }}"><i class="fas fa-concierge-bell me-2"></i><span data-i18n="nav.services">Services</span></a>
                                 <a href="{{ url('/appointment') }}" class="dropdown-item"><i class="fas fa-calendar-days me-2"></i><span data-i18n="nav.appointment">Appointment</span></a>
                                 <a href="{{ url('/feature') }}" class="dropdown-item"><i class="fas fa-star me-2"></i><span data-i18n="nav.features">Features</span></a>
-                                <a href="{{ route('request-product-demo') }}" class="dropdown-item"><i class="fas fa-display me-2"></i><span data-i18n="nav.requestDemo">Request Product Demo</span></a>
                                 <a href="{{ url('/team') }}" class="dropdown-item"><i class="fas fa-users me-2"></i><span data-i18n="nav.team">Our Team</span></a>
                                 <a href="{{ url('/testimonial') }}" class="dropdown-item"><i class="fas fa-comments me-2"></i><span data-i18n="nav.testimonial">Testimonial</span></a>
-                                <a href="{{ url('/not-found') }}" class="dropdown-item"><i class="fas fa-triangle-exclamation me-2"></i><span data-i18n="nav.notfound">404 Page</span></a>
                             </div>
                         </div>
                     </div>
