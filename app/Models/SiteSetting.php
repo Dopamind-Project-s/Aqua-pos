@@ -16,6 +16,8 @@ class SiteSetting extends Model
         'group',
         'is_public',
         'site_name',
+        'primary_logo',
+        'secondary_logo',
         'meta_title',
         'meta_description',
         'meta_keywords',
@@ -35,6 +37,7 @@ class SiteSetting extends Model
         'phone_secondary',
         'footer_company_title',
         'footer_company_description',
+        'about_site_paragraph',
     ];
 
     protected function casts(): array

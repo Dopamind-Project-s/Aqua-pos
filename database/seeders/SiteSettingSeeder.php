@@ -13,6 +13,8 @@ class SiteSettingSeeder extends Seeder
             ['id' => 1],
             [
                 'site_name' => 'AQUA POS',
+                'primary_logo' => null,
+                'secondary_logo' => null,
                 'meta_title' => 'AQUA POS | Cloud POS, Inventory & ERP Integrations',
                 'meta_description' => 'AQUA POS helps restaurants and retailers run billing, inventory, multi-branch operations, and analytics from one cloud platform.',
                 'meta_keywords' => 'AQUA POS, POS Jordan, Inventory Software, Retail POS, Restaurant POS, Cloud POS, ERP Integration',
@@ -36,6 +38,7 @@ class SiteSettingSeeder extends Seeder
 
                 'footer_company_title' => 'AQUA POS',
                 'footer_company_description' => 'AQUA POS delivers cloud POS, inventory, and business automation tools that improve speed, control, and growth for modern businesses.',
+                'about_site_paragraph' => 'AQUA POS is a unified cloud platform that connects sales, inventory, analytics, and customer operations to help businesses scale with confidence.',
 
                 // Legacy KV compatibility columns
                 'key' => 'global',

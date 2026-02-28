@@ -15,6 +15,9 @@ class UpdateSiteSettingRequest extends FormRequest
     {
         return [
             'site_name' => ['required', 'string', 'max:255'],
+            'primary_logo' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp,svg', 'max:2048'],
+            'secondary_logo' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp,svg', 'max:2048'],
+
             'meta_title' => ['nullable', 'string', 'max:255'],
             'meta_description' => ['nullable', 'string'],
             'meta_keywords' => ['nullable', 'string', 'max:255'],
@@ -38,6 +41,7 @@ class UpdateSiteSettingRequest extends FormRequest
 
             'footer_company_title' => ['nullable', 'string', 'max:255'],
             'footer_company_description' => ['nullable', 'string'],
+            'about_site_paragraph' => ['nullable', 'string'],
         ];
     }
 }

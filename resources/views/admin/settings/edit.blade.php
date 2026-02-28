@@ -5,9 +5,34 @@
 <div class="card">
     <div class="card-body">
         <h4 class="card-title mb-3">Site Settings</h4>
-        <form method="POST" action="{{ route('admin.settings.update') }}">@csrf @method('PUT')
+        <form method="POST" action="{{ route('admin.settings.update') }}" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
             <div class="row g-3">
-                <div class="col-md-4"><label class="form-label">Site Name</label><input type="text" name="site_name" value="{{ old('site_name', $setting->site_name) }}" class="form-control @error('site_name') is-invalid @enderror">@error('site_name')<div class="invalid-feedback">{{ $message }}</div>@enderror</div>
+                <div class="col-md-4">
+                    <label class="form-label">Site Name</label>
+                    <input type="text" name="site_name" value="{{ old('site_name', $setting->site_name) }}" class="form-control @error('site_name') is-invalid @enderror">
+                    @error('site_name')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Primary Logo</label>
+                    <input type="file" name="primary_logo" class="form-control @error('primary_logo') is-invalid @enderror" accept=".jpg,.jpeg,.png,.webp,.svg">
+                    @error('primary_logo')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                    @if($setting->primary_logo)
+                        <img src="{{ Storage::url($setting->primary_logo) }}" alt="Primary Logo" class="img-thumbnail mt-2" style="max-height: 80px;">
+                    @endif
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Secondary Logo</label>
+                    <input type="file" name="secondary_logo" class="form-control @error('secondary_logo') is-invalid @enderror" accept=".jpg,.jpeg,.png,.webp,.svg">
+                    @error('secondary_logo')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                    @if($setting->secondary_logo)
+                        <img src="{{ Storage::url($setting->secondary_logo) }}" alt="Secondary Logo" class="img-thumbnail mt-2" style="max-height: 80px;">
+                    @endif
+                </div>
+
                 <div class="col-md-4"><label class="form-label">Meta Title</label><input type="text" name="meta_title" value="{{ old('meta_title', $setting->meta_title) }}" class="form-control @error('meta_title') is-invalid @enderror">@error('meta_title')<div class="invalid-feedback">{{ $message }}</div>@enderror</div>
                 <div class="col-md-4"><label class="form-label">Meta Keywords</label><input type="text" name="meta_keywords" value="{{ old('meta_keywords', $setting->meta_keywords) }}" class="form-control @error('meta_keywords') is-invalid @enderror">@error('meta_keywords')<div class="invalid-feedback">{{ $message }}</div>@enderror</div>
                 <div class="col-12"><label class="form-label">Meta Description</label><textarea name="meta_description" rows="3" class="form-control @error('meta_description') is-invalid @enderror">{{ old('meta_description', $setting->meta_description) }}</textarea>@error('meta_description')<div class="invalid-feedback">{{ $message }}</div>@enderror</div>
@@ -15,6 +40,7 @@
                 <div class="col-md-6"><label class="form-label">Footer Company Title</label><input type="text" name="footer_company_title" value="{{ old('footer_company_title', $setting->footer_company_title) }}" class="form-control"></div>
                 <div class="col-md-6"><label class="form-label">Head Quarter Title</label><input type="text" name="hq_title" value="{{ old('hq_title', $setting->hq_title) }}" class="form-control"></div>
                 <div class="col-12"><label class="form-label">Footer Company Description</label><textarea name="footer_company_description" rows="3" class="form-control">{{ old('footer_company_description', $setting->footer_company_description) }}</textarea></div>
+                <div class="col-12"><label class="form-label">About Site Paragraph</label><textarea name="about_site_paragraph" rows="4" class="form-control">{{ old('about_site_paragraph', $setting->about_site_paragraph) }}</textarea></div>
 
                 <div class="col-md-6"><label class="form-label">Head Quarter Address</label><input type="text" name="hq_address" value="{{ old('hq_address', $setting->hq_address) }}" class="form-control"></div>
                 <div class="col-md-3"><label class="form-label">Info Email</label><input type="email" name="info_email" value="{{ old('info_email', $setting->info_email) }}" class="form-control"></div>

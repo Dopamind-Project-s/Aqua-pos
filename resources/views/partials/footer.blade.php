@@ -1,12 +1,22 @@
         <!-- Footer Start -->
         <div class="container-fluid footer py-5 wow fadeIn" data-wow-delay="0.2s">
             <div class="container py-5">
-                <div class="row g-5">
-                    <div class="col-md-6 col-lg-6 col-xl-3">
+                <div class="row g-4 g-lg-5">
+                    <div class="col-md-6 col-lg-6 col-xl-4">
                         <div class="footer-item footer-item--about d-flex flex-column">
-                            <h4 class="text-white mb-4"><i class="fas fa-star-of-life me-3"></i>{{ $siteSetting?->footer_company_title ?: ($siteSetting?->site_name ?: 'AQUA POS') }}</h4>
-                            <p>{{ $siteSetting?->footer_company_description ?: 'AQUA POS is a Jordanian SaaS company in Amman delivering reliable POS and inventory software that helps businesses operate with speed and accuracy' }}</p>
-                            <div class="d-flex align-items-center footer-socials">
+                            <div class="footer-brand mb-3">
+                                @if($siteSetting?->secondary_logo)
+                                    <img src="{{ Storage::url($siteSetting->secondary_logo) }}" alt="{{ $siteSetting?->site_name ?: 'AQUA POS' }}" class="footer-logo">
+                                @elseif($siteSetting?->primary_logo)
+                                    <img src="{{ Storage::url($siteSetting->primary_logo) }}" alt="{{ $siteSetting?->site_name ?: 'AQUA POS' }}" class="footer-logo">
+                                @else
+                                    <h4 class="text-white mb-0"><i class="fas fa-star-of-life me-3"></i>{{ $siteSetting?->footer_company_title ?: ($siteSetting?->site_name ?: 'AQUA POS') }}</h4>
+                                @endif
+                            </div>
+
+                            <p class="footer-about-text mb-3">{{ $siteSetting?->about_site_paragraph ?: ($siteSetting?->footer_company_description ?: 'AQUA POS is a Jordanian SaaS company in Amman delivering reliable POS and inventory software that helps businesses operate with speed and accuracy') }}</p>
+
+                            <div class="d-flex align-items-center footer-socials mt-auto">
                                 <i class="fas fa-share-alt text-white me-2"></i>
                                 @if($siteSetting?->facebook_url)<a class="btn-square btn btn-primary text-white rounded-circle mx-1" href="{{ $siteSetting->facebook_url }}" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>@endif
                                 @if($siteSetting?->twitter_url)<a class="btn-square btn btn-primary text-white rounded-circle mx-1" href="{{ $siteSetting->twitter_url }}" target="_blank" rel="noopener" aria-label="Twitter"><i class="fab fa-twitter"></i></a>@endif
@@ -18,7 +28,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-lg-6 col-xl-3">
+                    <div class="col-md-6 col-lg-6 col-xl-2">
                         <div class="footer-item d-flex flex-column">
                             <h4 class="mb-4 text-white" data-i18n="footer.quickLinks">Quick Links</h4>
                             <a href="{{ route('about') }}"><i class="fas fa-angle-right me-2"></i><span data-i18n="footer.about">About Us</span></a>
