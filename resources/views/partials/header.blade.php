@@ -148,13 +148,15 @@
                         </div>
                     </div>
                     <div class="nav-toolbar" aria-label="Quick controls">
-                        <button class="nav-toolbar__btn" id="themeToggle" type="button" aria-label="Toggle theme">
-                            <i class="fas fa-moon nav-toolbar__icon" id="themeIcon" aria-hidden="true"></i>
-                            <span class="nav-toolbar__text" id="themeLabel" data-i18n="controls.dark">Dark</span>
+                        <button class="nav-toolbar__btn nav-toolbar__btn--toggle" id="themeToggle" type="button" aria-label="Toggle theme">
+                            <span class="nav-toggle-pill" data-theme-option="light"><i class="fas fa-sun"></i></span>
+                            <span class="nav-toggle-pill" data-theme-option="dark"><i class="fas fa-moon"></i></span>
+                            <span class="visually-hidden" id="themeLabel" data-i18n="controls.dark">Dark</span>
                         </button>
-                        <button class="nav-toolbar__btn" id="languageToggle" type="button" aria-label="Toggle language">
-                            <i class="fas fa-language nav-toolbar__icon" aria-hidden="true"></i>
-                            <span class="nav-toolbar__text" id="languageLabel">AR / EN</span>
+                        <button class="nav-toolbar__btn nav-toolbar__btn--toggle" id="languageToggle" type="button" aria-label="Toggle language">
+                            <span class="nav-toggle-pill" data-lang-option="ar">عر</span>
+                            <span class="nav-toggle-pill" data-lang-option="en">EN</span>
+                            <span class="visually-hidden" id="languageLabel">AR / EN</span>
                         </button>
                     </div>
                     <a href="{{ route('request-product-demo') }}" class="btn btn-primary rounded-pill text-white py-2 px-4 flex-wrap flex-sm-shrink-0"><i class="fas fa-calendar-check me-2"></i>Request Demo</a>

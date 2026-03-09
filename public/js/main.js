@@ -608,20 +608,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var setTheme = function (theme) {
         var body = document.body;
-        var themeIcon = document.getElementById('themeIcon');
         var themeLabel = document.getElementById('themeLabel');
         var lang = localStorage.getItem(LANG_KEY) || defaultLang;
 
         body.classList.add('theme-fade');
         if (theme === 'dark') {
             body.classList.add('dark-mode');
-            if (themeIcon) themeIcon.textContent = '☀';
             if (themeLabel) themeLabel.textContent = lang === 'ar' ? translations.ar['controls.light'] : translations.en['controls.light'];
         } else {
             body.classList.remove('dark-mode');
-            if (themeIcon) themeIcon.textContent = '🌙';
             if (themeLabel) themeLabel.textContent = lang === 'ar' ? translations.ar['controls.dark'] : translations.en['controls.dark'];
         }
+
+        document.querySelectorAll('[data-theme-option]').forEach(function (el) {
+            var option = el.getAttribute('data-theme-option');
+            el.classList.toggle('is-active', option === theme);
+        });
         setTimeout(function () {
             body.classList.remove('theme-fade');
         }, 300);
@@ -651,8 +653,13 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         if (langLabel) {
-            langLabel.textContent = lang === 'ar' ? 'عربي | EN' : 'AR / EN';
+            langLabel.textContent = lang === 'ar' ? 'عر/EN' : 'AR/EN';
         }
+
+        document.querySelectorAll('[data-lang-option]').forEach(function (el) {
+            var option = el.getAttribute('data-lang-option');
+            el.classList.toggle('is-active', option === lang);
+        });
 
         localStorage.setItem(LANG_KEY, lang);
         setTheme(currentTheme);

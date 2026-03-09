@@ -2320,3 +2320,45 @@ body.dark-mode .partner-card__logo-wrap {
 .client-logo-card__links a { width:30px; height:30px; border-radius:999px; background:rgba(255,255,255,.2); color:#fff; display:grid; place-items:center; }
 body.dark-mode .client-logo-card { background:#121b2b; border-color:#2a3a52; }
 body.dark-mode .client-logo-card__overlay { background: rgba(5,12,24,.9); }
+
+/* refined toggle controls */
+.nav-toolbar__btn--toggle {
+    padding: 4px;
+    min-height: 34px;
+    min-width: 78px;
+    border-radius: 999px;
+    background: var(--surface-muted);
+    gap: 4px;
+}
+
+.nav-toggle-pill {
+    width: 30px;
+    height: 24px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--text-color);
+    opacity: .75;
+    transition: all .2s ease;
+}
+
+.nav-toggle-pill.is-active {
+    background: var(--bs-primary);
+    color: #fff;
+    opacity: 1;
+    box-shadow: 0 6px 14px rgba(32, 85, 172, .35);
+}
+
+body.dark-mode .nav-toolbar__btn--toggle {
+    background: #18243a;
+    border-color: #2d3f5c;
+}
+
+@media (max-width: 991.98px) {
+    .nav-toolbar__btn--toggle {
+        min-width: 74px;
+    }
+}
