@@ -2362,3 +2362,50 @@ body.dark-mode .nav-toolbar__btn--toggle {
         min-width: 74px;
     }
 }
+
+/* stronger active state + responsive navbar controls */
+.nav-toggle-pill {
+    border: 1px solid transparent;
+}
+
+.nav-toggle-pill:not(.is-active) {
+    background: rgba(116, 134, 164, .14);
+}
+
+.nav-toolbar__btn--toggle .nav-toggle-pill.is-active {
+    transform: translateY(-1px) scale(1.03);
+    border-color: rgba(255, 255, 255, .45);
+}
+
+.nav-toolbar__btn--toggle.is-dark,
+.nav-toolbar__btn--toggle.is-ar {
+    box-shadow: inset 0 0 0 1px rgba(37, 99, 235, .24), 0 8px 20px rgba(15, 23, 42, .08);
+}
+
+@media (max-width: 991.98px) {
+    .navbar .navbar-collapse {
+        padding-top: 12px;
+    }
+
+    .navbar .nav-toolbar {
+        width: 100%;
+        justify-content: center;
+        margin: 10px 0 12px;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .navbar .nav-toolbar__btn--toggle {
+        min-width: 88px;
+        min-height: 36px;
+    }
+
+    .navbar .btn.rounded-pill {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+[dir="rtl"] .navbar .nav-toolbar {
+    flex-direction: row;
+}

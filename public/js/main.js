@@ -609,6 +609,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var setTheme = function (theme) {
         var body = document.body;
         var themeLabel = document.getElementById('themeLabel');
+        var themeToggle = document.getElementById('themeToggle');
         var lang = localStorage.getItem(LANG_KEY) || defaultLang;
 
         body.classList.add('theme-fade');
@@ -624,6 +625,11 @@ document.addEventListener('DOMContentLoaded', function () {
             var option = el.getAttribute('data-theme-option');
             el.classList.toggle('is-active', option === theme);
         });
+
+        if (themeToggle) {
+            themeToggle.classList.toggle('is-dark', theme === 'dark');
+            themeToggle.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
+        }
         setTimeout(function () {
             body.classList.remove('theme-fade');
         }, 300);
@@ -633,6 +639,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var setLanguage = function (lang) {
         var html = document.documentElement;
         var langLabel = document.getElementById('languageLabel');
+        var languageToggle = document.getElementById('languageToggle');
         var currentTheme = localStorage.getItem(THEME_KEY) || 'light';
 
         html.setAttribute('lang', lang);
@@ -660,6 +667,11 @@ document.addEventListener('DOMContentLoaded', function () {
             var option = el.getAttribute('data-lang-option');
             el.classList.toggle('is-active', option === lang);
         });
+
+        if (languageToggle) {
+            languageToggle.classList.toggle('is-ar', lang === 'ar');
+            languageToggle.setAttribute('aria-pressed', lang === 'ar' ? 'true' : 'false');
+        }
 
         localStorage.setItem(LANG_KEY, lang);
         setTheme(currentTheme);
