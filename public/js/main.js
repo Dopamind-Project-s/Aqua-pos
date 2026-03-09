@@ -219,6 +219,7 @@ document.addEventListener('DOMContentLoaded', function () {
             'nav.features': 'Features',
             'nav.blog': 'Our Blog',
             'nav.team': 'Our Team',
+            'nav.clients': 'Our Clients',
             'nav.testimonial': 'Testimonial',
             'nav.notfound': '404 Page',
             'nav.contact': 'Contact Us',
@@ -293,7 +294,13 @@ document.addEventListener('DOMContentLoaded', function () {
             'partners.emptyTitle': 'No partners yet',
             'partners.emptySubtitle': 'We are currently onboarding exceptional partners. Please check back soon.',
             'partners.visitWebsite': 'Visit Website',
+            'partners.website': 'Website',
+            'partners.apply': 'Apply',
             'partners.defaultDescription': 'Trusted partner supporting our ecosystem with reliable services.',
+            'clients.eyebrow': 'Our Clients',
+            'clients.title': 'Trusted by Leading Brands',
+            'clients.subtitle': 'We proudly serve ambitious brands across retail and hospitality.',
+            'clients.empty': 'Clients will be published soon.',
             'support.badge': 'Support Center',
             'support.title': 'How can we help you today?',
             'support.subtitle': 'Raise a technical or operational issue and our support team will respond quickly.',
@@ -413,6 +420,7 @@ document.addEventListener('DOMContentLoaded', function () {
             'nav.features': 'المميزات',
             'nav.blog': 'مدونتنا',
             'nav.team': 'فريقنا',
+            'nav.clients': 'عملاؤنا',
             'nav.testimonial': 'آراء العملاء',
             'nav.notfound': 'صفحة 404',
             'nav.contact': 'اتصل بنا',
@@ -487,7 +495,13 @@ document.addEventListener('DOMContentLoaded', function () {
             'partners.emptyTitle': 'لا يوجد شركاء حالياً',
             'partners.emptySubtitle': 'نعمل حالياً على ضم شركاء مميزين. يرجى زيارة الصفحة قريبًا.',
             'partners.visitWebsite': 'زيارة الموقع',
+            'partners.website': 'الموقع',
+            'partners.apply': 'التقديم',
             'partners.defaultDescription': 'شريك موثوق يدعم منظومتنا بخدمات احترافية مستقرة.',
+            'clients.eyebrow': 'عملاؤنا',
+            'clients.title': 'علامات رائدة تثق بنا',
+            'clients.subtitle': 'نفخر بخدمة علامات طموحة في قطاعات التجزئة والضيافة.',
+            'clients.empty': 'سيتم نشر العملاء قريبًا.',
             'support.badge': 'مركز الدعم',
             'support.title': 'كيف يمكننا مساعدتك اليوم؟',
             'support.subtitle': 'ارفع مشكلة تقنية أو تشغيلية وسيقوم فريق الدعم بالرد بسرعة.',
@@ -637,7 +651,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         if (langLabel) {
-            langLabel.textContent = lang === 'ar' ? 'EN' : 'AR';
+            langLabel.textContent = lang === 'ar' ? 'عربي | EN' : 'AR / EN';
         }
 
         localStorage.setItem(LANG_KEY, lang);

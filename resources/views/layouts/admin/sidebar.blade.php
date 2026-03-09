@@ -46,6 +46,12 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('admin.clients.index') }}" aria-expanded="false">
+                        <i class="ti ti-users-group"></i>
+                        <span class="hide-menu">Clients</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('admin.settings.edit') }}" aria-expanded="false">
                         <i class="ti ti-settings"></i>
                         <span class="hide-menu">Settings</span>

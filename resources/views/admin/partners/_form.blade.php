@@ -13,16 +13,42 @@
         @error('logo')<div class="invalid-feedback">{{ $message }}</div>@enderror
     </div>
 
-    <div class="col-md-12">
-        <label class="form-label" for="description">Description</label>
-        <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" rows="4">{{ old('description', $partner->description ?? '') }}</textarea>
-        @error('description')<div class="invalid-feedback">{{ $message }}</div>@enderror
-    </div>
-
     <div class="col-md-6">
         <label class="form-label" for="website_url">Website URL</label>
         <input type="url" class="form-control @error('website_url') is-invalid @enderror" id="website_url" name="website_url" value="{{ old('website_url', $partner->website_url ?? '') }}">
         @error('website_url')<div class="invalid-feedback">{{ $message }}</div>@enderror
+    </div>
+
+    <div class="col-md-6">
+        <label class="form-label" for="apply_url">Apply Link</label>
+        <input type="url" class="form-control @error('apply_url') is-invalid @enderror" id="apply_url" name="apply_url" value="{{ old('apply_url', $partner->apply_url ?? '') }}">
+        @error('apply_url')<div class="invalid-feedback">{{ $message }}</div>@enderror
+    </div>
+
+    <div class="col-md-4">
+        <label class="form-label" for="facebook_url">Facebook</label>
+        <input type="url" class="form-control @error('facebook_url') is-invalid @enderror" id="facebook_url" name="facebook_url" value="{{ old('facebook_url', $partner->facebook_url ?? '') }}">
+        @error('facebook_url')<div class="invalid-feedback">{{ $message }}</div>@enderror
+    </div>
+    <div class="col-md-4">
+        <label class="form-label" for="instagram_url">Instagram</label>
+        <input type="url" class="form-control @error('instagram_url') is-invalid @enderror" id="instagram_url" name="instagram_url" value="{{ old('instagram_url', $partner->instagram_url ?? '') }}">
+        @error('instagram_url')<div class="invalid-feedback">{{ $message }}</div>@enderror
+    </div>
+    <div class="col-md-4">
+        <label class="form-label" for="linkedin_url">LinkedIn</label>
+        <input type="url" class="form-control @error('linkedin_url') is-invalid @enderror" id="linkedin_url" name="linkedin_url" value="{{ old('linkedin_url', $partner->linkedin_url ?? '') }}">
+        @error('linkedin_url')<div class="invalid-feedback">{{ $message }}</div>@enderror
+    </div>
+    <div class="col-md-6">
+        <label class="form-label" for="twitter_url">Twitter</label>
+        <input type="url" class="form-control @error('twitter_url') is-invalid @enderror" id="twitter_url" name="twitter_url" value="{{ old('twitter_url', $partner->twitter_url ?? '') }}">
+        @error('twitter_url')<div class="invalid-feedback">{{ $message }}</div>@enderror
+    </div>
+    <div class="col-md-6">
+        <label class="form-label" for="youtube_url">YouTube</label>
+        <input type="url" class="form-control @error('youtube_url') is-invalid @enderror" id="youtube_url" name="youtube_url" value="{{ old('youtube_url', $partner->youtube_url ?? '') }}">
+        @error('youtube_url')<div class="invalid-feedback">{{ $message }}</div>@enderror
     </div>
 
     <div class="col-md-3">

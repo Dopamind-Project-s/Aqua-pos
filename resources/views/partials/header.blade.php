@@ -142,19 +142,19 @@
                                 <a href="{{ route('service') }}" class="dropdown-item {{ request()->routeIs('service') ? 'active' : '' }}"><i class="fas fa-concierge-bell me-2"></i><span data-i18n="nav.services">Services</span></a>
                                 <a href="{{ url('/appointment') }}" class="dropdown-item"><i class="fas fa-calendar-days me-2"></i><span data-i18n="nav.appointment">Appointment</span></a>
                                 <a href="{{ url('/feature') }}" class="dropdown-item"><i class="fas fa-star me-2"></i><span data-i18n="nav.features">Features</span></a>
-                                <a href="{{ url('/team') }}" class="dropdown-item"><i class="fas fa-users me-2"></i><span data-i18n="nav.team">Our Team</span></a>
+                                <a href="{{ url('/team') }}" class="dropdown-item"><i class="fas fa-users me-2"></i><span data-i18n="nav.clients">Our Clients</span></a>
                                 <a href="{{ url('/testimonial') }}" class="dropdown-item"><i class="fas fa-comments me-2"></i><span data-i18n="nav.testimonial">Testimonial</span></a>
                             </div>
                         </div>
                     </div>
                     <div class="nav-toolbar" aria-label="Quick controls">
                         <button class="nav-toolbar__btn" id="themeToggle" type="button" aria-label="Toggle theme">
-                            <span class="nav-toolbar__icon" id="themeIcon">🌙</span>
+                            <i class="fas fa-moon nav-toolbar__icon" id="themeIcon" aria-hidden="true"></i>
                             <span class="nav-toolbar__text" id="themeLabel" data-i18n="controls.dark">Dark</span>
                         </button>
                         <button class="nav-toolbar__btn" id="languageToggle" type="button" aria-label="Toggle language">
-                            <span class="nav-toolbar__icon">🌍</span>
-                            <span class="nav-toolbar__text" id="languageLabel">AR</span>
+                            <i class="fas fa-language nav-toolbar__icon" aria-hidden="true"></i>
+                            <span class="nav-toolbar__text" id="languageLabel">AR / EN</span>
                         </button>
                     </div>
                     <a href="{{ route('request-product-demo') }}" class="btn btn-primary rounded-pill text-white py-2 px-4 flex-wrap flex-sm-shrink-0"><i class="fas fa-calendar-check me-2"></i>Request Demo</a>

@@ -2289,3 +2289,34 @@ body.dark-mode .partner-card__logo-wrap {
     .partners-toolbar { padding: 14px; }
     .partners-toolbar__count { width: 100%; justify-content: center; }
 }
+
+/* compact controls */
+.nav-toolbar__btn { padding: 6px 10px; gap: 5px; min-height: 34px; }
+.nav-toolbar__icon { font-size: 13px; }
+.nav-toolbar__text { font-size: 11px; font-weight: 700; }
+@media (max-width: 991.98px) {
+  .nav-toolbar { gap: 6px; margin-top: 8px; }
+  .nav-toolbar__btn { padding: 6px 9px; }
+}
+
+/* partners hover overlay */
+.partner-card { position: relative; }
+.partner-card__overlay {
+  position: absolute; inset: 0; padding: 1rem; display: flex; flex-direction: column; justify-content: flex-end;
+  background: linear-gradient(180deg, rgba(6,14,28,.08), rgba(8,20,44,.88)); color: #fff;
+  opacity: 0; transform: translateY(8px); transition: all .25s ease;
+}
+.partner-card:hover .partner-card__overlay { opacity: 1; transform: translateY(0); }
+.partner-card__actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: .6rem; }
+.partner-card__actions a { color: #fff; background: rgba(255,255,255,.16); border-radius: 999px; padding: 6px 10px; font-size: 13px; }
+.partner-card__actions a:hover { background: rgba(255,255,255,.26); color: #fff; }
+
+/* clients logo wall */
+.client-logo-card { position: relative; border: 1px solid #dbe6f7; border-radius: 14px; min-height: 130px; display: grid; place-items: center; background: #fff; overflow: hidden; }
+.client-logo-card__img { max-width: 78%; max-height: 68px; object-fit: contain; filter: grayscale(.12); }
+.client-logo-card__overlay { position: absolute; inset: 0; background: rgba(12,24,46,.88); color: #fff; opacity: 0; transition: .25s ease; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:10px; }
+.client-logo-card:hover .client-logo-card__overlay { opacity: 1; }
+.client-logo-card__links { display:flex; gap:8px; flex-wrap:wrap; justify-content:center; }
+.client-logo-card__links a { width:30px; height:30px; border-radius:999px; background:rgba(255,255,255,.2); color:#fff; display:grid; place-items:center; }
+body.dark-mode .client-logo-card { background:#121b2b; border-color:#2a3a52; }
+body.dark-mode .client-logo-card__overlay { background: rgba(5,12,24,.9); }

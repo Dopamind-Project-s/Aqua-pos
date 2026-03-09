@@ -7,7 +7,9 @@ use App\Http\Controllers\Admin\PartnerController as AdminPartnerController;
 use App\Http\Controllers\Admin\ServiceRequestController as AdminServiceRequestController;
 use App\Http\Controllers\Admin\SiteSettingController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PartnerController;
+use App\Http\Controllers\Admin\ClientController as AdminClientController;
 use App\Http\Controllers\ServiceRequestController;
 use App\Http\Controllers\ProductCatalogController;
 use Illuminate\Support\Facades\Route;
@@ -18,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-Route::view('/', 'home')->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::view('/about', 'about')->name('about');
 Route::view('/service', 'service')->name('service');
@@ -99,6 +101,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('partners', AdminPartnerController::class)->except(['show']);
     Route::post('partners/{partner}/toggle-status', [AdminPartnerController::class, 'toggleStatus'])->name('partners.toggle-status');
     Route::post('partners/reorder', [AdminPartnerController::class, 'reorder'])->name('partners.reorder');
+
+    Route::resource('clients', AdminClientController::class)->except(['show']);
+    Route::post('clients/{client}/toggle-status', [AdminClientController::class, 'toggleStatus'])->name('clients.toggle-status');
 
     /*
     |--------------------------------------------------------------------------

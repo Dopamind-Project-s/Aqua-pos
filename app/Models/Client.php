@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Partner extends Model
+class Client extends Model
 {
     use HasFactory;
 
@@ -13,9 +13,7 @@ class Partner extends Model
         'name',
         'slug',
         'logo',
-        'description',
         'website_url',
-        'apply_url',
         'facebook_url',
         'instagram_url',
         'linkedin_url',

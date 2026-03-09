@@ -9,7 +9,7 @@
 </head>
 
 <body>
-@if (request()->routeIs('admin.categories.*') || request()->routeIs('admin.products.*') || request()->routeIs('admin.posts.*') || request()->routeIs('admin.requests.*') || request()->routeIs('admin.partners.*') || request()->routeIs('admin.settings.*'))
+@if (request()->routeIs('admin.categories.*') || request()->routeIs('admin.products.*') || request()->routeIs('admin.posts.*') || request()->routeIs('admin.requests.*') || request()->routeIs('admin.partners.*') || request()->routeIs('admin.settings.*') || request()->routeIs('admin.clients.*'))
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
          data-sidebar-position="fixed" data-header-position="fixed">
 
