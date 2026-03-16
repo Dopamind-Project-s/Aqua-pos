@@ -202,6 +202,30 @@
     gap: 0.35rem;
 }
 
+.topbar-social-btn {
+    background: linear-gradient(180deg, #ffffff 0%, #edf3ff 100%);
+    border-color: #d8e5fa !important;
+    color: #1d4f9a;
+    box-shadow: 0 6px 14px rgba(10, 44, 96, .15);
+}
+
+.topbar-social-btn:hover {
+    background: linear-gradient(180deg, #2f7fe1 0%, #1d5fba 100%);
+    color: #fff;
+    border-color: transparent !important;
+}
+
+body.dark-mode .topbar-social-btn {
+    background: linear-gradient(180deg, #1c2940 0%, #192437 100%);
+    border-color: #2d405f !important;
+    color: #9fc5ff;
+}
+
+body.dark-mode .topbar-social-btn:hover {
+    background: linear-gradient(180deg, #2b5fab 0%, #1e4d91 100%);
+    color: #fff;
+}
+
 @media (max-width: 576px) {
     .topbar {
         display: none;

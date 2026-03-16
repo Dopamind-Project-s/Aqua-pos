@@ -92,6 +92,24 @@
         letter-spacing: .01em;
     }
 
+    .demo-country-chip {
+        border: 1px solid #d5e0f0;
+        border-radius: 12px;
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 12px;
+        color: #1d3556;
+        background: #f6f9ff;
+        font-weight: 600;
+    }
+
+    .demo-country-flag {
+        font-size: 1.2rem;
+        line-height: 1;
+    }
+
     .demo-feature-box {
         border: 1px solid #e1e9f7;
         border-radius: 16px;
@@ -118,6 +136,7 @@
     body.dark-mode .demo-feature-box { background: #121c2c; border-color: #24354f; box-shadow: 0 12px 26px rgba(0,0,0,.34); }
     body.dark-mode .demo-input,
     body.dark-mode .demo-textarea { background: #101a2a; border-color: #2a3f5d; color: #e7edf9; }
+    body.dark-mode .demo-country-chip { background: #101a2a; border-color: #2a3f5d; color: #e7edf9; }
     body.dark-mode .demo-input-group .form-label,
     body.dark-mode .demo-layout-card h3,
     body.dark-mode .demo-layout-card p,
@@ -204,7 +223,11 @@
 
                         <div class="col-md-6 demo-input-group">
                             <label class="form-label"><i class="fas fa-globe"></i><span data-i18n="demo.country">Country</span></label>
-                            <input class="form-control demo-input" name="country">
+                            <input type="hidden" name="country" id="demoCountryInput">
+                            <div class="demo-country-chip" id="demoCountryChip" aria-live="polite">
+                                <span class="demo-country-flag" id="demoCountryFlag">🌐</span>
+                                <span id="demoCountryText" data-i18n="demo.countryDetecting">Detecting your country...</span>
+                            </div>
                         </div>
 
                         <div class="col-md-6 demo-input-group">
@@ -263,3 +286,39 @@
 </section>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const countryInput = document.getElementById('demoCountryInput');
+    const countryText = document.getElementById('demoCountryText');
+    const countryFlag = document.getElementById('demoCountryFlag');
+
+    if (!countryInput || !countryText || !countryFlag) return;
+
+    const toFlag = (code) => {
+        if (!code || code.length !== 2) return '🌐';
+        const chars = code.toUpperCase().split('');
+        return String.fromCodePoint(...chars.map(c => 127397 + c.charCodeAt()));
+    };
+
+    const setCountry = (name, code) => {
+        countryInput.value = name || '';
+        countryText.textContent = name || countryText.textContent;
+        countryFlag.textContent = toFlag(code);
+    };
+
+    fetch('https://ipapi.co/json/')
+        .then((response) => response.ok ? response.json() : null)
+        .then((data) => {
+            if (!data) return;
+            setCountry(data.country_name, data.country_code);
+        })
+        .catch(() => {
+            const lang = document.documentElement.getAttribute('lang') || 'en';
+            countryText.textContent = lang === 'ar' ? 'تعذر التحديد التلقائي' : 'Auto-detection unavailable';
+            countryFlag.textContent = '🌐';
+        });
+});
+</script>
+@endpush

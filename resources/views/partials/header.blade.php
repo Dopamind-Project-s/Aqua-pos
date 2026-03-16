@@ -27,22 +27,22 @@
                 <div class="col-lg-4 text-center text-lg-end">
                     <div class="d-flex align-items-center justify-content-end topbar-social-list">
                         @if($siteSetting?->facebook_url)
-                            <a href="{{ $siteSetting->facebook_url }}" target="_blank" rel="noopener" class="btn btn-light btn-square border rounded-circle nav-fill me-2"><i class="fab fa-facebook-f"></i></a>
+                            <a href="{{ $siteSetting->facebook_url }}" target="_blank" rel="noopener" class="btn btn-light btn-square border rounded-circle nav-fill topbar-social-btn me-2"><i class="fab fa-facebook-f"></i></a>
                         @endif
                         @if($siteSetting?->twitter_url)
-                            <a href="{{ $siteSetting->twitter_url }}" target="_blank" rel="noopener" class="btn btn-light btn-square border rounded-circle nav-fill me-2"><i class="fab fa-twitter"></i></a>
+                            <a href="{{ $siteSetting->twitter_url }}" target="_blank" rel="noopener" class="btn btn-light btn-square border rounded-circle nav-fill topbar-social-btn me-2"><i class="fab fa-twitter"></i></a>
                         @endif
                         @if($siteSetting?->instagram_url)
-                            <a href="{{ $siteSetting->instagram_url }}" target="_blank" rel="noopener" class="btn btn-light btn-square border rounded-circle nav-fill me-2"><i class="fab fa-instagram"></i></a>
+                            <a href="{{ $siteSetting->instagram_url }}" target="_blank" rel="noopener" class="btn btn-light btn-square border rounded-circle nav-fill topbar-social-btn me-2"><i class="fab fa-instagram"></i></a>
                         @endif
                         @if($siteSetting?->linkedin_url)
-                            <a href="{{ $siteSetting->linkedin_url }}" target="_blank" rel="noopener" class="btn btn-light btn-square border rounded-circle nav-fill me-2"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="{{ $siteSetting->linkedin_url }}" target="_blank" rel="noopener" class="btn btn-light btn-square border rounded-circle nav-fill topbar-social-btn me-2"><i class="fab fa-linkedin-in"></i></a>
                         @endif
                         @if($siteSetting?->youtube_url)
-                            <a href="{{ $siteSetting->youtube_url }}" target="_blank" rel="noopener" class="btn btn-light btn-square border rounded-circle nav-fill me-2"><i class="fab fa-youtube"></i></a>
+                            <a href="{{ $siteSetting->youtube_url }}" target="_blank" rel="noopener" class="btn btn-light btn-square border rounded-circle nav-fill topbar-social-btn me-2"><i class="fab fa-youtube"></i></a>
                         @endif
                         @if($siteSetting?->tiktok_url)
-                            <a href="{{ $siteSetting->tiktok_url }}" target="_blank" rel="noopener" class="btn btn-light btn-square border rounded-circle nav-fill"><i class="fab fa-tiktok"></i></a>
+                            <a href="{{ $siteSetting->tiktok_url }}" target="_blank" rel="noopener" class="btn btn-light btn-square border rounded-circle nav-fill topbar-social-btn"><i class="fab fa-tiktok"></i></a>
                         @endif
                     </div>
                 </div>

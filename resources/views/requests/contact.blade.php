@@ -3,12 +3,12 @@
 @push('styles')
 <style>
     .contact-page {
-        background: radial-gradient(circle at left top, #fff7ef 0%, #fffaf4 45%, #ffffff 100%);
+        background: radial-gradient(circle at left top, #eef6ff 0%, #f5f9ff 45%, #ffffff 100%);
         padding-top: clamp(5.2rem, 7vw, 6.6rem);
     }
 
     .contact-hero {
-        background: linear-gradient(135deg, #5a2b0a 0%, #b45a1d 58%, #e58d34 100%);
+        background: linear-gradient(135deg, #0d2851 0%, #1260bb 58%, #1f7de0 100%);
         color: #fff;
         border-radius: 0 0 24px 24px;
         position: relative;
@@ -43,16 +43,16 @@
     }
 
     .contact-card {
-        border: 1px solid #f2dfcf;
+        border: 1px solid #dce9fb;
         border-radius: 20px;
         background: #fff;
         box-shadow: 0 12px 26px rgba(80, 38, 8, .08);
     }
 
     .contact-info-box {
-        border: 1px solid #f5e4d5;
+        border: 1px solid #e3edf9;
         border-radius: 16px;
-        background: linear-gradient(180deg, #fffaf4, #fff3e7);
+        background: linear-gradient(180deg, #f5f9ff, #edf4ff);
         padding: 16px;
     }
 
@@ -60,8 +60,8 @@
         width: 46px;
         height: 46px;
         border-radius: 12px;
-        background: linear-gradient(135deg, #ffe7cf, #ffd8b0);
-        color: #9a4f17;
+        background: linear-gradient(135deg, #e0ecff, #c8defe);
+        color: #1658ab;
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -73,45 +73,45 @@
         display: inline-flex;
         gap: 7px;
         align-items: center;
-        color: #5d3418;
+        color: #1d3556;
         font-weight: 600;
     }
 
     .contact-form .form-control {
         border-radius: 12px;
-        border-color: #efdcc9;
+        border-color: #d3e2f6;
         min-height: 48px;
     }
 
     .contact-form textarea.form-control { min-height: 140px; }
 
     .contact-form .form-control:focus {
-        border-color: #e18a36;
-        box-shadow: 0 0 0 .18rem rgba(225, 138, 54, .18);
+        border-color: #2f7fe1;
+        box-shadow: 0 0 0 .18rem rgba(47, 127, 225, .18);
     }
 
     .contact-submit {
         border-radius: 12px;
         min-height: 52px;
         font-weight: 700;
-        background: linear-gradient(135deg, #cc6d25, #e18a36);
+        background: linear-gradient(135deg, #1b63c0, #2f7fe1);
         border: none;
     }
 
     .contact-submit:hover { filter: brightness(1.02); }
 
-    body.dark-mode .contact-page { background: linear-gradient(180deg, #17120d 0%, #0e0b08 100%); }
+    body.dark-mode .contact-page { background: linear-gradient(180deg, #0f1726 0%, #0b1420 100%); }
     body.dark-mode .contact-card,
     body.dark-mode .contact-info-box {
-        background: #1f1811;
-        border-color: #4c3726;
+        background: #121c2c;
+        border-color: #24354f;
         box-shadow: 0 12px 26px rgba(0,0,0,.35);
     }
 
     body.dark-mode .contact-form .form-control {
-        background: #1a140f;
-        border-color: #4c3726;
-        color: #f6e7d6;
+        background: #101a2a;
+        border-color: #24354f;
+        color: #e7edf9;
     }
 
     body.dark-mode .contact-form .form-label,
@@ -120,12 +120,12 @@
     body.dark-mode .contact-card p,
     body.dark-mode .contact-card small,
     body.dark-mode .contact-card .text-muted {
-        color: #f1e2d2 !important;
+        color: #dce8fb !important;
     }
 
     body.dark-mode .contact-icon {
-        background: linear-gradient(135deg, #52311a, #6d4121);
-        color: #ffd9b0;
+        background: linear-gradient(135deg, #21324c, #1b2940);
+        color: #9bc2ff;
     }
 
     @media (max-width: 576px) {
