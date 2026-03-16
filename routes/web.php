@@ -43,10 +43,10 @@ Route::get('/clients', function () {
         ->orderBy('name_en')
         ->get();
 
-    return view('team', compact('clients'));
+    return view('clients', compact('clients'));
 })->name('clients');
 
-Route::redirect('/team', '/clients', 301)->name('team');
+Route::redirect('/team', '/clients', 301)->name('legacy.team.redirect');
 Route::view('/testimonial', 'testimonial')->name('testimonial');
 
 Route::get('/partners', [PartnerController::class, 'index'])->name('partners.index');
