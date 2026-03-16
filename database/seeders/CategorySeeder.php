@@ -9,7 +9,7 @@ class CategorySeeder extends Seeder
 {
     public function run(): void
     {
-        $rows = [
+        $categories = [
             [
                 'slug' => 'retail-pos',
                 'name' => 'Retail POS',
@@ -58,10 +58,22 @@ class CategorySeeder extends Seeder
                 'sort_order' => 4,
                 'is_active' => true,
             ],
+            [
+                'slug' => 'ecommerce-omni-channel',
+                'name' => 'Ecommerce & Omnichannel',
+                'name_en' => 'Ecommerce & Omnichannel',
+                'name_ar' => 'التجارة الإلكترونية وتعدد القنوات',
+                'description' => 'Unify in-store and online sales operations.',
+                'description_en' => 'Unify in-store and online sales operations.',
+                'description_ar' => 'توحيد عمليات البيع داخل المتجر وعبر القنوات الإلكترونية.',
+                'image' => 'img/defaults/placeholder.svg',
+                'sort_order' => 5,
+                'is_active' => true,
+            ],
         ];
 
-        foreach ($rows as $row) {
-            Category::updateOrCreate(['slug' => $row['slug']], $row);
+        foreach ($categories as $category) {
+            Category::query()->updateOrCreate(['slug' => $category['slug']], $category);
         }
     }
 }

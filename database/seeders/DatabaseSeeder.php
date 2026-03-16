@@ -9,19 +9,17 @@ class DatabaseSeeder extends Seeder
 {
     use WithoutModelEvents;
 
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
+        // Order matters for foreign keys and realistic content relations.
         $this->call([
             AdminUserSeeder::class,
             SiteSettingSeeder::class,
             CategorySeeder::class,
             ProductSeeder::class,
-            PostSeeder::class,
             PartnerSeeder::class,
             ClientsSeeder::class,
+            PostSeeder::class,
             ServiceRequestSeeder::class,
         ]);
     }

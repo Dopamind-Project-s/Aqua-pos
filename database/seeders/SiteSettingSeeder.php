@@ -30,11 +30,11 @@ class SiteSettingSeeder extends Seeder
                 'google_map_embed' => 'https://maps.google.com/?q=Aqua+POS+Amman+Jordan',
 
                 'hq_title' => 'Head Office',
-                'hq_address' => 'AQUA POS Amman, Jordan',
+                'hq_address' => 'AQUA POS, Amman, Jordan',
                 'info_email' => 'info@aqua-pos.com',
                 'support_email' => 'support@aqua-pos.com',
                 'phone_primary' => '+962 79 1888655',
-                'phone_secondary' => '+962-791888655',
+                'phone_secondary' => '+962 6 5920000',
 
                 'footer_company_title' => 'AQUA POS',
                 'footer_company_description' => 'AQUA POS delivers cloud POS, inventory, and business automation tools that improve speed, control, and growth for modern businesses.',

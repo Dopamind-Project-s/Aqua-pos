@@ -29,95 +29,52 @@ class ProductSeeder extends Seeder
                     'description_en' => 'Inventory, barcode, invoices, and sales analytics in one system.',
                     'description_ar' => 'إدارة المخزون والباركود والفواتير وتحليلات المبيعات في نظام واحد.',
                     'key_features' => ['Barcode Sales', 'Inventory Sync', 'Customer Loyalty', 'Branch Dashboard'],
-                    'use_cases' => 'Best for supermarkets, mini markets, electronics stores, and boutique retail chains.',
-                    'use_cases_en' => 'Best for supermarkets, mini markets, electronics stores, and boutique retail chains.',
-                    'use_cases_ar' => 'مناسب للسوبرماركت والميني ماركت ومحلات الإلكترونيات وسلاسل التجزئة.',
+                    'use_cases' => 'Best for supermarkets, electronics stores, and retail chains.',
+                    'use_cases_en' => 'Best for supermarkets, electronics stores, and retail chains.',
+                    'use_cases_ar' => 'مناسب للسوبرماركت ومحلات الإلكترونيات وسلاسل التجزئة.',
+                    'image' => 'img/defaults/placeholder.svg',
                     'price' => 1999.00,
                     'price_note' => 'Starting from',
                     'sort_order' => 1,
                     'is_featured' => true,
                     'is_active' => true,
                 ],
-            ],
-            [
-                'category_slug' => 'retail-pos',
-                'product' => [
-                    'slug' => 'aqua-loyalty-plus',
-                    'name' => 'Aqua Loyalty Plus',
-                    'name_en' => 'Aqua Loyalty Plus',
-                    'name_ar' => 'أكوا ولاء بلس',
-                    'tagline' => 'Loyalty and CRM growth engine for retail brands.',
-                    'tagline_en' => 'Loyalty and CRM growth engine for retail brands.',
-                    'tagline_ar' => 'محرك نمو الولاء وCRM لعلامات التجزئة.',
-                    'short_description' => 'Customer loyalty and campaign automation.',
-                    'short_description_en' => 'Customer loyalty and campaign automation.',
-                    'short_description_ar' => 'إدارة الولاء وحملات التسويق الآلي.',
-                    'description' => 'Segment customers, launch rewards, and run personalized retention campaigns.',
-                    'description_en' => 'Segment customers, launch rewards, and run personalized retention campaigns.',
-                    'description_ar' => 'تقسيم العملاء وإطلاق المكافآت وتشغيل حملات احتفاظ مخصصة.',
-                    'key_features' => ['Points Engine', 'Tier Rules', 'Automated Campaigns', 'Customer Segments'],
-                    'use_cases' => 'Perfect for chains focused on repeat purchases and customer lifecycle value.',
-                    'use_cases_en' => 'Perfect for chains focused on repeat purchases and customer lifecycle value.',
-                    'use_cases_ar' => 'مثالي للمتاجر التي تستهدف تكرار الشراء وزيادة قيمة العميل.',
-                    'price' => 899.00,
-                    'price_note' => 'Starting from',
-                    'sort_order' => 2,
-                    'is_featured' => false,
-                    'is_active' => true,
+                'images' => [
+                    ['image' => 'img/defaults/placeholder.svg', 'alt' => 'Retail dashboard overview'],
+                    ['image' => 'img/defaults/placeholder.svg', 'alt' => 'Retail checkout interface'],
+                    ['image' => 'img/defaults/placeholder.svg', 'alt' => 'Retail inventory screen'],
                 ],
             ],
             [
                 'category_slug' => 'restaurant-pos',
                 'product' => [
-                    'slug' => 'aqua-food-suite',
-                    'name' => 'Aqua Food Suite',
-                    'name_en' => 'Aqua Food Suite',
-                    'name_ar' => 'أكوا فود سويت',
-                    'tagline' => 'Restaurant POS built for speed and control.',
-                    'tagline_en' => 'Restaurant POS built for speed and control.',
-                    'tagline_ar' => 'نظام مطاعم مصمم للسرعة والتحكم.',
-                    'short_description' => 'POS for restaurants and kitchens.',
-                    'short_description_en' => 'POS for restaurants and kitchens.',
-                    'short_description_ar' => 'إدارة الطلبات والصالات والمطبخ في منصة واحدة.',
-                    'description' => 'Table management, kitchen screens, and delivery integrations.',
-                    'description_en' => 'Table management, kitchen screens, and delivery integrations.',
-                    'description_ar' => 'إدارة الطاولات وشاشات المطبخ وتكاملات التوصيل.',
-                    'key_features' => ['Table Mapping', 'Kitchen Display', 'Delivery Integration', 'Live Sales Insights'],
-                    'use_cases' => 'Ideal for dine-in restaurants, cafes, fast casual, and delivery-first kitchens.',
-                    'use_cases_en' => 'Ideal for dine-in restaurants, cafes, fast casual, and delivery-first kitchens.',
-                    'use_cases_ar' => 'مثالي للمطاعم والكافيهات ومطابخ التوصيل.',
-                    'price' => 2499.00,
+                    'slug' => 'aqua-restaurant-pro',
+                    'name' => 'Aqua Restaurant Pro',
+                    'name_en' => 'Aqua Restaurant Pro',
+                    'name_ar' => 'أكوا ريستورانت برو',
+                    'tagline' => 'Fast ordering and kitchen orchestration for restaurants.',
+                    'tagline_en' => 'Fast ordering and kitchen orchestration for restaurants.',
+                    'tagline_ar' => 'طلب سريع وإدارة ذكية لسير عمل المطبخ.',
+                    'short_description' => 'Restaurant POS with KDS and table management.',
+                    'short_description_en' => 'Restaurant POS with KDS and table management.',
+                    'short_description_ar' => 'نظام مطاعم مع شاشة مطبخ وإدارة الطاولات.',
+                    'description' => 'Speed up service by connecting cashier, waiters, and kitchen in one flow.',
+                    'description_en' => 'Speed up service by connecting cashier, waiters, and kitchen in one flow.',
+                    'description_ar' => 'تسريع الخدمة عبر ربط الكاشير والنادل والمطبخ في تدفق موحد.',
+                    'key_features' => ['Table Mapping', 'Kitchen Display', 'Modifier Rules', 'Delivery Integrations'],
+                    'use_cases' => 'Designed for dine-in restaurants, cafes, and dark kitchens.',
+                    'use_cases_en' => 'Designed for dine-in restaurants, cafes, and dark kitchens.',
+                    'use_cases_ar' => 'مناسب للمطاعم والكافيهات والمطابخ السحابية.',
+                    'image' => 'img/defaults/placeholder.svg',
+                    'price' => 1699.00,
                     'price_note' => 'Starting from',
                     'sort_order' => 1,
                     'is_featured' => true,
                     'is_active' => true,
                 ],
-            ],
-            [
-                'category_slug' => 'restaurant-pos',
-                'product' => [
-                    'slug' => 'aqua-qr-ordering',
-                    'name' => 'Aqua QR Ordering',
-                    'name_en' => 'Aqua QR Ordering',
-                    'name_ar' => 'أكوا طلب عبر QR',
-                    'tagline' => 'Contactless ordering and payment experience.',
-                    'tagline_en' => 'Contactless ordering and payment experience.',
-                    'tagline_ar' => 'تجربة طلب ودفع بدون تلامس.',
-                    'short_description' => 'Digital menu ordering via QR with integrated payment.',
-                    'short_description_en' => 'Digital menu ordering via QR with integrated payment.',
-                    'short_description_ar' => 'طلب رقمي عبر QR مع تكامل الدفع.',
-                    'description' => 'Let guests order and pay from phones while syncing orders directly to POS and kitchen.',
-                    'description_en' => 'Let guests order and pay from phones while syncing orders directly to POS and kitchen.',
-                    'description_ar' => 'يسمح للعميل بالطلب والدفع من الهاتف مع مزامنة مباشرة لنقطة البيع والمطبخ.',
-                    'key_features' => ['QR Menu', 'Mobile Payment', 'Order Sync', 'Upsell Prompts'],
-                    'use_cases' => 'Great for high-traffic cafes, food courts, and table-service venues.',
-                    'use_cases_en' => 'Great for high-traffic cafes, food courts, and table-service venues.',
-                    'use_cases_ar' => 'مناسب للكافيهات المزدحمة ومجمعات الطعام والمطاعم بخدمة الطاولة.',
-                    'price' => 699.00,
-                    'price_note' => 'Starting from',
-                    'sort_order' => 2,
-                    'is_featured' => false,
-                    'is_active' => true,
+                'images' => [
+                    ['image' => 'img/defaults/placeholder.svg', 'alt' => 'Restaurant floor map'],
+                    ['image' => 'img/defaults/placeholder.svg', 'alt' => 'Kitchen display management'],
                 ],
             ],
             [
@@ -136,15 +93,19 @@ class ProductSeeder extends Seeder
                     'description' => 'Connect POS data to ERP, accounting, and BI tools securely.',
                     'description_en' => 'Connect POS data to ERP, accounting, and BI tools securely.',
                     'description_ar' => 'ربط بيانات نقاط البيع مع ERP والمحاسبة وأدوات ذكاء الأعمال بأمان.',
-                    'key_features' => ['ERP API Sync', 'Accounting Journals', 'Multi-branch Consolidation', 'Audit Logs'],
-                    'use_cases' => 'Designed for organizations needing enterprise reporting and financial traceability.',
-                    'use_cases_en' => 'Designed for organizations needing enterprise reporting and financial traceability.',
-                    'use_cases_ar' => 'مناسب للشركات التي تحتاج تقارير مؤسسية وتتبع مالي.',
+                    'key_features' => ['ERP API Sync', 'Accounting Journals', 'Consolidated Reporting', 'Audit Logs'],
+                    'use_cases' => 'Ideal for organizations requiring enterprise reporting and compliance.',
+                    'use_cases_en' => 'Ideal for organizations requiring enterprise reporting and compliance.',
+                    'use_cases_ar' => 'مناسب للشركات التي تحتاج تقارير مؤسسية وحوكمة دقيقة.',
+                    'image' => 'img/defaults/placeholder.svg',
                     'price' => 1499.00,
                     'price_note' => 'Starting from',
                     'sort_order' => 1,
                     'is_featured' => true,
                     'is_active' => true,
+                ],
+                'images' => [
+                    ['image' => 'img/defaults/placeholder.svg', 'alt' => 'Integration connectors'],
                 ],
             ],
             [
@@ -163,37 +124,44 @@ class ProductSeeder extends Seeder
                     'description' => 'Coordinate front desk workflows, in-house billing, and outlet consumption reporting.',
                     'description_en' => 'Coordinate front desk workflows, in-house billing, and outlet consumption reporting.',
                     'description_ar' => 'تنسيق سير عمل الاستقبال والفوترة الداخلية وتقارير الاستهلاك.',
-                    'key_features' => ['Front Desk Flows', 'Guest Billing', 'Outlet Reporting', 'Multi-outlet Sync'],
+                    'key_features' => ['Guest Billing', 'Front Desk Flows', 'Outlet Reporting', 'Shift Controls'],
                     'use_cases' => 'Suitable for hotels, resorts, and serviced apartment chains.',
                     'use_cases_en' => 'Suitable for hotels, resorts, and serviced apartment chains.',
                     'use_cases_ar' => 'مناسب للفنادق والمنتجعات والشقق الفندقية.',
+                    'image' => 'img/defaults/placeholder.svg',
                     'price' => 1799.00,
                     'price_note' => 'Starting from',
                     'sort_order' => 1,
                     'is_featured' => false,
                     'is_active' => true,
                 ],
+                'images' => [
+                    ['image' => 'img/defaults/placeholder.svg', 'alt' => 'Hospitality service console'],
+                    ['image' => 'img/defaults/placeholder.svg', 'alt' => 'Guest billing overview'],
+                ],
             ],
         ];
 
         foreach ($rows as $row) {
-            $category = Category::where('slug', $row['category_slug'])->first();
+            $category = Category::query()->where('slug', $row['category_slug'])->first();
             if (! $category) {
                 continue;
             }
 
-            $product = Product::updateOrCreate(
+            $product = Product::query()->updateOrCreate(
                 ['slug' => $row['product']['slug']],
                 array_merge($row['product'], ['category_id' => $category->id])
             );
 
-            ProductImage::updateOrCreate(
-                ['product_id' => $product->id, 'sort_order' => 1],
-                [
-                    'image' => 'img/defaults/placeholder.svg',
-                    'alt' => $product->name_en ?: $product->name,
-                ]
-            );
+            foreach ($row['images'] as $index => $image) {
+                ProductImage::query()->updateOrCreate(
+                    ['product_id' => $product->id, 'sort_order' => $index + 1],
+                    [
+                        'image' => $image['image'],
+                        'alt' => $image['alt'],
+                    ]
+                );
+            }
         }
     }
 }
