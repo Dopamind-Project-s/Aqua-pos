@@ -70,51 +70,52 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::middleware(['auth', 'admin'])->group(function () {
         Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
-    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/index', [DashboardController::class, 'index'])->name('index');
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+        Route::get('/index', [DashboardController::class, 'index'])->name('index');
 
-    /*
-    |--------------------------------------------------------------------------
-    | Categories
-    |--------------------------------------------------------------------------
-    */
+        /*
+        |--------------------------------------------------------------------------
+        | Categories
+        |--------------------------------------------------------------------------
+        */
 
-    Route::resource('categories', CategoryController::class);
-    Route::post('categories/{category}/toggle-status', [CategoryController::class, 'toggleStatus'])->name('categories.toggle-status');
-    Route::delete('categories/{category}/force-delete', [CategoryController::class, 'forceDelete'])->name('categories.force-delete');
-    Route::post('categories/bulk-action', [CategoryController::class, 'bulkAction'])->name('categories.bulk-action');
+        Route::resource('categories', CategoryController::class);
+        Route::post('categories/{category}/toggle-status', [CategoryController::class, 'toggleStatus'])->name('categories.toggle-status');
+        Route::delete('categories/{category}/force-delete', [CategoryController::class, 'forceDelete'])->name('categories.force-delete');
+        Route::post('categories/bulk-action', [CategoryController::class, 'bulkAction'])->name('categories.bulk-action');
 
-    /*
-    |--------------------------------------------------------------------------
-    | Products & Posts
-    |--------------------------------------------------------------------------
-    */
+        /*
+        |--------------------------------------------------------------------------
+        | Products & Posts
+        |--------------------------------------------------------------------------
+        */
 
-    Route::resource('products', ProductController::class);
-    Route::resource('posts', PostController::class);
+        Route::resource('products', ProductController::class);
+        Route::resource('posts', PostController::class);
 
-    /*
-    |--------------------------------------------------------------------------
-    | Partners (TEMP: No Middleware)
-    |--------------------------------------------------------------------------
-    */
+        /*
+        |--------------------------------------------------------------------------
+        | Partners
+        |--------------------------------------------------------------------------
+        */
 
-    Route::resource('partners', AdminPartnerController::class)->except(['show']);
-    Route::post('partners/{partner}/toggle-status', [AdminPartnerController::class, 'toggleStatus'])->name('partners.toggle-status');
-    Route::post('partners/reorder', [AdminPartnerController::class, 'reorder'])->name('partners.reorder');
+        Route::resource('partners', AdminPartnerController::class)->except(['show']);
+        Route::post('partners/{partner}/toggle-status', [AdminPartnerController::class, 'toggleStatus'])->name('partners.toggle-status');
+        Route::post('partners/reorder', [AdminPartnerController::class, 'reorder'])->name('partners.reorder');
 
-    Route::resource('clients', AdminClientController::class)->except(['show']);
-    Route::post('clients/{client}/toggle-status', [AdminClientController::class, 'toggleStatus'])->name('clients.toggle-status');
+        Route::resource('clients', AdminClientController::class)->except(['show']);
+        Route::post('clients/{client}/toggle-status', [AdminClientController::class, 'toggleStatus'])->name('clients.toggle-status');
 
-    /*
-    |--------------------------------------------------------------------------
-    | Requests
-    |--------------------------------------------------------------------------
-    */
+        /*
+        |--------------------------------------------------------------------------
+        | Requests
+        |--------------------------------------------------------------------------
+        */
 
-    Route::get('requests', [AdminServiceRequestController::class, 'index'])->name('requests.index');
-    Route::get('settings', [SiteSettingController::class, 'edit'])->name('settings.edit');
-    Route::put('settings', [SiteSettingController::class, 'update'])->name('settings.update');
+        Route::get('requests', [AdminServiceRequestController::class, 'index'])->name('requests.index');
+        Route::get('settings', [SiteSettingController::class, 'edit'])->name('settings.edit');
+        Route::put('settings', [SiteSettingController::class, 'update'])->name('settings.update');
 
     });
+
 });
