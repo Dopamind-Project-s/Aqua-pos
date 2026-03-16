@@ -16,7 +16,7 @@ class EnsureUserIsAdmin
             abort(403, 'Authentication required.');
         }
 
-        if (! (bool) data_get($user, 'is_admin', false)) {
+        if (! (bool) data_get($user, 'is_admin', false) || ! (bool) data_get($user, 'status', false)) {
             abort(403, 'Admin access only.');
         }
 
