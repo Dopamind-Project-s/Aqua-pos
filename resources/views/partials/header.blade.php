@@ -159,7 +159,8 @@
                             <span class="visually-hidden" id="languageLabel">AR / EN</span>
                         </button>
                     </div>
-                    <a href="{{ route('request-product-demo') }}" class="btn btn-primary rounded-pill text-white py-2 px-4 flex-wrap flex-sm-shrink-0"><i class="fas fa-calendar-check me-2"></i>Request Demo</a>
+                    <a href="{{ route('admin.login') }}" class="btn btn-outline-primary rounded-pill py-2 px-4 ms-lg-2 flex-wrap flex-sm-shrink-0 {{ request()->routeIs('admin.login') ? 'active' : '' }}"><i class="fas fa-sign-in-alt me-2"></i>Login</a>
+                    <a href="{{ route('request-product-demo') }}" class="btn btn-primary rounded-pill text-white py-2 px-4 ms-lg-2 flex-wrap flex-sm-shrink-0"><i class="fas fa-calendar-check me-2"></i>Request Demo</a>
                 </div>
             </nav>
 
