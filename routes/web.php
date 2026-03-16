@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\PartnerController as AdminPartnerController;
 use App\Http\Controllers\Admin\ServiceRequestController as AdminServiceRequestController;
 use App\Http\Controllers\Admin\SiteSettingController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PartnerController;
@@ -64,11 +65,18 @@ Route::get('/products/{product:slug}', [ProductCatalogController::class, 'show']
 
 /*
 |--------------------------------------------------------------------------
-| Admin Routes (No Auth Middleware Yet)
+| Admin Routes
 |--------------------------------------------------------------------------
 */
 
 Route::prefix('admin')->name('admin.')->group(function () {
+    Route::middleware('guest')->group(function () {
+        Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
+        Route::post('login', [AuthController::class, 'login'])->name('login.submit');
+    });
+
+    Route::middleware(['auth', 'admin'])->group(function () {
+        Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/index', [DashboardController::class, 'index'])->name('index');
@@ -116,4 +124,5 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('settings', [SiteSettingController::class, 'edit'])->name('settings.edit');
     Route::put('settings', [SiteSettingController::class, 'update'])->name('settings.update');
 
+    });
 });
