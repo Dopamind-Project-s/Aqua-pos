@@ -11,9 +11,13 @@ class Partner extends Model
 
     protected $fillable = [
         'name',
+        'name_ar',
+        'name_en',
         'slug',
         'logo',
         'description',
+        'description_ar',
+        'description_en',
         'website_url',
         'apply_url',
         'facebook_url',
@@ -30,5 +34,27 @@ class Partner extends Model
         return [
             'is_active' => 'boolean',
         ];
+    }
+
+    public function getLocalizedNameAttribute(): string
+    {
+        $locale = app()->getLocale();
+
+        if ($locale === 'ar') {
+            return $this->name_ar ?: $this->name_en ?: $this->name;
+        }
+
+        return $this->name_en ?: $this->name_ar ?: $this->name;
+    }
+
+    public function getLocalizedDescriptionAttribute(): ?string
+    {
+        $locale = app()->getLocale();
+
+        if ($locale === 'ar') {
+            return $this->description_ar ?: $this->description_en ?: $this->description;
+        }
+
+        return $this->description_en ?: $this->description_ar ?: $this->description;
     }
 }

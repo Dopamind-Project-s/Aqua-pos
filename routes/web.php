@@ -38,7 +38,7 @@ Route::get('/team', function () {
     $clients = Client::query()
         ->where('is_active', true)
         ->orderBy('sort_order')
-        ->orderBy('name')
+        ->orderBy('name_en')
         ->get();
 
     return view('team', compact('clients'));

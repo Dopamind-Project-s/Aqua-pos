@@ -2,11 +2,11 @@
 
 <article class="partner-card h-100">
     <div class="partner-card__logo-wrap">
-        <img src="{{ Storage::url($partner->logo) }}" alt="{{ $partner->name }} logo" class="partner-card__logo" loading="lazy" decoding="async">
+        <img src="{{ Storage::url($partner->logo) }}" alt="{{ $partner->localized_name }} logo" class="partner-card__logo" loading="lazy" decoding="async">
     </div>
 
     <div class="partner-card__overlay">
-        <h3 class="partner-card__title">{{ $partner->name }}</h3>
+        <h3 class="partner-card__title">{{ $partner->localized_name }}</h3>
         <div class="partner-card__actions">
             @if($partner->website_url)
                 <a href="{{ $partner->website_url }}" target="_blank" rel="noopener noreferrer" aria-label="Website"><i class="fas fa-globe"></i><span data-i18n="partners.website">Website</span></a>

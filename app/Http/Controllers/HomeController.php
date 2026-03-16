@@ -11,7 +11,7 @@ class HomeController extends Controller
         $clients = Client::query()
             ->where('is_active', true)
             ->orderBy('sort_order')
-            ->orderBy('name')
+            ->orderBy('name_en')
             ->get();
 
         return view('home', compact('clients'));
