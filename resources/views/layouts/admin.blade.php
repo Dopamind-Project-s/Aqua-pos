@@ -7,18 +7,28 @@
 
     <link href="{{ asset('dashboard/assets/css/styles.min.css') }}" rel="stylesheet">
     <style>
+        :root {
+            --admin-topstrip-offset: 84px;
+        }
+
         .admin-topstrip {
+            position: sticky;
+            top: 0;
+            z-index: 1040;
             border-bottom: 1px solid #e7edf7;
             background: linear-gradient(90deg, #f7faff 0%, #ffffff 100%);
         }
+
         .admin-topstrip__brand {
             font-weight: 700;
             color: #193b70;
         }
+
         .admin-topstrip__meta {
             font-size: .82rem;
             color: #6a7f9f;
         }
+
         .admin-topstrip__links a {
             border: 1px solid #d9e5f8;
             color: #1f4f97;
@@ -28,10 +38,61 @@
             font-size: .78rem;
             font-weight: 600;
             text-decoration: none;
+            white-space: nowrap;
         }
+
         .admin-topstrip__links a:hover {
             background: #edf4ff;
         }
+
+        .left-sidebar {
+            top: var(--admin-topstrip-offset);
+            height: calc(100vh - var(--admin-topstrip-offset));
+            z-index: 1031;
+            border-top: 1px solid #eef2fa;
+        }
+
+        .left-sidebar .sidebar-nav {
+            height: 100%;
+            overflow: auto;
+        }
+
+        .body-wrapper .app-header {
+            position: sticky;
+            top: var(--admin-topstrip-offset);
+            z-index: 1030;
+            background: #fff;
+            border-bottom: 1px solid #edf1f7;
+        }
+
+        .body-wrapper-inner {
+            padding-top: 1rem;
+        }
+
+        .admin-header-actions {
+            min-height: 70px;
+        }
+
+        @media (max-width: 1199.98px) {
+            :root {
+                --admin-topstrip-offset: 0px;
+            }
+
+            .admin-topstrip {
+                position: static;
+            }
+
+            .left-sidebar {
+                top: 0;
+                height: 100%;
+                border-top: 0;
+            }
+
+            .body-wrapper .app-header {
+                top: 0;
+            }
+        }
+
         body.dark-mode .admin-topstrip {
             background: #101a2c;
             border-color: #253650;

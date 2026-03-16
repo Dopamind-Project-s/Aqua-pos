@@ -7,7 +7,7 @@
                 </a>
             </li>
         </ul>
-        <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+        <div class="w-100 d-flex justify-content-end px-3 px-lg-4 admin-header-actions" id="navbarNav">
             <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
