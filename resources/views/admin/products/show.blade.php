@@ -17,5 +17,21 @@
         <tr><th>Sort Order</th><td>{{ $product->sort_order }}</td></tr>
         <tr><th>Status</th><td><span class="badge {{ $product->is_active ? 'bg-success' : 'bg-secondary' }}">{{ $product->is_active ? 'Active' : 'Inactive' }}</span></td></tr>
     </tbody></table></div>
+
+    @if($product->images->isNotEmpty())
+        <hr>
+        <h6 class="mb-3">Gallery Images</h6>
+        <div class="row g-3">
+            @foreach($product->images->sortBy('sort_order') as $image)
+                <div class="col-md-4 col-lg-3">
+                    <div class="border rounded p-2 h-100">
+                        <img src="{{ Storage::url($image->image) }}" alt="{{ $image->alt ?: $product->localized_name }}" class="rounded border mb-2" style="width:100%;height:140px;object-fit:cover;">
+                        <div class="small text-muted">Sort: {{ $image->sort_order }}</div>
+                        <div class="small">Alt: {{ $image->alt ?: '-' }}</div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    @endif
 </div></div>
 @endsection

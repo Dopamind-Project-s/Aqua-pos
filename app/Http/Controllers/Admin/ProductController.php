@@ -54,19 +54,30 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request): RedirectResponse
     {
         $data = $request->validated();
+        unset($data['gallery_images'], $data['gallery_alt'], $data['existing_alt'], $data['existing_sort'], $data['delete_images']);
 
         if ($request->hasFile('image')) {
             $data['image'] = $request->file('image')->store('products', 'public');
         }
 
-        Product::query()->create($data);
+        $product = Product::query()->create($data);
+
+        if ($request->hasFile('gallery_images')) {
+            foreach ($request->file('gallery_images') as $index => $file) {
+                $product->images()->create([
+                    'image' => $file->store('products/gallery', 'public'),
+                    'alt' => $request->input("gallery_alt.{$index}"),
+                    'sort_order' => $index,
+                ]);
+            }
+        }
 
         return redirect()->route('admin.products.index')->with('success', 'Product created successfully.');
     }
 
     public function show(Product $product): View
     {
-        $product->load('category');
+        $product->load(['category', 'images']);
 
         return view('admin.products.show', compact('product'));
     }
@@ -74,6 +85,7 @@ class ProductController extends Controller
     public function edit(Product $product): View
     {
         $categories = Category::query()->whereNull('deleted_at')->orderBy('name')->get();
+        $product->load(['images' => fn ($query) => $query->orderBy('sort_order')->orderBy('id')]);
 
         return view('admin.products.edit', compact('product', 'categories'));
     }
@@ -81,6 +93,7 @@ class ProductController extends Controller
     public function update(UpdateProductRequest $request, Product $product): RedirectResponse
     {
         $data = $request->validated();
+        unset($data['gallery_images'], $data['gallery_alt'], $data['existing_alt'], $data['existing_sort'], $data['delete_images']);
 
         if ($request->hasFile('image')) {
             if ($product->image) {
@@ -92,7 +105,38 @@ class ProductController extends Controller
 
         $product->update($data);
 
-        return redirect()->route('admin.products.index')->with('success', 'Product updated successfully.');
+        $deleteIds = collect((array) $request->input('delete_images', []))
+            ->filter()
+            ->map(fn ($id) => (int) $id)
+            ->all();
+
+        if ($deleteIds !== []) {
+            $imagesToDelete = $product->images()->whereIn('id', $deleteIds)->get();
+            foreach ($imagesToDelete as $image) {
+                Storage::disk('public')->delete($image->image);
+                $image->delete();
+            }
+        }
+
+        $product->images()->get()->each(function ($image) use ($request): void {
+            $image->update([
+                'alt' => $request->input("existing_alt.{$image->id}"),
+                'sort_order' => (int) $request->input("existing_sort.{$image->id}", $image->sort_order),
+            ]);
+        });
+
+        if ($request->hasFile('gallery_images')) {
+            $nextSort = (int) $product->images()->max('sort_order') + 1;
+            foreach ($request->file('gallery_images') as $index => $file) {
+                $product->images()->create([
+                    'image' => $file->store('products/gallery', 'public'),
+                    'alt' => $request->input("gallery_alt.{$index}"),
+                    'sort_order' => $nextSort + $index,
+                ]);
+            }
+        }
+
+        return redirect()->route('admin.products.edit', $product)->with('success', 'Product updated successfully.');
     }
 
     public function destroy(Product $product): RedirectResponse
