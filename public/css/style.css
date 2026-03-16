@@ -2409,3 +2409,163 @@ body.dark-mode .nav-toolbar__btn--toggle {
 [dir="rtl"] .navbar .nav-toolbar {
     flex-direction: row;
 }
+
+/* clients page showcase */
+.clients-showcase {
+    background: linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+}
+
+.clients-showcase__stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 24px;
+}
+
+.clients-showcase__stat-card {
+    border: 1px solid #d9e7fa;
+    border-radius: 14px;
+    padding: 16px;
+    background: #fff;
+    box-shadow: 0 10px 26px rgba(17, 39, 77, .06);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.clients-showcase__stat-number {
+    font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+    font-weight: 800;
+    color: #11428a;
+}
+
+.clients-showcase__stat-label {
+    color: #657892;
+    font-size: .88rem;
+    font-weight: 600;
+}
+
+.clients-showcase__empty {
+    border: 1px dashed #cdddf5;
+    border-radius: 18px;
+    padding: 32px 20px;
+    color: #5f7392;
+    background: #f8fbff;
+}
+
+.clients-showcase__empty i {
+    width: 56px;
+    height: 56px;
+    display: inline-grid;
+    place-items: center;
+    border-radius: 999px;
+    background: #eaf2ff;
+    color: #2b66b6;
+    font-size: 1.25rem;
+}
+
+@media (max-width: 991.98px) {
+    .clients-showcase__stats {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* professional mobile navbar refresh */
+@media (max-width: 991.98px) {
+    .navbar.navbar-expand-lg {
+        min-height: 78px;
+    }
+
+    .navbar.navbar-expand-lg .navbar-toggler {
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        border-radius: 12px;
+        border: 1px solid #c9daf6;
+        background: linear-gradient(180deg, #ffffff 0%, #edf4ff 100%);
+        box-shadow: 0 8px 18px rgba(19, 61, 123, .12);
+    }
+
+    .navbar.navbar-expand-lg .navbar-toggler:focus {
+        box-shadow: 0 0 0 0.2rem rgba(35, 93, 181, .25);
+    }
+
+    .navbar-light .navbar-collapse {
+        margin-top: 12px;
+        border: 1px solid #d8e6fb;
+        border-radius: 16px;
+        padding: 14px;
+        background: linear-gradient(180deg, #ffffff 0%, #f5f9ff 100%);
+        box-shadow: 0 12px 30px rgba(16, 41, 82, .1);
+    }
+
+    .navbar-light .navbar-nav {
+        gap: 6px;
+    }
+
+    .navbar-light .navbar-nav .nav-link,
+    .sticky-top.navbar-light .navbar-nav .nav-link {
+        width: 100%;
+        border-radius: 10px;
+        padding: 10px 12px;
+        background: transparent;
+    }
+
+    .navbar-light .navbar-nav .nav-link.active,
+    .navbar-light .navbar-nav .nav-link:hover,
+    .mega-menu__trigger:hover,
+    .mega-menu__trigger:focus-visible {
+        background: #e8f1ff;
+        color: #11428a !important;
+    }
+}
+
+body.dark-mode .clients-showcase {
+    background: linear-gradient(180deg, #0f1729 0%, #101c31 100%);
+}
+
+body.dark-mode .clients-showcase__stat-card {
+    background: #16243a;
+    border-color: #2a3d58;
+    box-shadow: 0 10px 26px rgba(0, 0, 0, .28);
+}
+
+body.dark-mode .clients-showcase__stat-number {
+    color: #b7d4ff;
+}
+
+body.dark-mode .clients-showcase__stat-label,
+body.dark-mode .clients-showcase__empty {
+    color: #a2bad9;
+}
+
+body.dark-mode .clients-showcase__empty {
+    background: #111c30;
+    border-color: #2b3f5b;
+}
+
+body.dark-mode .clients-showcase__empty i {
+    background: #1a2b45;
+    color: #a6ccff;
+}
+
+@media (max-width: 991.98px) {
+    body.dark-mode .navbar.navbar-expand-lg .navbar-toggler {
+        background: linear-gradient(180deg, #1b2a42 0%, #162336 100%);
+        border-color: #314b73;
+    }
+
+    body.dark-mode .navbar-light .navbar-collapse {
+        background: linear-gradient(180deg, #131f34 0%, #101a2d 100%);
+        border-color: #2b3f5d;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, .35);
+    }
+
+    body.dark-mode .navbar-light .navbar-nav .nav-link.active,
+    body.dark-mode .navbar-light .navbar-nav .nav-link:hover,
+    body.dark-mode .mega-menu__trigger:hover,
+    body.dark-mode .mega-menu__trigger:focus-visible {
+        background: #1f3350;
+        color: #9dc3ff !important;
+    }
+}

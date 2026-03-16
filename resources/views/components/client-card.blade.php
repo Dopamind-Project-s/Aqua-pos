@@ -1,5 +1,8 @@
-@props(['client'])
+@props(['client', 'asSlide' => true])
+
+@if($asSlide)
 <div class="swiper-slide">
+@endif
     <article class="client-logo-card">
         <img src="{{ Storage::url($client->logo) }}" alt="{{ $client->name }}" class="client-logo-card__img">
         <div class="client-logo-card__overlay">
@@ -13,4 +16,6 @@
             </div>
         </div>
     </article>
+@if($asSlide)
 </div>
+@endif
