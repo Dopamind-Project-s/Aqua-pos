@@ -13,7 +13,8 @@
     
     
     // Initiate the wowjs
-    new WOW().init();
+    var wowInstance = new WOW();
+    wowInstance.init();
 
 
     // Sticky Navbar
@@ -675,6 +676,11 @@ document.addEventListener('DOMContentLoaded', function () {
             window.aquaRefreshCarousels();
         }
 
+        if (window.WOW && typeof WOW === 'function') {
+            var wow = new WOW();
+            wow.sync();
+        }
+
         document.dispatchEvent(new CustomEvent('aqua:language-changed', {
             detail: { lang: lang }
         }));
@@ -704,3 +710,32 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 })();
+
+
+// Mobile navbar UX fixes
+document.addEventListener('DOMContentLoaded', function () {
+    var collapseEl = document.getElementById('navbarCollapse');
+    var toggler = document.querySelector('.navbar-toggler');
+
+    if (!collapseEl || !toggler || !window.bootstrap) {
+        return;
+    }
+
+    var bsCollapse = bootstrap.Collapse.getOrCreateInstance(collapseEl, { toggle: false });
+
+    collapseEl.querySelectorAll('.nav-link, .dropdown-item, .mega-menu__service').forEach(function (link) {
+        link.addEventListener('click', function () {
+            if (window.matchMedia('(max-width: 991.98px)').matches) {
+                bsCollapse.hide();
+            }
+        });
+    });
+
+    collapseEl.addEventListener('shown.bs.collapse', function () {
+        toggler.setAttribute('aria-expanded', 'true');
+    });
+
+    collapseEl.addEventListener('hidden.bs.collapse', function () {
+        toggler.setAttribute('aria-expanded', 'false');
+    });
+});

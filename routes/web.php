@@ -34,7 +34,7 @@ Route::get('/blog/{post:slug}', [BlogController::class, 'blogShow'])->name('blog
 Route::get('/news', [BlogController::class, 'newsIndex'])->name('news');
 Route::get('/news/{post:slug}', [BlogController::class, 'newsShow'])->name('news.show');
 
-Route::get('/team', function () {
+Route::get('/clients', function () {
     $clients = Client::query()
         ->where('is_active', true)
         ->orderBy('sort_order')
@@ -42,7 +42,9 @@ Route::get('/team', function () {
         ->get();
 
     return view('team', compact('clients'));
-})->name('team');
+})->name('clients');
+
+Route::redirect('/team', '/clients', 301)->name('team');
 Route::view('/testimonial', 'testimonial')->name('testimonial');
 
 Route::get('/partners', [PartnerController::class, 'index'])->name('partners.index');

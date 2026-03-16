@@ -2314,6 +2314,10 @@ body.dark-mode .partner-card__logo-wrap {
 /* clients logo wall */
 .client-logo-card { position: relative; border: 1px solid #dbe6f7; border-radius: 14px; min-height: 130px; display: grid; place-items: center; background: #fff; overflow: hidden; }
 .client-logo-card__img { max-width: 78%; max-height: 68px; object-fit: contain; filter: grayscale(.12); }
+
+.client-logo-card__placeholder { width: 62px; height: 62px; border-radius: 50%; display: inline-grid; place-items: center; font-weight: 800; font-size: 1.2rem; color: #2b5faa; background: #ecf3ff; border: 1px solid #d9e7fb; }
+body.dark-mode .client-logo-card__placeholder { background: #1a2a43; border-color: #2e4568; color: #aecdff; }
+
 .client-logo-card__overlay { position: absolute; inset: 0; background: rgba(12,24,46,.88); color: #fff; opacity: 0; transition: .25s ease; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:10px; }
 .client-logo-card:hover .client-logo-card__overlay { opacity: 1; }
 .client-logo-card__links { display:flex; gap:8px; flex-wrap:wrap; justify-content:center; }
@@ -2568,4 +2572,15 @@ body.dark-mode .clients-showcase__empty i {
         background: #1f3350;
         color: #9dc3ff !important;
     }
+}
+
+/* RTL hero/blog slider stability fixes */
+[dir="rtl"] .header-carousel .carousel-caption .carousel-caption-content,
+[dir="rtl"] .blog-slide-content .inner {
+    text-align: right;
+}
+
+[dir="rtl"] .header-carousel .owl-stage,
+[dir="rtl"] .blog-slider .owl-stage {
+    display: flex;
 }

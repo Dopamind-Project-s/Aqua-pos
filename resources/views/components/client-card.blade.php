@@ -4,7 +4,11 @@
 <div class="swiper-slide">
 @endif
     <article class="client-logo-card">
+        @if($client->logo)
         <img src="{{ Storage::url($client->logo) }}" alt="{{ $client->localized_name }}" class="client-logo-card__img">
+    @else
+        <span class="client-logo-card__placeholder">{{ strtoupper(substr($client->localized_name, 0, 1)) }}</span>
+    @endif
         <div class="client-logo-card__overlay">
             <h6>{{ $client->localized_name }}</h6>
             <div class="client-logo-card__links">

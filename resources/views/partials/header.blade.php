@@ -61,7 +61,7 @@
                         <h1 class="navbar-brand__title text-primary m-0"><i class="fas fa-star-of-life me-2"></i>{{ $siteSetting?->site_name ?: 'AQUA POS' }}</h1>
                     @endif
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="fa fa-bars"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -142,7 +142,7 @@
                                 <a href="{{ route('service') }}" class="dropdown-item {{ request()->routeIs('service') ? 'active' : '' }}"><i class="fas fa-concierge-bell me-2"></i><span data-i18n="nav.services">Services</span></a>
                                 <a href="{{ url('/appointment') }}" class="dropdown-item"><i class="fas fa-calendar-days me-2"></i><span data-i18n="nav.appointment">Appointment</span></a>
                                 <a href="{{ url('/feature') }}" class="dropdown-item"><i class="fas fa-star me-2"></i><span data-i18n="nav.features">Features</span></a>
-                                <a href="{{ url('/team') }}" class="dropdown-item"><i class="fas fa-users me-2"></i><span data-i18n="nav.clients">Our Clients</span></a>
+                                <a href="{{ route('clients') }}" class="dropdown-item {{ request()->routeIs('clients') ? 'active' : '' }}"><i class="fas fa-users me-2"></i><span data-i18n="nav.clients">Our Clients</span></a>
                                 <a href="{{ url('/testimonial') }}" class="dropdown-item"><i class="fas fa-comments me-2"></i><span data-i18n="nav.testimonial">Testimonial</span></a>
                             </div>
                         </div>
