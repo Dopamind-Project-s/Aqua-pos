@@ -11,10 +11,10 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PartnerController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\Admin\ClientController as AdminClientController;
 use App\Http\Controllers\ServiceRequestController;
 use App\Http\Controllers\ProductCatalogController;
-use App\Models\Client;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,15 +36,7 @@ Route::get('/blog/{post:slug}', [BlogController::class, 'blogShow'])->name('blog
 Route::get('/news', [BlogController::class, 'newsIndex'])->name('news');
 Route::get('/news/{post:slug}', [BlogController::class, 'newsShow'])->name('news.show');
 
-Route::get('/clients', function () {
-    $clients = Client::query()
-        ->where('is_active', true)
-        ->orderBy('sort_order')
-        ->orderBy('name_en')
-        ->get();
-
-    return view('clients', compact('clients'));
-})->name('clients');
+Route::get('/clients', [ClientController::class, 'index'])->name('clients.index');
 
 Route::redirect('/team', '/clients', 301)->name('legacy.team.redirect');
 Route::view('/testimonial', 'testimonial')->name('testimonial');

@@ -142,7 +142,7 @@
                                 <a href="{{ route('service') }}" class="dropdown-item {{ request()->routeIs('service') ? 'active' : '' }}"><i class="fas fa-concierge-bell me-2"></i><span data-i18n="nav.services">Services</span></a>
                                 <a href="{{ url('/appointment') }}" class="dropdown-item"><i class="fas fa-calendar-days me-2"></i><span data-i18n="nav.appointment">Appointment</span></a>
                                 <a href="{{ url('/feature') }}" class="dropdown-item"><i class="fas fa-star me-2"></i><span data-i18n="nav.features">Features</span></a>
-                                <a href="{{ route('clients') }}" class="dropdown-item {{ request()->routeIs('clients') ? 'active' : '' }}"><i class="fas fa-users me-2"></i><span data-i18n="nav.clients">Our Clients</span></a>
+                                <a href="{{ route('clients.index') }}" class="dropdown-item {{ request()->routeIs('clients.*') ? 'active' : '' }}"><i class="fas fa-users me-2"></i><span data-i18n="nav.clients">Our Clients</span></a>
                                 <a href="{{ url('/testimonial') }}" class="dropdown-item"><i class="fas fa-comments me-2"></i><span data-i18n="nav.testimonial">Testimonial</span></a>
                             </div>
                         </div>
