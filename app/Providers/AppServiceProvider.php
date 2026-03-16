@@ -59,6 +59,17 @@ class AppServiceProvider extends ServiceProvider
             $view->with('metaDescription', $metaDescription);
         });
 
+
+        View::composer(['layouts.admin', 'layouts.admin.sidebar', 'layouts.admin.header', 'admin.dashboard'], function ($view): void {
+            $siteSetting = null;
+
+            if (Schema::hasTable('site_settings')) {
+                $siteSetting = SiteSetting::query()->first();
+            }
+
+            $view->with('siteSetting', $siteSetting);
+        });
+
         View::composer('partials.footer', function ($view): void {
             $siteSetting = null;
 

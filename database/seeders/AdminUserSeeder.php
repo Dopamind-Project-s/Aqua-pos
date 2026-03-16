@@ -18,6 +18,7 @@ class AdminUserSeeder extends Seeder
                 'password' => Hash::make('Admin@123456'),
                 'avatar' => 'img/defaults/placeholder.svg',
                 'status' => true,
+                'is_admin' => true,
                 'last_login_at' => now(),
                 'email_verified_at' => now(),
             ]

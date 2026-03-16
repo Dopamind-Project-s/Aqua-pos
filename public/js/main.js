@@ -13,7 +13,8 @@
     
     
     // Initiate the wowjs
-    new WOW().init();
+    var wowInstance = new WOW();
+    wowInstance.init();
 
 
     // Sticky Navbar
@@ -26,37 +27,67 @@
     });
 
 
-    // Hero Header carousel
-    $(".header-carousel").owlCarousel({
-        animateOut: 'slideOutDown',
-        items: 1,
-        autoplay: true,
-        smartSpeed: 1000,
-        dots: false,
-        loop: true,
-        nav : true,
-        navText : [
-            '<i class="bi bi-arrow-left"></i>',
-            '<i class="bi bi-arrow-right"></i>'
-        ],
-    });
+    var isRtlLayout = function () {
+        return document.documentElement.getAttribute('dir') === 'rtl';
+    };
 
+    var refreshOwlCarousel = function (selector, options) {
+        var $carousel = $(selector);
+        if (!$carousel.length) {
+            return;
+        }
 
-    // International carousel
-    $(".testimonial-carousel").owlCarousel({
-        autoplay: true,
-        items: 1,
-        smartSpeed: 1500,
-        dots: true,
-        loop: true,
-        margin: 25,
-        nav : true,
-        navText : [
-            '<i class="bi bi-arrow-left"></i>',
-            '<i class="bi bi-arrow-right"></i>'
-        ]
-    });
+        $carousel.each(function () {
+            var $el = $(this);
+            if ($el.hasClass('owl-loaded')) {
+                $el.trigger('destroy.owl.carousel');
+                $el.removeClass('owl-loaded');
+                $el.find('.owl-stage-outer').children().unwrap();
+            }
 
+            $el.owlCarousel(Object.assign({}, options, { rtl: isRtlLayout() }));
+        });
+    };
+
+    window.aquaRefreshCarousels = function () {
+        refreshOwlCarousel('.header-carousel', {
+            animateOut: 'slideOutDown',
+            items: 1,
+            autoplay: true,
+            smartSpeed: 1000,
+            dots: false,
+            loop: true,
+            nav: true,
+            navText: [
+                '<i class="bi bi-arrow-left"></i>',
+                '<i class="bi bi-arrow-right"></i>'
+            ]
+        });
+
+        refreshOwlCarousel('.testimonial-carousel', {
+            autoplay: true,
+            smartSpeed: 1000,
+            center: true,
+            dots: true,
+            loop: true,
+            margin: 25,
+            nav: true,
+            navText: [
+                '<i class="bi bi-arrow-left"></i>',
+                '<i class="bi bi-arrow-right"></i>'
+            ],
+            responsiveClass: true,
+            responsive: {
+                0: { items: 1 },
+                576: { items: 1 },
+                768: { items: 1 },
+                992: { items: 1 },
+                1200: { items: 1 }
+            }
+        });
+    };
+
+    window.aquaRefreshCarousels();
 
     // Modal Video
     $(document).ready(function () {
@@ -76,41 +107,6 @@
     });
 
 
-    // testimonial carousel
-    $(".testimonial-carousel").owlCarousel({
-        autoplay: true,
-        smartSpeed: 1000,
-        center: true,
-        dots: true,
-        loop: true,
-        margin: 25,
-        nav : true,
-        navText : [
-            '<i class="bi bi-arrow-left"></i>',
-            '<i class="bi bi-arrow-right"></i>'
-        ],
-        responsiveClass: true,
-        responsive: {
-            0:{
-                items:1
-            },
-            576:{
-                items:1
-            },
-            768:{
-                items:1
-            },
-            992:{
-                items:1
-            },
-            1200:{
-                items:1
-            }
-        }
-    });
-
-    
-    
    // Back to top button
    $(window).scroll(function () {
     if ($(this).scrollTop() > 300) {
@@ -271,9 +267,11 @@ document.addEventListener('DOMContentLoaded', function () {
             'demo.phone': 'Phone',
             'demo.company': 'Company',
             'demo.country': 'Country',
+            'demo.countryDetecting': 'Detecting your country...',
             'demo.branches': 'Branches',
             'demo.productInterest': 'Product Interest',
             'demo.preferredContactTime': 'Preferred Contact Time',
+            'demo.preferredContactPlaceholder': 'e.g. 10:00 AM',
             'demo.notes': 'Notes',
             'demo.submit': 'Submit Demo Request',
             'demo.feature1Title': 'Built for multi-branch businesses',
@@ -301,6 +299,18 @@ document.addEventListener('DOMContentLoaded', function () {
             'clients.title': 'Trusted by Leading Brands',
             'clients.subtitle': 'We proudly serve ambitious brands across retail and hospitality.',
             'clients.empty': 'Clients will be published soon.',
+            'clients.pageTitle': 'Our Clients',
+            'clients.pageCrumb': 'Clients',
+            'clients.pageEyebrow': 'Trusted Partnerships',
+            'clients.pageHeading': 'Brands Growing with AQUA POS',
+            'clients.pageIntro': 'We work with restaurants and retail businesses that need speed, visibility, and stronger operational control across every branch.',
+            'clients.stat1': 'Active Client Brands',
+            'clients.stat2': 'Operational Visibility',
+            'clients.stat3': 'Connected POS Platform',
+            'clients.pageEmptyTitle': 'Client logos will appear here soon',
+            'clients.pageEmptySubtitle': 'Our newest collaborations are being prepared for publishing.',
+            'breadcrumb.home': 'Home',
+            'breadcrumb.pages': 'Pages',
             'support.badge': 'Support Center',
             'support.title': 'How can we help you today?',
             'support.subtitle': 'Raise a technical or operational issue and our support team will respond quickly.',
@@ -472,9 +482,11 @@ document.addEventListener('DOMContentLoaded', function () {
             'demo.phone': 'الهاتف',
             'demo.company': 'الشركة',
             'demo.country': 'الدولة',
+            'demo.countryDetecting': 'جاري تحديد دولتك...',
             'demo.branches': 'عدد الفروع',
             'demo.productInterest': 'المنتج المطلوب',
             'demo.preferredContactTime': 'الوقت المفضل للتواصل',
+            'demo.preferredContactPlaceholder': 'مثال: 10:00 صباحاً',
             'demo.notes': 'ملاحظات',
             'demo.submit': 'إرسال طلب العرض',
             'demo.feature1Title': 'مصمم للشركات متعددة الفروع',
@@ -502,6 +514,18 @@ document.addEventListener('DOMContentLoaded', function () {
             'clients.title': 'علامات رائدة تثق بنا',
             'clients.subtitle': 'نفخر بخدمة علامات طموحة في قطاعات التجزئة والضيافة.',
             'clients.empty': 'سيتم نشر العملاء قريبًا.',
+            'clients.pageTitle': 'عملاؤنا',
+            'clients.pageCrumb': 'العملاء',
+            'clients.pageEyebrow': 'شراكات موثوقة',
+            'clients.pageHeading': 'علامات تنمو مع أكوا بوس',
+            'clients.pageIntro': 'نعمل مع المطاعم وقطاع التجزئة التي تحتاج إلى السرعة والرؤية والتحكم الأقوى في العمليات عبر جميع الفروع.',
+            'clients.stat1': 'علامات عملاء نشطة',
+            'clients.stat2': 'رؤية تشغيلية',
+            'clients.stat3': 'منصة نقاط بيع سحابية',
+            'clients.pageEmptyTitle': 'ستظهر شعارات العملاء هنا قريبًا',
+            'clients.pageEmptySubtitle': 'يتم تجهيز أحدث شراكاتنا للنشر.',
+            'breadcrumb.home': 'الرئيسية',
+            'breadcrumb.pages': 'الصفحات',
             'support.badge': 'مركز الدعم',
             'support.title': 'كيف يمكننا مساعدتك اليوم؟',
             'support.subtitle': 'ارفع مشكلة تقنية أو تشغيلية وسيقوم فريق الدعم بالرد بسرعة.',
@@ -675,6 +699,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
         localStorage.setItem(LANG_KEY, lang);
         setTheme(currentTheme);
+
+        if (typeof window.aquaRefreshCarousels === 'function') {
+            window.aquaRefreshCarousels();
+        }
+
+        if (window.WOW && typeof WOW === 'function') {
+            var wow = new WOW();
+            wow.sync();
+        }
+
+        document.dispatchEvent(new CustomEvent('aqua:language-changed', {
+            detail: { lang: lang }
+        }));
     };
 
     document.addEventListener('DOMContentLoaded', function () {
@@ -701,3 +738,32 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 })();
+
+
+// Mobile navbar UX fixes
+document.addEventListener('DOMContentLoaded', function () {
+    var collapseEl = document.getElementById('navbarCollapse');
+    var toggler = document.querySelector('.navbar-toggler');
+
+    if (!collapseEl || !toggler || !window.bootstrap) {
+        return;
+    }
+
+    var bsCollapse = bootstrap.Collapse.getOrCreateInstance(collapseEl, { toggle: false });
+
+    collapseEl.querySelectorAll('.nav-link, .dropdown-item, .mega-menu__service').forEach(function (link) {
+        link.addEventListener('click', function () {
+            if (window.matchMedia('(max-width: 991.98px)').matches) {
+                bsCollapse.hide();
+            }
+        });
+    });
+
+    collapseEl.addEventListener('shown.bs.collapse', function () {
+        toggler.setAttribute('aria-expanded', 'true');
+    });
+
+    collapseEl.addEventListener('hidden.bs.collapse', function () {
+        toggler.setAttribute('aria-expanded', 'false');
+    });
+});

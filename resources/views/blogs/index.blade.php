@@ -37,7 +37,7 @@
 <section>
     <div class="container">
         @php
-            $selectedCategoryName = $categories->firstWhere('slug', $selectedCategory)?->name ?? 'All Categories';
+            $selectedCategoryName = $categories->firstWhere('slug', $selectedCategory)?->localized_name ?? __('All Categories');
         @endphp
         @include('blogs.partials.inner-nav', ['type' => $type, 'selectedCategoryName' => $selectedCategoryName, 'categories' => $categories])
         <div class="row g-4">
@@ -55,7 +55,7 @@
                                     </div>
                                 @endif
                                 <div class="card-body d-flex flex-column">
-                                    <div class="meta mb-2"><i class="far fa-calendar-alt me-1"></i>{{ $post->published_at?->format('d M Y') ?? $post->created_at?->format('d M Y') }} <span class="mx-1">•</span> <i class="fas fa-folder-open me-1"></i>{{ $post->category?->name ?? 'General' }}</div>
+                                    <div class="meta mb-2"><i class="far fa-calendar-alt me-1"></i>{{ $post->published_at?->format('d M Y') ?? $post->created_at?->format('d M Y') }} <span class="mx-1">•</span> <i class="fas fa-folder-open me-1"></i>{{ $post->category?->localized_name ?? 'General' }}</div>
                                     <h5 class="card-title mb-2">{{ $post->title }}</h5>
                                     <p class="text-muted mb-3">{{ \Illuminate\Support\Str::limit($post->excerpt ?: strip_tags($post->content), 120) }}</p>
                                     <a class="mt-auto btn btn-outline-primary rounded-pill" href="{{ $type === 'blog' ? route('blog.show', $post->slug) : route('news.show', $post->slug) }}"><i class="fas fa-arrow-right me-2"></i><span data-i18n="blog.readMore">Read More</span></a>
@@ -83,7 +83,7 @@
                         </a>
                         @foreach($categories as $category)
                             <a href="{{ ($type === 'blog' ? route('blog') : route('news')) . '?category=' . $category->slug }}" class="d-flex justify-content-between text-decoration-none mb-2 {{ $selectedCategory === $category->slug ? 'fw-bold text-primary' : 'text-dark' }}">
-                                <span>{{ $category->name }}</span>
+                                <span>{{ $category->localized_name }}</span>
                                 <span class="badge-soft">{{ $category->posts_count }}</span>
                             </a>
                         @endforeach

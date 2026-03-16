@@ -7,15 +7,20 @@
                 </a>
             </li>
         </ul>
-        <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+        <div class="w-100 d-flex justify-content-end px-3 px-lg-4 admin-header-actions" id="navbarNav">
             <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="{{ asset('dashboard/assets/images/profile/user-1.jpg') }}" alt="" width="35" height="35" class="rounded-circle">
+                        <img src="{{ asset('dashboard/assets/images/profile/user-1.jpg') }}" alt="{{ auth()->user()?->name ?? 'Admin' }}" width="35" height="35" class="rounded-circle">
                     </a>
                     <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
-                        <div class="message-body">
-                            <a href="{{ route('admin.authentication-login') }}" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+                        <div class="message-body px-3 py-2">
+                            <div class="small text-muted mb-2">{{ auth()->user()?->email }}</div>
+                            <a href="{{ route('home') }}" class="btn btn-outline-secondary w-100 mb-2">View Website</a>
+                            <form method="POST" action="{{ route('admin.logout') }}">
+                                @csrf
+                                <button type="submit" class="btn btn-outline-primary w-100">Logout</button>
+                            </form>
                         </div>
                     </div>
                 </li>

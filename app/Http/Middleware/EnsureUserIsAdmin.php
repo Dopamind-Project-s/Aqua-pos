@@ -16,9 +16,7 @@ class EnsureUserIsAdmin
             abort(403, 'Authentication required.');
         }
 
-        $isAdmin = property_exists($user, 'is_admin') ? (bool) $user->is_admin : true;
-
-        if (! $isAdmin) {
+        if (! (bool) data_get($user, 'is_admin', false) || ! (bool) data_get($user, 'status', false)) {
             abort(403, 'Admin access only.');
         }
 

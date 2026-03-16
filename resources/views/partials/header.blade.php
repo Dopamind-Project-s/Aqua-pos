@@ -27,22 +27,22 @@
                 <div class="col-lg-4 text-center text-lg-end">
                     <div class="d-flex align-items-center justify-content-end topbar-social-list">
                         @if($siteSetting?->facebook_url)
-                            <a href="{{ $siteSetting->facebook_url }}" target="_blank" rel="noopener" class="btn btn-light btn-square border rounded-circle nav-fill me-2"><i class="fab fa-facebook-f"></i></a>
+                            <a href="{{ $siteSetting->facebook_url }}" target="_blank" rel="noopener" class="btn btn-light btn-square border rounded-circle nav-fill topbar-social-btn topbar-social-btn--facebook me-2"><i class="fab fa-facebook-f"></i></a>
                         @endif
                         @if($siteSetting?->twitter_url)
-                            <a href="{{ $siteSetting->twitter_url }}" target="_blank" rel="noopener" class="btn btn-light btn-square border rounded-circle nav-fill me-2"><i class="fab fa-twitter"></i></a>
+                            <a href="{{ $siteSetting->twitter_url }}" target="_blank" rel="noopener" class="btn btn-light btn-square border rounded-circle nav-fill topbar-social-btn topbar-social-btn--twitter me-2"><i class="fab fa-twitter"></i></a>
                         @endif
                         @if($siteSetting?->instagram_url)
-                            <a href="{{ $siteSetting->instagram_url }}" target="_blank" rel="noopener" class="btn btn-light btn-square border rounded-circle nav-fill me-2"><i class="fab fa-instagram"></i></a>
+                            <a href="{{ $siteSetting->instagram_url }}" target="_blank" rel="noopener" class="btn btn-light btn-square border rounded-circle nav-fill topbar-social-btn topbar-social-btn--instagram me-2"><i class="fab fa-instagram"></i></a>
                         @endif
                         @if($siteSetting?->linkedin_url)
-                            <a href="{{ $siteSetting->linkedin_url }}" target="_blank" rel="noopener" class="btn btn-light btn-square border rounded-circle nav-fill me-2"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="{{ $siteSetting->linkedin_url }}" target="_blank" rel="noopener" class="btn btn-light btn-square border rounded-circle nav-fill topbar-social-btn topbar-social-btn--linkedin me-2"><i class="fab fa-linkedin-in"></i></a>
                         @endif
                         @if($siteSetting?->youtube_url)
-                            <a href="{{ $siteSetting->youtube_url }}" target="_blank" rel="noopener" class="btn btn-light btn-square border rounded-circle nav-fill me-2"><i class="fab fa-youtube"></i></a>
+                            <a href="{{ $siteSetting->youtube_url }}" target="_blank" rel="noopener" class="btn btn-light btn-square border rounded-circle nav-fill topbar-social-btn topbar-social-btn--youtube me-2"><i class="fab fa-youtube"></i></a>
                         @endif
                         @if($siteSetting?->tiktok_url)
-                            <a href="{{ $siteSetting->tiktok_url }}" target="_blank" rel="noopener" class="btn btn-light btn-square border rounded-circle nav-fill"><i class="fab fa-tiktok"></i></a>
+                            <a href="{{ $siteSetting->tiktok_url }}" target="_blank" rel="noopener" class="btn btn-light btn-square border rounded-circle nav-fill topbar-social-btn topbar-social-btn--tiktok"><i class="fab fa-tiktok"></i></a>
                         @endif
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                         <h1 class="navbar-brand__title text-primary m-0"><i class="fas fa-star-of-life me-2"></i>{{ $siteSetting?->site_name ?: 'AQUA POS' }}</h1>
                     @endif
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="fa fa-bars"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -140,10 +140,10 @@
                             <div class="dropdown-menu m-0">
                                 <a href="{{ route('about') }}" class="dropdown-item {{ request()->routeIs('about') ? 'active' : '' }}"><i class="fas fa-circle-info me-2"></i><span data-i18n="nav.about">About</span></a>
                                 <a href="{{ route('service') }}" class="dropdown-item {{ request()->routeIs('service') ? 'active' : '' }}"><i class="fas fa-concierge-bell me-2"></i><span data-i18n="nav.services">Services</span></a>
-                                <a href="{{ url('/appointment') }}" class="dropdown-item"><i class="fas fa-calendar-days me-2"></i><span data-i18n="nav.appointment">Appointment</span></a>
-                                <a href="{{ url('/feature') }}" class="dropdown-item"><i class="fas fa-star me-2"></i><span data-i18n="nav.features">Features</span></a>
-                                <a href="{{ url('/team') }}" class="dropdown-item"><i class="fas fa-users me-2"></i><span data-i18n="nav.clients">Our Clients</span></a>
-                                <a href="{{ url('/testimonial') }}" class="dropdown-item"><i class="fas fa-comments me-2"></i><span data-i18n="nav.testimonial">Testimonial</span></a>
+                                <a href="{{ route('appointment') }}" class="dropdown-item {{ request()->routeIs('appointment') ? 'active' : '' }}"><i class="fas fa-calendar-days me-2"></i><span data-i18n="nav.appointment">Appointment</span></a>
+                                <a href="{{ route('feature') }}" class="dropdown-item {{ request()->routeIs('feature') ? 'active' : '' }}"><i class="fas fa-star me-2"></i><span data-i18n="nav.features">Features</span></a>
+                                <a href="{{ route('clients.index') }}" class="dropdown-item {{ request()->routeIs('clients.*') ? 'active' : '' }}"><i class="fas fa-users me-2"></i><span data-i18n="nav.clients">Our Clients</span></a>
+                                <a href="{{ route('testimonial') }}" class="dropdown-item {{ request()->routeIs('testimonial') ? 'active' : '' }}"><i class="fas fa-comments me-2"></i><span data-i18n="nav.testimonial">Testimonial</span></a>
                             </div>
                         </div>
                     </div>

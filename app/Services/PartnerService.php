@@ -10,25 +10,26 @@ use Illuminate\Support\Str;
 
 class PartnerService
 {
-public function create(array $data): Partner
-{
-    return DB::transaction(function () use ($data): Partner {
+    public function create(array $data): Partner
+    {
+        return DB::transaction(function () use ($data): Partner {
+            $data['name'] = $data['name_en'] ?? $data['name_ar'] ?? null;
+            $data['description'] = $data['description_en'] ?? $data['description_ar'] ?? null;
+            $data['slug'] = $this->generateUniqueSlug($data['name']);
+            $data['logo'] = $this->storeLogo($data['logo']);
+            $data['sort_order'] = $data['sort_order'] ?? (Partner::max('sort_order') + 1);
 
-        $data['slug'] = $this->generateUniqueSlug($data['name']);
-        $data['logo'] = $this->storeLogo($data['logo']);
-
-        // 🔥 حل مشكلة sort_order مع SQLite
-        $data['sort_order'] = $data['sort_order']
-            ?? (Partner::max('sort_order') + 1);
-
-        return Partner::query()->create($data);
-    });
-}
+            return Partner::query()->create($data);
+        });
+    }
 
     public function update(Partner $partner, array $data): Partner
     {
         return DB::transaction(function () use ($partner, $data): Partner {
-            if (isset($data['name']) && $data['name'] !== $partner->name) {
+            $data['name'] = $data['name_en'] ?? $data['name_ar'] ?? $partner->name;
+            $data['description'] = $data['description_en'] ?? $data['description_ar'] ?? $partner->description;
+
+            if ($data['name'] !== $partner->name) {
                 $data['slug'] = $this->generateUniqueSlug($data['name'], $partner->id);
             }
 

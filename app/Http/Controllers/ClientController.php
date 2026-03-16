@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use Illuminate\View\View;
 
-class HomeController extends Controller
+class ClientController extends Controller
 {
-    public function index()
+    public function index(): View
     {
         $clients = Client::query()
             ->where('is_active', true)
@@ -14,6 +15,6 @@ class HomeController extends Controller
             ->orderBy('name_en')
             ->get();
 
-        return view('home', compact('clients'));
+        return view('clients', compact('clients'));
     }
 }
