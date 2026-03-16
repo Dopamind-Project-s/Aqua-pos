@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\PartnerController as AdminPartnerController;
 use App\Http\Controllers\Admin\ServiceRequestController as AdminServiceRequestController;
 use App\Http\Controllers\Admin\SiteSettingController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PartnerController;
@@ -69,19 +70,8 @@ Route::get('/products/{product:slug}', [ProductCatalogController::class, 'show']
 
 Route::prefix('admin')->name('admin.')->group(function () {
 
-    Route::view('/', 'admin.dashboard')->name('dashboard');
-    Route::view('/index', 'admin.index')->name('index');
-    Route::view('/ui-card', 'admin.ui-card')->name('ui-card');
-    Route::view('/ui-forms', 'admin.ui-forms')->name('ui-forms');
-    Route::view('/ui-buttons', 'admin.ui-buttons')->name('ui-buttons');
-    Route::view('/ui-typography', 'admin.ui-typography')->name('ui-typography');
-    Route::view('/ui-alerts', 'admin.ui-alerts')->name('ui-alerts');
-    Route::view('/icon-tabler', 'admin.icon-tabler')->name('icon-tabler');
-    Route::view('/sample-page', 'admin.sample-page')->name('sample-page');
-    Route::view('/docs', 'admin.docs')->name('docs');
-    Route::view('/discount-code', 'admin.discount-code')->name('discount-code');
-    Route::view('/authentication-login', 'admin.authentication-login')->name('authentication-login');
-    Route::view('/authentication-register', 'admin.authentication-register')->name('authentication-register');
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/index', [DashboardController::class, 'index'])->name('index');
 
     /*
     |--------------------------------------------------------------------------
