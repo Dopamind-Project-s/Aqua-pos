@@ -1,9 +1,16 @@
-@props(['client'])
+@props(['client', 'asSlide' => true])
+
+@if($asSlide)
 <div class="swiper-slide">
+@endif
     <article class="client-logo-card">
-        <img src="{{ Storage::url($client->logo) }}" alt="{{ $client->name }}" class="client-logo-card__img">
+        @if($client->logo)
+        <img src="{{ Storage::url($client->logo) }}" alt="{{ $client->localized_name }}" class="client-logo-card__img">
+    @else
+        <span class="client-logo-card__placeholder">{{ strtoupper(substr($client->localized_name, 0, 1)) }}</span>
+    @endif
         <div class="client-logo-card__overlay">
-            <h6>{{ $client->name }}</h6>
+            <h6>{{ $client->localized_name }}</h6>
             <div class="client-logo-card__links">
                 @foreach(['website_url'=>'fas fa-globe','facebook_url'=>'fab fa-facebook-f','instagram_url'=>'fab fa-instagram','linkedin_url'=>'fab fa-linkedin-in','twitter_url'=>'fab fa-twitter','youtube_url'=>'fab fa-youtube'] as $field=>$icon)
                     @if($client->{$field})
@@ -13,4 +20,6 @@
             </div>
         </div>
     </article>
+@if($asSlide)
 </div>
+@endif

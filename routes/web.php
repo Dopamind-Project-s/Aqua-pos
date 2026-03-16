@@ -12,6 +12,7 @@ use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\Admin\ClientController as AdminClientController;
 use App\Http\Controllers\ServiceRequestController;
 use App\Http\Controllers\ProductCatalogController;
+use App\Models\Client;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,7 +34,17 @@ Route::get('/blog/{post:slug}', [BlogController::class, 'blogShow'])->name('blog
 Route::get('/news', [BlogController::class, 'newsIndex'])->name('news');
 Route::get('/news/{post:slug}', [BlogController::class, 'newsShow'])->name('news.show');
 
-Route::view('/team', 'team')->name('team');
+Route::get('/clients', function () {
+    $clients = Client::query()
+        ->where('is_active', true)
+        ->orderBy('sort_order')
+        ->orderBy('name_en')
+        ->get();
+
+    return view('team', compact('clients'));
+})->name('clients');
+
+Route::redirect('/team', '/clients', 301)->name('team');
 Route::view('/testimonial', 'testimonial')->name('testimonial');
 
 Route::get('/partners', [PartnerController::class, 'index'])->name('partners.index');

@@ -259,14 +259,31 @@
 
 @push('scripts')
 <script>
-    $('.blog-slider').owlCarousel({
-        items: 1,
-        loop: true,
-        autoplay: true,
-        autoplayTimeout: 5000,
-        smartSpeed: 800,
-        dots: true,
-        nav: false,
+    document.addEventListener('DOMContentLoaded', function () {
+        const initBlogSlider = function () {
+            const $slider = $('.blog-slider');
+            if (!$slider.length) return;
+
+            if ($slider.hasClass('owl-loaded')) {
+                $slider.trigger('destroy.owl.carousel');
+                $slider.removeClass('owl-loaded');
+                $slider.find('.owl-stage-outer').children().unwrap();
+            }
+
+            $slider.owlCarousel({
+                items: 1,
+                loop: true,
+                autoplay: true,
+                autoplayTimeout: 5000,
+                smartSpeed: 800,
+                dots: true,
+                nav: false,
+                rtl: document.documentElement.getAttribute('dir') === 'rtl',
+            });
+        };
+
+        initBlogSlider();
+        document.addEventListener('aqua:language-changed', initBlogSlider);
     });
 </script>
 @endpush

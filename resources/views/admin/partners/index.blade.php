@@ -13,18 +13,19 @@
 
         <div class="table-responsive">
             <table class="table text-nowrap align-middle" id="partnersTable">
-                <thead><tr><th>#</th><th>Logo</th><th>Name</th><th>Website</th><th>Status</th><th class="text-end">Actions</th></tr></thead>
+                <thead class="text-dark fs-4"><tr><th>#</th><th>Logo</th><th>Name</th><th>Website</th><th>Status</th><th class="text-end">Actions</th></tr></thead>
                 <tbody id="partnersSortable">
                 @forelse($partners as $partner)
                     <tr data-id="{{ $partner->id }}">
                         <td><i class="ti ti-grip-vertical"></i></td>
                         <td>
                             @if($partner->logo)
-                                <img src="{{ Storage::url($partner->logo) }}" alt="{{ $partner->name }}" class="rounded border object-fit-contain bg-white" width="70" height="54">
+                                <img src="{{ Storage::url($partner->logo) }}" alt="{{ $partner->localized_name }}" class="rounded border object-fit-contain bg-white" width="70" height="54">
                             @endif
                         </td>
                         <td>
-                            <div class="fw-semibold">{{ $partner->name }}</div>
+                            <div class="fw-semibold">{{ $partner->localized_name }}</div>
+                            <small class="text-muted d-block">AR: {{ $partner->name_ar ?: '-' }} | EN: {{ $partner->name_en ?: '-' }}</small>
                             <small class="text-muted">Order: {{ $partner->sort_order }}</small>
                         </td>
                         <td>

@@ -2,9 +2,15 @@
 
 <div class="row g-3">
     <div class="col-md-6">
-        <label class="form-label" for="name">Partner Name *</label>
-        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name', $partner->name ?? '') }}" required>
-        @error('name')<div class="invalid-feedback">{{ $message }}</div>@enderror
+        <label class="form-label" for="name_ar">Partner Name (AR)</label>
+        <input type="text" class="form-control @error('name_ar') is-invalid @enderror" id="name_ar" name="name_ar" value="{{ old('name_ar', $partner->name_ar ?? '') }}">
+        @error('name_ar')<div class="invalid-feedback">{{ $message }}</div>@enderror
+    </div>
+
+    <div class="col-md-6">
+        <label class="form-label" for="name_en">Partner Name (EN - Default) *</label>
+        <input type="text" class="form-control @error('name_en') is-invalid @enderror" id="name_en" name="name_en" value="{{ old('name_en', $partner->name_en ?? $partner->name ?? '') }}" required>
+        @error('name_en')<div class="invalid-feedback">{{ $message }}</div>@enderror
     </div>
 
     <div class="col-md-6">
@@ -17,6 +23,18 @@
         <label class="form-label" for="website_url">Website URL</label>
         <input type="url" class="form-control @error('website_url') is-invalid @enderror" id="website_url" name="website_url" value="{{ old('website_url', $partner->website_url ?? '') }}">
         @error('website_url')<div class="invalid-feedback">{{ $message }}</div>@enderror
+    </div>
+
+    <div class="col-md-6">
+        <label class="form-label" for="description_ar">Description (AR)</label>
+        <textarea class="form-control @error('description_ar') is-invalid @enderror" id="description_ar" name="description_ar" rows="3">{{ old('description_ar', $partner->description_ar ?? '') }}</textarea>
+        @error('description_ar')<div class="invalid-feedback">{{ $message }}</div>@enderror
+    </div>
+
+    <div class="col-md-6">
+        <label class="form-label" for="description_en">Description (EN - Default)</label>
+        <textarea class="form-control @error('description_en') is-invalid @enderror" id="description_en" name="description_en" rows="3">{{ old('description_en', $partner->description_en ?? $partner->description ?? '') }}</textarea>
+        @error('description_en')<div class="invalid-feedback">{{ $message }}</div>@enderror
     </div>
 
     <div class="col-md-6">
@@ -67,7 +85,7 @@
     @if($isEdit && $partner->logo)
         <div class="col-12">
             <p class="mb-1 fw-semibold">Current Logo</p>
-            <img src="{{ Storage::url($partner->logo) }}" alt="{{ $partner->name }}" class="rounded border object-fit-contain bg-white" width="120" height="90">
+            <img src="{{ Storage::url($partner->logo) }}" alt="{{ $partner->localized_name }}" class="rounded border object-fit-contain bg-white" width="120" height="90">
         </div>
     @endif
 </div>

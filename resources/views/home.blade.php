@@ -610,17 +610,30 @@
     document.addEventListener('DOMContentLoaded', function () {
         const el = document.querySelector('.clients-swiper');
         if (!el) return;
-        new Swiper(el, {
-            slidesPerView: 2,
-            spaceBetween: 14,
-            autoplay: { delay: 2600, disableOnInteraction: false },
-            loop: true,
-            breakpoints: {
-                640: { slidesPerView: 3 },
-                768: { slidesPerView: 4 },
-                1200: { slidesPerView: 6 }
+
+        let clientsSwiper;
+
+        const initClientsSwiper = function () {
+            if (clientsSwiper) {
+                clientsSwiper.destroy(true, true);
             }
-        });
+
+            clientsSwiper = new Swiper(el, {
+                slidesPerView: 2,
+                spaceBetween: 14,
+                autoplay: { delay: 2600, disableOnInteraction: false },
+                loop: true,
+                rtl: document.documentElement.getAttribute('dir') === 'rtl',
+                breakpoints: {
+                    640: { slidesPerView: 3 },
+                    768: { slidesPerView: 4 },
+                    1200: { slidesPerView: 6 }
+                }
+            });
+        };
+
+        initClientsSwiper();
+        document.addEventListener('aqua:language-changed', initClientsSwiper);
     });
 </script>
 @endpush

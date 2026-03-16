@@ -13,6 +13,8 @@ class ClientService
     public function create(array $data): Client
     {
         return DB::transaction(function () use ($data): Client {
+            $data['name'] = $data['name_en'] ?? $data['name_ar'] ?? null;
+            $data['description'] = $data['description_en'] ?? $data['description_ar'] ?? null;
             $data['slug'] = $this->generateUniqueSlug($data['name']);
             $data['logo'] = $this->storeLogo($data['logo']);
             $data['sort_order'] = $data['sort_order'] ?? (Client::max('sort_order') + 1);
@@ -24,7 +26,10 @@ class ClientService
     public function update(Client $client, array $data): Client
     {
         return DB::transaction(function () use ($client, $data): Client {
-            if (isset($data['name']) && $data['name'] !== $client->name) {
+            $data['name'] = $data['name_en'] ?? $data['name_ar'] ?? $client->name;
+            $data['description'] = $data['description_en'] ?? $data['description_ar'] ?? $client->description;
+
+            if ($data['name'] !== $client->name) {
                 $data['slug'] = $this->generateUniqueSlug($data['name'], $client->id);
             }
 
