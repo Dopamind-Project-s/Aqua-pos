@@ -242,7 +242,7 @@
 
                         <div class="col-md-6 demo-input-group">
                             <label class="form-label"><i class="far fa-clock"></i><span data-i18n="demo.preferredContactTime">Preferred Contact Time</span></label>
-                            <input class="form-control demo-input" name="preferred_contact_time" placeholder="e.g. 10:00 AM">
+                            <input class="form-control demo-input" name="preferred_contact_time" data-i18n-placeholder="demo.preferredContactPlaceholder" placeholder="e.g. 10:00 AM">
                         </div>
 
                         <div class="col-12 demo-input-group">

@@ -4,11 +4,11 @@
 <!-- Header Start -->
 <div class="container-fluid bg-breadcrumb">
     <div class="container text-center py-5" style="max-width: 900px;">
-        <h1 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">Our Clients</h1>
+        <h1 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s"><span data-i18n="clients.pageTitle">Our Clients</span></h1>
         <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
-            <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-            <li class="breadcrumb-item"><a href="#">Pages</a></li>
-            <li class="breadcrumb-item active text-primary">Clients</li>
+            <li class="breadcrumb-item"><a href="{{ url('/') }}"><span data-i18n="breadcrumb.home">Home</span></a></li>
+            <li class="breadcrumb-item"><a href="#"><span data-i18n="breadcrumb.pages">Pages</span></a></li>
+            <li class="breadcrumb-item active text-primary"><span data-i18n="clients.pageCrumb">Clients</span></li>
         </ol>
     </div>
 </div>
@@ -19,24 +19,24 @@
     <div class="container py-5">
         <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
             <div class="sub-style">
-                <h4 class="sub-title px-3 mb-0">Trusted Partnerships</h4>
+                <h4 class="sub-title px-3 mb-0"><span data-i18n="clients.pageEyebrow">Trusted Partnerships</span></h4>
             </div>
-            <h2 class="display-5 mb-3">Brands Growing with AQUA POS</h2>
-            <p class="mb-0">We work with restaurants and retail businesses that need speed, visibility, and stronger operational control across every branch.</p>
+            <h2 class="display-5 mb-3"><span data-i18n="clients.pageHeading">Brands Growing with AQUA POS</span></h2>
+            <p class="mb-0"><span data-i18n="clients.pageIntro">We work with restaurants and retail businesses that need speed, visibility, and stronger operational control across every branch.</span></p>
         </div>
 
         <div class="clients-showcase__stats wow fadeInUp" data-wow-delay="0.15s">
             <div class="clients-showcase__stat-card">
                 <span class="clients-showcase__stat-number">{{ ($clients ?? collect())->count() }}</span>
-                <span class="clients-showcase__stat-label">Active Client Brands</span>
+                <span class="clients-showcase__stat-label"><span data-i18n="clients.stat1">Active Client Brands</span></span>
             </div>
             <div class="clients-showcase__stat-card">
                 <span class="clients-showcase__stat-number">24/7</span>
-                <span class="clients-showcase__stat-label">Operational Visibility</span>
+                <span class="clients-showcase__stat-label"><span data-i18n="clients.stat2">Operational Visibility</span></span>
             </div>
             <div class="clients-showcase__stat-card">
                 <span class="clients-showcase__stat-number">Cloud</span>
-                <span class="clients-showcase__stat-label">Connected POS Platform</span>
+                <span class="clients-showcase__stat-label"><span data-i18n="clients.stat3">Connected POS Platform</span></span>
             </div>
         </div>
 
@@ -51,8 +51,8 @@
         @else
             <div class="clients-showcase__empty text-center wow fadeInUp" data-wow-delay="0.2s">
                 <i class="fas fa-building mb-3"></i>
-                <h5 class="mb-2">Client logos will appear here soon</h5>
-                <p class="mb-0">Our newest collaborations are being prepared for publishing.</p>
+                <h5 class="mb-2"><span data-i18n="clients.pageEmptyTitle">Client logos will appear here soon</span></h5>
+                <p class="mb-0"><span data-i18n="clients.pageEmptySubtitle">Our newest collaborations are being prepared for publishing.</span></p>
             </div>
         @endif
     </div>
