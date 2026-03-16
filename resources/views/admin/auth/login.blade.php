@@ -4,43 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link href="{{ asset('dashboard/assets/css/styles.min.css') }}" rel="stylesheet">
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            background: #f5f7fb;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 420px;
+            border: 0;
+            box-shadow: 0 12px 40px rgba(27, 57, 108, .08);
+        }
+    </style>
 </head>
-<body class="min-h-screen bg-gray-100 flex items-center justify-center p-4">
-    <div class="w-full max-w-md bg-white shadow rounded-lg p-6">
-        <h1 class="text-2xl font-bold mb-2">Admin Login</h1>
-        <p class="text-sm text-gray-600 mb-6">Sign in to access the admin dashboard.</p>
+<body>
+<div class="card login-card">
+    <div class="card-body p-4 p-md-5">
+        <h1 class="h4 mb-1">Admin Login</h1>
+        <p class="text-muted mb-4">Sign in to access the admin dashboard.</p>
 
         @if ($errors->any())
-            <div class="mb-4 rounded bg-red-50 text-red-700 px-4 py-3 text-sm">
+            <div class="alert alert-danger py-2">
                 {{ $errors->first() }}
             </div>
         @endif
 
-        <form method="POST" action="{{ route('admin.login.submit') }}" class="space-y-4">
+        <form method="POST" action="{{ route('admin.login.submit') }}">
             @csrf
-            <div>
-                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                <input id="email" name="email" type="email" value="{{ old('email') }}" required autofocus
-                       class="w-full rounded border border-gray-300 px-3 py-2 focus:outline-none focus:ring focus:ring-blue-200">
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input id="email" name="email" type="email" value="{{ old('email') }}" required autofocus class="form-control">
             </div>
 
-            <div>
-                <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
-                <input id="password" name="password" type="password" required
-                       class="w-full rounded border border-gray-300 px-3 py-2 focus:outline-none focus:ring focus:ring-blue-200">
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input id="password" name="password" type="password" required class="form-control">
             </div>
 
-            <label class="inline-flex items-center gap-2 text-sm text-gray-700">
-                <input type="checkbox" name="remember" value="1" class="rounded border-gray-300">
-                Remember me
-            </label>
+            <div class="form-check mb-4">
+                <input type="checkbox" name="remember" value="1" class="form-check-input" id="rememberMe">
+                <label class="form-check-label" for="rememberMe">Remember me</label>
+            </div>
 
-            <button type="submit"
-                    class="w-full rounded bg-blue-600 text-white font-semibold px-4 py-2 hover:bg-blue-700 transition-colors">
-                Sign In
-            </button>
+            <button type="submit" class="btn btn-primary w-100">Sign In</button>
         </form>
     </div>
+</div>
 </body>
 </html>

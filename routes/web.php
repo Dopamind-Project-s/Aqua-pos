@@ -113,6 +113,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         */
 
         Route::get('requests', [AdminServiceRequestController::class, 'index'])->name('requests.index');
+        Route::patch('requests/{serviceRequest}/status', [AdminServiceRequestController::class, 'updateStatus'])->name('requests.update-status');
         Route::get('settings', [SiteSettingController::class, 'edit'])->name('settings.edit');
         Route::put('settings', [SiteSettingController::class, 'update'])->name('settings.update');
 
