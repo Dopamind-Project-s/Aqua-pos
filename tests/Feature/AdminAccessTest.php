@@ -36,6 +36,20 @@ class AdminAccessTest extends TestCase
             ->assertForbidden();
     }
 
+
+    public function test_admin_login_is_rate_limited_after_repeated_failures(): void
+    {
+        for ($attempt = 0; $attempt < 6; $attempt++) {
+            $response = $this->post('/admin/login', [
+                'email' => 'admin@aquapos.com',
+                'password' => 'wrong-password',
+            ]);
+        }
+
+        $response
+            ->assertSessionHasErrors('email');
+    }
+
     public function test_active_admin_can_access_admin_dashboard(): void
     {
         $user = User::factory()->admin()->create();
