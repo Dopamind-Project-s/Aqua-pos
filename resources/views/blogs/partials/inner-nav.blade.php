@@ -1,7 +1,7 @@
 @php
     $now = now();
     $currentType = $type ?? 'blog';
-    $currentCategoryName = $selectedCategoryName ?? ($post->category->name ?? 'All Categories');
+    $currentCategoryName = $selectedCategoryName ?? ($post->category->localized_name ?? 'All Categories');
     $categoryItems = $categories ?? collect();
 @endphp
 
@@ -27,7 +27,7 @@
                 <h6 class="dropdown-header" data-i18n="blog.nav.allCategories">All Categories</h6>
                 @forelse($categoryItems as $category)
                     <span class="dropdown-item-text d-flex justify-content-between align-items-center">
-                        <span>{{ $category->name }}</span>
+                        <span>{{ $category->localized_name }}</span>
                         <small class="badge-soft">{{ $category->posts_count ?? 0 }}</small>
                     </span>
                 @empty

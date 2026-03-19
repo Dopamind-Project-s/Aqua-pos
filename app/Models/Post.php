@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Storage;
+use App\Support\JsonTranslation;
 
 class Post extends Model
 {
@@ -29,6 +30,21 @@ class Post extends Model
         return [
             'published_at' => 'datetime',
         ];
+    }
+
+    public function getLocalizedTitleAttribute(): string
+    {
+        return JsonTranslation::extractLocale($this->getRawOriginal('title'), app()->getLocale()) ?? '';
+    }
+
+    public function getLocalizedExcerptAttribute(): ?string
+    {
+        return JsonTranslation::extractLocale($this->getRawOriginal('excerpt'), app()->getLocale());
+    }
+
+    public function getLocalizedContentAttribute(): ?string
+    {
+        return JsonTranslation::extractLocale($this->getRawOriginal('content'), app()->getLocale());
     }
 
 

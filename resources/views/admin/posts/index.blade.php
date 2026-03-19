@@ -9,14 +9,14 @@
         <tbody>
         @forelse($posts as $post)
             <tr>
-                <td><img src="{{ $post->cover_image ? Storage::url($post->cover_image) : asset('img/service-1.jpg') }}" alt="{{ $post->title }}" class="rounded border" style="width:60px;height:60px;object-fit:cover;"></td>
-                <td>{{ $post->title }}</td>
+                <td><img src="{{ $post->cover_image ? Storage::url($post->cover_image) : asset('img/service-1.jpg') }}" alt="{{ $post->localized_title }}" class="rounded border" style="width:60px;height:60px;object-fit:cover;"></td>
+                <td>{{ $post->localized_title }}</td>
                 <td><span class="badge bg-info text-dark">{{ ucfirst($post->type) }}</span></td>
                 <td>
                     @php($statusClass = ['draft' => 'bg-secondary', 'published' => 'bg-success', 'archived' => 'bg-dark'][$post->status] ?? 'bg-secondary')
                     <span class="badge {{ $statusClass }}">{{ ucfirst($post->status) }}</span>
                 </td>
-                <td>{{ $post->category?->name ?? '-' }}</td>
+                <td>{{ $post->category?->localized_name ?? '-' }}</td>
                 <td>{{ $post->author?->name ?? '-' }}</td>
                 <td class="text-end"><a class="btn btn-sm btn-info" href="{{ route('admin.posts.show',$post->id) }}">View</a> <a class="btn btn-sm btn-warning" href="{{ route('admin.posts.edit',$post->id) }}">Edit</a> <form action="{{ route('admin.posts.destroy',$post->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Delete this post?');">@csrf @method('DELETE')<button class="btn btn-sm btn-danger" type="submit">Delete</button></form></td>
             </tr>

@@ -47,7 +47,7 @@
                         <div class="col-md-6">
                             <article class="card blog-card h-100">
                                 @if($post->cover_image)
-                                    <img class="thumb" src="{{ Storage::url($post->cover_image) }}" alt="{{ $post->title }}">
+                                    <img class="thumb" src="{{ Storage::url($post->cover_image) }}" alt="{{ $post->localized_title }}">
                                 @else
                                     <div class="thumb thumb--placeholder" role="img" aria-label="Default post image">
                                         <i class="far fa-image"></i>
@@ -56,8 +56,8 @@
                                 @endif
                                 <div class="card-body d-flex flex-column">
                                     <div class="meta mb-2"><i class="far fa-calendar-alt me-1"></i>{{ $post->published_at?->format('d M Y') ?? $post->created_at?->format('d M Y') }} <span class="mx-1">•</span> <i class="fas fa-folder-open me-1"></i>{{ $post->category?->localized_name ?? 'General' }}</div>
-                                    <h5 class="card-title mb-2">{{ $post->title }}</h5>
-                                    <p class="text-muted mb-3">{{ \Illuminate\Support\Str::limit($post->excerpt ?: strip_tags($post->content), 120) }}</p>
+                                    <h5 class="card-title mb-2">{{ $post->localized_title }}</h5>
+                                    <p class="text-muted mb-3">{{ \Illuminate\Support\Str::limit($post->localized_excerpt ?: strip_tags($post->localized_content), 120) }}</p>
                                     <a class="mt-auto btn btn-outline-primary rounded-pill" href="{{ $type === 'blog' ? route('blog.show', $post->slug) : route('news.show', $post->slug) }}"><i class="fas fa-arrow-right me-2"></i><span data-i18n="blog.readMore">Read More</span></a>
                                 </div>
                             </article>
@@ -94,12 +94,12 @@
                         @foreach($latestPosts as $latest)
                             <a class="d-flex gap-2 text-decoration-none mb-3" href="{{ $type === 'blog' ? route('blog.show', $latest->slug) : route('news.show', $latest->slug) }}">
                                 @if($latest->cover_image)
-                                    <img class="sidebar-thumb" src="{{ Storage::url($latest->cover_image) }}" alt="{{ $latest->title }}">
+                                    <img class="sidebar-thumb" src="{{ Storage::url($latest->cover_image) }}" alt="{{ $latest->localized_title }}">
                                 @else
                                     <span class="sidebar-thumb sidebar-thumb--placeholder" aria-hidden="true"><i class="far fa-image"></i></span>
                                 @endif
                                 <span>
-                                    <span class="fw-semibold text-dark d-block">{{ \Illuminate\Support\Str::limit($latest->title, 70) }}</span>
+                                    <span class="fw-semibold text-dark d-block">{{ \Illuminate\Support\Str::limit($latest->localized_title, 70) }}</span>
                                     <small class="text-muted">{{ $latest->published_at?->format('d M Y') ?? $latest->created_at?->format('d M Y') }}</small>
                                 </span>
                             </a>

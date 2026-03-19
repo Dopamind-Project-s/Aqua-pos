@@ -439,15 +439,15 @@
                         <div class="col-md-6 col-lg-6 col-xl-4 d-flex wow fadeInUp" data-wow-delay="{{ number_format((($index % 3) * 0.2) + 0.1, 1) }}s">
                             <div class="blog-item rounded h-100 d-flex flex-column">
                                 <div class="blog-img">
-                                    <img src="{{ $post->cover_image_url }}" class="img-fluid w-100" alt="{{ $post->title }}">
+                                    <img src="{{ $post->cover_image_url }}" class="img-fluid w-100" alt="{{ $post->localized_title }}">
                                 </div>
                                 <div class="blog-centent p-4 d-flex flex-column flex-grow-1">
                                     <div class="d-flex justify-content-between mb-4">
                                         <p class="mb-0 text-muted"><i class="fa fa-calendar-alt text-primary"></i> {{ $post->published_at?->format('d M Y') ?? $post->created_at?->format('d M Y') }}</p>
                                         <span class="text-muted"><i class="fa fa-folder-open text-primary"></i> {{ $post->category?->localized_name ?? 'General' }}</span>
                                     </div>
-                                    <a href="{{ route('blog.show', $post->slug) }}" class="h4 d-block mb-3">{{ \Illuminate\Support\Str::limit($post->title, 70) }}</a>
-                                    <p class="my-4">{{ \Illuminate\Support\Str::limit($post->excerpt ?: strip_tags($post->content), 135) }}</p>
+                                    <a href="{{ route('blog.show', $post->slug) }}" class="h4 d-block mb-3">{{ \Illuminate\Support\Str::limit($post->localized_title, 70) }}</a>
+                                    <p class="my-4">{{ \Illuminate\Support\Str::limit($post->localized_excerpt ?: strip_tags($post->localized_content), 135) }}</p>
                                     <div class="mt-auto pt-2">
                                         <a href="{{ route('blog.show', $post->slug) }}" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-1"><span data-i18n="home.common.readMore">Read More</span></a>
                                     </div>

@@ -5,8 +5,8 @@
     <div class="container">
         <div class="article-page-head mb-4">
             <span class="article-page-head__eyebrow mb-2"><i class="far fa-newspaper"></i>{{ strtoupper($type) }}</span>
-            <h1 class="h2 fw-bold mb-2">{{ $post->title }}</h1>
-            <p class="mb-0 text-muted"><i class="far fa-calendar-alt me-2"></i>{{ $post->published_at?->format('d M Y') ?? $post->created_at?->format('d M Y') }} <span class="mx-2">•</span><i class="fas fa-folder-open me-2"></i>{{ $post->category?->name ?? 'General' }}</p>
+            <h1 class="h2 fw-bold mb-2">{{ $post->localized_title }}</h1>
+            <p class="mb-0 text-muted"><i class="far fa-calendar-alt me-2"></i>{{ $post->published_at?->format('d M Y') ?? $post->created_at?->format('d M Y') }} <span class="mx-2">•</span><i class="fas fa-folder-open me-2"></i>{{ $post->category?->localized_name ?? 'General' }}</p>
         </div>
 
         @include('blogs.partials.inner-nav', ['type' => $type, 'post' => $post, 'categories' => $categories])
@@ -25,7 +25,7 @@
                     </div>
 
                     @if($post->cover_image)
-                        <img class="article-cover mb-4" src="{{ Storage::url($post->cover_image) }}" alt="{{ $post->title }}">
+                        <img class="article-cover mb-4" src="{{ Storage::url($post->cover_image) }}" alt="{{ $post->localized_title }}">
                     @else
                         <div class="article-cover article-cover--placeholder mb-4" role="img" aria-label="Default post image">
                             <i class="far fa-image"></i>
@@ -33,11 +33,11 @@
                         </div>
                     @endif
 
-                    @if($post->excerpt)
-                        <blockquote class="border-start border-4 border-primary ps-3 mb-4 text-dark fw-semibold">{{ $post->excerpt }}</blockquote>
+                    @if($post->localized_excerpt)
+                        <blockquote class="border-start border-4 border-primary ps-3 mb-4 text-dark fw-semibold">{{ $post->localized_excerpt }}</blockquote>
                     @endif
 
-                    <div class="article-content">{!! nl2br(e($post->content)) !!}</div>
+                    <div class="article-content">{!! nl2br(e($post->localized_content)) !!}</div>
                 </article>
             </div>
 
@@ -47,7 +47,7 @@
                         <h6 class="fw-bold mb-3"><i class="fas fa-layer-group me-2"></i><span data-i18n="blog.nav.category">Category</span></h6>
                         @foreach($categories as $category)
                             <a href="{{ ($type === 'blog' ? route('blog') : route('news')) . '?category=' . $category->slug }}" class="d-flex justify-content-between text-decoration-none mb-2 text-dark">
-                                <span>{{ $category->name }}</span>
+                                <span>{{ $category->localized_name }}</span>
                                 <span class="badge-soft">{{ $category->posts_count }}</span>
                             </a>
                         @endforeach
@@ -58,12 +58,12 @@
                         @foreach($relatedPosts as $related)
                             <a class="d-flex gap-2 text-decoration-none mb-3" href="{{ $type === 'blog' ? route('blog.show', $related->slug) : route('news.show', $related->slug) }}">
                                 @if($related->cover_image)
-                                    <img class="sidebar-thumb" src="{{ Storage::url($related->cover_image) }}" alt="{{ $related->title }}">
+                                    <img class="sidebar-thumb" src="{{ Storage::url($related->cover_image) }}" alt="{{ $related->localized_title }}">
                                 @else
                                     <span class="sidebar-thumb sidebar-thumb--placeholder" aria-hidden="true"><i class="far fa-image"></i></span>
                                 @endif
                                 <div>
-                                    <div class="fw-semibold text-dark">{{ \Illuminate\Support\Str::limit($related->title, 72) }}</div>
+                                    <div class="fw-semibold text-dark">{{ \Illuminate\Support\Str::limit($related->localized_title, 72) }}</div>
                                     <small class="text-muted">{{ $related->published_at?->format('d M Y') ?? $related->created_at?->format('d M Y') }}</small>
                                 </div>
                             </a>
@@ -75,11 +75,11 @@
                         @foreach($latestPosts as $latest)
                             <a class="d-flex gap-2 text-decoration-none mb-3" href="{{ $type === 'blog' ? route('blog.show', $latest->slug) : route('news.show', $latest->slug) }}">
                                 @if($latest->cover_image)
-                                    <img class="sidebar-thumb" src="{{ Storage::url($latest->cover_image) }}" alt="{{ $latest->title }}">
+                                    <img class="sidebar-thumb" src="{{ Storage::url($latest->cover_image) }}" alt="{{ $latest->localized_title }}">
                                 @else
                                     <span class="sidebar-thumb sidebar-thumb--placeholder" aria-hidden="true"><i class="far fa-image"></i></span>
                                 @endif
-                                <div class="fw-semibold text-dark">{{ \Illuminate\Support\Str::limit($latest->title, 72) }}</div>
+                                <div class="fw-semibold text-dark">{{ \Illuminate\Support\Str::limit($latest->localized_title, 72) }}</div>
                             </a>
                         @endforeach
                     </div>

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
+use App\Support\JsonTranslation;
 
 class Product extends Model
 {
@@ -77,57 +78,27 @@ class Product extends Model
 
     public function getLocalizedNameAttribute(): string
     {
-        $locale = app()->getLocale();
-
-        if ($locale === 'ar') {
-            return $this->name_ar ?: $this->name_en ?: $this->name;
-        }
-
-        return $this->name_en ?: $this->name_ar ?: $this->name;
+        return JsonTranslation::pick($this->getRawOriginal('name'), $this->name_ar, $this->name_en, app()->getLocale()) ?? '';
     }
 
     public function getLocalizedTaglineAttribute(): ?string
     {
-        $locale = app()->getLocale();
-
-        if ($locale === 'ar') {
-            return $this->tagline_ar ?: $this->tagline_en ?: $this->tagline;
-        }
-
-        return $this->tagline_en ?: $this->tagline_ar ?: $this->tagline;
+        return JsonTranslation::pick($this->getRawOriginal('tagline'), $this->tagline_ar, $this->tagline_en, app()->getLocale());
     }
 
     public function getLocalizedShortDescriptionAttribute(): ?string
     {
-        $locale = app()->getLocale();
-
-        if ($locale === 'ar') {
-            return $this->short_description_ar ?: $this->short_description_en ?: $this->short_description;
-        }
-
-        return $this->short_description_en ?: $this->short_description_ar ?: $this->short_description;
+        return JsonTranslation::pick($this->getRawOriginal('short_description'), $this->short_description_ar, $this->short_description_en, app()->getLocale());
     }
 
     public function getLocalizedDescriptionAttribute(): ?string
     {
-        $locale = app()->getLocale();
-
-        if ($locale === 'ar') {
-            return $this->description_ar ?: $this->description_en ?: $this->description;
-        }
-
-        return $this->description_en ?: $this->description_ar ?: $this->description;
+        return JsonTranslation::pick($this->getRawOriginal('description'), $this->description_ar, $this->description_en, app()->getLocale());
     }
 
     public function getLocalizedUseCasesAttribute(): ?string
     {
-        $locale = app()->getLocale();
-
-        if ($locale === 'ar') {
-            return $this->use_cases_ar ?: $this->use_cases_en ?: $this->use_cases;
-        }
-
-        return $this->use_cases_en ?: $this->use_cases_ar ?: $this->use_cases;
+        return JsonTranslation::pick($this->getRawOriginal('use_cases'), $this->use_cases_ar, $this->use_cases_en, app()->getLocale());
     }
 
     public function category(): BelongsTo

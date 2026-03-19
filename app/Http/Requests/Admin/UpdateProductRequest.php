@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Support\JsonTranslation;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -15,7 +16,7 @@ class UpdateProductRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
-            // Keep legacy default columns synced from EN automatically.
+            // Keep legacy columns synced and store bilingual payload as JSON without schema change.
             'name' => (string) $this->input('name_en', ''),
             'tagline' => $this->input('tagline_en'),
             'short_description' => $this->input('short_description_en'),
@@ -26,6 +27,14 @@ class UpdateProductRequest extends FormRequest
             'key_features' => $this->filled('key_features')
                 ? array_values(array_filter(array_map('trim', explode(PHP_EOL, (string) $this->input('key_features')))))
                 : null,
+        ]);
+
+        $this->merge([
+            'name' => JsonTranslation::encode($this->input('name_ar'), $this->input('name_en'), $this->input('name_en')) ?? (string) $this->input('name_en', ''),
+            'tagline' => JsonTranslation::encode($this->input('tagline_ar'), $this->input('tagline_en')),
+            'short_description' => JsonTranslation::encode($this->input('short_description_ar'), $this->input('short_description_en')),
+            'description' => JsonTranslation::encode($this->input('description_ar'), $this->input('description_en')),
+            'use_cases' => JsonTranslation::encode($this->input('use_cases_ar'), $this->input('use_cases_en')),
         ]);
     }
 
