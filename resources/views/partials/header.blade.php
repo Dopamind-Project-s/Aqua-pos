@@ -68,6 +68,7 @@
                     <div class="navbar-nav ms-auto py-0">
                         <a href="{{ route('home') }}" class="nav-item nav-link nav-link--home {{ request()->routeIs('home') ? 'active' : '' }}" aria-label="Home">
                             <i class="fas fa-home"></i>
+                            <span data-i18n="nav.home">Home</span>
                         </a>
                         <div class="nav-item mega-menu" id="productsMegaMenu">
                             <button
@@ -90,7 +91,7 @@
                                                 <div class="mega-menu__services">
                                                     @foreach($menuCategory->products->take(6) as $menuProduct)
                                                         <a href="{{ route('products.show', $menuProduct->slug) }}" class="mega-menu__service">
-                                                            <img class="mega-menu__service-thumb" src="{{ $menuProduct->image ? Storage::url($menuProduct->image) : asset('img/service-1.jpg') }}" alt="{{ $menuProduct->localized_name }}">
+                                                            <img class="mega-menu__service-thumb" src="{{ $menuProduct->image_url }}" alt="{{ $menuProduct->localized_name }}">
                                                             <div class="mega-menu__service-content">
                                                                 <h5>{{ $menuProduct->name_en ?: $menuProduct->name }}<small class="d-block text-muted">{{ $menuProduct->name_ar }}</small></h5>
                                                                 <p>{{ $menuProduct->localized_short_description }}</p>

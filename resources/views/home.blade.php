@@ -14,137 +14,33 @@
                     <h1 class="display-3 mb-4">Powerful POS System for Restaurants & Retail.</h1>
                     <p class="mb-0">AQUA POS is a cloud-based POS and inventory management platform from Amman, Jordan, helping restaurants and retailers run faster with better control and full visibility.</p>
                 </div>
+
                 <div class="row g-4 justify-content-center">
-                    <div class="col-md-6 col-lg-4 col-xl-3 d-flex wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="service-item rounded h-100 d-flex flex-column">
-                           <div class="service-img rounded-top">
-                                <img src="{{ asset('img/service-1.jpg') }}" class="img-fluid rounded-top w-100" alt="">
-                           </div>
-                            <div class="service-content rounded-bottom bg-light p-4 d-flex flex-column flex-grow-1">
-                                <div class="service-content-inner d-flex flex-column h-100">
-                                    <h5 class="mb-4">Powerful POS System</h5>
-                                    <p class="mb-4">Designed to reduce errors, simplify workflows, and keep every sale and stock movement synchronized in real time.</p>
-                                    <div class="mt-auto pt-2">
-                                        <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
+                    @forelse(($featuredProducts ?? collect()) as $index => $product)
+                        <div class="col-md-6 col-lg-4 col-xl-3 d-flex wow fadeInUp" data-wow-delay="{{ number_format((($index % 4) * 0.2) + 0.1, 1) }}s">
+                            <div class="service-item rounded h-100 d-flex flex-column">
+                                <div class="service-img rounded-top">
+                                    <img src="{{ $product->image_url }}" class="img-fluid rounded-top w-100" alt="{{ $product->localized_name }}">
+                                </div>
+                                <div class="service-content rounded-bottom bg-light p-4 d-flex flex-column flex-grow-1">
+                                    <div class="service-content-inner d-flex flex-column h-100">
+                                        <h5 class="mb-3">{{ $product->localized_name }}</h5>
+                                        <p class="mb-4">{{ \Illuminate\Support\Str::limit($product->localized_short_description ?: $product->localized_description ?: 'Explore this product in detail.', 120) }}</p>
+                                        <div class="mt-auto pt-2">
+                                            <a href="{{ route('products.show', $product->slug) }}" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3 d-flex wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="service-item rounded h-100 d-flex flex-column">
-                           <div class="service-img rounded-top">
-                                <img src="{{ asset('img/service-2.jpg') }}" class="img-fluid rounded-top w-100" alt="">
-                           </div>
-                            <div class="service-content rounded-bottom bg-light p-4 d-flex flex-column flex-grow-1">
-                                <div class="service-content-inner d-flex flex-column h-100">
-                                    <h5 class="mb-4">Smart Inventory Control</h5>
-                                    <p class="mb-4">Designed to reduce errors, simplify workflows, and keep every sale and stock movement synchronized in real time.</p>
-                                    <div class="mt-auto pt-2">
-                                        <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
+                    @empty
+                        <div class="col-12 text-center">
+                            <p class="text-muted mb-3">No active products available right now.</p>
                         </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3 d-flex wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="service-item rounded h-100 d-flex flex-column">
-                           <div class="service-img rounded-top">
-                                <img src="{{ asset('img/service-3.jpg') }}" class="img-fluid rounded-top w-100" alt="">
-                           </div>
-                            <div class="service-content rounded-bottom bg-light p-4 d-flex flex-column flex-grow-1">
-                                <div class="service-content-inner d-flex flex-column h-100">
-                                    <h5 class="mb-4">Unified Branch Management</h5>
-                                    <p class="mb-4">Designed to reduce errors, simplify workflows, and keep every sale and stock movement synchronized in real time.</p>
-                                    <div class="mt-auto pt-2">
-                                        <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3 d-flex wow fadeInUp" data-wow-delay="0.7s">
-                        <div class="service-item rounded h-100 d-flex flex-column">
-                           <div class="service-img rounded-top">
-                                <img src="{{ asset('img/service-4.jpg') }}" class="img-fluid rounded-top w-100" alt="">
-                           </div>
-                            <div class="service-content rounded-bottom bg-light p-4 d-flex flex-column flex-grow-1">
-                                <div class="service-content-inner d-flex flex-column h-100">
-                                    <h5 class="mb-4">Cloud-Based Platform</h5>
-                                    <p class="mb-4">Designed to reduce errors, simplify workflows, and keep every sale and stock movement synchronized in real time.</p>
-                                    <div class="mt-auto pt-2">
-                                        <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3 d-flex wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="service-item rounded h-100 d-flex flex-column">
-                           <div class="service-img rounded-top">
-                                <img src="{{ asset('img/service-5.jpg') }}" class="img-fluid rounded-top w-100" alt="">
-                           </div>
-                            <div class="service-content rounded-bottom bg-light p-4 d-flex flex-column flex-grow-1">
-                                <div class="service-content-inner d-flex flex-column h-100">
-                                    <h5 class="mb-4">Restaurant Operations</h5>
-                                    <p class="mb-4">Designed to reduce errors, simplify workflows, and keep every sale and stock movement synchronized in real time.</p>
-                                    <div class="mt-auto pt-2">
-                                        <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3 d-flex wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="service-item rounded h-100 d-flex flex-column">
-                           <div class="service-img rounded-top">
-                                <img src="{{ asset('img/service-6.jpg') }}" class="img-fluid rounded-top w-100" alt="">
-                           </div>
-                            <div class="service-content rounded-bottom bg-light p-4 d-flex flex-column flex-grow-1">
-                                <div class="service-content-inner d-flex flex-column h-100">
-                                    <h5 class="mb-4">Retail Operations</h5>
-                                    <p class="mb-4">Designed to reduce errors, simplify workflows, and keep every sale and stock movement synchronized in real time.</p>
-                                    <div class="mt-auto pt-2">
-                                        <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3 d-flex wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="service-item rounded h-100 d-flex flex-column">
-                           <div class="service-img rounded-top">
-                                <img src="{{ asset('img/service-7.jpg') }}" class="img-fluid rounded-top w-100" alt="">
-                           </div>
-                            <div class="service-content rounded-bottom bg-light p-4 d-flex flex-column flex-grow-1">
-                                <div class="service-content-inner d-flex flex-column h-100">
-                                    <h5 class="mb-4">Real-Time Analytics</h5>
-                                    <p class="mb-4">Designed to reduce errors, simplify workflows, and keep every sale and stock movement synchronized in real time.</p>
-                                    <div class="mt-auto pt-2">
-                                        <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3 d-flex wow fadeInUp" data-wow-delay="0.7s">
-                        <div class="service-item rounded h-100 d-flex flex-column">
-                           <div class="service-img rounded-top">
-                                <img src="{{ asset('img/service-8.jpg') }}" class="img-fluid rounded-top w-100" alt="">
-                           </div>
-                            <div class="service-content rounded-bottom bg-light p-4 d-flex flex-column flex-grow-1">
-                                <div class="service-content-inner d-flex flex-column h-100">
-                                    <h5 class="mb-4">Control & Visibility</h5>
-                                    <p class="mb-4">Designed to reduce errors, simplify workflows, and keep every sale and stock movement synchronized in real time.</p>
-                                    <div class="mt-auto pt-2">
-                                        <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforelse
+
                     <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.2s">
-                        <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="#">Services More</a>
+                        <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="{{ route('products') }}">Services More</a>
                     </div>
                 </div>
             </div>

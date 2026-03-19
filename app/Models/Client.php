@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Client extends Model
 {
@@ -33,6 +34,24 @@ class Client extends Model
         return [
             'is_active' => 'boolean',
         ];
+    }
+
+
+    public function getLogoUrlAttribute(): string
+    {
+        if (! $this->logo) {
+            return asset('img/defaults/placeholder.svg');
+        }
+
+        if (str_starts_with($this->logo, 'http://') || str_starts_with($this->logo, 'https://')) {
+            return $this->logo;
+        }
+
+        if (str_starts_with($this->logo, '/')) {
+            return $this->logo;
+        }
+
+        return Storage::url($this->logo);
     }
 
     public function getLocalizedNameAttribute(): string

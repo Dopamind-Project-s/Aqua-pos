@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\Product;
 
 class HomeController extends Controller
 {
@@ -14,6 +15,15 @@ class HomeController extends Controller
             ->orderBy('name_en')
             ->get();
 
-        return view('home', compact('clients'));
+        $featuredProducts = Product::query()
+            ->where('is_active', true)
+            ->whereNull('deleted_at')
+            ->orderByDesc('is_featured')
+            ->orderBy('sort_order')
+            ->latest()
+            ->take(8)
+            ->get();
+
+        return view('home', compact('clients', 'featuredProducts'));
     }
 }

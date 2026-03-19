@@ -5,7 +5,7 @@
 @endif
     <article class="client-logo-card">
         @if($client->logo)
-        <img src="{{ Storage::url($client->logo) }}" alt="{{ $client->localized_name }}" class="client-logo-card__img">
+        <img src="{{ $client->logo_url }}" alt="{{ $client->localized_name }}" class="client-logo-card__img">
     @else
         <span class="client-logo-card__placeholder">{{ strtoupper(substr($client->localized_name, 0, 1)) }}</span>
     @endif
