@@ -9,10 +9,10 @@
             <div class="container py-5">
                 <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.2s">
                     <div class="sub-style">
-                        <h4 class="sub-title px-3 mb-0">What We Do</h4>
+                        <h4 class="sub-title px-3 mb-0"><span data-i18n="home.services.eyebrow">What We Do</span></h4>
                     </div>
-                    <h1 class="display-3 mb-4">Powerful POS System for Restaurants & Retail.</h1>
-                    <p class="mb-0">AQUA POS is a cloud-based POS and inventory management platform from Amman, Jordan, helping restaurants and retailers run faster with better control and full visibility.</p>
+                    <h1 class="display-3 mb-4"><span data-i18n="home.services.title">Powerful POS System for Restaurants & Retail.</span></h1>
+                    <p class="mb-0"><span data-i18n="home.common.description">AQUA POS is a cloud-based POS and inventory management platform from Amman, Jordan, helping restaurants and retailers run faster with better control and full visibility.</span></p>
                 </div>
 
                 <div class="row g-4 justify-content-center">
@@ -27,7 +27,7 @@
                                         <h5 class="mb-3">{{ $product->localized_name }}</h5>
                                         <p class="mb-4">{{ \Illuminate\Support\Str::limit($product->localized_short_description ?: $product->localized_description ?: 'Explore this product in detail.', 120) }}</p>
                                         <div class="mt-auto pt-2">
-                                            <a href="{{ route('products.show', $product->slug) }}" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
+                                            <a href="{{ route('products.show', $product->slug) }}" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2"><span data-i18n="home.common.readMore">Read More</span></a>
                                         </div>
                                     </div>
                                 </div>
@@ -35,12 +35,12 @@
                         </div>
                     @empty
                         <div class="col-12 text-center">
-                            <p class="text-muted mb-3">No active products available right now.</p>
+                            <p class="text-muted mb-3"><span data-i18n="home.services.empty">No active products available right now.</span></p>
                         </div>
                     @endforelse
 
                     <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.2s">
-                        <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="{{ route('products') }}">Services More</a>
+                        <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="{{ route('products') }}"><span data-i18n="home.services.more">Services More</span></a>
                     </div>
                 </div>
             </div>
@@ -58,20 +58,20 @@
                             <div class="about-img-inner">
                                 <img src="{{ asset('img/about-2.jpg') }}" class="img-fluid rounded-circle w-100 h-100" alt="Image">
                             </div>
-                            <div class="about-experience">Trusted in Amman, Jordan</div>
+                            <div class="about-experience"><span data-i18n="home.about.badge">Trusted in Amman, Jordan</span></div>
                         </div>
                     </div>
                     <div class="col-lg-7 wow fadeInRight" data-wow-delay="0.4s">
                         <div class="section-title text-start mb-5">
-                            <h4 class="sub-title pe-3 mb-0">About Us</h4>
-                            <h1 class="display-3 mb-4">Jordanian SaaS Team Building Better POS Operations.</h1>
-                            <p class="mb-4">AQUA POS is a cloud-based POS and inventory management platform from Amman, Jordan, helping restaurants and retailers run faster with better control and full visibility.</p>
+                            <h4 class="sub-title pe-3 mb-0"><span data-i18n="home.about.eyebrow">About Us</span></h4>
+                            <h1 class="display-3 mb-4"><span data-i18n="home.about.title">Jordanian SaaS Team Building Better POS Operations.</span></h1>
+                            <p class="mb-4"><span data-i18n="home.common.description">AQUA POS is a cloud-based POS and inventory management platform from Amman, Jordan, helping restaurants and retailers run faster with better control and full visibility.</span></p>
                             <div class="mb-4">
-                                <p class="text-secondary"><i class="fa fa-check text-primary me-2"></i> Built for restaurants and retail businesses.</p>
-                                <p class="text-secondary"><i class="fa fa-check text-primary me-2"></i> Reduce billing and stock errors across teams.</p>
-                                <p class="text-secondary"><i class="fa fa-check text-primary me-2"></i> Improve speed, control, and daily visibility.</p>
+                                <p class="text-secondary"><i class="fa fa-check text-primary me-2"></i><span data-i18n="home.about.point1"> Built for restaurants and retail businesses.</span></p>
+                                <p class="text-secondary"><i class="fa fa-check text-primary me-2"></i><span data-i18n="home.about.point2"> Reduce billing and stock errors across teams.</span></p>
+                                <p class="text-secondary"><i class="fa fa-check text-primary me-2"></i><span data-i18n="home.about.point3"> Improve speed, control, and daily visibility.</span></p>
                             </div>
-                            <a href="#" class="btn btn-primary rounded-pill text-white py-3 px-5">Discover More</a>
+                            <a href="#" class="btn btn-primary rounded-pill text-white py-3 px-5"><span data-i18n="home.about.more">Discover More</span></a>
                         </div>
                     </div>
                 </div>
@@ -84,10 +84,10 @@
             <div class="container py-5">
                 <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="sub-style">
-                        <h4 class="sub-title px-3 mb-0">Why Choose Us</h4>
+                        <h4 class="sub-title px-3 mb-0"><span data-i18n="home.features.eyebrow">Why Choose Us</span></h4>
                     </div>
-                    <h1 class="display-3 mb-4">Why Choose Us? Run Smarter Operations Every Day</h1>
-                    <p class="mb-0">AQUA POS is a cloud-based POS and inventory management platform from Amman, Jordan, helping restaurants and retailers run faster with better control and full visibility.</p>
+                    <h1 class="display-3 mb-4"><span data-i18n="home.features.title">Why Choose Us? Run Smarter Operations Every Day</span></h1>
+                    <p class="mb-0"><span data-i18n="home.common.description">AQUA POS is a cloud-based POS and inventory management platform from Amman, Jordan, helping restaurants and retailers run faster with better control and full visibility.</span></p>
                 </div>
                 <div class="row g-4 justify-content-center">
                     <div class="col-md-6 col-lg-4 col-xl-3 d-flex wow fadeInUp" data-wow-delay="0.1s">
@@ -99,8 +99,8 @@
                                     </div>
                                 </div>
                                 <div class="feature-content d-flex flex-column flex-grow-1">
-                                    <h5 class="mb-4">Reliable POS Workflows</h5>
-                                    <p class="mb-0">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</p>
+                                    <h5 class="mb-4"><span data-i18n="home.features.card1.title">Reliable POS Workflows</span></h5>
+                                    <p class="mb-0"><span data-i18n="home.features.card.desc">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</span></p>
                                 </div>
                             </div>
                         </div>
@@ -114,8 +114,8 @@
                                     </div>
                                 </div>
                                 <div class="feature-content d-flex flex-column flex-grow-1">
-                                    <h5 class="mb-4">Smart Inventory Control</h5>
-                                    <p class="mb-0">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</p>
+                                    <h5 class="mb-4"><span data-i18n="home.features.card2.title">Smart Inventory Control</span></h5>
+                                    <p class="mb-0"><span data-i18n="home.features.card.desc">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</span></p>
                                 </div>
                             </div>
                         </div>
@@ -129,8 +129,8 @@
                                     </div>
                                 </div>
                                 <div class="feature-content d-flex flex-column flex-grow-1">
-                                    <h5 class="mb-4">Real-Time Business Insights</h5>
-                                    <p class="mb-0">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</p>
+                                    <h5 class="mb-4"><span data-i18n="home.features.card3.title">Real-Time Business Insights</span></h5>
+                                    <p class="mb-0"><span data-i18n="home.features.card.desc">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</span></p>
                                 </div>
                             </div>
                         </div>
@@ -144,8 +144,8 @@
                                     </div>
                                 </div>
                                 <div class="feature-content d-flex flex-column flex-grow-1">
-                                    <h5 class="mb-4">Unified Branch Management</h5>
-                                    <p class="mb-0">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</p>
+                                    <h5 class="mb-4"><span data-i18n="home.features.card4.title">Unified Branch Management</span></h5>
+                                    <p class="mb-0"><span data-i18n="home.features.card.desc">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</span></p>
                                 </div>
                             </div>
                         </div>
@@ -159,8 +159,8 @@
                                     </div>
                                 </div>
                                 <div class="feature-content d-flex flex-column flex-grow-1">
-                                    <h5 class="mb-4">Fast Checkout Experience</h5>
-                                    <p class="mb-0">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</p>
+                                    <h5 class="mb-4"><span data-i18n="home.features.card5.title">Fast Checkout Experience</span></h5>
+                                    <p class="mb-0"><span data-i18n="home.features.card.desc">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</span></p>
                                 </div>
                             </div>
                         </div>
@@ -174,8 +174,8 @@
                                     </div>
                                 </div>
                                 <div class="feature-content d-flex flex-column flex-grow-1">
-                                    <h5 class="mb-4">Jordan-Based SaaS Team</h5>
-                                    <p class="mb-0">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</p>
+                                    <h5 class="mb-4"><span data-i18n="home.features.card6.title">Jordan-Based SaaS Team</span></h5>
+                                    <p class="mb-0"><span data-i18n="home.features.card.desc">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</span></p>
                                 </div>
                             </div>
                         </div>
@@ -189,8 +189,8 @@
                                     </div>
                                 </div>
                                 <div class="feature-content d-flex flex-column flex-grow-1">
-                                    <h5 class="mb-4">Real-Time Analytics</h5>
-                                    <p class="mb-0">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</p>
+                                    <h5 class="mb-4"><span data-i18n="home.features.card7.title">Real-Time Analytics</span></h5>
+                                    <p class="mb-0"><span data-i18n="home.features.card.desc">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</span></p>
                                 </div>
                             </div>
                         </div>
@@ -204,14 +204,14 @@
                                     </div>
                                 </div>
                                 <div class="feature-content d-flex flex-column flex-grow-1">
-                                    <h5 class="mb-4">Control & Visibility</h5>
-                                    <p class="mb-0">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</p>
+                                    <h5 class="mb-4"><span data-i18n="home.features.card8.title">Control & Visibility</span></h5>
+                                    <p class="mb-0"><span data-i18n="home.features.card.desc">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</span></p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.2s">
-                        <a href="#" class="btn btn-primary rounded-pill text-white py-3 px-5">More Details</a>
+                        <a href="#" class="btn btn-primary rounded-pill text-white py-3 px-5"><span data-i18n="home.common.moreDetails">More Details</span></a>
                     </div>
                 </div>
             </div>
@@ -225,22 +225,22 @@
                 <div class="row g-5 align-items-center">
                     <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.2">
                         <div class="section-title text-start">
-                            <h4 class="sub-title pe-3 mb-0">Solutions To Your Pain</h4>
-                            <h1 class="display-4 mb-4">Best Quality Services With Minimal Pain Rate</h1>
-                            <p class="mb-4">AQUA POS is a cloud-based POS and inventory management platform from Amman, Jordan, helping restaurants and retailers run faster with better control and full visibility.</p>
+                            <h4 class="sub-title pe-3 mb-0"><span data-i18n="home.solution.eyebrow">Solutions To Your Pain</span></h4>
+                            <h1 class="display-4 mb-4"><span data-i18n="home.solution.title">Best Quality Services With Minimal Pain Rate</span></h1>
+                            <p class="mb-4"><span data-i18n="home.common.description">AQUA POS is a cloud-based POS and inventory management platform from Amman, Jordan, helping restaurants and retailers run faster with better control and full visibility.</span></p>
                             <div class="row g-4">
                                 <div class="col-sm-6">
                                     <div class="d-flex flex-column h-100">
                                         <div class="mb-4">
-                                            <h5 class="mb-3"><i class="fa fa-check text-primary me-2"></i> Body Relaxation</h5>
-                                            <p class="mb-0">From onboarding to go-live, our team ensures a smooth deployment with clear workflows and measurable operational improvements.</p>
+                                            <h5 class="mb-3"><i class="fa fa-check text-primary me-2"></i><span data-i18n="home.solution.itemTitle"> Body Relaxation</span></h5>
+                                            <p class="mb-0"><span data-i18n="home.solution.itemDesc">From onboarding to go-live, our team ensures a smooth deployment with clear workflows and measurable operational improvements.</span></p>
                                         </div>
                                         <div class="mb-4">
-                                            <h5 class="mb-3"><i class="fa fa-check text-primary me-2"></i> Body Relaxation</h5>
-                                            <p class="mb-0">From onboarding to go-live, our team ensures a smooth deployment with clear workflows and measurable operational improvements.</p>
+                                            <h5 class="mb-3"><i class="fa fa-check text-primary me-2"></i><span data-i18n="home.solution.itemTitle"> Body Relaxation</span></h5>
+                                            <p class="mb-0"><span data-i18n="home.solution.itemDesc">From onboarding to go-live, our team ensures a smooth deployment with clear workflows and measurable operational improvements.</span></p>
                                         </div>
                                         <div class="text-start mb-4">
-                                            <a href="#" class="btn btn-primary rounded-pill text-white py-3 px-5">More Details</a>
+                                            <a href="#" class="btn btn-primary rounded-pill text-white py-3 px-5"><span data-i18n="home.common.moreDetails">More Details</span></a>
                                         </div>
                                     </div>
                                 </div>
@@ -257,25 +257,25 @@
                     </div>
                     <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.4s">
                         <div class="appointment-form rounded p-5">
-                            <p class="fs-4 text-uppercase text-primary">Get In Touch</p>
-                            <h1 class="display-5 mb-4">Get Appointment</h1>
+                            <p class="fs-4 text-uppercase text-primary"><span data-i18n="home.appointment.eyebrow">Get In Touch</span></p>
+                            <h1 class="display-5 mb-4"><span data-i18n="home.appointment.title">Get Appointment</span></h1>
                             <form>
                                 <div class="row gy-3 gx-4">
                                     <div class="col-xl-6">
-                                        <input type="text" class="form-control py-3 border-primary bg-transparent text-white" placeholder="First Name">
+                                        <input type="text" class="form-control py-3 border-primary bg-transparent text-white" placeholder="First Name" data-i18n-placeholder="home.appointment.firstName">
                                     </div>
                                     <div class="col-xl-6">
-                                        <input type="email" class="form-control py-3 border-primary bg-transparent text-white" placeholder="Email">
+                                        <input type="email" class="form-control py-3 border-primary bg-transparent text-white" placeholder="Email" data-i18n-placeholder="home.appointment.email">
                                     </div>
                                     <div class="col-xl-6">
-                                        <input type="phone" class="form-control py-3 border-primary bg-transparent" placeholder="Phone">
+                                        <input type="phone" class="form-control py-3 border-primary bg-transparent" placeholder="Phone" data-i18n-placeholder="home.appointment.phone">
                                     </div>
                                     <div class="col-xl-6">
                                         <select class="form-select py-3 border-primary bg-transparent" aria-label="Default select example">
-                                            <option selected>Your Gender</option>
-                                            <option value="1">Male</option>
-                                            <option value="2">FeMale</option>
-                                            <option value="3">Others</option>
+                                            <option selected data-i18n="home.appointment.gender">Your Gender</option>
+                                            <option value="1" data-i18n="home.appointment.male">Male</option>
+                                            <option value="2" data-i18n="home.appointment.female">FeMale</option>
+                                            <option value="3" data-i18n="home.appointment.others">Others</option>
                                         </select>
                                     </div>
                                     <div class="col-xl-6">
@@ -283,17 +283,17 @@
                                     </div>
                                     <div class="col-xl-6">
                                         <select class="form-select py-3 border-primary bg-transparent" aria-label="Default select example">
-                                            <option selected>Department</option>
-                                            <option value="1">Smart Inventory Control</option>
-                                            <option value="2">Physical Helth</option>
-                                            <option value="2">Treatments</option>
+                                            <option selected data-i18n="home.appointment.department">Department</option>
+                                            <option value="1" data-i18n="home.features.card2.title">Smart Inventory Control</option>
+                                            <option value="2" data-i18n="home.appointment.physical">Physical Helth</option>
+                                            <option value="2" data-i18n="home.appointment.treatments">Treatments</option>
                                         </select>
                                     </div>
                                     <div class="col-12">
-                                        <textarea class="form-control border-primary bg-transparent text-white" name="text" id="area-text" cols="30" rows="5" placeholder="Write Comments"></textarea>
+                                        <textarea class="form-control border-primary bg-transparent text-white" name="text" id="area-text" cols="30" rows="5" placeholder="Write Comments" data-i18n-placeholder="home.appointment.comments"></textarea>
                                     </div>
                                     <div class="col-12">
-                                        <button type="button" class="btn btn-primary text-white w-100 py-3 px-5">SUBMIT NOW</button>
+                                        <button type="button" class="btn btn-primary text-white w-100 py-3 px-5"><span data-i18n="home.appointment.submit">SUBMIT NOW</span></button>
                                     </div>
                                 </div>
                             </form>
@@ -307,7 +307,7 @@
             <div class="modal-dialog">
                 <div class="modal-content rounded-0">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Youtube Video</h5>
+                        <h5 class="modal-title" id="exampleModalLabel"><span data-i18n="home.video.title">Youtube Video</span></h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -352,9 +352,9 @@
             <div class="container py-5">
                 <div class="section-title mb-5">
                     <div class="sub-style">
-                        <h4 class="sub-title text-white px-3 mb-0">Testimonial</h4>
+                        <h4 class="sub-title text-white px-3 mb-0"><span data-i18n="home.testimonial.eyebrow">Testimonial</span></h4>
                     </div>
-                    <h1 class="display-3 mb-4">What Clients are Say</h1>
+                    <h1 class="display-3 mb-4"><span data-i18n="home.testimonial.title">What Clients are Say</span></h1>
                 </div>
                 <div class="testimonial-carousel owl-carousel">
                     <div class="testimonial-item">
@@ -362,11 +362,11 @@
                             <div class="testimonial-inner-img mb-4">
                                 <img src="{{ asset('img/testimonial-img.jpg') }}" class="img-fluid rounded-circle" alt="">
                             </div>
-                            <p class="text-white fs-7">AQUA POS gave us a clear live view of sales and stock. Our branch teams now work faster with fewer manual errors and stronger daily control.
+                            <p class="text-white fs-7"><span data-i18n="home.testimonial.quote">AQUA POS gave us a clear live view of sales and stock. Our branch teams now work faster with fewer manual errors and stronger daily control.</span>
                             </p>
                             <div class="text-center">
-                                <h5 class="mb-2">John Abraham</h5>
-                                <p class="mb-2 text-white-50">New York, USA</p>
+                                <h5 class="mb-2"><span data-i18n="home.testimonial.name">John Abraham</span></h5>
+                                <p class="mb-2 text-white-50"><span data-i18n="home.testimonial.location">New York, USA</span></p>
                                 <div class="d-flex justify-content-center">
                                     <i class="fas fa-star text-secondary"></i>
                                     <i class="fas fa-star text-secondary"></i>
@@ -382,11 +382,11 @@
                             <div class="testimonial-inner-img mb-4">
                                 <img src="{{ asset('img/testimonial-img.jpg') }}" class="img-fluid rounded-circle" alt="">
                             </div>
-                            <p class="text-white fs-7">AQUA POS gave us a clear live view of sales and stock. Our branch teams now work faster with fewer manual errors and stronger daily control.
+                            <p class="text-white fs-7"><span data-i18n="home.testimonial.quote">AQUA POS gave us a clear live view of sales and stock. Our branch teams now work faster with fewer manual errors and stronger daily control.</span>
                             </p>
                             <div class="text-center">
-                                <h5 class="mb-2">John Abraham</h5>
-                                <p class="mb-2 text-white-50">New York, USA</p>
+                                <h5 class="mb-2"><span data-i18n="home.testimonial.name">John Abraham</span></h5>
+                                <p class="mb-2 text-white-50"><span data-i18n="home.testimonial.location">New York, USA</span></p>
                                 <div class="d-flex justify-content-center">
                                     <i class="fas fa-star text-secondary"></i>
                                     <i class="fas fa-star text-secondary"></i>
@@ -402,11 +402,11 @@
                             <div class="testimonial-inner-img mb-4">
                                 <img src="{{ asset('img/testimonial-img.jpg') }}" class="img-fluid rounded-circle" alt="">
                             </div>
-                            <p class="text-white fs-7">AQUA POS gave us a clear live view of sales and stock. Our branch teams now work faster with fewer manual errors and stronger daily control.
+                            <p class="text-white fs-7"><span data-i18n="home.testimonial.quote">AQUA POS gave us a clear live view of sales and stock. Our branch teams now work faster with fewer manual errors and stronger daily control.</span>
                             </p>
                             <div class="text-center">
-                                <h5 class="mb-2">John Abraham</h5>
-                                <p class="mb-2 text-white-50">New York, USA</p>
+                                <h5 class="mb-2"><span data-i18n="home.testimonial.name">John Abraham</span></h5>
+                                <p class="mb-2 text-white-50"><span data-i18n="home.testimonial.location">New York, USA</span></p>
                                 <div class="d-flex justify-content-center">
                                     <i class="fas fa-star text-secondary"></i>
                                     <i class="fas fa-star text-secondary"></i>
@@ -428,10 +428,10 @@
             <div class="container py-5">
                 <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="sub-style">
-                        <h4 class="sub-title px-3 mb-0">Our Blog</h4>
+                        <h4 class="sub-title px-3 mb-0"><span data-i18n="home.blog.eyebrow">Our Blog</span></h4>
                     </div>
-                    <h1 class="display-3 mb-4">Real-Time Business Insights for Faster Decisions</h1>
-                    <p class="mb-0">AQUA POS is a cloud-based POS and inventory management platform from Amman, Jordan, helping restaurants and retailers run faster with better control and full visibility.</p>
+                    <h1 class="display-3 mb-4"><span data-i18n="home.blog.title">Real-Time Business Insights for Faster Decisions</span></h1>
+                    <p class="mb-0"><span data-i18n="home.common.description">AQUA POS is a cloud-based POS and inventory management platform from Amman, Jordan, helping restaurants and retailers run faster with better control and full visibility.</span></p>
                 </div>
                 <div class="row g-4 justify-content-center">
                     <div class="col-md-6 col-lg-6 col-xl-4 d-flex wow fadeInUp" data-wow-delay="0.1s">
@@ -442,12 +442,12 @@
                             <div class="blog-centent p-4 d-flex flex-column flex-grow-1">
                                 <div class="d-flex justify-content-between mb-4">
                                     <p class="mb-0 text-muted"><i class="fa fa-calendar-alt text-primary"></i> 01 Jan 2045</p>
-                                    <a href="#" class="text-muted"><span class="fa fa-comments text-primary"></span> 3 Comments</a>
+                                    <a href="#" class="text-muted"><span class="fa fa-comments text-primary"></span> <span data-i18n="home.blog.comments">3 Comments</span></a>
                                 </div>
-                                <a href="#" class="h4 d-block mb-3">Remove back Pain While Working on o physio</a>
-                                <p class="my-4">Practical strategies for improving checkout speed, stock accuracy, and branch coordination using a modern SaaS POS platform.</p>
+                                <a href="#" class="h4 d-block mb-3"><span data-i18n="home.blog.post1">Remove back Pain While Working on o physio</span></a>
+                                <p class="my-4"><span data-i18n="home.blog.desc">Practical strategies for improving checkout speed, stock accuracy, and branch coordination using a modern SaaS POS platform.</span></p>
                                 <div class="mt-auto pt-2">
-                                    <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-1">Read More</a>
+                                    <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-1"><span data-i18n="home.common.readMore">Read More</span></a>
                                 </div>
                             </div>
                         </div>
@@ -460,12 +460,12 @@
                             <div class="blog-centent p-4 d-flex flex-column flex-grow-1">
                                 <div class="d-flex justify-content-between mb-4">
                                     <p class="mb-0 text-muted"><i class="fa fa-calendar-alt text-primary"></i> 01 Jan 2045</p>
-                                    <a href="#" class="text-muted"><span class="fa fa-comments text-primary"></span> 3 Comments</a>
+                                    <a href="#" class="text-muted"><span class="fa fa-comments text-primary"></span> <span data-i18n="home.blog.comments">3 Comments</span></a>
                                 </div>
-                                <a href="#" class="h4 d-block mb-3">Inventory accuracy tips for multi-branch stores</a>
-                                <p class="my-4">Practical strategies for improving checkout speed, stock accuracy, and branch coordination using a modern SaaS POS platform.</p>
+                                <a href="#" class="h4 d-block mb-3"><span data-i18n="home.blog.post2">Inventory accuracy tips for multi-branch stores</span></a>
+                                <p class="my-4"><span data-i18n="home.blog.desc">Practical strategies for improving checkout speed, stock accuracy, and branch coordination using a modern SaaS POS platform.</span></p>
                                 <div class="mt-auto pt-2">
-                                    <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-1">Read More</a>
+                                    <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-1"><span data-i18n="home.common.readMore">Read More</span></a>
                                 </div>
                             </div>
                         </div>
@@ -478,12 +478,12 @@
                             <div class="blog-centent p-4 d-flex flex-column flex-grow-1">
                                 <div class="d-flex justify-content-between mb-4">
                                     <p class="mb-0 text-muted"><i class="fa fa-calendar-alt text-primary"></i> 01 Jan 2045</p>
-                                    <a href="#" class="text-muted"><span class="fa fa-comments text-primary"></span> 3 Comments</a>
+                                    <a href="#" class="text-muted"><span class="fa fa-comments text-primary"></span> <span data-i18n="home.blog.comments">3 Comments</span></a>
                                 </div>
-                                <a href="#" class="h4 d-block mb-3">Regular excercise can slow ageing process</a>
-                                <p class="my-4">Practical strategies for improving checkout speed, stock accuracy, and branch coordination using a modern SaaS POS platform.</p>
+                                <a href="#" class="h4 d-block mb-3"><span data-i18n="home.blog.post3">Regular excercise can slow ageing process</span></a>
+                                <p class="my-4"><span data-i18n="home.blog.desc">Practical strategies for improving checkout speed, stock accuracy, and branch coordination using a modern SaaS POS platform.</span></p>
                                 <div class="mt-auto pt-2">
-                                    <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-1">Read More</a>
+                                    <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-1"><span data-i18n="home.common.readMore">Read More</span></a>
                                 </div>
                             </div>
                         </div>
