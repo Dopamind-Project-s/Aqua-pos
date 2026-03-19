@@ -17,6 +17,15 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+            View::composer('*', function ($view) {
+        $siteSetting = null;
+
+        if (\Schema::hasTable('site_settings')) {
+            $siteSetting = SiteSetting::first();
+        }
+
+        $view->with('siteSetting', $siteSetting);
+    });
         View::composer('partials.header', function ($view): void {
             $activeCategories = collect();
             $siteSetting = null;
