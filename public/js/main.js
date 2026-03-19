@@ -838,17 +838,13 @@ document.addEventListener('DOMContentLoaded', function () {
     document.addEventListener('DOMContentLoaded', function () {
         var savedTheme = localStorage.getItem(THEME_KEY) || 'light';
         var serverLang = document.documentElement.getAttribute('lang') || defaultLang;
-        var savedLang = localStorage.getItem(LANG_KEY) || serverLang || defaultLang;
+        var savedLang = localStorage.getItem(LANG_KEY) || defaultLang;
+        var initialLang = (serverLang === 'ar' || serverLang === 'en') ? serverLang : savedLang;
         var themeToggle = document.getElementById('themeToggle');
         var languageToggle = document.getElementById('languageToggle');
 
-        setLanguage(savedLang);
+        setLanguage(initialLang);
         setTheme(savedTheme);
-
-        if (savedLang !== serverLang) {
-            window.location.reload();
-            return;
-        }
 
         if (themeToggle) {
             themeToggle.addEventListener('click', function () {
