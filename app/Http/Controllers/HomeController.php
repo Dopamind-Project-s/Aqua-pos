@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use App\Models\Product;
+use App\Models\Post;
 
 class HomeController extends Controller
 {
@@ -24,6 +25,15 @@ class HomeController extends Controller
             ->take(8)
             ->get();
 
-        return view('home', compact('clients', 'featuredProducts'));
+        $homePosts = Post::query()
+            ->with('category')
+            ->where('type', 'blog')
+            ->where('status', 'published')
+            ->orderByDesc('published_at')
+            ->orderByDesc('id')
+            ->take(3)
+            ->get();
+
+        return view('home', compact('clients', 'featuredProducts', 'homePosts'));
     }
 }

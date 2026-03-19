@@ -433,61 +433,32 @@
                     <h1 class="display-3 mb-4"><span data-i18n="home.blog.title">Real-Time Business Insights for Faster Decisions</span></h1>
                     <p class="mb-0"><span data-i18n="home.common.description">AQUA POS is a cloud-based POS and inventory management platform from Amman, Jordan, helping restaurants and retailers run faster with better control and full visibility.</span></p>
                 </div>
+
                 <div class="row g-4 justify-content-center">
-                    <div class="col-md-6 col-lg-6 col-xl-4 d-flex wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="blog-item rounded h-100 d-flex flex-column">
-                            <div class="blog-img">
-                                <img src="{{ asset('img/blog-1.jpg') }}" class="img-fluid w-100" alt="Image">
-                            </div>
-                            <div class="blog-centent p-4 d-flex flex-column flex-grow-1">
-                                <div class="d-flex justify-content-between mb-4">
-                                    <p class="mb-0 text-muted"><i class="fa fa-calendar-alt text-primary"></i> 01 Jan 2045</p>
-                                    <a href="#" class="text-muted"><span class="fa fa-comments text-primary"></span> <span data-i18n="home.blog.comments">3 Comments</span></a>
+                    @forelse(($homePosts ?? collect()) as $index => $post)
+                        <div class="col-md-6 col-lg-6 col-xl-4 d-flex wow fadeInUp" data-wow-delay="{{ number_format((($index % 3) * 0.2) + 0.1, 1) }}s">
+                            <div class="blog-item rounded h-100 d-flex flex-column">
+                                <div class="blog-img">
+                                    <img src="{{ $post->cover_image_url }}" class="img-fluid w-100" alt="{{ $post->title }}">
                                 </div>
-                                <a href="#" class="h4 d-block mb-3"><span data-i18n="home.blog.post1">Remove back Pain While Working on o physio</span></a>
-                                <p class="my-4"><span data-i18n="home.blog.desc">Practical strategies for improving checkout speed, stock accuracy, and branch coordination using a modern SaaS POS platform.</span></p>
-                                <div class="mt-auto pt-2">
-                                    <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-1"><span data-i18n="home.common.readMore">Read More</span></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-6 col-xl-4 d-flex wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="blog-item rounded h-100 d-flex flex-column">
-                            <div class="blog-img">
-                                <img src="{{ asset('img/blog-2.jpg') }}" class="img-fluid w-100" alt="Image">
-                            </div>
-                            <div class="blog-centent p-4 d-flex flex-column flex-grow-1">
-                                <div class="d-flex justify-content-between mb-4">
-                                    <p class="mb-0 text-muted"><i class="fa fa-calendar-alt text-primary"></i> 01 Jan 2045</p>
-                                    <a href="#" class="text-muted"><span class="fa fa-comments text-primary"></span> <span data-i18n="home.blog.comments">3 Comments</span></a>
-                                </div>
-                                <a href="#" class="h4 d-block mb-3"><span data-i18n="home.blog.post2">Inventory accuracy tips for multi-branch stores</span></a>
-                                <p class="my-4"><span data-i18n="home.blog.desc">Practical strategies for improving checkout speed, stock accuracy, and branch coordination using a modern SaaS POS platform.</span></p>
-                                <div class="mt-auto pt-2">
-                                    <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-1"><span data-i18n="home.common.readMore">Read More</span></a>
+                                <div class="blog-centent p-4 d-flex flex-column flex-grow-1">
+                                    <div class="d-flex justify-content-between mb-4">
+                                        <p class="mb-0 text-muted"><i class="fa fa-calendar-alt text-primary"></i> {{ $post->published_at?->format('d M Y') ?? $post->created_at?->format('d M Y') }}</p>
+                                        <span class="text-muted"><i class="fa fa-folder-open text-primary"></i> {{ $post->category?->localized_name ?? 'General' }}</span>
+                                    </div>
+                                    <a href="{{ route('blog.show', $post->slug) }}" class="h4 d-block mb-3">{{ \Illuminate\Support\Str::limit($post->title, 70) }}</a>
+                                    <p class="my-4">{{ \Illuminate\Support\Str::limit($post->excerpt ?: strip_tags($post->content), 135) }}</p>
+                                    <div class="mt-auto pt-2">
+                                        <a href="{{ route('blog.show', $post->slug) }}" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-1"><span data-i18n="home.common.readMore">Read More</span></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6 col-lg-6 col-xl-4 d-flex wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="blog-item rounded h-100 d-flex flex-column">
-                            <div class="blog-img">
-                                <img src="{{ asset('img/blog-3.jpg') }}" class="img-fluid w-100" alt="Image">
-                            </div>
-                            <div class="blog-centent p-4 d-flex flex-column flex-grow-1">
-                                <div class="d-flex justify-content-between mb-4">
-                                    <p class="mb-0 text-muted"><i class="fa fa-calendar-alt text-primary"></i> 01 Jan 2045</p>
-                                    <a href="#" class="text-muted"><span class="fa fa-comments text-primary"></span> <span data-i18n="home.blog.comments">3 Comments</span></a>
-                                </div>
-                                <a href="#" class="h4 d-block mb-3"><span data-i18n="home.blog.post3">Regular excercise can slow ageing process</span></a>
-                                <p class="my-4"><span data-i18n="home.blog.desc">Practical strategies for improving checkout speed, stock accuracy, and branch coordination using a modern SaaS POS platform.</span></p>
-                                <div class="mt-auto pt-2">
-                                    <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-1"><span data-i18n="home.common.readMore">Read More</span></a>
-                                </div>
-                            </div>
+                    @empty
+                        <div class="col-12">
+                            <div class="alert alert-info text-center mb-0" data-i18n="blog.noPosts">No posts found.</div>
                         </div>
-                    </div>
+                    @endforelse
                 </div>
             </div>
         </div>
