@@ -11,6 +11,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        $middleware->append([
+            \App\Http\Middleware\SetPreferredLocale::class,
+        ]);
+
         $middleware->redirectGuestsTo(
             fn ($request) => $request->is('admin') || $request->is('admin/*')
                 ? route('admin.login')

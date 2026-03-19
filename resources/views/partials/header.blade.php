@@ -86,14 +86,14 @@
                                     <div class="mega-menu__grid">
                                         @forelse($activeCategoriesMenu ?? collect() as $menuCategory)
                                             <article class="mega-menu__category">
-                                                <h4 class="mega-menu__heading">{{ $menuCategory->name_en ?: $menuCategory->name }}<small class="d-block text-muted">{{ $menuCategory->name_ar }}</small></h4>
-                                                <button class="mega-menu__category-toggle" type="button" aria-expanded="false">{{ $menuCategory->name_en ?: $menuCategory->name }} / {{ $menuCategory->name_ar }}</button>
+                                                <h4 class="mega-menu__heading">{{ $menuCategory->localized_name }}</h4>
+                                                <button class="mega-menu__category-toggle" type="button" aria-expanded="false">{{ $menuCategory->localized_name }}</button>
                                                 <div class="mega-menu__services">
                                                     @foreach($menuCategory->products->take(6) as $menuProduct)
                                                         <a href="{{ route('products.show', $menuProduct->slug) }}" class="mega-menu__service">
                                                             <img class="mega-menu__service-thumb" src="{{ $menuProduct->image_url }}" alt="{{ $menuProduct->localized_name }}">
                                                             <div class="mega-menu__service-content">
-                                                                <h5>{{ $menuProduct->name_en ?: $menuProduct->name }}<small class="d-block text-muted">{{ $menuProduct->name_ar }}</small></h5>
+                                                                <h5>{{ $menuProduct->localized_name }}</h5>
                                                                 <p>{{ $menuProduct->localized_short_description }}</p>
                                                                 
                                                             </div>

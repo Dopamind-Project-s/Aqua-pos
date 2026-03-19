@@ -774,6 +774,12 @@ document.addEventListener('DOMContentLoaded', function () {
         localStorage.setItem(THEME_KEY, theme);
     };
 
+    var LANG_COOKIE_KEY = 'aqua_lang';
+
+    var setLanguageCookie = function (lang) {
+        document.cookie = LANG_COOKIE_KEY + '=' + lang + '; path=/; max-age=31536000; SameSite=Lax';
+    };
+
     var setLanguage = function (lang) {
         var html = document.documentElement;
         var langLabel = document.getElementById('languageLabel');
@@ -812,6 +818,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         localStorage.setItem(LANG_KEY, lang);
+        setLanguageCookie(lang);
         setTheme(currentTheme);
 
         if (typeof window.aquaRefreshCarousels === 'function') {
@@ -830,12 +837,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.addEventListener('DOMContentLoaded', function () {
         var savedTheme = localStorage.getItem(THEME_KEY) || 'light';
-        var savedLang = localStorage.getItem(LANG_KEY) || defaultLang;
+        var serverLang = document.documentElement.getAttribute('lang') || defaultLang;
+        var savedLang = localStorage.getItem(LANG_KEY) || serverLang || defaultLang;
         var themeToggle = document.getElementById('themeToggle');
         var languageToggle = document.getElementById('languageToggle');
 
         setLanguage(savedLang);
         setTheme(savedTheme);
+
+        if (savedLang !== serverLang) {
+            window.location.reload();
+            return;
+        }
 
         if (themeToggle) {
             themeToggle.addEventListener('click', function () {
@@ -847,7 +860,9 @@ document.addEventListener('DOMContentLoaded', function () {
         if (languageToggle) {
             languageToggle.addEventListener('click', function () {
                 var currentLang = document.documentElement.getAttribute('lang') || defaultLang;
-                setLanguage(currentLang === 'ar' ? 'en' : 'ar');
+                var nextLang = currentLang === 'ar' ? 'en' : 'ar';
+                setLanguage(nextLang);
+                window.location.reload();
             });
         }
     });
