@@ -95,6 +95,8 @@
 
 ## To-Do List تنفيذية
 
+> الحالة الحالية: تم بدء التنفيذ التقني (GTM + Verification + Clarity + generate_lead + ربط بالأدمن/الداشبورد)، وما زال جزء إعداد التاجات داخل GTM والمنصات الإعلانية قيد التنفيذ.
+
 ## أ. إعداد الحسابات والصلاحيات
 - [ ] إنشاء/تأكيد GTM Account + Container.
 - [ ] منح صلاحيات Admin/Publish للأشخاص المعنيين.
@@ -104,11 +106,11 @@
 - [ ] تجهيز Meta Business Manager + Pixel.
 
 ## ب. تنفيذ GTM
-- [ ] تركيب كود GTM في الموقع.
+- [x] تركيب كود GTM في الموقع.
 - [ ] إضافة GA4 Configuration Tag.
 - [ ] إضافة Conversion Linker.
 - [ ] إضافة Meta Pixel tag.
-- [ ] إضافة Clarity/Hotjar tag.
+- [x] إضافة Clarity/Hotjar tag.
 - [ ] تفعيل Environments (إن كان هناك staging/production).
 
 ## ج. التتبع والتحويلات
@@ -117,6 +119,7 @@
 - [ ] إعداد Google Ads Conversion Actions.
 - [ ] وضع التحويلات المهمة كـPrimary في Google Ads.
 - [ ] اختبار منع التكرار (Deduplication) قدر الإمكان.
+- [x] تفعيل حدث generate_lead بعد نجاح إرسال النماذج.
 
 ## د. SEO + كلمات مفتاحية
 - [ ] إرسال sitemap.xml.
@@ -131,6 +134,7 @@
 - [ ] توثيق أي Bug + إصلاحه قبل إطلاق الحملات.
 
 ## و. التقارير والمتابعة
+- [x] Dashboard داخلي لحالة التكامل + تقارير leads الأساسية.
 - [ ] Dashboard أسبوعي (GA4 + Ads + Meta + Search Console).
 - [ ] اجتماع مراجعة أسبوعي 30 دقيقة.
 - [ ] قائمة تحسينات CRO شهرية من heatmap.

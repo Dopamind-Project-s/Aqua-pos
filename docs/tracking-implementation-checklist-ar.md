@@ -10,11 +10,13 @@ MS_CLARITY_PROJECT_ID=xxxxxxxxxx
 ```
 
 ## 2) ما تم تنفيذه في الكود
-- حقن كود **Google Tag Manager** (Head + Noscript) من خلال `GTM_CONTAINER_ID`.
-- إضافة `google-site-verification` meta tag تلقائيًا عند توفير القيمة.
-- إضافة **Microsoft Clarity** script عند توفير `MS_CLARITY_PROJECT_ID`.
-- إرسال `page_context` إلى `dataLayer` في كل صفحة.
-- إرسال `generate_lead` event إلى `dataLayer` بعد نجاح إرسال أي نموذج طلب.
+- [x] حقن كود **Google Tag Manager** (Head + Noscript) من خلال `GTM_CONTAINER_ID` أو إعدادات الأدمن.
+- [x] إضافة `google-site-verification` meta tag تلقائيًا عند توفير القيمة.
+- [x] إضافة **Microsoft Clarity** script عند توفير Project ID.
+- [x] إرسال `page_context` إلى `dataLayer` في كل صفحة.
+- [x] إرسال `generate_lead` event إلى `dataLayer` بعد نجاح إرسال أي نموذج طلب.
+- [x] ربط حالة الإعدادات + مؤشرات Leads داخل **Admin Dashboard**.
+- [x] إضافة قسم إعدادات Tracking داخل **Admin Settings**.
 
 ## 3) إعداد GTM (داخل الحساب)
 
@@ -55,3 +57,22 @@ MS_CLARITY_PROJECT_ID=xxxxxxxxxx
 - في GA4: ضع `generate_lead` كـ Conversion.
 - في Google Ads: اربط نفس الحدث كـ Primary Conversion.
 - في Meta Ads: اعتمد Lead event للحملات.
+
+## 6) To-Do List (Done / Remaining)
+
+### تم إنجازه
+- [x] إضافة حقول إعدادات التتبع في الأدمن (GTM, GA4, Ads, Pixel, Search Console, Clarity).
+- [x] عرض تقدم تنفيذ التتبع داخل Dashboard (Done/Pending).
+- [x] تقارير Leads داخل Dashboard (Today, 7d, 30d + by type + top source page).
+- [x] ربط generate_lead من الطلبات الداخلية لتغذية GTM.
+
+### المتبقي (تنفيذ داخل أدوات Google/Meta)
+- [ ] إنشاء GA4 Configuration Tag داخل GTM.
+- [ ] إنشاء GA4 Event Tag للحدث `generate_lead`.
+- [ ] إنشاء Google Ads Conversion Tag وربطه بـ `generate_lead`.
+- [ ] إنشاء/تفعيل Meta Pixel Base + Lead event داخل GTM.
+- [ ] تعريف variables في GTM: `form_type`, `source_page`.
+- [ ] فحص GTM Preview + GA4 DebugView + Pixel Helper قبل النشر.
+- [ ] تعيين `generate_lead` كـ Conversion في GA4.
+- [ ] تعيين التحويل كـ Primary Conversion في Google Ads.
+- [ ] تجهيز تقرير دوري Search Console للكلمات المفتاحية وإرساله لفريق SEO.
