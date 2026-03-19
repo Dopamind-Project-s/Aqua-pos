@@ -35,4 +35,16 @@ return [
         ],
     ],
 
+    'google' => [
+        'site_verification' => env('GOOGLE_SITE_VERIFICATION'),
+    ],
+
+    'gtm' => [
+        'container_id' => env('GTM_CONTAINER_ID'),
+    ],
+
+    'clarity' => [
+        'project_id' => env('MS_CLARITY_PROJECT_ID'),
+    ],
+
 ];

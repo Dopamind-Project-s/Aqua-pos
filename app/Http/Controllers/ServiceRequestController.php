@@ -26,8 +26,14 @@ class ServiceRequestController extends Controller
 
     public function store(StoreServiceRequest $request): RedirectResponse
     {
-        ServiceRequest::query()->create($request->validated());
+        $serviceRequest = ServiceRequest::query()->create($request->validated());
 
-        return back()->with('success', 'Your request has been submitted successfully.');
+        return back()
+            ->with('success', 'Your request has been submitted successfully.')
+            ->with('tracking_event', [
+                'event' => 'generate_lead',
+                'form_type' => $serviceRequest->type,
+                'source_page' => $serviceRequest->source_page,
+            ]);
     }
 }

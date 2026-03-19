@@ -6,6 +6,27 @@
 
     <title>{{ $metaTitle ?? "Aqua POS" }}</title>
     <meta name="description" content="{{ $metaDescription ?? "Aqua POS cloud platform for POS, inventory, and business operations." }}">
+    @if(config('services.google.site_verification'))
+        <meta name="google-site-verification" content="{{ config('services.google.site_verification') }}">
+    @endif
+
+    @if(config('services.gtm.container_id'))
+        <!-- Google Tag Manager -->
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                event: 'page_context',
+                page_type: '{{ Route::currentRouteName() ?? 'unknown' }}',
+                page_path: '{{ request()->path() }}',
+            });
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','{{ config('services.gtm.container_id') }}');
+        </script>
+        <!-- End Google Tag Manager -->
+    @endif
 
     <script>
         (function () {
@@ -43,6 +64,13 @@
 </head>
 
 <body>
+@if(config('services.gtm.container_id'))
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ config('services.gtm.container_id') }}"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+@endif
+
 <script>
     (function () {
         try {
@@ -52,6 +80,23 @@
         } catch (error) {}
     })();
 </script>
+
+@if(config('services.clarity.project_id'))
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "{{ config('services.clarity.project_id') }}");
+    </script>
+@endif
+
+@if(session('tracking_event'))
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push(@json(session('tracking_event')));
+    </script>
+@endif
 
 @include('partials.header')
 
