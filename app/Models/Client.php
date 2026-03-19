@@ -36,22 +36,29 @@ class Client extends Model
         ];
     }
 
-
     public function getLogoUrlAttribute(): string
     {
+        $placeholder = asset('img/defaults/placeholder.svg');
+
         if (! $this->logo) {
-            return asset('img/defaults/placeholder.svg');
+            return $placeholder;
         }
 
         if (str_starts_with($this->logo, 'http://') || str_starts_with($this->logo, 'https://')) {
             return $this->logo;
         }
 
+        $normalizedPath = ltrim(preg_replace('#^/?storage/#', '', $this->logo), '/');
+
+        if ($normalizedPath && Storage::disk('public')->exists($normalizedPath)) {
+            return route('media.public', ['path' => $normalizedPath]);
+        }
+
         if (str_starts_with($this->logo, '/')) {
             return $this->logo;
         }
 
-        return Storage::url($this->logo);
+        return $placeholder;
     }
 
     public function getLocalizedNameAttribute(): string

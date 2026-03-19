@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 
 class Product extends Model
 {
@@ -50,22 +50,29 @@ class Product extends Model
         ];
     }
 
-
     public function getImageUrlAttribute(): string
     {
+        $fallback = asset('img/service-1.jpg');
+
         if (! $this->image) {
-            return asset('img/service-1.jpg');
+            return $fallback;
         }
 
         if (str_starts_with($this->image, 'http://') || str_starts_with($this->image, 'https://')) {
             return $this->image;
         }
 
+        $normalizedPath = ltrim(preg_replace('#^/?storage/#', '', $this->image), '/');
+
+        if ($normalizedPath && Storage::disk('public')->exists($normalizedPath)) {
+            return route('media.public', ['path' => $normalizedPath]);
+        }
+
         if (str_starts_with($this->image, '/')) {
             return $this->image;
         }
 
-        return Storage::url($this->image);
+        return $fallback;
     }
 
     public function getLocalizedNameAttribute(): string

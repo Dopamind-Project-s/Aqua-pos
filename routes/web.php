@@ -15,6 +15,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\Admin\ClientController as AdminClientController;
 use App\Http\Controllers\ServiceRequestController;
 use App\Http\Controllers\ProductCatalogController;
+use App\Http\Controllers\PublicMediaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +25,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/media/public/{path}', [PublicMediaController::class, 'show'])->where('path', '.*')->name('media.public');
 
 Route::view('/about', 'about')->name('about');
 Route::view('/service', 'service')->name('service');

@@ -1609,7 +1609,8 @@ body.dark-mode .topbar-social-btn:hover {
     }
 
     .mega-menu.is-open .mega-menu__panel {
-        max-height: 1800px;
+        max-height: min(75vh, 680px);
+        overflow-y: auto;
     }
 
     .mega-menu__inner {
@@ -1625,31 +1626,17 @@ body.dark-mode .topbar-social-btn:hover {
     }
 
     .mega-menu__heading {
-        display: none;
+        display: block;
+        margin-bottom: 10px;
     }
 
     .mega-menu__category-toggle {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        justify-content: space-between;
-        border: 0;
-        border-radius: 10px;
-        padding: 10px 12px;
-        background: #e2e8f0;
-        color: #0f172a;
-        font-weight: 700;
-        margin-bottom: 8px;
+        display: none;
     }
 
     .mega-menu__services {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height .3s ease;
-    }
-
-    .mega-menu__category.is-open .mega-menu__services {
-        max-height: 620px;
+        max-height: none;
+        overflow: visible;
     }
 }
 
@@ -2619,11 +2606,7 @@ body.dark-mode .clients-showcase__empty i {
 [dir="rtl"] .header-carousel .carousel-caption .carousel-caption-content,
 [dir="rtl"] .blog-slide-content .inner {
     text-align: right;
-}
-
-[dir="rtl"] .header-carousel .owl-stage,
-[dir="rtl"] .blog-slider .owl-stage {
-    display: flex;
+    direction: rtl;
 }
 
 /* Home nav label + responsive navbar fixes */
@@ -2654,5 +2637,11 @@ body.dark-mode .clients-showcase__empty i {
 }
 
 [dir="rtl"] .header-carousel .carousel-caption .carousel-caption-content {
-    text-align: center;
+    text-align: right;
+    margin-left: auto;
+    margin-right: 8%;
+}
+
+[dir="rtl"] .header-carousel .header-carousel-item .carousel-caption {
+    justify-content: flex-end;
 }
