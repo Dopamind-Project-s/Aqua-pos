@@ -56,9 +56,9 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-white px-4 px-lg-5 py-3 py-lg-0">
                 <a href="{{ url('/') }}" class="navbar-brand p-0">
                     @if($siteSetting?->primary_logo)
-                        <img src="{{ Storage::url($siteSetting->primary_logo) }}" alt="{{ $siteSetting?->site_name ?: 'AQUA POS' }}" class="navbar-brand__logo">
+                        <img src="{{ asset('storage/' . $siteSetting->primary_logo) }}" alt="AQUA POS" class="navbar-brand__logo">
                     @else
-                        <h1 class="navbar-brand__title text-primary m-0"><i class="fas fa-star-of-life me-2"></i>{{ $siteSetting?->site_name ?: 'AQUA POS' }}</h1>
+                        <img src="{{ asset('img/LOGO.png') }}" alt="AQUA POS" class="navbar-brand__logo">
                     @endif
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
