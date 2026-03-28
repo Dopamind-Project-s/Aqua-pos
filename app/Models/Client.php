@@ -36,31 +36,24 @@ class Client extends Model
         ];
     }
 
-    public function getLogoUrlAttribute(): string
-    {
-        $placeholder = asset('img/defaults/placeholder.svg');
+public function getLogoUrlAttribute(): string
+{
+    $placeholder = asset('img/defaults/placeholder.svg');
 
-        if (! $this->logo) {
-            return $placeholder;
-        }
-
-        if (str_starts_with($this->logo, 'http://') || str_starts_with($this->logo, 'https://')) {
-            return $this->logo;
-        }
-
-        $normalizedPath = ltrim(preg_replace('#^/?storage/#', '', $this->logo), '/');
-
-        if ($normalizedPath && Storage::disk('public')->exists($normalizedPath)) {
-            return route('media.public', ['path' => $normalizedPath]);
-        }
-
-        if (str_starts_with($this->logo, '/')) {
-            return $this->logo;
-        }
-
+    if (! $this->logo) {
         return $placeholder;
     }
 
+    // إذا كان URL كامل
+    if (filter_var($this->logo, FILTER_VALIDATE_URL)) {
+        return $this->logo;
+    }
+
+    // تنظيف المسار (إزالة storage/ إذا موجودة)
+    $path = ltrim(preg_replace('#^/?storage/#', '', $this->logo), '/');
+
+    return asset('storage/' . $path);
+}
     public function getLocalizedNameAttribute(): string
     {
         $locale = app()->getLocale();

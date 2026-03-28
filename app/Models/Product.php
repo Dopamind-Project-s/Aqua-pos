@@ -51,31 +51,24 @@ class Product extends Model
         ];
     }
 
-    public function getImageUrlAttribute(): string
-    {
-        $fallback = asset('img/service-1.jpg');
+public function getImageUrlAttribute(): string
+{
+    $fallback = asset('img/service-1.jpg');
 
-        if (! $this->image) {
-            return $fallback;
-        }
-
-        if (str_starts_with($this->image, 'http://') || str_starts_with($this->image, 'https://')) {
-            return $this->image;
-        }
-
-        $normalizedPath = ltrim(preg_replace('#^/?storage/#', '', $this->image), '/');
-
-        if ($normalizedPath && Storage::disk('public')->exists($normalizedPath)) {
-            return route('media.public', ['path' => $normalizedPath]);
-        }
-
-        if (str_starts_with($this->image, '/')) {
-            return $this->image;
-        }
-
+    if (! $this->image) {
         return $fallback;
     }
 
+    // إذا كان URL كامل
+    if (filter_var($this->image, FILTER_VALIDATE_URL)) {
+        return $this->image;
+    }
+
+    // تنظيف المسار
+    $path = ltrim(preg_replace('#^/?storage/#', '', $this->image), '/');
+
+    return asset('storage/' . $path);
+}
     public function getLocalizedNameAttribute(): string
     {
         return JsonTranslation::pick($this->getRawOriginal('name'), $this->name_ar, $this->name_en, app()->getLocale()) ?? '';
