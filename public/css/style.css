@@ -1594,8 +1594,7 @@ body.dark-mode .topbar-social-btn:hover {
     }
 
     .mega-menu__panel {
-        position: static;
-        left: 0;
+        position: relative;
         width: 100%;
         box-shadow: none;
         border-radius: 14px;
