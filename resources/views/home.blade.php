@@ -348,7 +348,7 @@
 
 
         <!-- Testimonial Start -->
-        <div class="container-fluid testimonial py-5 wow zoomInDown" data-wow-delay="0.1s">
+        <!-- <div class="container-fluid testimonial py-5 wow zoomInDown" data-wow-delay="0.1s">
             <div class="container py-5">
                 <div class="section-title mb-5">
                     <div class="sub-style">
@@ -419,7 +419,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- Testimonial End -->
 
 
