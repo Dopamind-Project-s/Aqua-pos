@@ -27,7 +27,7 @@
 
         <div class="clients-showcase__stats wow fadeInUp" data-wow-delay="0.15s">
             <div class="clients-showcase__stat-card">
-                <span class="clients-showcase__stat-number">{{ ($clients ?? collect())->count() }}</span>
+                <span class="clients-showcase__stat-number">{{ $clients->total() }}</span>
                 <span class="clients-showcase__stat-label"><span data-i18n="clients.stat1">Active Client Brands</span></span>
             </div>
             <div class="clients-showcase__stat-card">
@@ -45,8 +45,14 @@
                 @foreach($clients as $client)
                     <div class="col-6 col-md-4 col-lg-3 wow fadeInUp" data-wow-delay="0.2s">
                         <x-client-card :client="$client" :as-slide="false" />
+                        @if($client->category)
+                            <p class="small text-center mt-2 mb-0"><i class="fas fa-layer-group me-1"></i>{{ $client->category->localized_name }}</p>
+                        @endif
                     </div>
                 @endforeach
+            </div>
+            <div class="mt-4 d-flex justify-content-center">
+                {{ $clients->links() }}
             </div>
         @else
             <div class="clients-showcase__empty text-center wow fadeInUp" data-wow-delay="0.2s">

@@ -11,9 +11,11 @@ class ClientController extends Controller
     {
         $clients = Client::query()
             ->where('is_active', true)
+            ->with('category')
             ->orderBy('sort_order')
             ->orderBy('name_en')
-            ->get();
+            ->paginate(12)
+            ->withQueryString();
 
         return view('clients', compact('clients'));
     }

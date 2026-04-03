@@ -14,6 +14,7 @@ class StoreClientRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'category_id' => ['nullable', 'integer', 'exists:categories,id'],
             'name_ar' => ['nullable', 'string', 'max:255'],
             'name_en' => ['required', 'string', 'max:255'],
             'logo' => ['required', 'image', 'mimes:jpg,jpeg,png,svg,webp', 'max:4096'],

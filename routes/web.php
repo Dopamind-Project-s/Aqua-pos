@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\SiteSettingController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CategoryCatalogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\ClientController;
@@ -56,6 +57,7 @@ Route::view('/not-found', '404')->name('not-found');
 
 Route::get('/products', [ProductCatalogController::class, 'index'])->name('products');
 Route::get('/products/{product:slug}', [ProductCatalogController::class, 'show'])->name('products.show');
+Route::get('/categories/{category:slug}', [CategoryCatalogController::class, 'show'])->name('categories.show');
 
 
 /*

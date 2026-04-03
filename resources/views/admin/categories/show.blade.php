@@ -13,6 +13,7 @@
             <tr><th>Description (Default)</th><td>{{ $category->description ?: '-' }}</td></tr>
             <tr><th>Description (AR)</th><td>{{ $category->description_ar ?: '-' }}</td></tr>
             <tr><th>Description (EN)</th><td>{{ $category->description_en ?: '-' }}</td></tr>
+            <tr><th>Image</th><td><img src="{{ $category->image_url }}" alt="{{ $category->localized_name }}" class="rounded border object-fit-cover" width="140" height="90"></td></tr>
             <tr><th>Sort Order</th><td>{{ $category->sort_order }}</td></tr>
             <tr><th>Status</th><td><span class="badge {{ $category->is_active ? 'bg-success' : 'bg-secondary' }}">{{ $category->is_active ? 'Active' : 'Inactive' }}</span></td></tr>
             <tr><th>Products</th><td>{{ $category->products_count ?? 0 }}</td></tr>

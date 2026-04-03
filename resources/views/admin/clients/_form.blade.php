@@ -2,6 +2,17 @@
 
 <div class="row g-3">
     <div class="col-md-6">
+        <label class="form-label" for="category_id">Category</label>
+        <select class="form-select @error('category_id') is-invalid @enderror" id="category_id" name="category_id">
+            <option value="">No category</option>
+            @foreach(($categories ?? collect()) as $category)
+                <option value="{{ $category->id }}" @selected(old('category_id', $client->category_id ?? null) == $category->id)>{{ $category->localized_name }}</option>
+            @endforeach
+        </select>
+        @error('category_id')<div class="invalid-feedback">{{ $message }}</div>@enderror
+    </div>
+
+    <div class="col-md-6">
         <label class="form-label" for="name_ar">Client Name (AR)</label>
         <input type="text" class="form-control @error('name_ar') is-invalid @enderror" id="name_ar" name="name_ar" value="{{ old('name_ar', $client->name_ar ?? '') }}">
         @error('name_ar')<div class="invalid-feedback">{{ $message }}</div>@enderror
