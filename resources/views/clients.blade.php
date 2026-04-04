@@ -26,10 +26,22 @@
         </div>
 
         <div class="clients-showcase__filters wow fadeInUp" data-wow-delay="0.12s">
-            <a href="{{ route('clients.index') }}" class="clients-filter-chip {{ $selectedCategory === '' ? 'active' : '' }}">All Categories</a>
+            <a href="{{ route('clients.index') }}" class="clients-filter-chip {{ $selectedCategory === '' ? 'active' : '' }}">
+                All Categories
+                <span>{{ $clients->total() }}</span>
+            </a>
             @foreach(($categories ?? collect()) as $category)
-                <a href="{{ route('clients.index', ['category' => $category->slug]) }}" class="clients-filter-chip {{ $selectedCategory === $category->slug ? 'active' : '' }}">{{ $category->localized_name }}</a>
+                <a href="{{ route('clients.index', ['category' => $category->slug]) }}" class="clients-filter-chip {{ $selectedCategory === $category->slug ? 'active' : '' }}">
+                    {{ $category->localized_name }}
+                    <span>{{ $category->clients_count }}</span>
+                </a>
             @endforeach
+            @if(($uncategorizedCount ?? 0) > 0)
+                <a href="{{ route('clients.index', ['category' => 'uncategorized']) }}" class="clients-filter-chip {{ $selectedCategory === 'uncategorized' ? 'active' : '' }}">
+                    Uncategorized
+                    <span>{{ $uncategorizedCount }}</span>
+                </a>
+            @endif
         </div>
 
         <div class="clients-showcase__stats wow fadeInUp" data-wow-delay="0.15s">
@@ -52,7 +64,7 @@
                 <div class="clients-wall-group mt-4">
                     <div class="d-flex align-items-center justify-content-between mb-3">
                         <h5 class="clients-wall-group__title mb-0">
-                            {{ $group === 'uncategorized' ? 'General Clients' : ($groupClients->first()?->category?->localized_name ?? 'General Clients') }}
+                            {{ $group === 'uncategorized' ? 'Uncategorized Clients' : ($groupClients->first()?->category?->localized_name ?? 'General Clients') }}
                         </h5>
                         <span class="clients-wall-group__count">{{ $groupClients->count() }} clients</span>
                     </div>

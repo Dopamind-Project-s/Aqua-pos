@@ -112,9 +112,6 @@ class CategoryController extends Controller
 
         DB::transaction(function () use ($category): void {
             $category->products()->whereNull('deleted_at')->delete();
-            if ($category->image) {
-                Storage::disk('public')->delete($category->image);
-            }
             $category->delete();
         });
 

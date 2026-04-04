@@ -2728,6 +2728,9 @@ html[lang="ar"] body,
     margin-bottom: 18px;
 }
 .clients-filter-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     border: 1px solid #d4e2f8;
     border-radius: 999px;
     padding: 7px 14px;
@@ -2736,11 +2739,24 @@ html[lang="ar"] body,
     background: #fff;
     text-decoration: none;
 }
+.clients-filter-chip span {
+    background: #eaf1ff;
+    color: #1d4f99;
+    border-radius: 999px;
+    padding: 1px 8px;
+    font-size: .73rem;
+    font-weight: 700;
+}
 .clients-filter-chip.active,
 .clients-filter-chip:hover {
     color: #fff;
     background: #2d63b2;
     border-color: #2d63b2;
+}
+.clients-filter-chip.active span,
+.clients-filter-chip:hover span {
+    background: rgba(255,255,255,.2);
+    color: #fff;
 }
 .clients-wall-group {
     border: 1px solid #e1ebfb;
