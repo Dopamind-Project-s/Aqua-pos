@@ -25,6 +25,13 @@
             <p class="mb-0"><span data-i18n="clients.pageIntro">We work with restaurants and retail businesses that need speed, visibility, and stronger operational control across every branch.</span></p>
         </div>
 
+        <div class="clients-showcase__filters wow fadeInUp" data-wow-delay="0.12s">
+            <a href="{{ route('clients.index') }}" class="clients-filter-chip {{ $selectedCategory === '' ? 'active' : '' }}">All Categories</a>
+            @foreach(($categories ?? collect()) as $category)
+                <a href="{{ route('clients.index', ['category' => $category->slug]) }}" class="clients-filter-chip {{ $selectedCategory === $category->slug ? 'active' : '' }}">{{ $category->localized_name }}</a>
+            @endforeach
+        </div>
+
         <div class="clients-showcase__stats wow fadeInUp" data-wow-delay="0.15s">
             <div class="clients-showcase__stat-card">
                 <span class="clients-showcase__stat-number">{{ $clients->total() }}</span>
@@ -41,16 +48,23 @@
         </div>
 
         @if(($clients ?? collect())->count())
-            <div class="row g-4 mt-1">
-                @foreach($clients as $client)
-                    <div class="col-6 col-md-4 col-lg-3 wow fadeInUp" data-wow-delay="0.2s">
-                        <x-client-card :client="$client" :as-slide="false" />
-                        @if($client->category)
-                            <p class="small text-center mt-2 mb-0"><i class="fas fa-layer-group me-1"></i>{{ $client->category->localized_name }}</p>
-                        @endif
+            @foreach($clientsByCategory as $group => $groupClients)
+                <div class="clients-wall-group mt-4">
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <h5 class="clients-wall-group__title mb-0">
+                            {{ $group === 'uncategorized' ? 'General Clients' : ($groupClients->first()?->category?->localized_name ?? 'General Clients') }}
+                        </h5>
+                        <span class="clients-wall-group__count">{{ $groupClients->count() }} clients</span>
                     </div>
-                @endforeach
-            </div>
+                    <div class="clients-wall-grid">
+                        @foreach($groupClients as $client)
+                            <div class="clients-wall-grid__item wow fadeInUp" data-wow-delay="0.2s">
+                                <x-client-card :client="$client" :as-slide="false" />
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            @endforeach
             <div class="mt-4 d-flex justify-content-center">
                 {{ $clients->links() }}
             </div>

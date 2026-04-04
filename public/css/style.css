@@ -2700,3 +2700,73 @@ body.dark-mode .category-single__meta {
     border-color: #2f3f5a;
     color: #f7f9fc;
 }
+
+/* typography refresh */
+body {
+    font-family: 'Inter', 'Open Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+}
+h1, h2, h3, h4, h5, h6 {
+    letter-spacing: -.01em;
+}
+html[lang="ar"] body,
+[lang="ar"] body,
+[dir="rtl"] body {
+    font-family: 'Cairo', 'Tajawal', 'Open Sans', sans-serif;
+    font-size: 14.5px;
+}
+.display-1, .display-2, .display-3, .display-4, .display-5 {
+    font-size: clamp(1.6rem, 3.4vw, 2.65rem);
+}
+
+/* clients wall by category */
+.clients-showcase__filters {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+}
+.clients-filter-chip {
+    border: 1px solid #d4e2f8;
+    border-radius: 999px;
+    padding: 7px 14px;
+    font-size: .84rem;
+    color: #315b95;
+    background: #fff;
+    text-decoration: none;
+}
+.clients-filter-chip.active,
+.clients-filter-chip:hover {
+    color: #fff;
+    background: #2d63b2;
+    border-color: #2d63b2;
+}
+.clients-wall-group {
+    border: 1px solid #e1ebfb;
+    border-radius: 16px;
+    padding: 16px;
+    background: #fff;
+}
+.clients-wall-group__title {
+    font-size: 1rem;
+    color: #113a75;
+}
+.clients-wall-group__count {
+    font-size: .78rem;
+    color: #6884aa;
+}
+.clients-wall-grid {
+    column-count: 4;
+    column-gap: 14px;
+}
+.clients-wall-grid__item {
+    break-inside: avoid;
+    margin-bottom: 14px;
+}
+@media (max-width: 991.98px) {
+    .clients-wall-grid { column-count: 2; }
+}
+@media (max-width: 575.98px) {
+    .clients-wall-grid { column-count: 1; }
+}
