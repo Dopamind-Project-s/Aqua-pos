@@ -26,26 +26,27 @@
     </div>
 </div>
 
-<form action="{{ route('admin.categories.bulk-action') }}" method="POST" id="bulk-form">
+<form action="{{ route('admin.categories.bulk-action') }}" method="POST" id="bulk-form" class="d-none">
     @csrf
     <input type="hidden" name="confirm_bulk" value="1">
+</form>
 
-    <div class="card">
-        <div class="card-body">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <h4 class="card-title mb-0">Categories</h4>
-                <a href="{{ route('admin.categories.create') }}" class="btn btn-primary">Create Category</a>
-            </div>
+<div class="card">
+    <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4 class="card-title mb-0">Categories</h4>
+            <a href="{{ route('admin.categories.create') }}" class="btn btn-primary">Create Category</a>
+        </div>
 
-            <div class="d-flex flex-wrap gap-2 mb-3">
-                <select name="action" class="form-select" style="max-width: 260px" required>
-                    <option value="">Bulk actions...</option>
-                    <option value="activate">Bulk Activate</option>
-                    <option value="deactivate">Bulk Deactivate</option>
-                    <option value="soft_delete">Bulk Soft Delete</option>
-                </select>
-                <button type="submit" class="btn btn-dark" onclick="return confirmBulkAction()">Apply</button>
-            </div>
+        <div class="d-flex flex-wrap gap-2 mb-3">
+            <select name="action" class="form-select" style="max-width: 260px" required form="bulk-form">
+                <option value="">Bulk actions...</option>
+                <option value="activate">Bulk Activate</option>
+                <option value="deactivate">Bulk Deactivate</option>
+                <option value="soft_delete">Bulk Soft Delete</option>
+            </select>
+            <button type="submit" class="btn btn-dark" onclick="return confirmBulkAction()" form="bulk-form">Apply</button>
+        </div>
 
             <div class="table-responsive">
                 <table class="table text-nowrap mb-0 align-middle">
@@ -65,7 +66,7 @@
                     <tbody>
                     @forelse($categories as $category)
                         <tr class="{{ $category->trashed() ? 'table-danger' : '' }}">
-                            <td><input type="checkbox" name="category_ids[]" value="{{ $category->id }}" class="category-checkbox"></td>
+                            <td><input type="checkbox" name="category_ids[]" value="{{ $category->id }}" class="category-checkbox" form="bulk-form"></td>
                             <td>{{ $category->localized_name }}<div class='small text-muted'>AR: {{ $category->name_ar ?: '-' }} | EN: {{ $category->name_en ?: '-' }}</div></td>
                             <td><img src="{{ $category->image_url }}" alt="{{ $category->localized_name }}" width="70" height="48" class="rounded border object-fit-cover"></td>
                             <td>{{ $category->slug }}</td>
@@ -96,7 +97,7 @@
             {{ $categories->links() }}
         </div>
     </div>
-</form>
+</div>
 
 @endsection
 

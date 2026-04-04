@@ -1,6 +1,44 @@
         <!-- Footer Start -->
         <div class="container-fluid footer py-5 wow fadeIn" data-wow-delay="0.2s">
             <div class="container py-5">
+                <div class="row g-3 g-lg-4 mb-4 pb-4 border-bottom border-light border-opacity-25 justify-content-between align-items-center">
+                    <div class="col-12 col-xl-8">
+                        <div class="d-flex flex-column flex-md-row flex-wrap align-items-start align-items-md-center topbar-contact-list gap-2 gap-md-0">
+                            <a href="{{ $siteSetting?->google_map_embed ?: '#' }}" class="text-light me-md-4" target="_blank" rel="noopener">
+                                <i class="fas fa-map-marker-alt text-primary me-2"></i>
+                                <span>{{ $siteSetting?->hq_address ?: 'Amman, Jordan' }}</span>
+                            </a>
+                            <a href="tel:{{ preg_replace('/\D+/', '', $siteSetting?->phone_primary ?: '+962791888655') }}" class="text-light me-md-4">
+                                <i class="fas fa-phone-alt text-primary me-2"></i>{{ $siteSetting?->phone_primary ?: '+962-791888655' }}
+                            </a>
+                            <a href="mailto:{{ $siteSetting?->info_email ?: 'info@aqua-pos.com' }}" class="text-light">
+                                <i class="fas fa-envelope text-primary me-2"></i>{{ $siteSetting?->info_email ?: 'info@aqua-pos.com' }}
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-xl-4">
+                        <div class="d-flex align-items-center justify-content-xl-end topbar-social-list">
+                            @if($siteSetting?->facebook_url)
+                                <a href="{{ $siteSetting->facebook_url }}" target="_blank" rel="noopener" class="btn btn-light btn-square border rounded-circle nav-fill topbar-social-btn topbar-social-btn--facebook me-2"><i class="fab fa-facebook-f"></i></a>
+                            @endif
+                            @if($siteSetting?->twitter_url)
+                                <a href="{{ $siteSetting->twitter_url }}" target="_blank" rel="noopener" class="btn btn-light btn-square border rounded-circle nav-fill topbar-social-btn topbar-social-btn--twitter me-2"><i class="fab fa-twitter"></i></a>
+                            @endif
+                            @if($siteSetting?->instagram_url)
+                                <a href="{{ $siteSetting->instagram_url }}" target="_blank" rel="noopener" class="btn btn-light btn-square border rounded-circle nav-fill topbar-social-btn topbar-social-btn--instagram me-2"><i class="fab fa-instagram"></i></a>
+                            @endif
+                            @if($siteSetting?->linkedin_url)
+                                <a href="{{ $siteSetting->linkedin_url }}" target="_blank" rel="noopener" class="btn btn-light btn-square border rounded-circle nav-fill topbar-social-btn topbar-social-btn--linkedin me-2"><i class="fab fa-linkedin-in"></i></a>
+                            @endif
+                            @if($siteSetting?->youtube_url)
+                                <a href="{{ $siteSetting->youtube_url }}" target="_blank" rel="noopener" class="btn btn-light btn-square border rounded-circle nav-fill topbar-social-btn topbar-social-btn--youtube me-2"><i class="fab fa-youtube"></i></a>
+                            @endif
+                            @if($siteSetting?->tiktok_url)
+                                <a href="{{ $siteSetting->tiktok_url }}" target="_blank" rel="noopener" class="btn btn-light btn-square border rounded-circle nav-fill topbar-social-btn topbar-social-btn--tiktok"><i class="fab fa-tiktok"></i></a>
+                            @endif
+                        </div>
+                    </div>
+                </div>
                 <div class="row g-4 g-lg-5">
                     <div class="col-md-6 col-lg-6 col-xl-4">
                         <div class="footer-item footer-item--about d-flex flex-column">
