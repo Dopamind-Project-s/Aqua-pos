@@ -16,7 +16,9 @@
                 </div>
 
                 <div class="row g-4 justify-content-center">
-                    @php($featuredCategoriesCollection = $featuredCategories ?? collect())
+                    @php
+                        $featuredCategoriesCollection = $featuredCategories ?? collect();
+                    @endphp
                     @if($featuredCategoriesCollection->isNotEmpty())
                         @foreach($featuredCategoriesCollection as $index => $category)
                             <div class="col-md-6 col-lg-4 col-xl-3 d-flex wow fadeInUp" data-wow-delay="{{ number_format((($index % 4) * 0.2) + 0.1, 1) }}s">
@@ -450,7 +452,9 @@
                 </div>
 
                 <div class="row g-4 justify-content-center home-blog-grid">
-                    @php($homePostsCollection = $homePosts ?? collect())
+                    @php
+                        $homePostsCollection = $homePosts ?? collect();
+                    @endphp
                     @if($homePostsCollection->isNotEmpty())
                         @foreach($homePostsCollection as $index => $post)
                             @php
