@@ -1185,6 +1185,8 @@ body.dark-mode .topbar-social-btn:hover {
     border-radius: 10px;
     overflow: hidden;
     box-shadow: var(--shadow-md);
+    transition: transform .25s ease, box-shadow .25s ease;
+    border: 1px solid color-mix(in srgb, var(--color-primary) 18%, white);
 }
 
 .blog .blog-item .blog-img {
@@ -1220,7 +1222,7 @@ body.dark-mode .topbar-social-btn:hover {
     position: absolute;
     top: 0;
     left: 50%;
-    width: 70%;
+    width: 72%;
     height: 100%;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
@@ -1239,12 +1241,64 @@ body.dark-mode .topbar-social-btn:hover {
     background: color-mix(in srgb, var(--color-primary) 50%, transparent);
 }
 
+.blog .blog-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 35px rgba(6, 72, 124, .16);
+}
+
 .blog .blog-item .blog-centent {
     background: var(--bs-light);
-    border: 1px solid var(--bs-primary);
+    border: 1px solid color-mix(in srgb, var(--color-primary) 35%, #d8e8f8);
     border-top: 0;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+}
+
+.home-blog-grid .blog-item .blog-centent .h4 {
+    font-size: 1.12rem;
+    line-height: 1.45;
+}
+
+.home-post-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 3;
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    padding: .35rem .65rem;
+    border-radius: 999px;
+    color: #fff;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, .16);
+}
+
+.home-post-badge--blog {
+    background: linear-gradient(135deg, #0ea5e9, #075985);
+}
+
+.home-post-badge--news {
+    background: linear-gradient(135deg, #14b8a6, #0f766e);
+}
+
+.home-blog-actions .btn {
+    font-weight: 600;
+}
+
+body.dark-mode .blog .blog-item {
+    border-color: color-mix(in srgb, var(--color-primary) 42%, #1d2a3a);
+    background: #0f1a29;
+}
+
+body.dark-mode .blog .blog-item .blog-centent {
+    background: #102034;
+    border-color: color-mix(in srgb, var(--color-primary) 50%, #1d2a3a);
+}
+
+body.dark-mode .home-blog-grid .blog-item .h4,
+body.dark-mode .home-blog-grid .blog-item p,
+body.dark-mode .home-blog-grid .blog-item span {
+    color: #d9e7f7 !important;
 }
 /*** Blog End ***/
 

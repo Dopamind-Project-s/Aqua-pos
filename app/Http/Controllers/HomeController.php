@@ -37,11 +37,11 @@ class HomeController extends Controller
 
         $homePosts = Post::query()
             ->with('category')
-            ->where('type', 'blog')
+            ->whereIn('type', ['blog', 'news'])
             ->where('status', 'published')
             ->orderByDesc('published_at')
             ->orderByDesc('id')
-            ->take(3)
+            ->take(6)
             ->get();
 
         return view('home', compact('clients', 'featuredProducts', 'featuredCategories', 'homePosts'));
