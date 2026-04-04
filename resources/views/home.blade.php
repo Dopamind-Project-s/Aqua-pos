@@ -447,11 +447,7 @@
                 </div>
 
                 <div class="row g-4 justify-content-center home-blog-grid">
-                    @php
-                        $homePostsCollection = $homePosts ?? collect();
-                    @endphp
-
-                    @forelse($homePostsCollection as $index => $post)
+                    @forelse(($homePosts ?? collect()) as $index => $post)
                         @php
                             $isNews = $post->type === 'news';
                             $postRoute = $isNews ? route('news.show', $post->slug) : route('blog.show', $post->slug);
