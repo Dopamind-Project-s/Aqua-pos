@@ -148,9 +148,9 @@ class ProductSeeder extends Seeder
                 continue;
             }
 
-            $product = Product::query()->updateOrCreate(
+            $product = Product::query()->withTrashed()->updateOrCreate(
                 ['slug' => $row['product']['slug']],
-                array_merge($row['product'], ['category_id' => $category->id])
+                array_merge($row['product'], ['category_id' => $category->id, 'deleted_at' => null])
             );
 
             foreach ($row['images'] as $index => $image) {
