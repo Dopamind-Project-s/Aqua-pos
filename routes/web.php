@@ -84,9 +84,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         |--------------------------------------------------------------------------
         */
 
-        Route::resource('categories', CategoryController::class);
-        Route::post('categories/{category}/toggle-status', [CategoryController::class, 'toggleStatus'])->name('categories.toggle-status');
-        Route::delete('categories/{category}/force-delete', [CategoryController::class, 'forceDelete'])->name('categories.force-delete');
+        Route::resource('categories', CategoryController::class)->whereNumber('category');
+        Route::post('categories/{category}/toggle-status', [CategoryController::class, 'toggleStatus'])->whereNumber('category')->name('categories.toggle-status');
+        Route::delete('categories/{category}/force-delete', [CategoryController::class, 'forceDelete'])->whereNumber('category')->name('categories.force-delete');
         Route::post('categories/bulk-action', [CategoryController::class, 'bulkAction'])->name('categories.bulk-action');
 
         /*

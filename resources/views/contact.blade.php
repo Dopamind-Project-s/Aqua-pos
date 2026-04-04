@@ -32,37 +32,37 @@
                             <div class="row g-3">
                                 <div class="col-lg-12 col-xl-6">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control bg-transparent border border-white" id="name" placeholder="Your Name">
+                                        <input type="text" name="name" value="{{ request('name') }}" class="form-control bg-transparent border border-white" id="name" placeholder="Your Name">
                                         <label for="name">Your Name</label>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-xl-6">
                                     <div class="form-floating">
-                                        <input type="email" class="form-control bg-transparent border border-white" id="email" placeholder="Your Email">
+                                        <input type="email" name="email" value="{{ request('email') }}" class="form-control bg-transparent border border-white" id="email" placeholder="Your Email">
                                         <label for="email">Your Email</label>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-xl-6">
                                     <div class="form-floating">
-                                        <input type="phone" class="form-control bg-transparent border border-white" id="phone" placeholder="Phone">
+                                        <input type="phone" name="phone" value="{{ request('phone') }}" class="form-control bg-transparent border border-white" id="phone" placeholder="Phone">
                                         <label for="phone">Your Phone</label>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-xl-6">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control bg-transparent border border-white" id="project" placeholder="Project">
+                                        <input type="text" name="project" value="{{ request('project') }}" class="form-control bg-transparent border border-white" id="project" placeholder="Project">
                                         <label for="project">Your Project</label>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control bg-transparent border border-white" id="subject" placeholder="Subject">
+                                        <input type="text" name="subject" value="{{ request('subject') }}" class="form-control bg-transparent border border-white" id="subject" placeholder="Subject">
                                         <label for="subject">Subject</label>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating">
-                                        <textarea class="form-control bg-transparent border border-white" placeholder="Leave a message here" id="message" style="height: 160px"></textarea>
+                                        <textarea class="form-control bg-transparent border border-white" name="message" placeholder="Leave a message here" id="message" style="height: 160px">{{ request('message') }}</textarea>
                                         <label for="message">Message</label>
                                     </div>
                                 </div>
