@@ -16,11 +16,8 @@
                 </div>
 
                 <div class="row g-4 justify-content-center">
-                    @php
-                        $featuredCategoriesCollection = $featuredCategories ?? collect();
-                    @endphp
-                    @if($featuredCategoriesCollection->isNotEmpty())
-                        @foreach($featuredCategoriesCollection as $index => $category)
+                    @if(collect($featuredCategories ?? [])->isNotEmpty())
+                        @foreach(collect($featuredCategories ?? []) as $index => $category)
                             <div class="col-md-6 col-lg-4 col-xl-3 d-flex wow fadeInUp" data-wow-delay="{{ number_format((($index % 4) * 0.2) + 0.1, 1) }}s">
                                 <div class="service-item rounded h-100 d-flex flex-column">
                                     <div class="service-img rounded-top">
@@ -452,11 +449,8 @@
                 </div>
 
                 <div class="row g-4 justify-content-center home-blog-grid">
-                    @php
-                        $homePostsCollection = $homePosts ?? collect();
-                    @endphp
-                    @if($homePostsCollection->isNotEmpty())
-                        @foreach($homePostsCollection as $index => $post)
+                    @if(collect($homePosts ?? [])->isNotEmpty())
+                        @foreach(collect($homePosts ?? []) as $index => $post)
                             @php
                                 $isNews = $post->type === 'news';
                                 $postRoute = $isNews ? route('news.show', $post->slug) : route('blog.show', $post->slug);
