@@ -447,7 +447,9 @@
                 </div>
 
                 <div class="row g-4 justify-content-center home-blog-grid">
-                    @forelse(($homePosts ?? collect()) as $index => $post)
+                    @php($homePostsCollection = $homePosts ?? collect())
+                    @if($homePostsCollection->isNotEmpty())
+                        @foreach($homePostsCollection as $index => $post)
                         @php
                             $isNews = $post->type === 'news';
                             $postRoute = $isNews ? route('news.show', $post->slug) : route('blog.show', $post->slug);
@@ -473,11 +475,12 @@
                                 </div>
                             </div>
                         </div>
-                    @empty
+                        @endforeach
+                    @else
                         <div class="col-12">
                             <div class="alert alert-info text-center mb-0" data-i18n="blog.noPosts">No posts found.</div>
                         </div>
-                    @endforelse
+                    @endif
                 </div>
                 <div class="text-center mt-4">
                     <a href="{{ route('blog') }}" class="btn btn-primary rounded-pill text-white px-4 py-2 me-2 mb-2">
