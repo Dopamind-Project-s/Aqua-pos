@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class CategoryController extends Controller
@@ -48,7 +49,13 @@ class CategoryController extends Controller
 
     public function store(StoreCategoryRequest $request): RedirectResponse
     {
-        Category::query()->create($request->validated());
+        $payload = $request->validated();
+
+        if ($request->hasFile('image')) {
+            $payload['image'] = $request->file('image')->store('categories', 'public');
+        }
+
+        Category::query()->create($payload);
 
         return redirect()->route('admin.categories.index')->with('success', 'Category created successfully.');
     }
@@ -75,7 +82,17 @@ class CategoryController extends Controller
             return redirect()->route('admin.categories.index')->with('error', 'Cannot update a deleted category.');
         }
 
-        $category->update($request->validated());
+        $payload = $request->validated();
+
+        if ($request->hasFile('image')) {
+            if ($category->image) {
+                Storage::disk('public')->delete($category->image);
+            }
+
+            $payload['image'] = $request->file('image')->store('categories', 'public');
+        }
+
+        $category->update($payload);
 
         return redirect()->route('admin.categories.index')->with('success', 'Category updated successfully.');
     }
@@ -116,6 +133,9 @@ class CategoryController extends Controller
 
         DB::transaction(function () use ($categoryModel): void {
             $categoryModel->products()->withTrashed()->forceDelete();
+            if ($categoryModel->image) {
+                Storage::disk('public')->delete($categoryModel->image);
+            }
             $categoryModel->forceDelete();
         });
 

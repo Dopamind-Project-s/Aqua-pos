@@ -17,6 +17,7 @@
                         <th>Logo</th>
                         <th>Name</th>
                         <th>Website</th>
+                        <th>Category</th>
                         <th>Status</th>
                         <th class="text-end">Actions</th>
                     </tr>
@@ -40,6 +41,7 @@
                                 <span class="text-muted">-</span>
                             @endif
                         </td>
+                        <td>{{ $client->category?->localized_name ?? '-' }}</td>
                         <td>
                             <div class="form-check form-switch">
                                 <input class="form-check-input js-client-status" type="checkbox" data-id="{{ $client->id }}" {{ $client->is_active ? 'checked' : '' }}>
@@ -56,7 +58,7 @@
                         </td>
                     </tr>
                 @empty
-                    <tr><td colspan="5" class="text-center">No clients found.</td></tr>
+                    <tr><td colspan="6" class="text-center">No clients found.</td></tr>
                 @endforelse
                 </tbody>
             </table>

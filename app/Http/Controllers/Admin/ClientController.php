@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreClientRequest;
 use App\Http\Requests\Admin\UpdateClientRequest;
+use App\Models\Category;
 use App\Models\Client;
 use App\Services\ClientService;
 use Illuminate\Http\JsonResponse;
@@ -19,14 +20,16 @@ class ClientController extends Controller
 
     public function index(): View
     {
-        $clients = Client::query()->orderBy('sort_order')->orderByDesc('created_at')->paginate(20);
+        $clients = Client::query()->with('category')->orderBy('sort_order')->orderByDesc('created_at')->paginate(20);
 
         return view('admin.clients.index', compact('clients'));
     }
 
     public function create(): View
     {
-        return view('admin.clients.create');
+        $categories = Category::query()->where('is_active', true)->whereNull('deleted_at')->orderBy('sort_order')->orderBy('name_en')->get();
+
+        return view('admin.clients.create', compact('categories'));
     }
 
     public function store(StoreClientRequest $request): RedirectResponse
@@ -41,7 +44,9 @@ class ClientController extends Controller
 
     public function edit(Client $client): View
     {
-        return view('admin.clients.edit', compact('client'));
+        $categories = Category::query()->where('is_active', true)->whereNull('deleted_at')->orderBy('sort_order')->orderBy('name_en')->get();
+
+        return view('admin.clients.edit', compact('client', 'categories'));
     }
 
     public function update(UpdateClientRequest $request, Client $client): RedirectResponse

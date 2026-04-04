@@ -53,6 +53,7 @@
                     <tr>
                         <th><input type="checkbox" id="check-all"></th>
                         <th>Name</th>
+                        <th>Image</th>
                         <th>Slug</th>
                         <th>Status</th>
                         <th>Sort</th>
@@ -66,6 +67,7 @@
                         <tr class="{{ $category->trashed() ? 'table-danger' : '' }}">
                             <td><input type="checkbox" name="category_ids[]" value="{{ $category->id }}" class="category-checkbox"></td>
                             <td>{{ $category->localized_name }}<div class='small text-muted'>AR: {{ $category->name_ar ?: '-' }} | EN: {{ $category->name_en ?: '-' }}</div></td>
+                            <td><img src="{{ $category->image_url }}" alt="{{ $category->localized_name }}" width="70" height="48" class="rounded border object-fit-cover"></td>
                             <td>{{ $category->slug }}</td>
                             <td>
                                 <span class="badge {{ $category->is_active ? 'bg-success' : 'bg-secondary' }}">{{ $category->is_active ? 'Active' : 'Inactive' }}</span>
@@ -86,7 +88,7 @@
                             </td>
                         </tr>
                     @empty
-                        <tr><td colspan="8" class="text-center">No categories found.</td></tr>
+                        <tr><td colspan="9" class="text-center">No categories found.</td></tr>
                     @endforelse
                     </tbody>
                 </table>

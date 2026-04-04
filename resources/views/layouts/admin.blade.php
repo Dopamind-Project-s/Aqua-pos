@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ ($siteSetting?->site_name ?: 'Aqua POS') . ' Admin' }}</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="{{ asset('dashboard/assets/css/styles.min.css') }}" rel="stylesheet">
     <style>
         :root {
@@ -96,6 +98,11 @@
         body.dark-mode .admin-topstrip {
             background: #101a2c;
             border-color: #253650;
+        }
+
+        body {
+            font-family: 'Inter', 'Cairo', sans-serif;
+            font-size: 14px;
         }
     </style>
 </head>
