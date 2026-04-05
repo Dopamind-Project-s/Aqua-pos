@@ -42,8 +42,8 @@ class DynamicContentController extends Controller
                 'section_key' => $change['section_key'],
             ]);
 
-            $section->content_json = array_merge($section->content_json ?? [], $change['content_json'] ?? []);
-            $section->style_json = array_merge($section->style_json ?? [], $change['style_json'] ?? []);
+            $section->content_json = $this->deepMerge($section->content_json ?? [], $change['content_json'] ?? []);
+            $section->style_json = $this->deepMerge($section->style_json ?? [], $change['style_json'] ?? []);
             $section->is_visible = Arr::get($change, 'is_visible', $section->is_visible ?? true);
             $section->sort_order = Arr::get($change, 'sort_order', $section->sort_order ?? 0);
             $section->save();
@@ -66,5 +66,19 @@ class DynamicContentController extends Controller
             'path' => $path,
             'url' => Storage::disk('public')->url($path),
         ]);
+    }
+
+    private function deepMerge(array $base, array $incoming): array
+    {
+        foreach ($incoming as $key => $value) {
+            if (is_array($value) && isset($base[$key]) && is_array($base[$key])) {
+                $base[$key] = $this->deepMerge($base[$key], $value);
+                continue;
+            }
+
+            $base[$key] = $value;
+        }
+
+        return $base;
     }
 }

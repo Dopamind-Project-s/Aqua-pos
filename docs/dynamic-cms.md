@@ -10,7 +10,11 @@ This project now includes a dynamic CMS layer that allows admins to edit content
 - Admin-only frontend editor (`public/js/cms-editor.js`) supports:
   - Preview mode (toggle outlines)
   - Inline text editing (ar/en + style options)
-  - Inline image upload via Laravel Storage
+  - Inline image upload via Laravel Storage (+ browser crop preview & ratio lock)
+  - Button customization (text/link/bg/text/border/hover)
+  - Icon picker by class + color + size
+  - Section drag & drop reorder + show/hide
+  - Light/Dark style values (`light_value` / `dark_value`)
   - Save/discard draft workflow
 
 ## Routes (Admin + Auth + is_admin)

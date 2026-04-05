@@ -29,3 +29,7 @@ body.cms-preview-on {
     outline-offset: 3px;
     cursor: pointer;
 }
+
+[data-cms-section][draggable="true"] {
+    cursor: grab;
+}

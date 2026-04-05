@@ -30,7 +30,14 @@ class DynamicContent
             return $this->resolveFallback($path, $fallback);
         }
 
-        $content = Arr::get($payload->content_json ?? [], $fieldPath);
+        $contentTree = $payload->content_json ?? [];
+        $content = Arr::get($contentTree, $fieldPath);
+        if ($content === null) {
+            $content = Arr::get($contentTree, $path);
+        }
+        if ($content === null && str_contains($fieldPath, '.')) {
+            $content = Arr::get($contentTree, str($fieldPath)->afterLast('.')->value());
+        }
 
         return $content ?? $this->resolveFallback($path, $fallback);
     }

@@ -10,8 +10,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{{ dynamic_content('global.seo.meta_title', $metaTitle ?? "Aqua POS") }}</title>
-    <meta name="description" content="{{ dynamic_content('global.seo.meta_description', $metaDescription ?? "Aqua POS cloud platform for POS, inventory, and business operations.") }}">
+    <title>{{ app(\App\Support\DynamicContent::class)->get('global.seo.meta_title', $metaTitle ?? "Aqua POS") }}</title>
+    <meta name="description" content="{{ app(\App\Support\DynamicContent::class)->get('global.seo.meta_description', $metaDescription ?? "Aqua POS cloud platform for POS, inventory, and business operations.") }}">
     @if($googleVerification)
         <meta name="google-site-verification" content="{{ $googleVerification }}">
     @endif
@@ -124,6 +124,17 @@
 
     (function () {
         const sections = window.AQUA_CMS_PAGE || {};
+        const mode = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+
+        const themed = function (value) {
+            if (!value || typeof value !== 'object') {
+                return value;
+            }
+
+            return mode === 'dark'
+                ? (value.dark_value ?? value.light_value ?? null)
+                : (value.light_value ?? value.dark_value ?? null);
+        };
 
         const applyTextContent = function (el, data) {
             const locale = document.documentElement.getAttribute('lang') === 'ar' ? 'ar' : 'en';
@@ -134,18 +145,29 @@
             }
 
             if (data?.style?.font_size) el.style.fontSize = data.style.font_size;
-            if (data?.style?.text_color) el.style.color = data.style.text_color;
+            if (data?.style?.line_height) el.style.lineHeight = data.style.line_height;
+            if (data?.style?.text_align) el.style.textAlign = data.style.text_align;
+            if (data?.style?.visible === false) el.style.display = 'none';
+            if (data?.style?.text_color) el.style.color = themed(data.style.text_color);
+            if (data?.style?.background_color) el.style.backgroundColor = themed(data.style.background_color);
         };
 
-        Object.values(sections).forEach(function (section) {
+        Object.entries(sections).forEach(function ([sectionKey, section]) {
             const content = section.content || {};
+            if (section.is_visible === false) {
+                const sectionNode = document.querySelector('[data-cms-section="' + sectionKey + '"]');
+                if (sectionNode) {
+                    sectionNode.style.display = 'none';
+                }
+            }
 
             Object.keys(content).forEach(function (key) {
                 const data = content[key];
+                const style = section.style?.[key] || data?.style || {};
 
                 document.querySelectorAll('[data-i18n=\"' + key + '\"]').forEach(function (el) {
                     if (data?.type === 'text') {
-                        applyTextContent(el, data);
+                        applyTextContent(el, { ...data, style: style });
                     }
                 });
 
@@ -153,10 +175,39 @@
                     if (el.tagName === 'IMG' && data?.url) {
                         el.src = data.url;
                     } else if (data?.type === 'text') {
-                        applyTextContent(el, data);
+                        applyTextContent(el, { ...data, style: style });
+                    } else if (data?.type === 'button') {
+                        const locale = document.documentElement.getAttribute('lang') === 'ar' ? 'ar' : 'en';
+                        el.textContent = data?.[locale] || data?.en || data?.ar || el.textContent;
+                        if (data?.link) el.setAttribute('href', data.link);
+                        if (style?.background_color) el.style.backgroundColor = themed(style.background_color);
+                        if (style?.text_color) el.style.color = themed(style.text_color);
+                        if (style?.border_color) el.style.borderColor = themed(style.border_color);
+                    } else if (data?.type === 'icon') {
+                        if (data?.class) el.className = data.class;
+                        if (style?.color) el.style.color = themed(style.color);
+                        if (style?.size) el.style.fontSize = style.size;
                     }
                 });
             });
+        });
+
+        document.querySelectorAll('[data-i18n]').forEach(function (el) {
+            const fullKey = el.getAttribute('data-i18n');
+            const sectionEl = el.closest('[data-cms-section]');
+            const sectionKey = sectionEl?.getAttribute('data-cms-section');
+            const section = sections[sectionKey];
+            if (!section) return;
+
+            const parts = fullKey.split('.');
+            const localKey = parts.length > 2 && parts[1] === sectionKey ? parts.slice(2).join('.') : null;
+            if (!localKey) return;
+
+            const data = section.content?.[localKey];
+            const style = section.style?.[localKey] || data?.style || {};
+            if (data?.type === 'text') {
+                applyTextContent(el, { ...data, style: style });
+            }
         });
     })();
 </script>
