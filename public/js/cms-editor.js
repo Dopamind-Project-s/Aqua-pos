@@ -273,13 +273,19 @@
         var bgDark = document.getElementById('cmsBgDark').value;
         var overlay = document.getElementById('cmsOverlayOpacity').value;
         var visible = document.getElementById('cmsVisible').checked;
+        var noneBackground = document.getElementById('cmsNoBackgroundBtn')?.dataset.noneBackground === '1';
 
         el.textContent = window.CMS_EDITOR.locale === 'ar' ? ar : en;
         el.style.fontSize = fontSize;
         el.style.lineHeight = lineHeight || '';
         el.style.textAlign = align;
         el.style.color = getMode() === 'dark' ? textDark : textLight;
-        el.style.backgroundColor = noneBackground ? 'transparent' : (getMode() === 'dark' ? bgDark : bgLight);
+        if (noneBackground) {
+            el.style.background = 'none';
+            el.style.backgroundImage = 'none';
+        } else {
+            el.style.backgroundColor = getMode() === 'dark' ? bgDark : bgLight;
+        }
         el.style.display = visible ? '' : 'none';
 
         queueChange(state.current.sectionKey, {

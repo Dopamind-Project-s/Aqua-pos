@@ -1,12 +1,13 @@
 <!-- About Start -->
+@php($cmsPageKey = str_replace('.', '-', Route::currentRouteName() ?? trim(request()->path(), '/') ?: 'home'))
 <div class="container-fluid about bg-light py-5" data-cms-section="about">
     <div class="container py-5">
         <div class="row g-5 align-items-center">
             <div class="col-lg-5 wow fadeInLeft" data-wow-delay="0.2s">
                 <div class="about-img">
-                    <img src="{{ asset('img/about-1.jpg') }}" class="img-fluid rounded w-100 h-100 about-img-main" alt="Image" data-cms-key="home.about.image_main">
+                    <img src="{{ dynamic_content($cmsPageKey . '.about.home.about.image_main.src', asset('img/about-1.jpg')) }}" class="img-fluid rounded w-100 h-100 about-img-main" alt="Image" data-cms-key="home.about.image_main">
                     <div class="about-img-inner">
-                        <img src="{{ asset('img/about-2.jpg') }}" class="img-fluid rounded-circle w-100 h-100" alt="Image" data-cms-key="home.about.image_inner">
+                        <img src="{{ dynamic_content($cmsPageKey . '.about.home.about.image_inner.src', asset('img/about-2.jpg')) }}" class="img-fluid rounded-circle w-100 h-100" alt="Image" data-cms-key="home.about.image_inner">
                     </div>
                     <div class="about-experience"><span data-i18n="home.about.badge">Trusted in Amman, Jordan</span></div>
                 </div>
@@ -17,11 +18,11 @@
                     <h1 class="display-3 mb-4"><span data-i18n="home.about.title">Jordanian SaaS Team Building Better POS Operations.</span></h1>
                     <p class="mb-4"><span data-i18n="home.common.description">AQUA POS is a cloud-based POS and inventory management platform from Amman, Jordan, helping restaurants and retailers run faster with better control and full visibility.</span></p>
                     <div class="mb-4">
-                        <p class="text-secondary"><i class="fa fa-check text-primary me-2"></i><span data-i18n="home.about.point1"> Built for restaurants and retail businesses.</span></p>
-                        <p class="text-secondary"><i class="fa fa-check text-primary me-2"></i><span data-i18n="home.about.point2"> Reduce billing and stock errors across teams.</span></p>
-                        <p class="text-secondary"><i class="fa fa-check text-primary me-2"></i><span data-i18n="home.about.point3"> Improve speed, control, and daily visibility.</span></p>
+                        <p class="text-secondary"><i class="{{ dynamic_content($cmsPageKey . '.about.home.about.icon_1.value', 'fa fa-check text-primary me-2') }}" data-cms-key="home.about.icon_1"></i><span data-i18n="home.about.point1"> Built for restaurants and retail businesses.</span></p>
+                        <p class="text-secondary"><i class="{{ dynamic_content($cmsPageKey . '.about.home.about.icon_2.value', 'fa fa-check text-primary me-2') }}" data-cms-key="home.about.icon_2"></i><span data-i18n="home.about.point2"> Reduce billing and stock errors across teams.</span></p>
+                        <p class="text-secondary"><i class="{{ dynamic_content($cmsPageKey . '.about.home.about.icon_3.value', 'fa fa-check text-primary me-2') }}" data-cms-key="home.about.icon_3"></i><span data-i18n="home.about.point3"> Improve speed, control, and daily visibility.</span></p>
                     </div>
-                    <a href="{{ route('about') }}" class="btn btn-primary rounded-pill text-white py-3 px-5"><span data-i18n="home.about.more">Discover More</span></a>
+                    <a href="{{ dynamic_content($cmsPageKey . '.about.home.about.cta.link', route('about')) }}" class="btn btn-primary rounded-pill text-white py-3 px-5" data-cms-key="home.about.cta"><span>{{ dynamic_content($cmsPageKey . '.about.home.about.cta.en', 'Discover More') }}</span></a>
                 </div>
             </div>
         </div>
