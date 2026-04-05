@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Category;
 use App\Models\SiteSetting;
+use App\Support\DynamicContent;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -22,12 +23,19 @@ class AppServiceProvider extends ServiceProvider
 
             View::composer('*', function ($view) {
         $siteSetting = null;
+        $cmsSections = [];
 
         if (\Schema::hasTable('site_settings')) {
             $siteSetting = SiteSetting::first();
         }
 
+        if (\Schema::hasTable('page_sections')) {
+            $pageKey = str_replace('.', '-', \Route::currentRouteName() ?? trim(request()->path(), '/') ?: 'home');
+            $cmsSections = app(DynamicContent::class)->page($pageKey);
+        }
+
         $view->with('siteSetting', $siteSetting);
+        $view->with('cmsSections', $cmsSections);
     });
         View::composer('partials.header', function ($view): void {
             $activeCategories = collect();

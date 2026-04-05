@@ -1,12 +1,12 @@
 <!-- About Start -->
-<div class="container-fluid about bg-light py-5">
+<div class="container-fluid about bg-light py-5" data-cms-section="about">
     <div class="container py-5">
         <div class="row g-5 align-items-center">
             <div class="col-lg-5 wow fadeInLeft" data-wow-delay="0.2s">
                 <div class="about-img">
-                    <img src="{{ asset('img/about-1.jpg') }}" class="img-fluid rounded w-100 h-100 about-img-main" alt="Image">
+                    <img src="{{ asset('img/about-1.jpg') }}" class="img-fluid rounded w-100 h-100 about-img-main" alt="Image" data-cms-key="home.about.image_main">
                     <div class="about-img-inner">
-                        <img src="{{ asset('img/about-2.jpg') }}" class="img-fluid rounded-circle w-100 h-100" alt="Image">
+                        <img src="{{ asset('img/about-2.jpg') }}" class="img-fluid rounded-circle w-100 h-100" alt="Image" data-cms-key="home.about.image_inner">
                     </div>
                     <div class="about-experience"><span data-i18n="home.about.badge">Trusted in Amman, Jordan</span></div>
                 </div>

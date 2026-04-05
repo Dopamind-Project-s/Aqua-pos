@@ -1,5 +1,5 @@
         <!-- Book Appointment Start -->
-        <div class="container-fluid appointment py-5">
+        <div class="container-fluid appointment py-5" data-cms-section="appointment">
             <div class="container py-5">
                 <div class="row g-5 align-items-center">
                     <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.2">

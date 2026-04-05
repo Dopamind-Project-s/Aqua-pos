@@ -1,5 +1,5 @@
-        <!-- Footer Start -->
-        <div class="container-fluid footer py-5 wow fadeIn" data-wow-delay="0.2s">
+<!-- Footer Start -->
+<div class="container-fluid footer py-5 wow fadeIn" data-wow-delay="0.2s" data-cms-section="footer">
             <div class="container py-5">
                 <div class="row g-3 g-lg-4 mb-4 pb-4 border-bottom border-light border-opacity-25 justify-content-between align-items-center">
                     <div class="col-12 col-xl-8">

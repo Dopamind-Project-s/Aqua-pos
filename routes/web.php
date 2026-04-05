@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\PartnerController as AdminPartnerController;
 use App\Http\Controllers\Admin\ServiceRequestController as AdminServiceRequestController;
 use App\Http\Controllers\Admin\SiteSettingController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\DynamicContentController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryCatalogController;
@@ -119,6 +120,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::get('requests', [AdminServiceRequestController::class, 'index'])->name('requests.index');
         Route::patch('requests/{serviceRequest}/status', [AdminServiceRequestController::class, 'updateStatus'])->name('requests.update-status');
+
+        Route::prefix('cms')->name('cms.')->group(function () {
+            Route::get('page', [DynamicContentController::class, 'index'])->name('index');
+            Route::post('save', [DynamicContentController::class, 'save'])->name('save');
+            Route::post('upload-image', [DynamicContentController::class, 'uploadImage'])->name('upload-image');
+        });
+
         Route::get('settings', [SiteSettingController::class, 'edit'])->name('settings.edit');
         Route::put('settings', [SiteSettingController::class, 'update'])->name('settings.update');
 

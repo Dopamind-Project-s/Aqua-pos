@@ -7,8 +7,8 @@
         <!-- Spinner End -->
 
 
-        <!-- Navbar & Hero Start -->
-        <div class="container-fluid position-relative p-0">
+<!-- Navbar & Hero Start -->
+<div class="container-fluid position-relative p-0" data-cms-section="header">
             <nav class="navbar navbar-expand-lg navbar-light bg-white px-4 px-lg-5 py-3 py-lg-0">
                 <a href="{{ url('/') }}" class="navbar-brand p-0">
                     @if($siteSetting?->primary_logo)

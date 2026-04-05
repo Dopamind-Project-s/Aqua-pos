@@ -1,5 +1,5 @@
         <!-- Blog Start -->
-        <div class="container-fluid blog py-5">
+        <div class="container-fluid blog py-5" data-cms-section="blog">
             <div class="container py-5">
                 <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="sub-style">
@@ -63,4 +63,3 @@
             </div>
         </div>
         <!-- Blog End -->
-

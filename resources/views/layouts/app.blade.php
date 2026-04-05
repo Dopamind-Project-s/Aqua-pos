@@ -10,8 +10,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{{ $metaTitle ?? "Aqua POS" }}</title>
-    <meta name="description" content="{{ $metaDescription ?? "Aqua POS cloud platform for POS, inventory, and business operations." }}">
+    <title>{{ dynamic_content('global.seo.meta_title', $metaTitle ?? "Aqua POS") }}</title>
+    <meta name="description" content="{{ dynamic_content('global.seo.meta_description', $metaDescription ?? "Aqua POS cloud platform for POS, inventory, and business operations.") }}">
     @if($googleVerification)
         <meta name="google-site-verification" content="{{ $googleVerification }}">
     @endif
@@ -119,9 +119,53 @@
 <script src="{{ asset('lib/waypoints/waypoints.min.js') }}"></script>
 <script src="{{ asset('lib/owlcarousel/owl.carousel.min.js') }}"></script>
 
+<script>
+    window.AQUA_CMS_PAGE = @json($cmsSections ?? []);
+
+    (function () {
+        const sections = window.AQUA_CMS_PAGE || {};
+
+        const applyTextContent = function (el, data) {
+            const locale = document.documentElement.getAttribute('lang') === 'ar' ? 'ar' : 'en';
+            const value = data?.[locale] || data?.en || data?.ar;
+
+            if (value) {
+                el.textContent = value;
+            }
+
+            if (data?.style?.font_size) el.style.fontSize = data.style.font_size;
+            if (data?.style?.text_color) el.style.color = data.style.text_color;
+        };
+
+        Object.values(sections).forEach(function (section) {
+            const content = section.content || {};
+
+            Object.keys(content).forEach(function (key) {
+                const data = content[key];
+
+                document.querySelectorAll('[data-i18n=\"' + key + '\"]').forEach(function (el) {
+                    if (data?.type === 'text') {
+                        applyTextContent(el, data);
+                    }
+                });
+
+                document.querySelectorAll('[data-cms-key=\"' + key + '\"]').forEach(function (el) {
+                    if (el.tagName === 'IMG' && data?.url) {
+                        el.src = data.url;
+                    } else if (data?.type === 'text') {
+                        applyTextContent(el, data);
+                    }
+                });
+            });
+        });
+    })();
+</script>
+
 <script src="{{ asset('js/main.js') }}"></script>
 
 @stack('scripts')
+
+@include('partials.cms-editor')
 
 </body>
 </html>

@@ -1,0 +1,31 @@
+.cms-topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    background: #0f172a;
+    color: #fff;
+    padding: 0.65rem 1rem;
+}
+
+body.cms-preview-on {
+    padding-top: 58px;
+}
+
+.cms-topbar__group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.cms-editable {
+    outline: 2px dashed rgba(14, 165, 233, 0.6);
+    outline-offset: 3px;
+    cursor: pointer;
+}
