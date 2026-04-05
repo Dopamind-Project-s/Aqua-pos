@@ -153,7 +153,12 @@
             if (data?.style?.text_align) el.style.textAlign = data.style.text_align;
             if (data?.style?.visible === false) el.style.display = 'none';
             if (data?.style?.text_color) el.style.color = themed(data.style.text_color);
-            if (data?.style?.background_color) el.style.backgroundColor = themed(data.style.background_color);
+            if (data?.style?.background_color === '__none__') {
+                el.style.backgroundColor = 'transparent';
+                el.style.backgroundImage = 'none';
+            } else if (data?.style?.background_color) {
+                el.style.backgroundColor = themed(data.style.background_color);
+            }
         };
 
         Object.entries(sections).forEach(function ([sectionKey, section]) {
@@ -168,9 +173,15 @@
             const sectionStyle = section.style?.__section || {};
             const sectionNode = document.querySelector('[data-cms-section="' + sectionKey + '"]');
             if (sectionNode) {
-                if (sectionStyle?.background_color) sectionNode.style.backgroundColor = themed(sectionStyle.background_color);
-                if (sectionStyle?.background_image) sectionNode.style.backgroundImage = 'url(' + sectionStyle.background_image + ')';
-                if (sectionStyle?.overlay) sectionNode.style.boxShadow = 'inset 0 0 0 9999px ' + sectionStyle.overlay;
+                if (sectionStyle?.background_color === '__none__' || sectionStyle?.background_image === '__none__') {
+                    sectionNode.style.backgroundColor = 'transparent';
+                    sectionNode.style.backgroundImage = 'none';
+                    sectionNode.style.boxShadow = 'none';
+                } else {
+                    if (sectionStyle?.background_color) sectionNode.style.backgroundColor = themed(sectionStyle.background_color);
+                    if (sectionStyle?.background_image) sectionNode.style.backgroundImage = 'url(' + sectionStyle.background_image + ')';
+                    if (sectionStyle?.overlay) sectionNode.style.boxShadow = 'inset 0 0 0 9999px ' + sectionStyle.overlay;
+                }
             }
 
             Object.keys(content).forEach(function (key) {
@@ -178,8 +189,8 @@
                 const style = section.style?.[key] || data?.style || {};
 
                 document.querySelectorAll('[data-cms-key=\"' + key + '\"]').forEach(function (el) {
-                    if (el.tagName === 'IMG' && data?.url) {
-                        el.src = data.url;
+                    if (el.tagName === 'IMG' && (data?.src || data?.url || typeof data === 'string')) {
+                        el.src = data?.src || data?.url || data;
                         if (style?.width) el.style.width = style.width;
                         if (style?.height) el.style.height = style.height;
                     } else if (data?.type === 'text') {
@@ -192,9 +203,11 @@
                         if (style?.text_color) el.style.color = themed(style.text_color);
                         if (style?.border_color) el.style.borderColor = themed(style.border_color);
                     } else if (data?.type === 'icon') {
-                        if (data?.class) el.className = data.class;
+                        if (data?.value) el.className = data.value;
                         if (style?.color) el.style.color = themed(style.color);
                         if (style?.size) el.style.fontSize = style.size;
+                    } else if (typeof data === 'string' && el.tagName === 'I') {
+                        el.className = data;
                     }
                 });
             });

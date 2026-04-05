@@ -27,23 +27,7 @@
     };
 
     var resolveFieldKey = function (el) {
-        var explicit = el.dataset.cmsKey || 'content';
-        var section = getSectionKey(el);
-
-        if (explicit.indexOf('.') === -1) {
-            return explicit;
-        }
-
-        var normalized = explicit.split('.');
-        if (normalized.length <= 2) {
-            return explicit;
-        }
-
-        if (normalized[1] === section) {
-            return normalized.slice(2).join('.');
-        }
-
-        return explicit;
+        return el.dataset.cmsKey || 'content';
     };
 
     var markEditable = function () {
@@ -156,9 +140,23 @@
             '<div class="col-4"><label class="form-label">Section BG Dark</label><input type="color" class="form-control form-control-color w-100" id="cmsSectionBgDark" value="#000000"></div>' +
             '<div class="col-4"><label class="form-label">Section Overlay</label><input class="form-control" id="cmsSectionOverlay" placeholder="rgba(0,0,0,0.35)"></div>' +
             '<div class="col-12"><label class="form-label">Section BG Image URL</label><input class="form-control" id="cmsSectionBgImage" placeholder="https://..."></div>' +
+            '<div class="col-12"><button type="button" class="btn btn-outline-danger btn-sm" id="cmsNoBackgroundBtn">No Background</button></div>' +
             '</div>';
 
         modal.show();
+
+        var noBgBtn = document.getElementById('cmsNoBackgroundBtn');
+        if (noBgBtn) {
+            noBgBtn.addEventListener('click', function () {
+                document.getElementById('cmsBgLight').value = '#ffffff';
+                document.getElementById('cmsBgDark').value = '#000000';
+                document.getElementById('cmsSectionBgImage').value = '__none__';
+                document.getElementById('cmsSectionOverlay').value = '__none__';
+                noBgBtn.dataset.noneBackground = '1';
+                state.current.el.style.backgroundColor = 'transparent';
+                state.current.el.style.backgroundImage = 'none';
+            });
+        }
     };
 
     var openButtonModal = function () {
@@ -281,7 +279,7 @@
         el.style.lineHeight = lineHeight || '';
         el.style.textAlign = align;
         el.style.color = getMode() === 'dark' ? textDark : textLight;
-        el.style.backgroundColor = getMode() === 'dark' ? bgDark : bgLight;
+        el.style.backgroundColor = noneBackground ? 'transparent' : (getMode() === 'dark' ? bgDark : bgLight);
         el.style.display = visible ? '' : 'none';
 
         queueChange(state.current.sectionKey, {
@@ -298,17 +296,27 @@
                 overlay_opacity: overlay,
                 visible: visible,
                 text_color: styleForModes(textLight, textDark),
-                background_color: styleForModes(bgLight, bgDark),
+                background_color: noneBackground ? '__none__' : styleForModes(bgLight, bgDark),
             }
         });
 
+        var sectionBgImage = document.getElementById('cmsSectionBgImage').value || null;
+        var sectionOverlay = document.getElementById('cmsSectionOverlay').value || null;
+        var sectionBgMode = styleForModes(
+            document.getElementById('cmsSectionBgLight').value,
+            document.getElementById('cmsSectionBgDark').value
+        );
+
+        if (sectionBgImage === '__none__' || sectionOverlay === '__none__') {
+            sectionBgMode = '__none__';
+            sectionBgImage = '__none__';
+            sectionOverlay = '__none__';
+        }
+
         queueSectionStyle(state.current.sectionKey, {
-            background_color: styleForModes(
-                document.getElementById('cmsSectionBgLight').value,
-                document.getElementById('cmsSectionBgDark').value
-            ),
-            background_image: document.getElementById('cmsSectionBgImage').value || null,
-            overlay: document.getElementById('cmsSectionOverlay').value || null,
+            background_color: sectionBgMode,
+            background_image: sectionBgImage,
+            overlay: sectionOverlay,
         });
 
         modal.hide();
@@ -353,7 +361,7 @@
 
         queueChange(state.current.sectionKey, {
             field_key: state.current.fieldKey,
-            content: { type: 'icon', class: iconClass },
+            content: { type: 'icon', value: iconClass },
             style: {
                 color: styleForModes(iconColor, iconColor),
                 size: iconSize,
@@ -375,7 +383,7 @@
                 field_key: state.current.fieldKey,
                 content: {
                     type: 'image',
-                    url: state.current.el.getAttribute('src'),
+                    src: state.current.el.getAttribute('src'),
                     aspect_ratio: document.getElementById('cmsAspect').value,
                 },
                 style: {
@@ -405,7 +413,7 @@
                     content: {
                         type: 'image',
                         path: payload.path,
-                        url: payload.url,
+                        src: payload.url,
                         aspect_ratio: document.getElementById('cmsAspect').value,
                     },
                     style: {
@@ -522,3 +530,4 @@
     document.body.classList.add('cms-preview-on');
     markEditable();
 })();
+        var noneBackground = document.getElementById('cmsNoBackgroundBtn')?.dataset.noneBackground === '1';

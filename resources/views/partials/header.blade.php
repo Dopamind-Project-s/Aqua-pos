@@ -9,13 +9,15 @@
 
 <!-- Navbar & Hero Start -->
 <div class="container-fluid position-relative p-0" data-cms-section="header">
+            @php
+                $cmsPageKey = str_replace('.', '-', Route::currentRouteName() ?? trim(request()->path(), '/') ?: 'home');
+                $logoSrc = dynamic_content($cmsPageKey . '.header.site.logo.src', $siteSetting?->primary_logo ? asset('storage/' . $siteSetting->primary_logo) : asset('img/LOGO.png'));
+                $logoWidth = dynamic_content($cmsPageKey . '.header.style.site.logo.width');
+                $logoHeight = dynamic_content($cmsPageKey . '.header.style.site.logo.height');
+            @endphp
             <nav class="navbar navbar-expand-lg navbar-light bg-white px-4 px-lg-5 py-3 py-lg-0">
                 <a href="{{ url('/') }}" class="navbar-brand p-0">
-                    @if($siteSetting?->primary_logo)
-                        <img src="{{ asset('storage/' . $siteSetting->primary_logo) }}" alt="AQUA POS" class="navbar-brand__logo" data-cms-key="site.logo">
-                    @else
-                        <img src="{{ asset('img/LOGO.png') }}" alt="AQUA POS" class="navbar-brand__logo" data-cms-key="site.logo">
-                    @endif
+                    <img src="{{ $logoSrc }}" alt="AQUA POS" class="navbar-brand__logo" data-cms-key="site.logo" @if($logoWidth) style="width: {{ $logoWidth }}; @if($logoHeight) height: {{ $logoHeight }}; @endif" @endif>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="fa fa-bars"></span>
@@ -23,7 +25,7 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0">
                         <a href="{{ route('home') }}" class="nav-item nav-link nav-link--home {{ request()->routeIs('home') ? 'active' : '' }}" aria-label="Home">
-                            <i class="fas fa-home"></i>
+                            <i class="{{ dynamic_content($cmsPageKey . '.header.nav.home_icon.value', 'fas fa-home') }}" data-cms-key="nav.home_icon"></i>
                             <span data-i18n="nav.home">Home</span>
                         </a>
                         <div class="nav-item mega-menu" id="productsMegaMenu">
@@ -127,24 +129,24 @@
             <!-- Carousel Start -->
             <div class="header-carousel owl-carousel" data-cms-section="hero">
                 <div class="header-carousel-item" data-cms-section="hero-slide-1">
-                    <img src="{{ asset('img/carousel-1.jpg') }}" class="img-fluid w-100" alt="Image" data-cms-key="image_1">
+                    <img src="{{ dynamic_content($cmsPageKey . '.hero-slide-1.image_1.src', asset('img/carousel-1.jpg')) }}" class="img-fluid w-100" alt="Image" data-cms-key="image_1">
                     <div class="carousel-caption">
                         <div class="carousel-caption-content p-3">
-                            <h5 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;" data-cms-key="eyebrow_1">Cloud POS Platform</h5>
-                            <h1 class="display-1 text-capitalize text-white mb-4" data-cms-key="title_1">Powerful POS & Inventory Management Software</h1>
-                            <p class="mb-5 fs-5" data-cms-key="description_1">Built in Amman, Jordan, AQUA POS helps restaurants and retailers manage sales, stock, and branches with speed, control, and real-time visibility. 
+                            <h5 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;" data-cms-key="eyebrow_1">{{ dynamic_content($cmsPageKey . '.hero-slide-1.eyebrow_1.en', 'Cloud POS Platform') }}</h5>
+                            <h1 class="display-1 text-capitalize text-white mb-4" data-cms-key="title_1">{{ dynamic_content($cmsPageKey . '.hero-slide-1.title_1.en', 'Powerful POS & Inventory Management Software') }}</h1>
+                            <p class="mb-5 fs-5" data-cms-key="description_1">{{ dynamic_content($cmsPageKey . '.hero-slide-1.description_1.en', 'Built in Amman, Jordan, AQUA POS helps restaurants and retailers manage sales, stock, and branches with speed, control, and real-time visibility.') }}
                             </p>
                             <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="#" data-cms-key="cta_1"><span data-i18n="nav.book">Book Appointment</span></a>
                         </div>
                     </div>
                 </div>
                 <div class="header-carousel-item" data-cms-section="hero-slide-2">
-                    <img src="{{ asset('img/carousel-2.jpg') }}" class="img-fluid w-100" alt="Image" data-cms-key="image_2">
+                    <img src="{{ dynamic_content($cmsPageKey . '.hero-slide-2.image_2.src', asset('img/carousel-2.jpg')) }}" class="img-fluid w-100" alt="Image" data-cms-key="image_2">
                     <div class="carousel-caption">
                         <div class="carousel-caption-content p-3">
-                            <h5 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;" data-cms-key="eyebrow_2">Cloud POS Platform</h5>
-                            <h1 class="display-1 text-capitalize text-white mb-4" data-cms-key="title_2">Powerful POS & Inventory Management Software</h1>
-                            <p class="mb-5 fs-5 animated slideInDown" data-cms-key="description_2">Built in Amman, Jordan, AQUA POS helps restaurants and retailers manage sales, stock, and branches with speed, control, and real-time visibility. 
+                            <h5 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;" data-cms-key="eyebrow_2">{{ dynamic_content($cmsPageKey . '.hero-slide-2.eyebrow_2.en', 'Cloud POS Platform') }}</h5>
+                            <h1 class="display-1 text-capitalize text-white mb-4" data-cms-key="title_2">{{ dynamic_content($cmsPageKey . '.hero-slide-2.title_2.en', 'Powerful POS & Inventory Management Software') }}</h1>
+                            <p class="mb-5 fs-5 animated slideInDown" data-cms-key="description_2">{{ dynamic_content($cmsPageKey . '.hero-slide-2.description_2.en', 'Built in Amman, Jordan, AQUA POS helps restaurants and retailers manage sales, stock, and branches with speed, control, and real-time visibility.') }}
                             </p>
                             <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="#" data-cms-key="cta_2"><span data-i18n="nav.book">Book Appointment</span></a>
                         </div>

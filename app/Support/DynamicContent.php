@@ -38,6 +38,9 @@ class DynamicContent
         if ($content === null && str_contains($fieldPath, '.')) {
             $content = Arr::get($contentTree, str($fieldPath)->afterLast('.')->value());
         }
+        if ($content === null && str_starts_with($fieldPath, 'style.')) {
+            $content = Arr::get($payload->style_json ?? [], str($fieldPath)->after('style.')->value());
+        }
 
         return $content ?? $this->resolveFallback($path, $fallback);
     }

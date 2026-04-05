@@ -34,3 +34,13 @@ This project now includes a dynamic CMS layer that allows admins to edit content
 - Storage uses Laravel disk (`public` disk via `Storage::url`), not direct `/public` writes.
 - Cache is flushed automatically on section save.
 - Non-admin users never see editing toolbar or tools.
+
+## Recommended `content_json` shape
+
+```json
+{
+  "title": { "type": "text", "ar": "مرحبا", "en": "Welcome" },
+  "image_1": { "type": "image", "src": "/storage/cms/hero.jpg" },
+  "nav.home_icon": { "type": "icon", "value": "fa-solid fa-house" }
+}
+```
