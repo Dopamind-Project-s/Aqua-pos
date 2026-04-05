@@ -10,6 +10,10 @@
         sectionOrder: {},
     };
 
+    document.querySelectorAll('[data-i18n]:not([data-cms-key])').forEach(function (el) {
+        el.dataset.cmsKey = el.dataset.i18n;
+    });
+
     var modalEl = document.getElementById('cmsEditModal');
     var modal = new bootstrap.Modal(modalEl);
     var modalBody = document.getElementById('cmsModalBody');
@@ -23,7 +27,7 @@
     };
 
     var resolveFieldKey = function (el) {
-        var explicit = el.dataset.cmsKey || el.dataset.i18n || 'content';
+        var explicit = el.dataset.cmsKey || 'content';
         var section = getSectionKey(el);
 
         if (explicit.indexOf('.') === -1) {
@@ -43,7 +47,10 @@
     };
 
     var markEditable = function () {
-        document.querySelectorAll('[data-i18n], [data-cms-key], img[data-cms-key], .btn, i[class*=fa], i[class*=bi]').forEach(function (el) {
+        document.querySelectorAll('[data-cms-key]').forEach(function (el) {
+            if (el.closest('.cms-toolbar, .cms-modal, .cms-editor')) {
+                return;
+            }
             el.classList.toggle('cms-editable', state.preview);
             if (!el.dataset.cmsBound) {
                 el.addEventListener('click', onEditableClick);
@@ -89,6 +96,10 @@
 
     var onEditableClick = function (event) {
         if (!state.preview) {
+            return;
+        }
+
+        if (event.currentTarget.closest('.cms-toolbar, .cms-modal, .cms-editor')) {
             return;
         }
 
@@ -141,6 +152,10 @@
             '<div class="col-6"><label class="form-label">Background (Dark)</label><input type="color" class="form-control form-control-color w-100" id="cmsBgDark" value="' + style.bgColor + '"></div>' +
             '<div class="col-6"><label class="form-label">Overlay Opacity</label><input type="number" class="form-control" id="cmsOverlayOpacity" step="0.05" min="0" max="1" value="0"></div>' +
             '<div class="col-6 d-flex align-items-end"><div class="form-check"><input class="form-check-input" type="checkbox" id="cmsVisible" checked><label class="form-check-label" for="cmsVisible">Show element</label></div></div>' +
+            '<div class="col-4"><label class="form-label">Section BG Light</label><input type="color" class="form-control form-control-color w-100" id="cmsSectionBgLight" value="#ffffff"></div>' +
+            '<div class="col-4"><label class="form-label">Section BG Dark</label><input type="color" class="form-control form-control-color w-100" id="cmsSectionBgDark" value="#000000"></div>' +
+            '<div class="col-4"><label class="form-label">Section Overlay</label><input class="form-control" id="cmsSectionOverlay" placeholder="rgba(0,0,0,0.35)"></div>' +
+            '<div class="col-12"><label class="form-label">Section BG Image URL</label><input class="form-control" id="cmsSectionBgImage" placeholder="https://..."></div>' +
             '</div>';
 
         modal.show();
@@ -176,11 +191,15 @@
     };
 
     var openImageModal = function () {
+        var currentWidth = state.current.el.style.width || state.current.el.getAttribute('width') || '';
+        var currentHeight = state.current.el.style.height || state.current.el.getAttribute('height') || '';
         modalBody.innerHTML = '' +
             '<div class="mb-2"><label class="form-label">Upload Image</label><input type="file" class="form-control" id="cmsImageInput" accept="image/*"></div>' +
             '<div class="row g-2">' +
             '<div class="col-6"><label class="form-label">Aspect Ratio</label><select class="form-select" id="cmsAspect"><option value="free">Free</option><option value="1:1">1:1</option><option value="4:3">4:3</option><option value="16:9">16:9</option></select></div>' +
             '<div class="col-6"><label class="form-label">Background overlay</label><input type="number" step="0.05" min="0" max="1" class="form-control" id="cmsImageOverlay" value="0"></div>' +
+            '<div class="col-6"><label class="form-label">Width</label><input class="form-control" id="cmsImageWidth" value="' + currentWidth + '" placeholder="e.g. 160px"></div>' +
+            '<div class="col-6"><label class="form-label">Height</label><input class="form-control" id="cmsImageHeight" value="' + currentHeight + '" placeholder="e.g. 48px"></div>' +
             '</div>' +
             '<small class="text-muted mt-2 d-block">Crop is browser-based in this iteration (canvas preview + ratio lock).</small>' +
             '<canvas id="cmsCropCanvas" class="w-100 mt-2 border" style="max-height:200px;"></canvas>';
@@ -283,6 +302,15 @@
             }
         });
 
+        queueSectionStyle(state.current.sectionKey, {
+            background_color: styleForModes(
+                document.getElementById('cmsSectionBgLight').value,
+                document.getElementById('cmsSectionBgDark').value
+            ),
+            background_image: document.getElementById('cmsSectionBgImage').value || null,
+            overlay: document.getElementById('cmsSectionOverlay').value || null,
+        });
+
         modal.hide();
     };
 
@@ -337,7 +365,28 @@
 
     var saveImageChanges = function () {
         var file = document.getElementById('cmsImageInput').files[0];
-        if (!file) return;
+        var width = document.getElementById('cmsImageWidth').value;
+        var height = document.getElementById('cmsImageHeight').value;
+        if (width) state.current.el.style.width = width;
+        if (height) state.current.el.style.height = height;
+
+        if (!file) {
+            queueChange(state.current.sectionKey, {
+                field_key: state.current.fieldKey,
+                content: {
+                    type: 'image',
+                    url: state.current.el.getAttribute('src'),
+                    aspect_ratio: document.getElementById('cmsAspect').value,
+                },
+                style: {
+                    overlay_opacity: document.getElementById('cmsImageOverlay').value,
+                    width: width || null,
+                    height: height || null,
+                },
+            });
+            modal.hide();
+            return;
+        }
 
         var form = new FormData();
         form.append('image', file);
@@ -361,6 +410,8 @@
                     },
                     style: {
                         overlay_opacity: document.getElementById('cmsImageOverlay').value,
+                        width: width || null,
+                        height: height || null,
                     },
                 });
                 modal.hide();
@@ -376,6 +427,16 @@
 
         state.pending[sectionKey].content_json[change.field_key] = change.content;
         state.pending[sectionKey].style_json[change.field_key] = change.style;
+    };
+
+    var queueSectionStyle = function (sectionKey, style) {
+        state.pending[sectionKey] = state.pending[sectionKey] || {
+            section_key: sectionKey,
+            content_json: {},
+            style_json: {},
+        };
+
+        state.pending[sectionKey].style_json.__section = style;
     };
 
     var enableSectionDnD = function () {

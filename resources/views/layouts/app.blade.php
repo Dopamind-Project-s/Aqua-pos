@@ -126,6 +126,10 @@
         const sections = window.AQUA_CMS_PAGE || {};
         const mode = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
 
+        document.querySelectorAll('[data-i18n]:not([data-cms-key])').forEach(function (el) {
+            el.setAttribute('data-cms-key', el.getAttribute('data-i18n'));
+        });
+
         const themed = function (value) {
             if (!value || typeof value !== 'object') {
                 return value;
@@ -161,19 +165,23 @@
                 }
             }
 
+            const sectionStyle = section.style?.__section || {};
+            const sectionNode = document.querySelector('[data-cms-section="' + sectionKey + '"]');
+            if (sectionNode) {
+                if (sectionStyle?.background_color) sectionNode.style.backgroundColor = themed(sectionStyle.background_color);
+                if (sectionStyle?.background_image) sectionNode.style.backgroundImage = 'url(' + sectionStyle.background_image + ')';
+                if (sectionStyle?.overlay) sectionNode.style.boxShadow = 'inset 0 0 0 9999px ' + sectionStyle.overlay;
+            }
+
             Object.keys(content).forEach(function (key) {
                 const data = content[key];
                 const style = section.style?.[key] || data?.style || {};
 
-                document.querySelectorAll('[data-i18n=\"' + key + '\"]').forEach(function (el) {
-                    if (data?.type === 'text') {
-                        applyTextContent(el, { ...data, style: style });
-                    }
-                });
-
                 document.querySelectorAll('[data-cms-key=\"' + key + '\"]').forEach(function (el) {
                     if (el.tagName === 'IMG' && data?.url) {
                         el.src = data.url;
+                        if (style?.width) el.style.width = style.width;
+                        if (style?.height) el.style.height = style.height;
                     } else if (data?.type === 'text') {
                         applyTextContent(el, { ...data, style: style });
                     } else if (data?.type === 'button') {
@@ -190,24 +198,6 @@
                     }
                 });
             });
-        });
-
-        document.querySelectorAll('[data-i18n]').forEach(function (el) {
-            const fullKey = el.getAttribute('data-i18n');
-            const sectionEl = el.closest('[data-cms-section]');
-            const sectionKey = sectionEl?.getAttribute('data-cms-section');
-            const section = sections[sectionKey];
-            if (!section) return;
-
-            const parts = fullKey.split('.');
-            const localKey = parts.length > 2 && parts[1] === sectionKey ? parts.slice(2).join('.') : null;
-            if (!localKey) return;
-
-            const data = section.content?.[localKey];
-            const style = section.style?.[localKey] || data?.style || {};
-            if (data?.type === 'text') {
-                applyTextContent(el, { ...data, style: style });
-            }
         });
     })();
 </script>

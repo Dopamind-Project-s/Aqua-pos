@@ -26,8 +26,8 @@ This project now includes a dynamic CMS layer that allows admins to edit content
 ## How to make any element editable
 
 1. Wrap logical blocks with `data-cms-section="section-key"`.
-2. For custom text/image nodes, add `data-cms-key="your.key"`.
-3. Existing `data-i18n` text nodes are auto-detected by editor.
+2. Every editable node must have `data-cms-key="your.key"` (single source of truth).
+3. Legacy `data-i18n` is auto-promoted to `data-cms-key` at runtime for backward compatibility.
 
 ## Notes
 

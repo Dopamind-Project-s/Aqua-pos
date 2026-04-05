@@ -12,9 +12,9 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-white px-4 px-lg-5 py-3 py-lg-0">
                 <a href="{{ url('/') }}" class="navbar-brand p-0">
                     @if($siteSetting?->primary_logo)
-                        <img src="{{ asset('storage/' . $siteSetting->primary_logo) }}" alt="AQUA POS" class="navbar-brand__logo">
+                        <img src="{{ asset('storage/' . $siteSetting->primary_logo) }}" alt="AQUA POS" class="navbar-brand__logo" data-cms-key="site.logo">
                     @else
-                        <img src="{{ asset('img/LOGO.png') }}" alt="AQUA POS" class="navbar-brand__logo">
+                        <img src="{{ asset('img/LOGO.png') }}" alt="AQUA POS" class="navbar-brand__logo" data-cms-key="site.logo">
                     @endif
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -125,28 +125,28 @@
             @if($showCarousel ?? false)
 
             <!-- Carousel Start -->
-            <div class="header-carousel owl-carousel">
-                <div class="header-carousel-item">
-                    <img src="{{ asset('img/carousel-1.jpg') }}" class="img-fluid w-100" alt="Image">
+            <div class="header-carousel owl-carousel" data-cms-section="hero">
+                <div class="header-carousel-item" data-cms-section="hero-slide-1">
+                    <img src="{{ asset('img/carousel-1.jpg') }}" class="img-fluid w-100" alt="Image" data-cms-key="image_1">
                     <div class="carousel-caption">
                         <div class="carousel-caption-content p-3">
-                            <h5 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;">Cloud POS Platform</h5>
-                            <h1 class="display-1 text-capitalize text-white mb-4">Powerful POS & Inventory Management Software</h1>
-                            <p class="mb-5 fs-5">Built in Amman, Jordan, AQUA POS helps restaurants and retailers manage sales, stock, and branches with speed, control, and real-time visibility. 
+                            <h5 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;" data-cms-key="eyebrow_1">Cloud POS Platform</h5>
+                            <h1 class="display-1 text-capitalize text-white mb-4" data-cms-key="title_1">Powerful POS & Inventory Management Software</h1>
+                            <p class="mb-5 fs-5" data-cms-key="description_1">Built in Amman, Jordan, AQUA POS helps restaurants and retailers manage sales, stock, and branches with speed, control, and real-time visibility. 
                             </p>
-                            <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="#"><span data-i18n="nav.book">Book Appointment</span></a>
+                            <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="#" data-cms-key="cta_1"><span data-i18n="nav.book">Book Appointment</span></a>
                         </div>
                     </div>
                 </div>
-                <div class="header-carousel-item">
-                    <img src="{{ asset('img/carousel-2.jpg') }}" class="img-fluid w-100" alt="Image">
+                <div class="header-carousel-item" data-cms-section="hero-slide-2">
+                    <img src="{{ asset('img/carousel-2.jpg') }}" class="img-fluid w-100" alt="Image" data-cms-key="image_2">
                     <div class="carousel-caption">
                         <div class="carousel-caption-content p-3">
-                            <h5 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;">Cloud POS Platform</h5>
-                            <h1 class="display-1 text-capitalize text-white mb-4">Powerful POS & Inventory Management Software</h1>
-                            <p class="mb-5 fs-5 animated slideInDown">Built in Amman, Jordan, AQUA POS helps restaurants and retailers manage sales, stock, and branches with speed, control, and real-time visibility. 
+                            <h5 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;" data-cms-key="eyebrow_2">Cloud POS Platform</h5>
+                            <h1 class="display-1 text-capitalize text-white mb-4" data-cms-key="title_2">Powerful POS & Inventory Management Software</h1>
+                            <p class="mb-5 fs-5 animated slideInDown" data-cms-key="description_2">Built in Amman, Jordan, AQUA POS helps restaurants and retailers manage sales, stock, and branches with speed, control, and real-time visibility. 
                             </p>
-                            <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="#"><span data-i18n="nav.book">Book Appointment</span></a>
+                            <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="#" data-cms-key="cta_2"><span data-i18n="nav.book">Book Appointment</span></a>
                         </div>
                     </div>
                 </div>

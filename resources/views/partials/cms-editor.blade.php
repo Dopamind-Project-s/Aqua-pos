@@ -6,7 +6,7 @@
 @if($cmsCanEdit)
     <link href="{{ asset('css/cms-editor.css') }}" rel="stylesheet">
 
-    <div class="cms-topbar" id="cmsTopbar">
+    <div class="cms-topbar cms-toolbar cms-editor" id="cmsTopbar">
         <div class="cms-topbar__group">
             <button class="btn btn-sm btn-light" id="cmsTogglePreview">Preview ON</button>
             <button class="btn btn-sm btn-success" id="cmsSaveBtn">Save</button>
@@ -21,7 +21,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="cmsEditModal" tabindex="-1" aria-hidden="true">
+    <div class="modal fade cms-modal cms-editor" id="cmsEditModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
