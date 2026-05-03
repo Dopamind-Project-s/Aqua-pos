@@ -514,10 +514,21 @@
                 changes: changes,
             }),
         })
-            .then(function (response) { return response.json(); })
+            .then(function (response) {
+                return response.json().then(function (payload) {
+                    if (!response.ok || payload.status !== 'saved') {
+                        throw new Error(payload.message || 'CMS content was not saved.');
+                    }
+
+                    return payload;
+                });
+            })
             .then(function () {
                 state.pending = {};
                 alert('CMS content saved successfully.');
+            })
+            .catch(function (error) {
+                alert(error.message || 'CMS content was not saved.');
             });
     });
 

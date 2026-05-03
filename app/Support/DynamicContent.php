@@ -31,15 +31,17 @@ class DynamicContent
         }
 
         $contentTree = $payload->content_json ?? [];
-        $content = Arr::get($contentTree, $fieldPath);
-        if ($content === null) {
-            $content = Arr::get($contentTree, $path);
-        }
+        $styleTree = $payload->style_json ?? [];
+
+        $content = $this->resolveTreeValue($contentTree, $fieldPath)
+            ?? $this->resolveTreeValue($contentTree, $path);
+
         if ($content === null && str_contains($fieldPath, '.')) {
-            $content = Arr::get($contentTree, str($fieldPath)->afterLast('.')->value());
+            $content = $this->resolveTreeValue($contentTree, str($fieldPath)->afterLast('.')->value());
         }
+
         if ($content === null && str_starts_with($fieldPath, 'style.')) {
-            $content = Arr::get($payload->style_json ?? [], str($fieldPath)->after('style.')->value());
+            $content = $this->resolveTreeValue($styleTree, str($fieldPath)->after('style.')->value());
         }
 
         return $content ?? $this->resolveFallback($path, $fallback);
@@ -88,6 +90,51 @@ class DynamicContent
         $fieldPath = implode('.', $parts);
 
         return [$page, $section, $fieldPath];
+    }
+
+    private function resolveTreeValue(array $tree, string $path): mixed
+    {
+        if ($path === '') {
+            return null;
+        }
+
+        if (array_key_exists($path, $tree)) {
+            return $tree[$path];
+        }
+
+        $value = Arr::get($tree, $path);
+        if ($value !== null) {
+            return $value;
+        }
+
+        $segments = explode('.', $path);
+        for ($length = count($segments) - 1; $length > 0; $length--) {
+            $key = implode('.', array_slice($segments, 0, $length));
+
+            if (! array_key_exists($key, $tree)) {
+                continue;
+            }
+
+            $remainingPath = implode('.', array_slice($segments, $length));
+            $node = $tree[$key];
+
+            if ($remainingPath === '') {
+                return $node;
+            }
+
+            if (is_array($node)) {
+                if (array_key_exists($remainingPath, $node)) {
+                    return $node[$remainingPath];
+                }
+
+                $nestedValue = Arr::get($node, $remainingPath);
+                if ($nestedValue !== null) {
+                    return $nestedValue;
+                }
+            }
+        }
+
+        return null;
     }
 
     private function cacheKey(string $pageKey, string $sectionKey): string

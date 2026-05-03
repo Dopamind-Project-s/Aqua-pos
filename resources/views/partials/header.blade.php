@@ -47,7 +47,7 @@
                                                 <h4 class="mega-menu__heading">{{ $menuCategory->localized_name }}</h4>
                                                 <button class="mega-menu__category-toggle" type="button" aria-expanded="false">{{ $menuCategory->localized_name }}</button>
                                                 <div class="mega-menu__services">
-                                                    @foreach($menuCategory->products->take(6) as $menuProduct)
+                                                    @foreach($menuCategory->products as $menuProduct)
                                                         <a href="{{ route('products.show', $menuProduct->slug) }}" class="mega-menu__service">
                                                             <img class="mega-menu__service-thumb" src="{{ $menuProduct->image_url }}" alt="{{ $menuProduct->localized_name }}">
                                                             <div class="mega-menu__service-content">
