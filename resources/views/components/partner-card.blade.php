@@ -2,7 +2,7 @@
 
 <article class="partner-card h-100">
     <div class="partner-card__logo-wrap">
-        <img src="{{ Storage::url($partner->logo) }}" alt="{{ $partner->localized_name }} logo" class="partner-card__logo" loading="lazy" decoding="async">
+        <img src="{{ public_storage_url($partner->logo) }}" alt="{{ $partner->localized_name }} logo" class="partner-card__logo" loading="lazy" decoding="async">
     </div>
 
     <div class="partner-card__overlay">

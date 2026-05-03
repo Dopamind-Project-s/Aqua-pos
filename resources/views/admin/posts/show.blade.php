@@ -5,7 +5,7 @@
 <div class="card"><div class="card-body">
     <div class="d-flex justify-content-between align-items-center mb-3"><h4 class="card-title mb-0">Post Details</h4><a href="{{ route('admin.posts.index') }}" class="btn btn-outline-primary">Back</a></div>
     <div class="mb-3">
-        <img src="{{ $post->cover_image ? Storage::url($post->cover_image) : asset('img/service-1.jpg') }}" alt="{{ $post->localized_title }}" class="rounded border" style="width: 180px; height: 180px; object-fit: cover;">
+        <img src="{{ $post->cover_image ? public_storage_url($post->cover_image) : asset('img/service-1.jpg') }}" alt="{{ $post->localized_title }}" class="rounded border" style="width: 180px; height: 180px; object-fit: cover;">
     </div>
     <div class="table-responsive"><table class="table text-nowrap mb-0 align-middle"><tbody>
         <tr><th>Title</th><td>{{ $post->localized_title }}</td></tr>

@@ -9,7 +9,7 @@
         <tbody>
         @forelse($posts as $post)
             <tr>
-                <td><img src="{{ $post->cover_image ? Storage::url($post->cover_image) : asset('img/service-1.jpg') }}" alt="{{ $post->localized_title }}" class="rounded border" style="width:60px;height:60px;object-fit:cover;"></td>
+                <td><img src="{{ $post->cover_image ? public_storage_url($post->cover_image) : asset('img/service-1.jpg') }}" alt="{{ $post->localized_title }}" class="rounded border" style="width:60px;height:60px;object-fit:cover;"></td>
                 <td>{{ $post->localized_title }}</td>
                 <td><span class="badge bg-info text-dark">{{ ucfirst($post->type) }}</span></td>
                 <td>

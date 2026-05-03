@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\Storage;
 use App\Support\JsonTranslation;
 
 class Product extends Model
@@ -51,24 +50,11 @@ class Product extends Model
         ];
     }
 
-public function getImageUrlAttribute(): string
-{
-    $fallback = asset('img/service-1.jpg');
-
-    if (! $this->image) {
-        return $fallback;
+    public function getImageUrlAttribute(): string
+    {
+        return public_storage_url($this->image, asset('img/service-1.jpg'));
     }
 
-    // إذا كان URL كامل
-    if (filter_var($this->image, FILTER_VALIDATE_URL)) {
-        return $this->image;
-    }
-
-    // تنظيف المسار
-    $path = ltrim(preg_replace('#^/?storage/#', '', $this->image), '/');
-
-    return asset('storage/' . $path);
-}
     public function getLocalizedNameAttribute(): string
     {
         return JsonTranslation::pick($this->getRawOriginal('name'), $this->name_ar, $this->name_en, app()->getLocale()) ?? '';

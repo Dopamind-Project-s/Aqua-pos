@@ -19,7 +19,7 @@
         <tbody>
         @forelse($products as $product)
             <tr>
-                <td><img src="{{ $product->image ? Storage::url($product->image) : asset('img/service-1.jpg') }}" alt="{{ $product->localized_name }}" class="rounded border" style="width:60px;height:60px;object-fit:cover;"></td>
+                <td><img src="{{ $product->image ? public_storage_url($product->image) : asset('img/service-1.jpg') }}" alt="{{ $product->localized_name }}" class="rounded border" style="width:60px;height:60px;object-fit:cover;"></td>
                 <td>{{ $product->localized_name }}<div class="small text-muted">AR: {{ $product->name_ar ?: '-' }} | EN: {{ $product->name_en ?: '-' }}</div></td>
                 <td>{{ $product->category?->localized_name ?? '-' }}</td>
                 <td><span class="badge {{ $product->is_active ? 'bg-success' : 'bg-secondary' }}">{{ $product->is_active ? 'Active' : 'Inactive' }}</span></td>

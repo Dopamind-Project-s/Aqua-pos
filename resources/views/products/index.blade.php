@@ -84,7 +84,7 @@
                     <div class="col-md-6 col-xl-4">
                         <article class="product-card">
                             <div class="product-card-media">
-                                <img src="{{ $product->image ? Storage::url($product->image) : asset('img/service-1.jpg') }}" alt="{{ $product->localized_name }}">
+                                <img src="{{ $product->image ? public_storage_url($product->image) : asset('img/service-1.jpg') }}" alt="{{ $product->localized_name }}">
                                 <a href="{{ route('products.show', $product->slug) }}" class="btn btn-light btn-sm rounded-pill product-open-float" data-i18n="products.openShow">Open Product Page</a>
                             </div>
                             <div class="p-3 d-flex flex-column h-100">

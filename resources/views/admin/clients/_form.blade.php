@@ -66,7 +66,7 @@
     @if($isEdit && $client->logo)
         <div class="col-12">
             <p class="mb-1 fw-semibold">Current Logo</p>
-            <img src="{{ Storage::url($client->logo) }}" alt="{{ $client->localized_name }}" class="rounded border object-fit-contain bg-white" width="120" height="90">
+            <img src="{{ public_storage_url($client->logo) }}" alt="{{ $client->localized_name }}" class="rounded border object-fit-contain bg-white" width="120" height="90">
         </div>
     @endif
 </div>

@@ -3,7 +3,7 @@
         <div class="brand-logo d-flex align-items-center justify-content-between px-3 py-3">
             <a href="{{ route('admin.dashboard') }}" class="logo-img d-flex align-items-center gap-2 text-decoration-none">
                 @if($siteSetting?->primary_logo)
-                    <img src="{{ Storage::url($siteSetting->primary_logo) }}" alt="{{ $siteSetting?->site_name ?: 'AQUA POS' }}" style="max-height: 38px; width: auto;">
+                    <img src="{{ public_storage_url($siteSetting->primary_logo) }}" alt="{{ $siteSetting?->site_name ?: 'AQUA POS' }}" style="max-height: 38px; width: auto;">
                 @else
                     <i class="ti ti-droplet text-primary fs-6"></i>
                 @endif

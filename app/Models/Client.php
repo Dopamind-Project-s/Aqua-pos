@@ -42,24 +42,11 @@ class Client extends Model
         return $this->belongsTo(Category::class);
     }
 
-public function getLogoUrlAttribute(): string
-{
-    $placeholder = asset('img/defaults/placeholder.svg');
-
-    if (! $this->logo) {
-        return $placeholder;
+    public function getLogoUrlAttribute(): string
+    {
+        return public_storage_url($this->logo, asset('img/defaults/placeholder.svg'));
     }
 
-    // إذا كان URL كامل
-    if (filter_var($this->logo, FILTER_VALIDATE_URL)) {
-        return $this->logo;
-    }
-
-    // تنظيف المسار (إزالة storage/ إذا موجودة)
-    $path = ltrim(preg_replace('#^/?storage/#', '', $this->logo), '/');
-
-    return asset('storage/' . $path);
-}
     public function getLocalizedNameAttribute(): string
     {
         $locale = app()->getLocale();

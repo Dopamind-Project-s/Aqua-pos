@@ -35,7 +35,7 @@
                     <input type="file" name="primary_logo" class="form-control @error('primary_logo') is-invalid @enderror" accept=".jpg,.jpeg,.png,.webp,.svg">
                     @error('primary_logo')<div class="invalid-feedback">{{ $message }}</div>@enderror
                     @if($setting->primary_logo)
-                        <img src="{{ Storage::url($setting->primary_logo) }}" alt="Primary Logo" class="img-thumbnail mt-2" style="max-height: 80px;">
+                        <img src="{{ public_storage_url($setting->primary_logo) }}" alt="Primary Logo" class="img-thumbnail mt-2" style="max-height: 80px;">
                     @endif
                 </div>
 
@@ -44,7 +44,7 @@
                     <input type="file" name="secondary_logo" class="form-control @error('secondary_logo') is-invalid @enderror" accept=".jpg,.jpeg,.png,.webp,.svg">
                     @error('secondary_logo')<div class="invalid-feedback">{{ $message }}</div>@enderror
                     @if($setting->secondary_logo)
-                        <img src="{{ Storage::url($setting->secondary_logo) }}" alt="Secondary Logo" class="img-thumbnail mt-2" style="max-height: 80px;">
+                        <img src="{{ public_storage_url($setting->secondary_logo) }}" alt="Secondary Logo" class="img-thumbnail mt-2" style="max-height: 80px;">
                     @endif
                 </div>
 

@@ -47,7 +47,7 @@
                         <div class="col-md-6">
                             <article class="card blog-card h-100">
                                 @if($post->cover_image)
-                                    <img class="thumb" src="{{ Storage::url($post->cover_image) }}" alt="{{ $post->localized_title }}">
+                                    <img class="thumb" src="{{ public_storage_url($post->cover_image) }}" alt="{{ $post->localized_title }}">
                                 @else
                                     <div class="thumb thumb--placeholder" role="img" aria-label="Default post image">
                                         <i class="far fa-image"></i>
@@ -94,7 +94,7 @@
                         @foreach($latestPosts as $latest)
                             <a class="d-flex gap-2 text-decoration-none mb-3" href="{{ $type === 'blog' ? route('blog.show', $latest->slug) : route('news.show', $latest->slug) }}">
                                 @if($latest->cover_image)
-                                    <img class="sidebar-thumb" src="{{ Storage::url($latest->cover_image) }}" alt="{{ $latest->localized_title }}">
+                                    <img class="sidebar-thumb" src="{{ public_storage_url($latest->cover_image) }}" alt="{{ $latest->localized_title }}">
                                 @else
                                     <span class="sidebar-thumb sidebar-thumb--placeholder" aria-hidden="true"><i class="far fa-image"></i></span>
                                 @endif

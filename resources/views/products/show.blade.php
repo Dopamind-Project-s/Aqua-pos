@@ -144,7 +144,7 @@
         <div class="container d-grid gap-4">
             <div class="section-card overflow-hidden">
                 <div class="row g-0 align-items-stretch">
-                    <div class="col-lg-5"><img src="{{ $product->image ? Storage::url($product->image) : asset('img/service-1.jpg') }}" alt="{{ $product->localized_name }}" class="w-100 h-100 product-media"></div>
+                    <div class="col-lg-5"><img src="{{ $product->image ? public_storage_url($product->image) : asset('img/service-1.jpg') }}" alt="{{ $product->localized_name }}" class="w-100 h-100 product-media"></div>
                     <div class="col-lg-7 p-4 p-lg-5">
                         <p class="product-copy">{{ $product->localized_description ?: $product->localized_short_description }}</p>
                         <div class="d-flex flex-wrap gap-2 mb-4">

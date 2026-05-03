@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Support\JsonTranslation;
 
@@ -65,20 +64,6 @@ class Category extends Model
 
     public function getImageUrlAttribute(): string
     {
-        $fallback = asset('img/service-1.jpg');
-
-        if (! $this->image) {
-            return $fallback;
-        }
-
-        if (filter_var($this->image, FILTER_VALIDATE_URL)) {
-            return $this->image;
-        }
-
-        $path = ltrim(preg_replace('#^/?storage/#', '', $this->image), '/');
-
-        return Storage::disk('public')->exists($path)
-            ? asset('storage/'.$path)
-            : $fallback;
+        return public_storage_url($this->image, asset('img/service-1.jpg'));
     }
 }

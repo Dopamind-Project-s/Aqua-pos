@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Facades\Storage;
 use App\Support\JsonTranslation;
 
 class Post extends Model
@@ -50,23 +49,7 @@ class Post extends Model
 
     public function getCoverImageUrlAttribute(): string
     {
-        $fallback = asset('img/blog-1.jpg');
-
-        if (! $this->cover_image) {
-            return $fallback;
-        }
-
-        if (str_starts_with($this->cover_image, 'http://') || str_starts_with($this->cover_image, 'https://')) {
-            return $this->cover_image;
-        }
-
-        $normalizedPath = ltrim(preg_replace('#^/?storage/#', '', $this->cover_image), '/');
-
-        if ($normalizedPath && Storage::disk('public')->exists($normalizedPath)) {
-            return route('media.public', ['path' => $normalizedPath]);
-        }
-
-        return $fallback;
+        return public_storage_url($this->cover_image, asset('img/blog-1.jpg'));
     }
 
     public function category(): BelongsTo

@@ -20,7 +20,7 @@
                         <td><i class="ti ti-grip-vertical"></i></td>
                         <td>
                             @if($partner->logo)
-                                <img src="{{ Storage::url($partner->logo) }}" alt="{{ $partner->localized_name }}" class="rounded border object-fit-contain bg-white" width="70" height="54">
+                                <img src="{{ public_storage_url($partner->logo) }}" alt="{{ $partner->localized_name }}" class="rounded border object-fit-contain bg-white" width="70" height="54">
                             @endif
                         </td>
                         <td>

@@ -44,9 +44,9 @@
                         <div class="footer-item footer-item--about d-flex flex-column">
                             <div class="footer-brand mb-3">
                                 @if($siteSetting?->secondary_logo)
-                                    <img src="{{ Storage::url($siteSetting->secondary_logo) }}" alt="{{ $siteSetting?->site_name ?: 'AQUA POS' }}" class="footer-logo">
+                                    <img src="{{ public_storage_url($siteSetting->secondary_logo) }}" alt="{{ $siteSetting?->site_name ?: 'AQUA POS' }}" class="footer-logo">
                                 @elseif($siteSetting?->primary_logo)
-                                    <img src="{{ Storage::url($siteSetting->primary_logo) }}" alt="{{ $siteSetting?->site_name ?: 'AQUA POS' }}" class="footer-logo">
+                                    <img src="{{ public_storage_url($siteSetting->primary_logo) }}" alt="{{ $siteSetting?->site_name ?: 'AQUA POS' }}" class="footer-logo">
                                 @else
                                     <h4 class="text-white mb-0"><i class="fas fa-star-of-life me-3"></i>{{ $siteSetting?->footer_company_title ?: ($siteSetting?->site_name ?: 'AQUA POS') }}</h4>
                                 @endif

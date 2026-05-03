@@ -28,7 +28,7 @@
                 <div class="col-md-4"><label class="form-label">Price Note</label><input name="price_note" class="form-control" value="{{ old('price_note',$product->price_note) }}"></div>
                 <div class="col-md-4"><label class="form-label">Main Image</label><input type="file" name="image" accept="image/*" class="form-control @error('image') is-invalid @enderror">@error('image')<div class="invalid-feedback">{{ $message }}</div>@enderror</div>
 
-                <div class="col-12"><img src="{{ $product->image ? Storage::url($product->image) : asset('img/service-1.jpg') }}" alt="{{ $product->localized_name }}" class="rounded border" style="width: 60px; height: 60px; object-fit: cover;"></div>
+                <div class="col-12"><img src="{{ $product->image ? public_storage_url($product->image) : asset('img/service-1.jpg') }}" alt="{{ $product->localized_name }}" class="rounded border" style="width: 60px; height: 60px; object-fit: cover;"></div>
 
                 <div class="col-12">
                     <label class="form-label">Add Gallery Images</label>
@@ -46,7 +46,7 @@
                                 @foreach($product->images as $image)
                                     <div class="col-md-6 col-xl-4">
                                         <div class="border rounded p-2 h-100">
-                                            <img src="{{ Storage::url($image->image) }}" alt="{{ $image->alt ?: $product->localized_name }}" class="rounded border mb-2" style="width: 100%; height: 140px; object-fit: cover;">
+                                            <img src="{{ public_storage_url($image->image) }}" alt="{{ $image->alt ?: $product->localized_name }}" class="rounded border mb-2" style="width: 100%; height: 140px; object-fit: cover;">
                                             <label class="form-label mb-1">Alt Text</label>
                                             <input type="text" class="form-control form-control-sm mb-2" name="existing_alt[{{ $image->id }}]" value="{{ old('existing_alt.'.$image->id, $image->alt) }}" placeholder="Optional alt text">
 

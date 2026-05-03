@@ -27,7 +27,7 @@
                     <tr>
                         <td>
                             @if($client->logo)
-                                <img src="{{ Storage::url($client->logo) }}" alt="{{ $client->localized_name }}" width="60" height="44" class="rounded border bg-white object-fit-contain">
+                                <img src="{{ public_storage_url($client->logo) }}" alt="{{ $client->localized_name }}" width="60" height="44" class="rounded border bg-white object-fit-contain">
                             @endif
                         </td>
                         <td>

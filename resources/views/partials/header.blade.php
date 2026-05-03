@@ -11,7 +11,7 @@
 <div class="container-fluid position-relative p-0" data-cms-section="header">
             @php
                 $cmsPageKey = str_replace('.', '-', Route::currentRouteName() ?? trim(request()->path(), '/') ?: 'home');
-                $logoSrc = dynamic_content($cmsPageKey . '.header.site.logo.src', $siteSetting?->primary_logo ? asset('storage/' . $siteSetting->primary_logo) : asset('img/LOGO.png'));
+                $logoSrc = dynamic_content($cmsPageKey . '.header.site.logo.src', $siteSetting?->primary_logo ? public_storage_url($siteSetting->primary_logo) : asset('img/LOGO.png'));
                 $logoWidth = dynamic_content($cmsPageKey . '.header.style.site.logo.width');
                 $logoHeight = dynamic_content($cmsPageKey . '.header.style.site.logo.height');
             @endphp
