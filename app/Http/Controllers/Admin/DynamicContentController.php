@@ -37,8 +37,10 @@ class DynamicContentController extends Controller
         ]);
 
         foreach ($validated['changes'] as $change) {
+            $pageKey = $dynamicContent->pageKeyForSection($validated['page_key'], $change['section_key']);
+
             $section = PageSection::query()->firstOrNew([
-                'page_key' => $validated['page_key'],
+                'page_key' => $pageKey,
                 'section_key' => $change['section_key'],
             ]);
 
@@ -48,6 +50,7 @@ class DynamicContentController extends Controller
             $section->sort_order = Arr::get($change, 'sort_order', $section->sort_order ?? 0);
             $section->save();
 
+            $dynamicContent->flush($pageKey, $change['section_key']);
             $dynamicContent->flush($validated['page_key'], $change['section_key']);
         }
 

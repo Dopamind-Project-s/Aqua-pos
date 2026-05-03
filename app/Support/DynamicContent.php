@@ -9,6 +9,13 @@ use Illuminate\Support\Facades\Schema;
 
 class DynamicContent
 {
+    private const GLOBAL_PAGE_KEY = 'global';
+
+    private const SHARED_SECTION_KEYS = [
+        'header',
+        'footer',
+    ];
+
     public function get(string $path, mixed $fallback = null): mixed
     {
         [$pageKey, $sectionKey, $fieldPath] = $this->parsePath($path);
@@ -17,14 +24,12 @@ class DynamicContent
             return $this->resolveFallback($path, $fallback);
         }
 
-        $payload = Cache::remember(
-            $this->cacheKey($pageKey, $sectionKey),
-            now()->addMinutes(30),
-            fn () => PageSection::query()
-                ->where('page_key', $pageKey)
-                ->where('section_key', $sectionKey)
-                ->first()
-        );
+        $resolvedPageKey = $this->pageKeyForSection($pageKey, $sectionKey);
+        $payload = $this->section($resolvedPageKey, $sectionKey);
+
+        if (! $payload && $resolvedPageKey !== $pageKey) {
+            $payload = $this->section($pageKey, $sectionKey);
+        }
 
         if (! $payload || ! $payload->is_visible) {
             return $this->resolveFallback($path, $fallback);
@@ -53,28 +58,59 @@ class DynamicContent
             return [];
         }
 
-        return Cache::remember(
-            "cms:page:{$pageKey}",
-            now()->addMinutes(30),
-            fn () => PageSection::query()
-                ->where('page_key', $pageKey)
-                ->orderBy('sort_order')
-                ->get()
-                ->mapWithKeys(fn (PageSection $row) => [$row->section_key => [
-                    'id' => $row->id,
-                    'content' => $row->content_json ?? [],
-                    'style' => $row->style_json ?? [],
-                    'is_visible' => $row->is_visible,
-                    'sort_order' => $row->sort_order,
-                ]])
-                ->all()
-        );
+        if ($pageKey === self::GLOBAL_PAGE_KEY) {
+            return $this->sectionsForPage(self::GLOBAL_PAGE_KEY);
+        }
+
+        $globalSections = Arr::only($this->sectionsForPage(self::GLOBAL_PAGE_KEY), self::SHARED_SECTION_KEYS);
+        $pageSections = Arr::except($this->sectionsForPage($pageKey), self::SHARED_SECTION_KEYS);
+
+        return array_replace($pageSections, $globalSections);
+    }
+
+    public function pageKeyForSection(string $pageKey, string $sectionKey): string
+    {
+        return in_array($sectionKey, self::SHARED_SECTION_KEYS, true)
+            ? self::GLOBAL_PAGE_KEY
+            : $pageKey;
     }
 
     public function flush(string $pageKey, string $sectionKey): void
     {
         Cache::forget($this->cacheKey($pageKey, $sectionKey));
         Cache::forget("cms:page:{$pageKey}");
+
+        if ($pageKey !== self::GLOBAL_PAGE_KEY) {
+            Cache::forget("cms:page:".self::GLOBAL_PAGE_KEY);
+        }
+    }
+
+    private function section(string $pageKey, string $sectionKey): ?PageSection
+    {
+        return Cache::remember(
+            $this->cacheKey($pageKey, $sectionKey),
+            now()->addMinutes(30),
+            fn () => PageSection::query()
+                ->where('page_key', $pageKey)
+                ->where('section_key', $sectionKey)
+                ->first()
+        );
+    }
+
+    private function sectionsForPage(string $pageKey): array
+    {
+        return PageSection::query()
+            ->where('page_key', $pageKey)
+            ->orderBy('sort_order')
+            ->get()
+            ->mapWithKeys(fn (PageSection $row) => [$row->section_key => [
+                'id' => $row->id,
+                'content' => $row->content_json ?? [],
+                'style' => $row->style_json ?? [],
+                'is_visible' => $row->is_visible,
+                'sort_order' => $row->sort_order,
+            ]])
+            ->all();
     }
 
     private function resolveFallback(string $path, mixed $fallback): mixed

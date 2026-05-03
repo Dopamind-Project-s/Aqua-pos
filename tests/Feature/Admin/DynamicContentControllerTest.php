@@ -114,35 +114,47 @@ class DynamicContentControllerTest extends TestCase
 
         $this->actingAs($admin)->postJson(route('admin.cms.save'), [
             'page_key' => 'home',
-            'changes' => [[
-                'section_key' => 'hero',
-                'content_json' => [
-                    'home.hero.title' => [
-                        'type' => 'text',
-                        'ar' => 'Updated Arabic title',
-                        'en' => 'Updated English title',
-                    ],
-                    'home.hero.image_1' => [
-                        'type' => 'image',
-                        'path' => 'cms/demo-image.jpg',
-                        'src' => '/storage/cms/demo-image.jpg',
-                    ],
-                ],
-                'style_json' => [
-                    'home.hero.title' => [
-                        'text_color' => [
-                            'light_value' => '#112233',
-                            'dark_value' => '#ddeeff',
+            'changes' => [
+                [
+                    'section_key' => 'hero',
+                    'content_json' => [
+                        'home.hero.title' => [
+                            'type' => 'text',
+                            'ar' => 'Updated Arabic title',
+                            'en' => 'Updated English title',
+                        ],
+                        'home.hero.image_1' => [
+                            'type' => 'image',
+                            'path' => 'cms/demo-image.jpg',
+                            'src' => '/storage/cms/demo-image.jpg',
                         ],
                     ],
-                    '__section' => [
-                        'background_color' => [
-                            'light_value' => '#ffffff',
-                            'dark_value' => '#000000',
+                    'style_json' => [
+                        'home.hero.title' => [
+                            'text_color' => [
+                                'light_value' => '#112233',
+                                'dark_value' => '#ddeeff',
+                            ],
+                        ],
+                        '__section' => [
+                            'background_color' => [
+                                'light_value' => '#ffffff',
+                                'dark_value' => '#000000',
+                            ],
                         ],
                     ],
                 ],
-            ]],
+                [
+                    'section_key' => 'hero-slide-1',
+                    'content_json' => [
+                        'home.hero.image_1' => [
+                            'type' => 'image',
+                            'path' => 'cms/slide-image.jpg',
+                            'src' => '/storage/cms/slide-image.jpg',
+                        ],
+                    ],
+                ],
+            ],
         ])->assertOk()->assertJson(['status' => 'saved']);
 
         $dynamicContent = app(DynamicContent::class);
@@ -151,5 +163,71 @@ class DynamicContentControllerTest extends TestCase
         $this->assertSame('/storage/cms/demo-image.jpg', $dynamicContent->get('home.hero.home.hero.image_1.src'));
         $this->assertSame('#112233', $dynamicContent->get('home.hero.style.home.hero.title.text_color.light_value'));
         $this->assertSame('#000000', $dynamicContent->page('home')['hero']['style']['__section']['background_color']['dark_value']);
+        $this->assertSame('/storage/cms/slide-image.jpg', $dynamicContent->page('home')['hero-slide-1']['content']['home.hero.image_1']['src']);
+    }
+
+    public function test_shared_header_content_is_saved_globally_from_any_page(): void
+    {
+        $admin = User::factory()->admin()->create();
+
+        $this->actingAs($admin)->postJson(route('admin.cms.save'), [
+            'page_key' => 'products-show',
+            'changes' => [[
+                'section_key' => 'header',
+                'content_json' => [
+                    'nav.products' => [
+                        'type' => 'text',
+                        'ar' => 'Global Arabic Products',
+                        'en' => 'Global Products',
+                    ],
+                ],
+            ]],
+        ])->assertOk()->assertJson(['status' => 'saved']);
+
+        $this->assertDatabaseHas('page_sections', [
+            'page_key' => 'global',
+            'section_key' => 'header',
+        ]);
+
+        $this->assertDatabaseMissing('page_sections', [
+            'page_key' => 'products-show',
+            'section_key' => 'header',
+        ]);
+
+        $dynamicContent = app(DynamicContent::class);
+
+        $this->assertSame('Global Products', $dynamicContent->page('home')['header']['content']['nav.products']['en']);
+        $this->assertSame('Global Products', $dynamicContent->page('products-show')['header']['content']['nav.products']['en']);
+    }
+
+    public function test_global_header_overrides_legacy_page_specific_header(): void
+    {
+        PageSection::query()->create([
+            'page_key' => 'global',
+            'section_key' => 'header',
+            'content_json' => [
+                'nav.home' => [
+                    'type' => 'text',
+                    'en' => 'Global Home',
+                ],
+            ],
+        ]);
+
+        PageSection::query()->create([
+            'page_key' => 'products-show',
+            'section_key' => 'header',
+            'content_json' => [
+                'nav.home' => [
+                    'type' => 'text',
+                    'en' => 'Product Page Home',
+                ],
+            ],
+        ]);
+
+        $dynamicContent = app(DynamicContent::class);
+
+        $this->assertSame('Global Home', $dynamicContent->page('home')['header']['content']['nav.home']['en']);
+        $this->assertSame('Global Home', $dynamicContent->page('products-show')['header']['content']['nav.home']['en']);
+        $this->assertSame('Global Home', $dynamicContent->get('products-show.header.nav.home.en'));
     }
 }

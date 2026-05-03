@@ -122,7 +122,7 @@
 <script>
     window.AQUA_CMS_PAGE = @json($cmsSections ?? []);
 
-    (function () {
+    window.aquaApplyCmsPage = function () {
         const sections = window.AQUA_CMS_PAGE || {};
         const mode = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
 
@@ -212,7 +212,9 @@
                 });
             });
         });
-    })();
+    };
+
+    window.aquaApplyCmsPage();
 </script>
 
 <script src="{{ asset('js/main.js') }}"></script>
