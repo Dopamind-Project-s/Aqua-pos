@@ -216,6 +216,7 @@
             input.addEventListener('change', function () {
                 var file = input.files[0];
                 if (!file) return;
+                var previewUrl = URL.createObjectURL(file);
                 var img = new Image();
                 img.onload = function () {
                     var ratio = document.getElementById('cmsAspect').value;
@@ -230,7 +231,15 @@
                     canvas.height = Math.min(height, 500);
                     ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
                 };
-                img.src = URL.createObjectURL(file);
+                img.src = previewUrl;
+
+                applyImageToMatchingElements(state.current.fieldKey, {
+                    src: previewUrl,
+                    url: previewUrl,
+                }, {
+                    width: document.getElementById('cmsImageWidth')?.value || null,
+                    height: document.getElementById('cmsImageHeight')?.value || null,
+                });
             });
         }, 0);
     };
@@ -381,8 +390,15 @@
         var file = document.getElementById('cmsImageInput').files[0];
         var width = document.getElementById('cmsImageWidth').value;
         var height = document.getElementById('cmsImageHeight').value;
-        if (width) state.current.el.style.width = width;
-        if (height) state.current.el.style.height = height;
+        var style = {
+            overlay_opacity: document.getElementById('cmsImageOverlay').value,
+            width: width || null,
+            height: height || null,
+        };
+
+        applyImageToMatchingElements(state.current.fieldKey, {
+            src: state.current.el.getAttribute('src'),
+        }, style);
 
         if (!file) {
             queueChange(state.current.sectionKey, {
@@ -392,12 +408,11 @@
                     src: state.current.el.getAttribute('src'),
                     aspect_ratio: document.getElementById('cmsAspect').value,
                 },
-                style: {
-                    overlay_opacity: document.getElementById('cmsImageOverlay').value,
-                    width: width || null,
-                    height: height || null,
-                },
+                style: style,
             });
+            if (typeof window.aquaApplyCmsPage === 'function') {
+                window.aquaApplyCmsPage();
+            }
             modal.hide();
             return;
         }
@@ -410,9 +425,20 @@
             headers: { 'X-CSRF-TOKEN': window.CMS_EDITOR.csrf },
             body: form,
         })
-            .then(function (response) { return response.json(); })
+            .then(function (response) {
+                return response.json().then(function (payload) {
+                    if (!response.ok || !payload.url) {
+                        throw new Error(payload.message || 'Image upload failed.');
+                    }
+
+                    return payload;
+                });
+            })
             .then(function (payload) {
-                state.current.el.src = payload.url;
+                applyImageToMatchingElements(state.current.fieldKey, {
+                    src: payload.url,
+                    url: payload.url,
+                }, style);
 
                 queueChange(state.current.sectionKey, {
                     field_key: state.current.fieldKey,
@@ -422,14 +448,39 @@
                         src: payload.url,
                         aspect_ratio: document.getElementById('cmsAspect').value,
                     },
-                    style: {
-                        overlay_opacity: document.getElementById('cmsImageOverlay').value,
-                        width: width || null,
-                        height: height || null,
-                    },
+                    style: style,
                 });
+                if (typeof window.aquaApplyCmsPage === 'function') {
+                    window.aquaApplyCmsPage();
+                }
                 modal.hide();
+            })
+            .catch(function (error) {
+                alert(error.message || 'Image upload failed.');
             });
+    };
+
+    var applyImageToMatchingElements = function (fieldKey, content, style) {
+        document.querySelectorAll('[data-cms-key="' + fieldKey + '"]').forEach(function (el) {
+            if (el.tagName !== 'IMG') {
+                return;
+            }
+
+            var src = content.src || content.url;
+            if (src) {
+                el.src = src;
+                el.setAttribute('src', src);
+                el.removeAttribute('srcset');
+            }
+
+            if (style?.width) {
+                el.style.width = style.width;
+            }
+
+            if (style?.height) {
+                el.style.height = style.height;
+            }
+        });
     };
 
     var queueChange = function (sectionKey, change) {
@@ -441,6 +492,21 @@
 
         state.pending[sectionKey].content_json[change.field_key] = change.content;
         state.pending[sectionKey].style_json[change.field_key] = change.style;
+        syncBrowserCmsSection(sectionKey, change.field_key, change.content, change.style);
+    };
+
+    var syncBrowserCmsSection = function (sectionKey, fieldKey, content, style) {
+        window.AQUA_CMS_PAGE = window.AQUA_CMS_PAGE || {};
+        window.AQUA_CMS_PAGE[sectionKey] = window.AQUA_CMS_PAGE[sectionKey] || {
+            content: {},
+            style: {},
+            is_visible: true,
+            sort_order: 0,
+        };
+        window.AQUA_CMS_PAGE[sectionKey].content = window.AQUA_CMS_PAGE[sectionKey].content || {};
+        window.AQUA_CMS_PAGE[sectionKey].style = window.AQUA_CMS_PAGE[sectionKey].style || {};
+        window.AQUA_CMS_PAGE[sectionKey].content[fieldKey] = content;
+        window.AQUA_CMS_PAGE[sectionKey].style[fieldKey] = style || {};
     };
 
     var queueSectionStyle = function (sectionKey, style) {

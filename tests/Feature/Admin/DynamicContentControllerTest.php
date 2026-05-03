@@ -6,6 +6,8 @@ use App\Models\PageSection;
 use App\Models\User;
 use App\Support\DynamicContent;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class DynamicContentControllerTest extends TestCase
@@ -229,5 +231,25 @@ class DynamicContentControllerTest extends TestCase
         $this->assertSame('Global Home', $dynamicContent->page('home')['header']['content']['nav.home']['en']);
         $this->assertSame('Global Home', $dynamicContent->page('products-show')['header']['content']['nav.home']['en']);
         $this->assertSame('Global Home', $dynamicContent->get('products-show.header.nav.home.en'));
+    }
+
+    public function test_admin_image_upload_returns_domain_relative_storage_url(): void
+    {
+        Storage::fake('public');
+        $admin = User::factory()->admin()->create();
+        $image = UploadedFile::fake()->image('hero.jpg');
+
+        $response = $this->actingAs($admin)->postJson(route('admin.cms.upload-image'), [
+            'image' => $image,
+        ]);
+
+        $response->assertOk();
+
+        $path = $response->json('path');
+        $url = $response->json('url');
+
+        $this->assertStringStartsWith('cms/', $path);
+        $this->assertSame('/storage/'.$path, $url);
+        Storage::disk('public')->assertExists($path);
     }
 }
