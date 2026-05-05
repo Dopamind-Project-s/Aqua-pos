@@ -94,17 +94,7 @@
                                 <a href="{{ route('contact') }}" class="dropdown-item {{ request()->routeIs('contact') ? 'active' : '' }}"><i class="fas fa-envelope me-2"></i><span data-i18n="nav.contact">Contact</span></a>
                             </div>
                         </div>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle {{ request()->routeIs('about') || request()->routeIs('service') ? 'active' : '' }}" data-bs-toggle="dropdown"><i class="fas fa-layer-group me-2"></i><span data-i18n="nav.pages">Pages</span></a>
-                            <div class="dropdown-menu m-0">
-                                <a href="{{ route('about') }}" class="dropdown-item {{ request()->routeIs('about') ? 'active' : '' }}"><i class="fas fa-circle-info me-2"></i><span data-i18n="nav.about">About</span></a>
-                                <a href="{{ route('service') }}" class="dropdown-item {{ request()->routeIs('service') ? 'active' : '' }}"><i class="fas fa-concierge-bell me-2"></i><span data-i18n="nav.services">Services</span></a>
-                                <a href="{{ route('appointment') }}" class="dropdown-item {{ request()->routeIs('appointment') ? 'active' : '' }}"><i class="fas fa-calendar-days me-2"></i><span data-i18n="nav.appointment">Appointment</span></a>
-                                <a href="{{ route('feature') }}" class="dropdown-item {{ request()->routeIs('feature') ? 'active' : '' }}"><i class="fas fa-star me-2"></i><span data-i18n="nav.features">Features</span></a>
-                                <a href="{{ route('clients.index') }}" class="dropdown-item {{ request()->routeIs('clients.*') ? 'active' : '' }}"><i class="fas fa-users me-2"></i><span data-i18n="nav.clients">Our Clients</span></a>
-                                <a href="{{ route('testimonial') }}" class="dropdown-item {{ request()->routeIs('testimonial') ? 'active' : '' }}"><i class="fas fa-comments me-2"></i><span data-i18n="nav.testimonial">Testimonial</span></a>
-                            </div>
-                        </div>
+                        <a href="{{ route('about') }}" class="nav-item nav-link {{ request()->routeIs('about') ? 'active' : '' }}"><i class="fas fa-circle-info me-2"></i><span data-i18n="nav.about">About</span></a>
                     </div>
                     <div class="nav-toolbar" aria-label="Quick controls">
                         <button class="nav-toolbar__btn nav-toolbar__btn--toggle" id="themeToggle" type="button" aria-label="Toggle theme">
