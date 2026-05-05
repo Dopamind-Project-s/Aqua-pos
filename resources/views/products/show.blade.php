@@ -46,12 +46,14 @@
 
     .product-hero-slide {
         aspect-ratio: 4 / 3;
+        background: linear-gradient(135deg, rgba(255, 255, 255, .92), rgba(228, 247, 252, .86));
     }
 
     .product-hero-slide img {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: contain;
+        padding: .55rem;
     }
 
     .product-hero-thumbs {
