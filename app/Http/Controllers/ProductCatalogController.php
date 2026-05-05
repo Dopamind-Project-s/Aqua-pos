@@ -65,7 +65,10 @@ class ProductCatalogController extends Controller
     {
         abort_unless($product->is_active && is_null($product->deleted_at), 404);
 
-        $product->load(['category', 'images']);
+        $product->load([
+            'category',
+            'images' => fn ($query) => $query->orderBy('sort_order')->orderBy('id'),
+        ]);
 
         $relatedProducts = Product::query()
             ->where('is_active', true)

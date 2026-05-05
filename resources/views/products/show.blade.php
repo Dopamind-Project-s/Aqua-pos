@@ -22,12 +22,78 @@
         border-radius: 0 0 30px 30px;
     }
 
-    .hero-panel {
+    .product-category-badge {
+        border-radius: 999px;
+        font-size: clamp(.95rem, 1vw, 1.08rem);
+        padding: .52rem .9rem;
+        letter-spacing: 0;
+    }
+
+    .product-hero-gallery {
         background: rgba(255, 255, 255, .12);
         border: 1px solid rgba(255, 255, 255, .24);
         border-radius: 18px;
-        padding: 1rem 1.1rem;
+        padding: .7rem;
         backdrop-filter: blur(6px);
+        box-shadow: 0 24px 50px rgba(7, 33, 48, .22);
+    }
+
+    .product-hero-gallery .carousel-inner {
+        border-radius: 14px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, .16);
+    }
+
+    .product-hero-slide {
+        aspect-ratio: 4 / 3;
+    }
+
+    .product-hero-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .product-hero-thumbs {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(58px, 1fr));
+        gap: .5rem;
+        margin-top: .65rem;
+    }
+
+    .product-hero-thumb {
+        border: 1px solid rgba(255, 255, 255, .32);
+        border-radius: 10px;
+        padding: 0;
+        overflow: hidden;
+        background: rgba(255, 255, 255, .14);
+        aspect-ratio: 1 / 1;
+        opacity: .72;
+        transition: opacity .2s ease, transform .2s ease, border-color .2s ease;
+    }
+
+    .product-hero-thumb.active,
+    .product-hero-thumb:hover {
+        opacity: 1;
+        border-color: #fff;
+        transform: translateY(-1px);
+    }
+
+    .product-hero-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .product-hero-gallery .carousel-control-prev,
+    .product-hero-gallery .carousel-control-next {
+        width: 2.5rem;
+        height: 2.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        margin-inline: .5rem;
+        border-radius: 50%;
+        background: rgba(6, 35, 51, .45);
     }
 
     .show-cta { display: flex; flex-wrap: wrap; gap: .6rem; }
@@ -100,6 +166,11 @@
         color: #7fdaf0;
     }
 
+    body.dark-mode .product-hero-gallery {
+        background: rgba(7, 20, 32, .34);
+        border-color: rgba(139, 218, 238, .22);
+    }
+
     body.dark-mode .btn-outline-primary {
         color: #86ddf2;
         border-color: #3f6d84;
@@ -114,12 +185,14 @@
 @endpush
 
 @section('content')
+@php($gallerySlides = $product->gallery_slides)
+
 <div class="product-show-page">
     <section class="show-hero py-5 mb-4">
         <div class="container py-4">
             <div class="row g-4 align-items-center">
                 <div class="col-lg-8">
-                    <span class="badge bg-light text-dark mb-3">{{ $product->category?->localized_name }}</span>
+                    <span class="badge bg-light text-dark mb-3 product-category-badge">{{ $product->category?->localized_name }}</span>
                     <h1 class="display-5 fw-bold mb-2">{{ $product->localized_name }}</h1>
                     <p class="lead mb-3">{{ $product->localized_tagline ?: $product->localized_short_description }}</p>
                     <div class="show-cta">
@@ -129,11 +202,37 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <div class="hero-panel">
-                        <small class="d-block text-white-50 mb-1">Smart fit for</small>
-                        <strong class="d-block fs-5 mb-2">{{ $product->category?->localized_name ?: 'Business Operations' }}</strong>
-                        <small class="d-block text-white-50 mb-1">Product type</small>
-                        <strong class="d-block">{{ $product->localized_name }}</strong>
+                    <div class="product-hero-gallery">
+                        <div id="productHeroGallery" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4200">
+                            <div class="carousel-inner">
+                                @foreach($gallerySlides as $slide)
+                                    <div class="carousel-item @if($loop->first) active @endif">
+                                        <div class="product-hero-slide">
+                                            <img src="{{ $slide['url'] }}" alt="{{ $slide['alt'] }}" loading="{{ $loop->first ? 'eager' : 'lazy' }}" decoding="async">
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+
+                            @if($gallerySlides->count() > 1)
+                                <button class="carousel-control-prev" type="button" data-bs-target="#productHeroGallery" data-bs-slide="prev" aria-label="Previous product image">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#productHeroGallery" data-bs-slide="next" aria-label="Next product image">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                </button>
+                            @endif
+                        </div>
+
+                        @if($gallerySlides->count() > 1)
+                            <div class="product-hero-thumbs" aria-label="Product gallery images">
+                                @foreach($gallerySlides as $slide)
+                                    <button type="button" class="product-hero-thumb @if($loop->first) active @endif" data-bs-target="#productHeroGallery" data-bs-slide-to="{{ $loop->index }}" aria-label="{{ $slide['label'] }} {{ $loop->iteration }}">
+                                        <img src="{{ $slide['url'] }}" alt="{{ $slide['alt'] }}" loading="lazy" decoding="async">
+                                    </button>
+                                @endforeach
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -209,3 +308,23 @@
     </section>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var gallery = document.getElementById('productHeroGallery');
+
+        if (!gallery) {
+            return;
+        }
+
+        var thumbs = document.querySelectorAll('.product-hero-thumb');
+
+        gallery.addEventListener('slid.bs.carousel', function (event) {
+            thumbs.forEach(function (thumb, index) {
+                thumb.classList.toggle('active', index === event.to);
+            });
+        });
+    });
+</script>
+@endpush

@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Support\JsonTranslation;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Support\JsonTranslation;
+use Illuminate\Support\Collection;
 
 class Product extends Model
 {
@@ -78,6 +79,25 @@ class Product extends Model
     public function getLocalizedUseCasesAttribute(): ?string
     {
         return JsonTranslation::pick($this->getRawOriginal('use_cases'), $this->use_cases_ar, $this->use_cases_en, app()->getLocale());
+    }
+
+    public function getGallerySlidesAttribute(): Collection
+    {
+        $defaultSlide = collect([[
+            'url' => $this->image_url,
+            'alt' => $this->localized_name,
+            'label' => 'Default picture',
+        ]]);
+
+        $gallerySlides = $this->images
+            ->sortBy([['sort_order', 'asc'], ['id', 'asc']])
+            ->map(fn (ProductImage $image): array => [
+                'url' => $image->image_url,
+                'alt' => $image->alt ?: $this->localized_name,
+                'label' => 'Gallery picture',
+            ]);
+
+        return $defaultSlide->merge($gallerySlides)->values();
     }
 
     public function category(): BelongsTo
