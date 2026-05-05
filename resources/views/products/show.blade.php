@@ -107,7 +107,22 @@
         box-shadow: 0 14px 30px rgba(15, 58, 82, .08);
     }
 
-    .product-media { min-height: 320px; object-fit: cover; }
+    .product-media-frame {
+        min-height: clamp(300px, 34vw, 520px);
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        background: linear-gradient(135deg, #f5fbfd, #eaf8fc);
+    }
+
+    .product-media {
+        width: 100%;
+        max-height: 620px;
+        object-fit: contain;
+    }
+
     .product-copy { color: var(--text-soft); line-height: 1.8; margin-bottom: 1.2rem; }
 
     .feature-chip {
@@ -173,6 +188,10 @@
         border-color: rgba(139, 218, 238, .22);
     }
 
+    body.dark-mode .product-media-frame {
+        background: linear-gradient(135deg, #13293a, #0f2232);
+    }
+
     body.dark-mode .btn-outline-primary {
         color: #86ddf2;
         border-color: #3f6d84;
@@ -188,6 +207,7 @@
 
 @section('content')
 @php($gallerySlides = $product->gallery_slides)
+@php($hasGalleryCarousel = $gallerySlides->count() > 1)
 
 <div class="product-show-page">
     <section class="show-hero py-5 mb-4">
@@ -205,7 +225,7 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="product-hero-gallery">
-                        <div id="productHeroGallery" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4200">
+                        <div id="productHeroGallery" class="carousel slide" @if($hasGalleryCarousel) data-bs-ride="carousel" data-bs-interval="4200" @endif>
                             <div class="carousel-inner">
                                 @foreach($gallerySlides as $slide)
                                     <div class="carousel-item @if($loop->first) active @endif">
@@ -216,7 +236,7 @@
                                 @endforeach
                             </div>
 
-                            @if($gallerySlides->count() > 1)
+                            @if($hasGalleryCarousel)
                                 <button class="carousel-control-prev" type="button" data-bs-target="#productHeroGallery" data-bs-slide="prev" aria-label="Previous product image">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                 </button>
@@ -226,7 +246,7 @@
                             @endif
                         </div>
 
-                        @if($gallerySlides->count() > 1)
+                        @if($hasGalleryCarousel)
                             <div class="product-hero-thumbs" aria-label="Product gallery images">
                                 @foreach($gallerySlides as $slide)
                                     <button type="button" class="product-hero-thumb @if($loop->first) active @endif" data-bs-target="#productHeroGallery" data-bs-slide-to="{{ $loop->index }}" aria-label="{{ $slide['label'] }} {{ $loop->iteration }}">
@@ -245,7 +265,11 @@
         <div class="container d-grid gap-4">
             <div class="section-card overflow-hidden">
                 <div class="row g-0 align-items-stretch">
-                    <div class="col-lg-5"><img src="{{ $product->image ? public_storage_url($product->image) : asset('img/service-1.jpg') }}" alt="{{ $product->localized_name }}" class="w-100 h-100 product-media"></div>
+                    <div class="col-lg-5">
+                        <div class="product-media-frame">
+                            <img src="{{ $product->image_url }}" alt="{{ $product->localized_name }}" class="product-media" loading="lazy" decoding="async">
+                        </div>
+                    </div>
                     <div class="col-lg-7 p-4 p-lg-5">
                         <p class="product-copy">{{ $product->localized_description ?: $product->localized_short_description }}</p>
                         <div class="d-flex flex-wrap gap-2 mb-4">

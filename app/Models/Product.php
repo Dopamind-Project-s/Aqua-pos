@@ -83,12 +83,6 @@ class Product extends Model
 
     public function getGallerySlidesAttribute(): Collection
     {
-        $defaultSlide = collect([[
-            'url' => $this->image_url,
-            'alt' => $this->localized_name,
-            'label' => 'Default picture',
-        ]]);
-
         $gallerySlides = $this->images
             ->sortBy([['sort_order', 'asc'], ['id', 'asc']])
             ->map(fn (ProductImage $image): array => [
@@ -97,7 +91,15 @@ class Product extends Model
                 'label' => 'Gallery picture',
             ]);
 
-        return $defaultSlide->merge($gallerySlides)->values();
+        if ($gallerySlides->isNotEmpty()) {
+            return $gallerySlides->values();
+        }
+
+        return collect([[
+            'url' => $this->image_url,
+            'alt' => $this->localized_name,
+            'label' => 'Default picture',
+        ]]);
     }
 
     public function category(): BelongsTo
