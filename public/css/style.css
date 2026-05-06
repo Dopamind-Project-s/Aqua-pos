@@ -2731,7 +2731,10 @@ body.dark-mode .clients-showcase__empty i {
 }
 .category-single__product-img {
     height: 180px;
-    object-fit: cover;
+    object-fit: contain;
+    background: #f8fbff;
+    border: 1px solid #e8edf5;
+    padding: 10px;
 }
 .category-single__clients-strip {
     border-top: 1px dashed #c6d3e7;
