@@ -12,7 +12,7 @@
     <div class="container py-5">
         <div class="row g-5 align-items-center mb-4">
             <div class="col-lg-5">
-                <img src="{{ $category->image_url }}" alt="{{ $category->localized_name }}" class="img-fluid rounded-4 shadow-sm w-100 category-single__hero-img">
+                <img src="{{ $category->image_url }}" alt="{{ $category->localized_name }}" class="img-fluid shadow-sm w-100 category-single__hero-img">
             </div>
             <div class="col-lg-7">
                 <h2 class="display-6 mb-3">{{ $category->localized_name }}</h2>
