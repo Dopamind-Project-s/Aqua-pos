@@ -9,11 +9,9 @@
         <div class="row g-5 align-items-center">
             <div class="col-lg-5 wow fadeInLeft" data-wow-delay="0.2s">
                 <div class="about-img">
-                    <img src="{{ dynamic_content($cmsPageKey . '.about.' . $aboutCmsNamespace . '.image_main.src', asset('img/about-1.jpg')) }}" class="img-fluid rounded w-100 h-100 about-img-main" alt="Image" data-cms-key="{{ $aboutCmsNamespace }}.image_main">
-                    <div class="about-img-inner">
-                        <img src="{{ dynamic_content($cmsPageKey . '.about.' . $aboutCmsNamespace . '.image_inner.src', asset('img/about-2.jpg')) }}" class="img-fluid rounded-circle w-100 h-100" alt="Image" data-cms-key="{{ $aboutCmsNamespace }}.image_inner">
+                    <div class="about-img-frame">
+                        <img src="{{ dynamic_content($cmsPageKey . '.about.' . $aboutCmsNamespace . '.image_main.src', asset('img/about-1.jpg')) }}" class="img-fluid w-100 h-100 about-img-main" alt="Image" data-cms-key="{{ $aboutCmsNamespace }}.image_main">
                     </div>
-                    <div class="about-experience"><span data-i18n="{{ $aboutCmsNamespace }}.badge">Trusted in Amman, Jordan</span></div>
                 </div>
             </div>
             <div class="col-lg-7 wow fadeInRight" data-wow-delay="0.4s">
