@@ -22,6 +22,11 @@
         border-radius: 0 0 30px 30px;
     }
 
+    .show-hero .lead {
+        color: rgba(255, 255, 255, .94);
+        font-weight: 500;
+    }
+
     .product-category-badge {
         border-radius: 999px;
         font-size: clamp(.95rem, 1vw, 1.08rem);
