@@ -31,6 +31,8 @@ class Product extends Model
         'description_ar',
         'description_en',
         'key_features',
+        'key_features_ar',
+        'key_features_en',
         'use_cases',
         'use_cases_ar',
         'use_cases_en',
@@ -46,6 +48,8 @@ class Product extends Model
         return [
             'price' => 'decimal:2',
             'key_features' => 'array',
+            'key_features_ar' => 'array',
+            'key_features_en' => 'array',
             'is_featured' => 'boolean',
             'is_active' => 'boolean',
         ];
@@ -79,6 +83,18 @@ class Product extends Model
     public function getLocalizedUseCasesAttribute(): ?string
     {
         return JsonTranslation::pick($this->getRawOriginal('use_cases'), $this->use_cases_ar, $this->use_cases_en, app()->getLocale());
+    }
+
+    public function getLocalizedKeyFeaturesAttribute(): array
+    {
+        $arabicFeatures = $this->key_features_ar ?: $this->key_features;
+        $englishFeatures = $this->key_features_en ?: $this->key_features;
+
+        if (app()->getLocale() === 'ar') {
+            return $arabicFeatures ?: $englishFeatures ?: [];
+        }
+
+        return $englishFeatures ?: $arabicFeatures ?: [];
     }
 
     public function getGallerySlidesAttribute(): Collection

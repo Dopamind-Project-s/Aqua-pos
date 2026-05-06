@@ -283,7 +283,7 @@
                     <div class="col-lg-7 p-4 p-lg-5">
                         <p class="product-copy">{{ $product->localized_description ?: $product->localized_short_description }}</p>
                         <div class="d-flex flex-wrap gap-2 mb-4">
-                            @foreach(($product->key_features ?? []) as $feature)
+                            @foreach($product->localized_key_features as $feature)
                                 <span class="feature-chip"><i class="fas fa-check-circle me-1"></i>{{ $feature }}</span>
                             @endforeach
                         </div>

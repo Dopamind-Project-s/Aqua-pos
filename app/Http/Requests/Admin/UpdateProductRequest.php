@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use App\Support\JsonTranslation;
+use App\Support\LineList;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -16,7 +17,7 @@ class UpdateProductRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
-            // Keep legacy columns synced and store bilingual payload as JSON without schema change.
+            // Keep legacy columns synced while storing bilingual payloads in dedicated fields.
             'name' => (string) $this->input('name_en', ''),
             'tagline' => $this->input('tagline_en'),
             'short_description' => $this->input('short_description_en'),
@@ -24,9 +25,9 @@ class UpdateProductRequest extends FormRequest
             'use_cases' => $this->input('use_cases_en'),
             'is_active' => $this->boolean('is_active'),
             'is_featured' => $this->boolean('is_featured'),
-            'key_features' => $this->filled('key_features')
-                ? array_values(array_filter(array_map('trim', explode(PHP_EOL, (string) $this->input('key_features')))))
-                : null,
+            'key_features' => LineList::fromTextarea($this->input('key_features_en')),
+            'key_features_ar' => LineList::fromTextarea($this->input('key_features_ar')),
+            'key_features_en' => LineList::fromTextarea($this->input('key_features_en')),
         ]);
 
         $this->merge([
@@ -70,6 +71,10 @@ class UpdateProductRequest extends FormRequest
             'description_en' => ['nullable', 'string'],
             'key_features' => ['nullable', 'array'],
             'key_features.*' => ['nullable', 'string', 'max:255'],
+            'key_features_ar' => ['nullable', 'array'],
+            'key_features_ar.*' => ['nullable', 'string', 'max:255'],
+            'key_features_en' => ['nullable', 'array'],
+            'key_features_en.*' => ['nullable', 'string', 'max:255'],
             'use_cases' => ['nullable', 'string'],
             'use_cases_ar' => ['nullable', 'string'],
             'use_cases_en' => ['nullable', 'string'],

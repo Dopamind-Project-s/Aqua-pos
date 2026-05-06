@@ -38,7 +38,8 @@
                 <div class="col-md-6"><label class="form-label">Description (AR)</label><textarea name="description_ar" class="form-control" rows="3">{{ old('description_ar') }}</textarea></div>
                 <div class="col-md-6"><label class="form-label">Description (EN - Default)</label><textarea name="description_en" class="form-control" rows="3">{{ old('description_en') }}</textarea></div>
 
-                <div class="col-md-12"><label class="form-label">Key Features (one per line)</label><textarea name="key_features" class="form-control" rows="3">{{ old('key_features') }}</textarea></div>
+                <div class="col-md-6"><label class="form-label">Key Features (AR - one per line)</label><textarea name="key_features_ar" class="form-control" rows="3">{{ \App\Support\LineList::toTextarea(old('key_features_ar')) }}</textarea></div>
+                <div class="col-md-6"><label class="form-label">Key Features (EN - Default, one per line)</label><textarea name="key_features_en" class="form-control" rows="3">{{ \App\Support\LineList::toTextarea(old('key_features_en')) }}</textarea></div>
                 <div class="col-md-6"><label class="form-label">Use Cases (AR)</label><textarea name="use_cases_ar" class="form-control" rows="2">{{ old('use_cases_ar') }}</textarea></div>
                 <div class="col-md-6"><label class="form-label">Use Cases (EN - Default)</label><textarea name="use_cases_en" class="form-control" rows="2">{{ old('use_cases_en') }}</textarea></div>
             </div>
