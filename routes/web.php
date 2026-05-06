@@ -31,8 +31,6 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/media/public/{path}', [PublicMediaController::class, 'show'])->where('path', '.*')->name('media.public');
 
 Route::view('/about', 'about')->name('about');
-Route::view('/service', 'service')->name('service');
-Route::view('/appointment', 'appointment')->name('appointment');
 Route::view('/feature', 'feature')->name('feature');
 
 Route::get('/blog', [BlogController::class, 'blogIndex'])->name('blog');
@@ -44,7 +42,6 @@ Route::get('/news/{post:slug}', [BlogController::class, 'newsShow'])->name('news
 Route::get('/clients', [ClientController::class, 'index'])->name('clients.index');
 
 Route::redirect('/team', '/clients', 301)->name('legacy.team.redirect');
-Route::view('/testimonial', 'testimonial')->name('testimonial');
 
 Route::get('/partners', [PartnerController::class, 'index'])->name('partners.index');
 
