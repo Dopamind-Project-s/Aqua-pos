@@ -2711,9 +2711,7 @@ body.dark-mode .clients-showcase__empty i {
     height: min(420px, 70vh);
     object-fit: contain;
     background: #fff;
-    border: 1px solid #e8edf5;
     border-radius: 10px;
-    padding: 12px;
 }
 .category-single__meta {
     background: #fff;
@@ -2730,11 +2728,9 @@ body.dark-mode .clients-showcase__empty i {
     box-shadow: 0 8px 22px rgba(15, 60, 121, 0.06);
 }
 .category-single__product-img {
-    height: 180px;
+    height: 220px;
     object-fit: contain;
-    background: #f8fbff;
-    border: 1px solid #e8edf5;
-    padding: 10px;
+    background: #fff;
 }
 .category-single__clients-strip {
     border-top: 1px dashed #c6d3e7;
