@@ -27,11 +27,71 @@
         font-weight: 500;
     }
 
+    .product-hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: .72rem;
+        margin-top: 1.15rem;
+    }
+
+    .product-hero-actions .btn,
     .product-category-badge {
+        min-height: 46px;
+    }
+
+    .product-category-badge {
+        width: fit-content;
+        display: inline-flex;
+        align-items: center;
+        gap: .55rem;
         border-radius: 999px;
-        font-size: clamp(.95rem, 1vw, 1.08rem);
-        padding: .52rem .9rem;
+        border: 1px solid rgba(255, 255, 255, .28);
+        background: rgba(255, 255, 255, .14);
+        color: #f7fdff;
+        font-size: .92rem;
+        font-weight: 700;
+        padding: .48rem .82rem .48rem .58rem;
         letter-spacing: 0;
+        text-decoration: none;
+        box-shadow: 0 12px 28px rgba(5, 31, 45, .16);
+        backdrop-filter: blur(8px);
+        transition: background .2s ease, border-color .2s ease, transform .2s ease;
+    }
+
+    .product-category-badge:hover,
+    .product-category-badge:focus-visible {
+        background: rgba(255, 255, 255, .22);
+        border-color: rgba(255, 255, 255, .48);
+        color: #ffffff;
+        transform: translateY(-1px);
+    }
+
+    .product-category-badge__icon {
+        width: 1.85rem;
+        height: 1.85rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, .18);
+        color: #ffffff;
+        flex: 0 0 auto;
+    }
+
+    .product-category-badge__label {
+        display: none;
+        color: rgba(255, 255, 255, .68);
+        font-size: .68rem;
+        font-weight: 800;
+        line-height: 1;
+        margin-bottom: .13rem;
+        text-transform: uppercase;
+    }
+
+    .product-category-badge__name {
+        display: block;
+        line-height: 1;
     }
 
     .product-hero-gallery {
@@ -194,8 +254,16 @@
     }
 
     body.dark-mode .product-category-badge {
-        background: rgba(230, 248, 255, .94) !important;
-        color: #082638 !important;
+        background: rgba(7, 20, 32, .38);
+        border-color: rgba(139, 218, 238, .24);
+        color: #e7fbff;
+    }
+
+    body.dark-mode .product-category-badge:hover,
+    body.dark-mode .product-category-badge:focus-visible {
+        background: rgba(20, 52, 73, .58);
+        border-color: rgba(139, 218, 238, .42);
+        color: #ffffff;
     }
 
     body.dark-mode .product-media-frame {
@@ -224,13 +292,23 @@
         <div class="container py-4">
             <div class="row g-4 align-items-center">
                 <div class="col-lg-8">
-                    <span class="badge bg-light text-dark mb-3 product-category-badge">{{ $product->category?->localized_name }}</span>
                     <h1 class="display-5 fw-bold mb-2">{{ $product->localized_name }}</h1>
                     <p class="lead mb-3">{{ $product->localized_tagline ?: $product->localized_short_description }}</p>
-                    <div class="show-cta">
-                        <a href="{{ route('request-product-demo') }}" class="btn btn-light rounded-pill" data-i18n="products.requestDemo">Request Demo</a>
-                        <a href="{{ route('products') }}" class="btn btn-outline-light rounded-pill" data-i18n="products.back">Back to Products</a>
-                        <a href="{{ route('products') }}" class="btn btn-primary rounded-pill" data-i18n="products.allProducts">View All Products</a>
+                    <div class="product-hero-actions">
+                        @if($product->category)
+                            <a href="{{ route('categories.show', $product->category) }}" class="product-category-badge">
+                                <span class="product-category-badge__icon"><i class="fas fa-layer-group"></i></span>
+                                <span>
+                                    <span class="product-category-badge__label">Category</span>
+                                    <span class="product-category-badge__name">{{ $product->category->localized_name }}</span>
+                                </span>
+                            </a>
+                        @endif
+                        <div class="show-cta">
+                            <a href="{{ route('request-product-demo') }}" class="btn btn-light rounded-pill" data-i18n="products.requestDemo">Request Demo</a>
+                            <a href="{{ route('products') }}" class="btn btn-outline-light rounded-pill" data-i18n="products.back">Back to Products</a>
+                            <a href="{{ route('products') }}" class="btn btn-primary rounded-pill" data-i18n="products.allProducts">View All Products</a>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-4">
