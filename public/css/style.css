@@ -2708,8 +2708,11 @@ body.dark-mode .clients-showcase__empty i {
     background: linear-gradient(180deg, #f7f9fc 0%, #ffffff 100%);
 }
 .category-single__hero-img {
-    max-height: 420px;
-    object-fit: cover;
+    height: min(420px, 70vh);
+    object-fit: contain;
+    background: #fff;
+    border: 1px solid #e8edf5;
+    padding: 12px;
 }
 .category-single__meta {
     background: #fff;
