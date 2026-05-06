@@ -188,6 +188,11 @@
         border-color: rgba(139, 218, 238, .22);
     }
 
+    body.dark-mode .product-category-badge {
+        background: rgba(230, 248, 255, .94) !important;
+        color: #082638 !important;
+    }
+
     body.dark-mode .product-media-frame {
         background: linear-gradient(135deg, #13293a, #0f2232);
     }
