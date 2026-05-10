@@ -11,13 +11,30 @@
 <div class="container-fluid position-relative p-0" data-cms-section="header">
             @php
                 $cmsPageKey = str_replace('.', '-', Route::currentRouteName() ?? trim(request()->path(), '/') ?: 'home');
-                $logoSrc = dynamic_content($cmsPageKey . '.header.site.logo.src', $siteSetting?->primary_logo ? public_storage_url($siteSetting->primary_logo) : asset('img/LOGO.png'));
-                $logoWidth = dynamic_content($cmsPageKey . '.header.style.site.logo.width');
-                $logoHeight = dynamic_content($cmsPageKey . '.header.style.site.logo.height');
+                $defaultLogoSrc = $siteSetting?->primary_logo ? public_storage_url($siteSetting->primary_logo) : asset('img/LOGO.png');
+                $lightLogoSrc = dynamic_content(
+                    $cmsPageKey . '.header.site.logo_light.src',
+                    dynamic_content($cmsPageKey . '.header.site.logo.src', $defaultLogoSrc)
+                );
+                $darkLogoSrc = dynamic_content(
+                    $cmsPageKey . '.header.site.logo_dark.src',
+                    $siteSetting?->secondary_logo ? public_storage_url($siteSetting->secondary_logo) : $lightLogoSrc
+                );
+                $lightLogoWidth = dynamic_content(
+                    $cmsPageKey . '.header.style.site.logo_light.width',
+                    dynamic_content($cmsPageKey . '.header.style.site.logo.width')
+                );
+                $lightLogoHeight = dynamic_content(
+                    $cmsPageKey . '.header.style.site.logo_light.height',
+                    dynamic_content($cmsPageKey . '.header.style.site.logo.height')
+                );
+                $darkLogoWidth = dynamic_content($cmsPageKey . '.header.style.site.logo_dark.width', $lightLogoWidth);
+                $darkLogoHeight = dynamic_content($cmsPageKey . '.header.style.site.logo_dark.height', $lightLogoHeight);
             @endphp
             <nav class="navbar navbar-expand-lg navbar-light bg-white px-4 px-lg-5 py-3 py-lg-0">
                 <a href="{{ url('/') }}" class="navbar-brand p-0">
-                    <img src="{{ $logoSrc }}" alt="AQUA POS" class="navbar-brand__logo" data-cms-key="site.logo" @if($logoWidth) style="width: {{ $logoWidth }}; @if($logoHeight) height: {{ $logoHeight }}; @endif" @endif>
+                    <img src="{{ $lightLogoSrc }}" alt="AQUA POS" class="navbar-brand__logo navbar-brand__logo--light" data-cms-key="site.logo_light" @if($lightLogoWidth) style="width: {{ $lightLogoWidth }}; @if($lightLogoHeight) height: {{ $lightLogoHeight }}; @endif" @endif>
+                    <img src="{{ $darkLogoSrc }}" alt="AQUA POS" class="navbar-brand__logo navbar-brand__logo--dark" data-cms-key="site.logo_dark" @if($darkLogoWidth) style="width: {{ $darkLogoWidth }}; @if($darkLogoHeight) height: {{ $darkLogoHeight }}; @endif" @endif>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="fa fa-bars"></span>

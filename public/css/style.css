@@ -1434,6 +1434,18 @@ body.dark-mode .home-blog-grid .blog-item span {
     width: auto;
 }
 
+.navbar-brand__logo--dark {
+    display: none;
+}
+
+body.dark-mode .navbar-brand__logo--light {
+    display: none;
+}
+
+body.dark-mode .navbar-brand__logo--dark {
+    display: inline-block;
+}
+
 .footer {
     position: relative;
     background: linear-gradient(120deg, #020617 0%, #0b1f47 55%, #0f4c81 100%);
