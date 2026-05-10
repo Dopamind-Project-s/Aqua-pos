@@ -33,8 +33,8 @@
             @endphp
             <nav class="navbar navbar-expand-lg navbar-light bg-white px-4 px-lg-5 py-3 py-lg-0">
                 <a href="{{ url('/') }}" class="navbar-brand p-0">
-                    <img src="{{ $lightLogoSrc }}" alt="AQUA POS" class="navbar-brand__logo navbar-brand__logo--light" data-cms-key="site.logo_light" @if($lightLogoWidth) style="width: {{ $lightLogoWidth }}; @if($lightLogoHeight) height: {{ $lightLogoHeight }}; @endif" @endif>
-                    <img src="{{ $darkLogoSrc }}" alt="AQUA POS" class="navbar-brand__logo navbar-brand__logo--dark" data-cms-key="site.logo_dark" @if($darkLogoWidth) style="width: {{ $darkLogoWidth }}; @if($darkLogoHeight) height: {{ $darkLogoHeight }}; @endif" @endif>
+                    <img src="{{ $lightLogoSrc }}" alt="AQUA POS" class="navbar-brand__logo navbar-brand__logo--light" data-logo-theme="light" data-cms-key="site.logo_light" @if($lightLogoWidth) style="width: {{ $lightLogoWidth }}; @if($lightLogoHeight) height: {{ $lightLogoHeight }}; @endif" @endif>
+                    <img src="{{ $darkLogoSrc }}" alt="AQUA POS" class="navbar-brand__logo navbar-brand__logo--dark" data-logo-theme="dark" data-cms-key="site.logo_dark" hidden @if($darkLogoWidth) style="width: {{ $darkLogoWidth }}; @if($darkLogoHeight) height: {{ $darkLogoHeight }}; @endif" @endif>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="fa fa-bars"></span>

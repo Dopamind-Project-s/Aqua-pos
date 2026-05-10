@@ -830,6 +830,20 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
+    var syncHeaderLogos = function (theme) {
+        var isDark = theme === 'dark';
+
+        document.querySelectorAll('[data-logo-theme="light"]').forEach(function (logo) {
+            logo.hidden = isDark;
+            logo.style.display = isDark ? 'none' : '';
+        });
+
+        document.querySelectorAll('[data-logo-theme="dark"]').forEach(function (logo) {
+            logo.hidden = !isDark;
+            logo.style.display = isDark ? '' : 'none';
+        });
+    };
+
     var setTheme = function (theme) {
         var body = document.body;
         var themeLabel = document.getElementById('themeLabel');
@@ -854,6 +868,9 @@ document.addEventListener('DOMContentLoaded', function () {
             themeToggle.classList.toggle('is-dark', theme === 'dark');
             themeToggle.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
         }
+
+        syncHeaderLogos(theme);
+
         setTimeout(function () {
             body.classList.remove('theme-fade');
         }, 300);
@@ -861,6 +878,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (typeof window.aquaApplyCmsPage === 'function') {
             window.aquaApplyCmsPage();
+            syncHeaderLogos(theme);
         }
     };
 

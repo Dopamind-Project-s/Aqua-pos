@@ -1434,6 +1434,10 @@ body.dark-mode .home-blog-grid .blog-item span {
     width: auto;
 }
 
+.navbar-brand__logo[hidden] {
+    display: none !important;
+}
+
 .navbar-brand__logo--dark {
     display: none;
 }
