@@ -19,7 +19,7 @@
                                 </div>
                                 <div class="feature-content d-flex flex-column flex-grow-1">
                                     <h5 class="mb-4"><span data-i18n="home.features.card1.title">Reliable POS Workflows</span></h5>
-                                    <p class="mb-0"><span data-i18n="home.features.card.desc">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</span></p>
+                                    <p class="mb-0"><span data-i18n="home.features.card1.desc">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</span></p>
                                 </div>
                             </div>
                         </div>
@@ -34,7 +34,7 @@
                                 </div>
                                 <div class="feature-content d-flex flex-column flex-grow-1">
                                     <h5 class="mb-4"><span data-i18n="home.features.card2.title">Smart Inventory Control</span></h5>
-                                    <p class="mb-0"><span data-i18n="home.features.card.desc">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</span></p>
+                                    <p class="mb-0"><span data-i18n="home.features.card2.desc">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</span></p>
                                 </div>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                                 </div>
                                 <div class="feature-content d-flex flex-column flex-grow-1">
                                     <h5 class="mb-4"><span data-i18n="home.features.card3.title">Real-Time Business Insights</span></h5>
-                                    <p class="mb-0"><span data-i18n="home.features.card.desc">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</span></p>
+                                    <p class="mb-0"><span data-i18n="home.features.card3.desc">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</span></p>
                                 </div>
                             </div>
                         </div>
@@ -64,7 +64,7 @@
                                 </div>
                                 <div class="feature-content d-flex flex-column flex-grow-1">
                                     <h5 class="mb-4"><span data-i18n="home.features.card4.title">Unified Branch Management</span></h5>
-                                    <p class="mb-0"><span data-i18n="home.features.card.desc">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</span></p>
+                                    <p class="mb-0"><span data-i18n="home.features.card4.desc">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</span></p>
                                 </div>
                             </div>
                         </div>
@@ -79,7 +79,7 @@
                                 </div>
                                 <div class="feature-content d-flex flex-column flex-grow-1">
                                     <h5 class="mb-4"><span data-i18n="home.features.card5.title">Fast Checkout Experience</span></h5>
-                                    <p class="mb-0"><span data-i18n="home.features.card.desc">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</span></p>
+                                    <p class="mb-0"><span data-i18n="home.features.card5.desc">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</span></p>
                                 </div>
                             </div>
                         </div>
@@ -94,7 +94,7 @@
                                 </div>
                                 <div class="feature-content d-flex flex-column flex-grow-1">
                                     <h5 class="mb-4"><span data-i18n="home.features.card6.title">Jordan-Based SaaS Team</span></h5>
-                                    <p class="mb-0"><span data-i18n="home.features.card.desc">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</span></p>
+                                    <p class="mb-0"><span data-i18n="home.features.card6.desc">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</span></p>
                                 </div>
                             </div>
                         </div>
@@ -109,7 +109,7 @@
                                 </div>
                                 <div class="feature-content d-flex flex-column flex-grow-1">
                                     <h5 class="mb-4"><span data-i18n="home.features.card7.title">Real-Time Analytics</span></h5>
-                                    <p class="mb-0"><span data-i18n="home.features.card.desc">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</span></p>
+                                    <p class="mb-0"><span data-i18n="home.features.card7.desc">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</span></p>
                                 </div>
                             </div>
                         </div>
@@ -124,7 +124,7 @@
                                 </div>
                                 <div class="feature-content d-flex flex-column flex-grow-1">
                                     <h5 class="mb-4"><span data-i18n="home.features.card8.title">Control & Visibility</span></h5>
-                                    <p class="mb-0"><span data-i18n="home.features.card.desc">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</span></p>
+                                    <p class="mb-0"><span data-i18n="home.features.card8.desc">Built to keep sales, stock, and branch performance connected in one reliable cloud system.</span></p>
                                 </div>
                             </div>
                         </div>

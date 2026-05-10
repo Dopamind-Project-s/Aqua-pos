@@ -233,7 +233,7 @@
                 };
                 img.src = previewUrl;
 
-                applyImageToMatchingElements(state.current.fieldKey, {
+                applyImageToMatchingElements(state.current.sectionKey, state.current.fieldKey, {
                     src: previewUrl,
                     url: previewUrl,
                 }, {
@@ -396,7 +396,7 @@
             height: height || null,
         };
 
-        applyImageToMatchingElements(state.current.fieldKey, {
+        applyImageToMatchingElements(state.current.sectionKey, state.current.fieldKey, {
             src: state.current.el.getAttribute('src'),
         }, style);
 
@@ -435,7 +435,7 @@
                 });
             })
             .then(function (payload) {
-                applyImageToMatchingElements(state.current.fieldKey, {
+                applyImageToMatchingElements(state.current.sectionKey, state.current.fieldKey, {
                     src: payload.url,
                     url: payload.url,
                 }, style);
@@ -460,8 +460,10 @@
             });
     };
 
-    var applyImageToMatchingElements = function (fieldKey, content, style) {
-        document.querySelectorAll('[data-cms-key="' + fieldKey + '"]').forEach(function (el) {
+    var applyImageToMatchingElements = function (sectionKey, fieldKey, content, style) {
+        var scope = document.querySelector('[data-cms-section="' + sectionKey + '"]') || document;
+
+        scope.querySelectorAll('[data-cms-key="' + fieldKey + '"]').forEach(function (el) {
             if (el.tagName !== 'IMG') {
                 return;
             }

@@ -11,12 +11,12 @@
                                 <div class="col-sm-6">
                                     <div class="d-flex flex-column h-100">
                                         <div class="mb-4">
-                                            <h5 class="mb-3"><i class="fa fa-check text-primary me-2"></i><span data-i18n="home.solution.itemTitle"> Body Relaxation</span></h5>
-                                            <p class="mb-0"><span data-i18n="home.solution.itemDesc">From onboarding to go-live, our team ensures a smooth deployment with clear workflows and measurable operational improvements.</span></p>
+                                            <h5 class="mb-3"><i class="fa fa-check text-primary me-2"></i><span data-i18n="home.solution.item1.title"> Body Relaxation</span></h5>
+                                            <p class="mb-0"><span data-i18n="home.solution.item1.desc">From onboarding to go-live, our team ensures a smooth deployment with clear workflows and measurable operational improvements.</span></p>
                                         </div>
                                         <div class="mb-4">
-                                            <h5 class="mb-3"><i class="fa fa-check text-primary me-2"></i><span data-i18n="home.solution.itemTitle"> Body Relaxation</span></h5>
-                                            <p class="mb-0"><span data-i18n="home.solution.itemDesc">From onboarding to go-live, our team ensures a smooth deployment with clear workflows and measurable operational improvements.</span></p>
+                                            <h5 class="mb-3"><i class="fa fa-check text-primary me-2"></i><span data-i18n="home.solution.item2.title"> Body Relaxation</span></h5>
+                                            <p class="mb-0"><span data-i18n="home.solution.item2.desc">From onboarding to go-live, our team ensures a smooth deployment with clear workflows and measurable operational improvements.</span></p>
                                         </div>
                                         <div class="text-start mb-4">
                                             <a href="{{ route('contact') }}" class="btn btn-primary rounded-pill text-white py-3 px-5"><span data-i18n="home.common.moreDetails">More Details</span></a>

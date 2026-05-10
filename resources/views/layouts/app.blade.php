@@ -188,7 +188,9 @@
                 const data = content[key];
                 const style = section.style?.[key] || data?.style || {};
 
-                document.querySelectorAll('[data-cms-key=\"' + key + '\"]').forEach(function (el) {
+                const scope = sectionNode || document;
+
+                scope.querySelectorAll('[data-cms-key=\"' + key + '\"]').forEach(function (el) {
                     if (el.tagName === 'IMG' && (data?.src || data?.url || typeof data === 'string')) {
                         el.src = data?.src || data?.url || data;
                         if (style?.width) el.style.width = style.width;

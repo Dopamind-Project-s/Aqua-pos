@@ -7,7 +7,6 @@
         <h1 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s"><span data-i18n="clients.pageTitle">Our Clients</span></h1>
         <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
             <li class="breadcrumb-item"><a href="{{ url('/') }}"><span data-i18n="breadcrumb.home">Home</span></a></li>
-            <li class="breadcrumb-item"><a href="#"><span data-i18n="breadcrumb.pages">Pages</span></a></li>
             <li class="breadcrumb-item active text-primary"><span data-i18n="clients.pageCrumb">Clients</span></li>
         </ol>
     </div>
