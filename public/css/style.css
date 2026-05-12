@@ -527,6 +527,10 @@ body.dark-mode .topbar-social-btn:hover {
     width: 75%;
     
 }
+
+.cms-hero-image-edit {
+    display: none;
+}
 /*** Carousel Hero Header End ***/
 
 

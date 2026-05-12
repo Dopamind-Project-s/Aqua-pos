@@ -134,8 +134,11 @@
 
             <!-- Carousel Start -->
             <div class="header-carousel owl-carousel" data-cms-section="hero">
-                <div class="header-carousel-item" data-cms-section="hero-slide-1">
-                    <img src="{{ dynamic_content($cmsPageKey . '.hero.home.hero.image_1.src', asset('img/carousel-1.jpg')) }}" class="img-fluid w-100" alt="Image" data-cms-key="home.hero.image_1">
+                <div class="header-carousel-item" data-cms-slide="hero-slide-1">
+                    <img src="{{ dynamic_content($cmsPageKey . '.hero.home.hero.image_1.src', dynamic_content($cmsPageKey . '.hero-slide-1.home.hero.image_1.src', asset('img/carousel-1.jpg'))) }}" class="img-fluid w-100" alt="Image" data-cms-key="home.hero.image_1">
+                    <button type="button" class="cms-hero-image-edit" data-cms-key="home.hero.image_1" data-cms-type="image" aria-label="Edit hero slide image">
+                        <i class="fas fa-image"></i>
+                    </button>
                     <div class="carousel-caption">
                         <div class="carousel-caption-content p-3">
                             <h5 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;" data-cms-key="home.hero.eyebrow">{{ dynamic_content($cmsPageKey . '.hero.home.hero.eyebrow.en', 'Cloud POS Platform') }}</h5>
@@ -146,8 +149,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="header-carousel-item" data-cms-section="hero-slide-2">
-                    <img src="{{ dynamic_content($cmsPageKey . '.hero.home.hero.image_2.src', asset('img/carousel-2.jpg')) }}" class="img-fluid w-100" alt="Image" data-cms-key="home.hero.image_2">
+                <div class="header-carousel-item" data-cms-slide="hero-slide-2">
+                    <img src="{{ dynamic_content($cmsPageKey . '.hero.home.hero.image_2.src', dynamic_content($cmsPageKey . '.hero-slide-2.home.hero.image_2.src', asset('img/carousel-2.jpg'))) }}" class="img-fluid w-100" alt="Image" data-cms-key="home.hero.image_2">
+                    <button type="button" class="cms-hero-image-edit" data-cms-key="home.hero.image_2" data-cms-type="image" aria-label="Edit hero slide image">
+                        <i class="fas fa-image"></i>
+                    </button>
                     <div class="carousel-caption">
                         <div class="carousel-caption-content p-3">
                             <h5 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;" data-cms-key="home.hero.eyebrow_2">{{ dynamic_content($cmsPageKey . '.hero.home.hero.eyebrow_2.en', 'Cloud POS Platform') }}</h5>
@@ -155,6 +161,21 @@
                             <p class="mb-5 fs-5 animated slideInDown" data-cms-key="home.hero.description_2">{{ dynamic_content($cmsPageKey . '.hero.home.hero.description_2.en', 'Built in Amman, Jordan, AQUA POS helps restaurants and retailers manage sales, stock, and branches with speed, control, and real-time visibility.') }}
                             </p>
                             <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="{{ dynamic_content($cmsPageKey . '.hero.home.hero.cta_2.link', '#') }}" data-cms-key="home.hero.cta_2"><span>{{ dynamic_content($cmsPageKey . '.hero.home.hero.cta_2.en', 'Book Appointment') }}</span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-carousel-item" data-cms-slide="hero-slide-3">
+                    <img src="{{ dynamic_content($cmsPageKey . '.hero.home.hero.image_3.src', dynamic_content($cmsPageKey . '.hero-slide-3.home.hero.image_3.src', asset('img/carousel-1.jpg'))) }}" class="img-fluid w-100" alt="Image" data-cms-key="home.hero.image_3">
+                    <button type="button" class="cms-hero-image-edit" data-cms-key="home.hero.image_3" data-cms-type="image" aria-label="Edit hero slide image">
+                        <i class="fas fa-image"></i>
+                    </button>
+                    <div class="carousel-caption">
+                        <div class="carousel-caption-content p-3">
+                            <h5 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;" data-cms-key="home.hero.eyebrow_3">{{ dynamic_content($cmsPageKey . '.hero.home.hero.eyebrow_3.en', 'Cloud POS Platform') }}</h5>
+                            <h1 class="display-1 text-capitalize text-white mb-4" data-cms-key="home.hero.title_3">{{ dynamic_content($cmsPageKey . '.hero.home.hero.title_3.en', 'Powerful POS & Inventory Management Software') }}</h1>
+                            <p class="mb-5 fs-5 animated slideInDown" data-cms-key="home.hero.description_3">{{ dynamic_content($cmsPageKey . '.hero.home.hero.description_3.en', 'Built in Amman, Jordan, AQUA POS helps restaurants and retailers manage sales, stock, and branches with speed, control, and real-time visibility.') }}
+                            </p>
+                            <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="{{ dynamic_content($cmsPageKey . '.hero.home.hero.cta_3.link', '#') }}" data-cms-key="home.hero.cta_3"><span>{{ dynamic_content($cmsPageKey . '.hero.home.hero.cta_3.en', 'Book Appointment') }}</span></a>
                         </div>
                     </div>
                 </div>

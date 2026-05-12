@@ -97,7 +97,7 @@
             el: el,
             sectionKey: getSectionKey(el),
             fieldKey: resolveFieldKey(el),
-            type: tag === 'VIDEO' ? 'video' : tag === 'IMG' ? 'image' : tag === 'I' ? 'icon' : tag === 'A' || el.classList.contains('btn') ? 'button' : 'text',
+            type: el.dataset.cmsType || (tag === 'VIDEO' ? 'video' : tag === 'IMG' ? 'image' : tag === 'I' ? 'icon' : tag === 'A' || el.classList.contains('btn') ? 'button' : 'text'),
         };
 
         openModalByType();
