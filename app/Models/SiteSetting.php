@@ -46,6 +46,7 @@ class SiteSetting extends Model
         'footer_company_title',
         'footer_company_description',
         'about_site_paragraph',
+        'home_solution_video',
     ];
 
     protected function casts(): array

@@ -44,9 +44,10 @@
             routes: {
                 save: @json(route('admin.cms.save')),
                 uploadImage: @json(route('admin.cms.upload-image')),
+                uploadVideo: @json(route('admin.cms.upload-video')),
             },
             locale: @json(app()->getLocale()),
         };
     </script>
-    <script src="{{ asset('js/cms-editor.js') }}"></script>
+    <script src="{{ asset('js/cms-editor.js') }}?v={{ filemtime(public_path('js/cms-editor.js')) }}"></script>
 @endif

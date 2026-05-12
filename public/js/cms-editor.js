@@ -97,7 +97,7 @@
             el: el,
             sectionKey: getSectionKey(el),
             fieldKey: resolveFieldKey(el),
-            type: tag === 'IMG' ? 'image' : tag === 'I' ? 'icon' : tag === 'A' || el.classList.contains('btn') ? 'button' : 'text',
+            type: tag === 'VIDEO' ? 'video' : tag === 'IMG' ? 'image' : tag === 'I' ? 'icon' : tag === 'A' || el.classList.contains('btn') ? 'button' : 'text',
         };
 
         openModalByType();
@@ -108,7 +108,9 @@
             return;
         }
 
-        if (state.current.type === 'image') {
+        if (state.current.type === 'video') {
+            openVideoModal();
+        } else if (state.current.type === 'image') {
             openImageModal();
         } else if (state.current.type === 'button') {
             openButtonModal();
@@ -206,6 +208,15 @@
         modal.show();
     };
 
+    var openVideoModal = function () {
+        modalBody.innerHTML = '' +
+            '<div class="mb-3"><label class="form-label">Upload Video</label><input type="file" class="form-control" id="cmsVideoInput" accept="video/mp4,video/webm,video/ogg"></div>' +
+            '<div class="mb-3"><label class="form-label">Cover Image</label><input type="file" class="form-control" id="cmsVideoPosterInput" accept="image/*"></div>' +
+            '<small class="text-muted d-block">Supported video types: MP4, WebM, OGG. Max video size: 200MB.</small>';
+
+        modal.show();
+    };
+
     var bindImagePreview = function () {
         setTimeout(function () {
             var input = document.getElementById('cmsImageInput');
@@ -249,6 +260,11 @@
 
         if (state.current.type === 'image') {
             saveImageChanges();
+            return;
+        }
+
+        if (state.current.type === 'video') {
+            saveVideoChanges();
             return;
         }
 
@@ -460,6 +476,93 @@
             });
     };
 
+    var saveVideoChanges = function () {
+        var videoFile = document.getElementById('cmsVideoInput').files[0];
+        var posterFile = document.getElementById('cmsVideoPosterInput').files[0];
+        var currentSource = state.current.el.querySelector('source')?.getAttribute('src') || '';
+        var currentPoster = state.current.el.getAttribute('poster') || '';
+        var maxVideoSize = 200 * 1024 * 1024;
+
+        if (videoFile && videoFile.size > maxVideoSize) {
+            alert('Video is too large. Please upload a file up to 200MB.');
+            return;
+        }
+
+        var uploadVideo = videoFile
+            ? uploadCmsFile(window.CMS_EDITOR.routes.uploadVideo, 'video', videoFile)
+            : Promise.resolve({ url: currentSource, path: null });
+
+        var uploadPoster = posterFile
+            ? uploadCmsFile(window.CMS_EDITOR.routes.uploadImage, 'image', posterFile)
+            : Promise.resolve({ url: currentPoster, path: null });
+
+        Promise.all([uploadVideo, uploadPoster])
+            .then(function (results) {
+                var videoPayload = results[0];
+                var posterPayload = results[1];
+                var content = {
+                    type: 'video',
+                    src: videoPayload.url || currentSource,
+                    poster: posterPayload.url || currentPoster,
+                };
+
+                if (videoPayload.path) {
+                    content.path = videoPayload.path;
+                }
+
+                if (posterPayload.path) {
+                    content.poster_path = posterPayload.path;
+                }
+
+                applyVideoToMatchingElements(state.current.sectionKey, state.current.fieldKey, content);
+                queueChange(state.current.sectionKey, {
+                    field_key: state.current.fieldKey,
+                    content: content,
+                    style: {},
+                });
+
+                if (typeof window.aquaApplyCmsPage === 'function') {
+                    window.aquaApplyCmsPage();
+                }
+
+                modal.hide();
+            })
+            .catch(function (error) {
+                alert(error.message || 'Video upload failed.');
+            });
+    };
+
+    var uploadCmsFile = function (route, fieldName, file) {
+        var form = new FormData();
+        form.append(fieldName, file);
+
+        return fetch(route, {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': window.CMS_EDITOR.csrf,
+                'Accept': 'application/json',
+            },
+            body: form,
+        })
+            .then(function (response) {
+                return response.text().then(function (text) {
+                    var payload = {};
+
+                    try {
+                        payload = text ? JSON.parse(text) : {};
+                    } catch (error) {
+                        throw new Error('Upload failed. The server returned an HTML error page instead of JSON. Please check the file type and size.');
+                    }
+
+                    if (!response.ok || !payload.url) {
+                        throw new Error(payload.message || Object.values(payload.errors || {}).flat().join(' ') || 'Upload failed.');
+                    }
+
+                    return payload;
+                });
+            });
+    };
+
     var applyImageToMatchingElements = function (sectionKey, fieldKey, content, style) {
         var scope = document.querySelector('[data-cms-section="' + sectionKey + '"]') || document;
 
@@ -482,6 +585,33 @@
             if (style?.height) {
                 el.style.height = style.height;
             }
+        });
+    };
+
+    var applyVideoToMatchingElements = function (sectionKey, fieldKey, content) {
+        var scope = document.querySelector('[data-cms-section="' + sectionKey + '"]') || document;
+
+        scope.querySelectorAll('[data-cms-key="' + fieldKey + '"]').forEach(function (el) {
+            if (el.tagName !== 'VIDEO') {
+                return;
+            }
+
+            if (content.poster) {
+                el.setAttribute('poster', content.poster);
+            }
+
+            if (content.src) {
+                var source = el.querySelector('source');
+                if (!source) {
+                    source = document.createElement('source');
+                    el.appendChild(source);
+                }
+
+                source.setAttribute('src', content.src);
+                el.load();
+            }
+
+            el.closest('.appointment-video')?.querySelector('.appointment-video__placeholder')?.remove();
         });
     };
 

@@ -39,6 +39,7 @@ class SiteSettingSeeder extends Seeder
                 'footer_company_title' => 'AQUA POS',
                 'footer_company_description' => 'AQUA POS delivers cloud POS, inventory, and business automation tools that improve speed, control, and growth for modern businesses.',
                 'about_site_paragraph' => 'AQUA POS is a unified cloud platform that connects sales, inventory, analytics, and customer operations to help businesses scale with confidence.',
+                'home_solution_video' => null,
 
                 // Legacy KV compatibility columns
                 'key' => 'global',

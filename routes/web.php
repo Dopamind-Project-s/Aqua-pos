@@ -122,6 +122,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('page', [DynamicContentController::class, 'index'])->name('index');
             Route::post('save', [DynamicContentController::class, 'save'])->name('save');
             Route::post('upload-image', [DynamicContentController::class, 'uploadImage'])->name('upload-image');
+            Route::post('upload-video', [DynamicContentController::class, 'uploadVideo'])->name('upload-video');
         });
 
         Route::get('settings', [SiteSettingController::class, 'edit'])->name('settings.edit');

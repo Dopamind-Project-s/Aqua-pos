@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 <div class="row g-4 g-lg-5">
-                    <div class="col-md-6 col-lg-6 col-xl-4">
+                    <div class="col-md-6 col-xl-4">
                         <div class="footer-item footer-item--about d-flex flex-column">
                             <div class="footer-brand mb-3">
                                 @if($siteSetting?->secondary_logo)
@@ -66,18 +66,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-lg-6 col-xl-2">
-                        <div class="footer-item d-flex flex-column">
-                            <h4 class="mb-4 text-white" data-i18n="footer.quickLinks">Quick Links</h4>
-                            <a href="{{ route('about') }}"><i class="fas fa-angle-right me-2"></i><span data-i18n="footer.about">About Us</span></a>
-                            <a href="{{ route('contact') }}"><i class="fas fa-angle-right me-2"></i><span data-i18n="footer.contact">Contact Us</span></a>
-                            <a href="{{ route('blog') }}"><i class="fas fa-angle-right me-2"></i><span data-i18n="footer.blog">Our Blog & News</span></a>
-                            <a href="{{ route('partners.index') }}"><i class="fas fa-angle-right me-2"></i><span data-i18n="footer.partners">Partners</span></a>
-                            <a href="{{ route('products') }}"><i class="fas fa-angle-right me-2"></i><span data-i18n="footer.products">Products</span></a>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-lg-6 col-xl-3">
+                    <div class="col-md-6 col-xl-4">
                         <div class="footer-item d-flex flex-column">
                             <h4 class="mb-4 text-white" data-i18n="footer.servicesTitle">AQUA POS Services</h4>
                             <a href="{{ route('products') }}"><i class="fas fa-angle-right me-2"></i><span data-i18n="footer.service1">POS & Inventory Platform</span></a>
@@ -89,7 +78,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-lg-6 col-xl-3">
+                    <div class="col-md-6 col-xl-4">
                         <div class="footer-item footer-contact d-flex flex-column">
                             <h4 class="mb-4 text-white">{{ $siteSetting?->hq_title ?: 'Head Quarter' }}</h4>
                             <a href="{{ $siteSetting?->google_map_embed ?: '#' }}" target="_blank" rel="noopener"><i class="fa fa-map-marker-alt me-2"></i> {{ $siteSetting?->hq_address ?: 'AQUA POS Amman, Jordan' }}</a>

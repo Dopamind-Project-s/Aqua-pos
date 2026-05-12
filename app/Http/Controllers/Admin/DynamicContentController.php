@@ -71,6 +71,20 @@ class DynamicContentController extends Controller
         ]);
     }
 
+    public function uploadVideo(Request $request): JsonResponse
+    {
+        $validated = $request->validate([
+            'video' => ['required', 'file', 'mimetypes:video/mp4,video/webm,video/ogg', 'max:204800'],
+        ]);
+
+        $path = $validated['video']->store('cms/videos', 'public');
+
+        return response()->json([
+            'path' => $path,
+            'url' => '/storage/'.ltrim($path, '/'),
+        ]);
+    }
+
     private function deepMerge(array $base, array $incoming): array
     {
         foreach ($incoming as $key => $value) {

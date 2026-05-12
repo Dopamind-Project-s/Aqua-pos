@@ -195,6 +195,18 @@
                         el.src = data?.src || data?.url || data;
                         if (style?.width) el.style.width = style.width;
                         if (style?.height) el.style.height = style.height;
+                    } else if (el.tagName === 'VIDEO' && data?.type === 'video') {
+                        if (data?.poster) el.setAttribute('poster', data.poster);
+                        if (data?.src) {
+                            let source = el.querySelector('source');
+                            if (!source) {
+                                source = document.createElement('source');
+                                el.appendChild(source);
+                            }
+                            source.setAttribute('src', data.src);
+                            el.load();
+                        }
+                        el.closest('.appointment-video')?.querySelector('.appointment-video__placeholder')?.remove();
                     } else if (data?.type === 'text') {
                         applyTextContent(el, { ...data, style: style });
                     } else if (data?.type === 'button') {

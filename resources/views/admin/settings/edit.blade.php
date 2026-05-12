@@ -86,6 +86,16 @@
                 <div class="col-md-6"><label class="form-label">Head Quarter Title</label><input type="text" name="hq_title" value="{{ old('hq_title', $setting->hq_title) }}" class="form-control"></div>
                 <div class="col-12"><label class="form-label">Footer Company Description</label><textarea name="footer_company_description" rows="3" class="form-control">{{ old('footer_company_description', $setting->footer_company_description) }}</textarea></div>
                 <div class="col-12"><label class="form-label">About Site Paragraph</label><textarea name="about_site_paragraph" rows="4" class="form-control">{{ old('about_site_paragraph', $setting->about_site_paragraph) }}</textarea></div>
+                <div class="col-12">
+                    <label class="form-label">Home Solution Video</label>
+                    <input type="file" name="home_solution_video" class="form-control @error('home_solution_video') is-invalid @enderror" accept="video/mp4,video/webm,video/ogg">
+                    @error('home_solution_video')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                    @if($setting->home_solution_video)
+                        <video class="mt-2 rounded border bg-dark" style="width: 100%; max-width: 420px;" controls muted>
+                            <source src="{{ public_storage_url($setting->home_solution_video) }}">
+                        </video>
+                    @endif
+                </div>
 
                 <div class="col-md-6"><label class="form-label">Head Quarter Address</label><input type="text" name="hq_address" value="{{ old('hq_address', $setting->hq_address) }}" class="form-control"></div>
                 <div class="col-md-3"><label class="form-label">Info Email</label><input type="email" name="info_email" value="{{ old('info_email', $setting->info_email) }}" class="form-control"></div>

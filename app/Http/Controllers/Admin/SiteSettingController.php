@@ -46,6 +46,14 @@ class SiteSettingController extends Controller
             $validated['secondary_logo'] = $request->file('secondary_logo')->store('site-settings', 'public');
         }
 
+        if ($request->hasFile('home_solution_video')) {
+            if ($setting->home_solution_video) {
+                Storage::disk('public')->delete($setting->home_solution_video);
+            }
+
+            $validated['home_solution_video'] = $request->file('home_solution_video')->store('site-settings', 'public');
+        }
+
         $setting->update($validated);
 
         return redirect()->route('admin.settings.edit')->with('success', 'Site settings updated successfully.');
