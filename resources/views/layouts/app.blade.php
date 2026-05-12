@@ -212,7 +212,11 @@
                     } else if (data?.type === 'button') {
                         const locale = document.documentElement.getAttribute('lang') === 'ar' ? 'ar' : 'en';
                         el.textContent = data?.[locale] || data?.en || data?.ar || el.textContent;
-                        if (data?.link) el.setAttribute('href', data.link);
+                        if (el.dataset.cmsFixedHref) {
+                            el.setAttribute('href', el.dataset.cmsFixedHref);
+                        } else if (data?.link) {
+                            el.setAttribute('href', data.link);
+                        }
                         if (style?.background_color) el.style.backgroundColor = themed(style.background_color);
                         if (style?.text_color) el.style.color = themed(style.text_color);
                         if (style?.border_color) el.style.borderColor = themed(style.border_color);

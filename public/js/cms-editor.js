@@ -357,7 +357,7 @@
         var el = state.current.el;
         var ar = document.getElementById('cmsBtnTextAr').value;
         var en = document.getElementById('cmsBtnTextEn').value;
-        var link = document.getElementById('cmsBtnLink').value;
+        var link = el.dataset.cmsFixedHref || document.getElementById('cmsBtnLink').value;
 
         var style = {
             background_color: styleForModes(document.getElementById('cmsBtnBgLight').value, document.getElementById('cmsBtnBgDark').value),

@@ -102,15 +102,9 @@
                             </div>
                         </div>
                         <a href="{{ route('partners.index') }}" class="nav-item nav-link {{ request()->routeIs('partners.*') ? 'active' : '' }} nav-link--partners"><i class="fas fa-handshake me-2"></i><span data-i18n="nav.partners">Partners</span></a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle {{ request()->routeIs('support') || request()->routeIs('contact') ? 'active' : '' }}" data-bs-toggle="dropdown">
-                                <i class="fas fa-headset me-2"></i><span data-i18n="nav.help">Help</span>
-                            </a>
-                            <div class="dropdown-menu m-0">
-                                <a href="{{ route('support') }}" class="dropdown-item {{ request()->routeIs('support') ? 'active' : '' }}"><i class="fas fa-life-ring me-2"></i><span data-i18n="nav.support">Support</span></a>
-                                <a href="{{ route('contact') }}" class="dropdown-item {{ request()->routeIs('contact') ? 'active' : '' }}"><i class="fas fa-envelope me-2"></i><span data-i18n="nav.contact">Contact</span></a>
-                            </div>
-                        </div>
+                        <a href="{{ route('support') }}" class="nav-item nav-link {{ request()->routeIs('support') ? 'active' : '' }}">
+                            <i class="fas fa-life-ring me-2"></i><span data-i18n="nav.support">Support</span>
+                        </a>
                         <a href="{{ route('about') }}" class="nav-item nav-link {{ request()->routeIs('about') ? 'active' : '' }}"><i class="fas fa-circle-info me-2"></i><span data-i18n="nav.about">About</span></a>
                     </div>
                     <div class="nav-toolbar" aria-label="Quick controls">
@@ -145,7 +139,7 @@
                             <h1 class="display-1 text-capitalize text-white mb-4" data-cms-key="home.hero.title">{{ dynamic_content($cmsPageKey . '.hero.home.hero.title.en', 'Powerful POS & Inventory Management Software') }}</h1>
                             <p class="mb-5 fs-5" data-cms-key="home.hero.description">{{ dynamic_content($cmsPageKey . '.hero.home.hero.description.en', 'Built in Amman, Jordan, AQUA POS helps restaurants and retailers manage sales, stock, and branches with speed, control, and real-time visibility.') }}
                             </p>
-                            <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="{{ dynamic_content($cmsPageKey . '.hero.home.hero.cta.link', '#') }}" data-cms-key="home.hero.cta"><span>{{ dynamic_content($cmsPageKey . '.hero.home.hero.cta.en', 'Book Appointment') }}</span></a>
+                            <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="{{ route('request-product-demo') }}" data-cms-key="home.hero.cta" data-cms-fixed-href="{{ route('request-product-demo') }}"><span>{{ dynamic_content($cmsPageKey . '.hero.home.hero.cta.en', 'Book Appointment') }}</span></a>
                         </div>
                     </div>
                 </div>
@@ -160,7 +154,7 @@
                             <h1 class="display-1 text-capitalize text-white mb-4" data-cms-key="home.hero.title_2">{{ dynamic_content($cmsPageKey . '.hero.home.hero.title_2.en', 'Powerful POS & Inventory Management Software') }}</h1>
                             <p class="mb-5 fs-5 animated slideInDown" data-cms-key="home.hero.description_2">{{ dynamic_content($cmsPageKey . '.hero.home.hero.description_2.en', 'Built in Amman, Jordan, AQUA POS helps restaurants and retailers manage sales, stock, and branches with speed, control, and real-time visibility.') }}
                             </p>
-                            <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="{{ dynamic_content($cmsPageKey . '.hero.home.hero.cta_2.link', '#') }}" data-cms-key="home.hero.cta_2"><span>{{ dynamic_content($cmsPageKey . '.hero.home.hero.cta_2.en', 'Book Appointment') }}</span></a>
+                            <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="{{ route('request-product-demo') }}" data-cms-key="home.hero.cta_2" data-cms-fixed-href="{{ route('request-product-demo') }}"><span>{{ dynamic_content($cmsPageKey . '.hero.home.hero.cta_2.en', 'Book Appointment') }}</span></a>
                         </div>
                     </div>
                 </div>
@@ -175,7 +169,7 @@
                             <h1 class="display-1 text-capitalize text-white mb-4" data-cms-key="home.hero.title_3">{{ dynamic_content($cmsPageKey . '.hero.home.hero.title_3.en', 'Powerful POS & Inventory Management Software') }}</h1>
                             <p class="mb-5 fs-5 animated slideInDown" data-cms-key="home.hero.description_3">{{ dynamic_content($cmsPageKey . '.hero.home.hero.description_3.en', 'Built in Amman, Jordan, AQUA POS helps restaurants and retailers manage sales, stock, and branches with speed, control, and real-time visibility.') }}
                             </p>
-                            <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="{{ dynamic_content($cmsPageKey . '.hero.home.hero.cta_3.link', '#') }}" data-cms-key="home.hero.cta_3"><span>{{ dynamic_content($cmsPageKey . '.hero.home.hero.cta_3.en', 'Book Appointment') }}</span></a>
+                            <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="{{ route('request-product-demo') }}" data-cms-key="home.hero.cta_3" data-cms-fixed-href="{{ route('request-product-demo') }}"><span>{{ dynamic_content($cmsPageKey . '.hero.home.hero.cta_3.en', 'Book Appointment') }}</span></a>
                         </div>
                     </div>
                 </div>
