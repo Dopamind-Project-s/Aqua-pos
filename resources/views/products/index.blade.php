@@ -20,7 +20,22 @@
     body.dark-mode .products-section-card,
     body.dark-mode .product-card,
     body.dark-mode .value-pill { background: #121c2c; border-color: #2a3d5a; color: #dbe8fd; }
+    body.dark-mode .products-hero .badge {
+        background: #eef6ff !important;
+        color: #0f172a !important;
+    }
+    body.dark-mode .product-card h3,
+    body.dark-mode .products-section-card h5,
+    body.dark-mode .products-section-card label,
+    body.dark-mode .product-card .small:not(.text-muted) { color: #f4f8ff !important; }
+    body.dark-mode .product-price { color: #8cc7ff !important; }
     body.dark-mode .text-muted { color: #aac2e4 !important; }
+    body.dark-mode .products-page .form-control,
+    body.dark-mode .products-page .form-select {
+        background-color: #f8fbff !important;
+        color: #0f172a !important;
+        border-color: #6ed5ef !important;
+    }
 </style>
 @endpush
 
