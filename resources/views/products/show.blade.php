@@ -106,19 +106,20 @@
     .product-hero-gallery .carousel-inner {
         border-radius: 14px;
         overflow: hidden;
-        background: rgba(255, 255, 255, .16);
+        background: rgba(6, 35, 51, .18);
     }
 
     .product-hero-slide {
         aspect-ratio: 4 / 3;
-        background: linear-gradient(135deg, rgba(255, 255, 255, .92), rgba(228, 247, 252, .86));
+        background: rgba(6, 35, 51, .18);
     }
 
     .product-hero-slide img {
+        display: block;
         width: 100%;
         height: 100%;
-        object-fit: contain;
-        padding: .55rem;
+        object-fit: cover;
+        object-position: center;
     }
 
     .product-hero-thumbs {
