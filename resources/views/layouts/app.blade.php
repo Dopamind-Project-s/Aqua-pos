@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+<html lang="{{ app_current_locale() }}" dir="{{ app_text_direction() }}">
 <head>
     @php
         $gtmContainerId = $siteSetting?->gtm_container_id ?: config('services.gtm.container_id');
@@ -65,6 +65,9 @@
 
     <!-- Main Style -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    @if(app_is_rtl())
+        <link href="{{ asset('css/rtl.css') }}" rel="stylesheet">
+    @endif
 
     @stack('styles')
 </head>

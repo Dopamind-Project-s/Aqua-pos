@@ -9,6 +9,27 @@ if (! function_exists('dynamic_content')) {
     }
 }
 
+if (! function_exists('app_current_locale')) {
+    function app_current_locale(): string
+    {
+        return str_replace('_', '-', app()->getLocale());
+    }
+}
+
+if (! function_exists('app_is_rtl')) {
+    function app_is_rtl(?string $locale = null): bool
+    {
+        return in_array($locale ?? app()->getLocale(), ['ar'], true);
+    }
+}
+
+if (! function_exists('app_text_direction')) {
+    function app_text_direction(?string $locale = null): string
+    {
+        return app_is_rtl($locale) ? 'rtl' : 'ltr';
+    }
+}
+
 if (! function_exists('public_storage_url')) {
     function public_storage_url(?string $path, ?string $fallback = null): string
     {

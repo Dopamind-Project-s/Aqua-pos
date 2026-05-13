@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app_current_locale() }}" dir="{{ app_text_direction() }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="{{ asset('dashboard/assets/css/styles.min.css') }}" rel="stylesheet">
+    @if(app_is_rtl())
+        <link href="{{ asset('css/rtl.css') }}" rel="stylesheet">
+    @endif
     <style>
         :root {
             --admin-topstrip-offset: 84px;
@@ -103,6 +106,42 @@
         body {
             font-family: 'Inter', 'Cairo', sans-serif;
             font-size: 14px;
+        }
+
+        [dir="rtl"] body {
+            font-family: 'Cairo', 'Inter', sans-serif;
+        }
+
+        [dir="rtl"] .left-sidebar {
+            right: 0;
+            left: auto;
+            border-right: 0;
+            border-left: 1px solid var(--bs-border-color);
+        }
+
+        [dir="rtl"] .sidebar-link {
+            text-align: right;
+        }
+
+        @media (min-width: 1200px) {
+            [dir="rtl"] #main-wrapper[data-layout=vertical][data-sidebartype=full] .body-wrapper {
+                margin-right: 270px;
+                margin-left: 0;
+            }
+        }
+
+        @media (max-width: 1199.98px) {
+            [dir="rtl"] #main-wrapper[data-layout=vertical][data-sidebartype=full] .left-sidebar,
+            [dir="rtl"] #main-wrapper[data-layout=vertical][data-sidebartype=mini-sidebar] .left-sidebar {
+                right: -270px;
+                left: auto;
+            }
+
+            [dir="rtl"] #main-wrapper[data-layout=vertical][data-sidebartype=full].show-sidebar .left-sidebar,
+            [dir="rtl"] #main-wrapper[data-layout=vertical][data-sidebartype=mini-sidebar].show-sidebar .left-sidebar {
+                right: 0;
+                left: auto;
+            }
         }
     </style>
 </head>
