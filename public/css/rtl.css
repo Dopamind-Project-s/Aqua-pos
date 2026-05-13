@@ -111,6 +111,11 @@
     padding-right: 0;
 }
 
+[dir="rtl"] .navbar .navbar-nav.ms-auto {
+    margin-right: 0 !important;
+    margin-left: auto !important;
+}
+
 [dir="rtl"] .breadcrumb-item + .breadcrumb-item {
     padding-right: var(--bs-breadcrumb-item-padding-x, .5rem);
     padding-left: 0;
