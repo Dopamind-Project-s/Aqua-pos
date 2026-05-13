@@ -17,9 +17,9 @@ class PublicRoutesTest extends TestCase
         $this->get(route('clients.index'))->assertOk();
     }
 
-    public function test_legacy_team_path_redirects_to_clients(): void
+    public function test_team_path_is_accessible(): void
     {
         $this->get('/team')
-            ->assertRedirect('/clients');
+            ->assertOk();
     }
 }

@@ -28,6 +28,7 @@
                 <li class="nav-small-cap mt-2"><span class="hide-menu">Relations</span></li>
                 <li class="sidebar-item"><a class="sidebar-link" href="{{ route('admin.partners.index') }}"><i class="ti ti-hand-stop"></i><span class="hide-menu">Partners</span></a></li>
                 <li class="sidebar-item"><a class="sidebar-link" href="{{ route('admin.clients.index') }}"><i class="ti ti-users-group"></i><span class="hide-menu">Clients</span></a></li>
+                <li class="sidebar-item"><a class="sidebar-link" href="{{ route('admin.team-members.index') }}"><i class="ti ti-users"></i><span class="hide-menu">Team Members</span></a></li>
 
                 <li class="nav-small-cap mt-2"><span class="hide-menu">System</span></li>
                 <li class="sidebar-item"><a class="sidebar-link" href="{{ route('admin.settings.edit') }}"><i class="ti ti-settings"></i><span class="hide-menu">Settings</span></a></li>

@@ -102,6 +102,7 @@
                             </div>
                         </div>
                         <a href="{{ route('partners.index') }}" class="nav-item nav-link {{ request()->routeIs('partners.*') ? 'active' : '' }} nav-link--partners"><i class="fas fa-handshake me-2"></i><span data-i18n="nav.partners">Partners</span></a>
+                        <a href="{{ route('team') }}" class="nav-item nav-link {{ request()->routeIs('team') ? 'active' : '' }}"><i class="fas fa-users me-2"></i><span data-i18n="nav.team">Our Team</span></a>
                         <a href="{{ route('support') }}" class="nav-item nav-link {{ request()->routeIs('support') ? 'active' : '' }}">
                             <i class="fas fa-life-ring me-2"></i><span data-i18n="nav.support">Support</span>
                         </a>

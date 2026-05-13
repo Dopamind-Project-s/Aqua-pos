@@ -13,8 +13,10 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryCatalogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PartnerController;
+use App\Http\Controllers\TeamController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\Admin\ClientController as AdminClientController;
+use App\Http\Controllers\Admin\TeamMemberController;
 use App\Http\Controllers\ServiceRequestController;
 use App\Http\Controllers\ProductCatalogController;
 use App\Http\Controllers\PublicMediaController;
@@ -41,7 +43,7 @@ Route::get('/news/{post:slug}', [BlogController::class, 'newsShow'])->name('news
 
 Route::get('/clients', [ClientController::class, 'index'])->name('clients.index');
 
-Route::redirect('/team', '/clients', 301)->name('legacy.team.redirect');
+Route::get('/team', [TeamController::class, 'index'])->name('team');
 
 Route::get('/partners', [PartnerController::class, 'index'])->name('partners.index');
 
@@ -108,6 +110,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::resource('clients', AdminClientController::class)->except(['show']);
         Route::post('clients/{client}/toggle-status', [AdminClientController::class, 'toggleStatus'])->name('clients.toggle-status');
+
+        Route::resource('team-members', TeamMemberController::class)->except(['show']);
+        Route::post('team-members/{teamMember}/toggle-status', [TeamMemberController::class, 'toggleStatus'])->name('team-members.toggle-status');
+        Route::post('team-members/reorder', [TeamMemberController::class, 'reorder'])->name('team-members.reorder');
 
         /*
         |--------------------------------------------------------------------------
