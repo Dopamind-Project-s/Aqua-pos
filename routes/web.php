@@ -33,7 +33,6 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/media/public/{path}', [PublicMediaController::class, 'show'])->where('path', '.*')->name('media.public');
 
 Route::view('/about', 'about')->name('about');
-Route::view('/feature', 'feature')->name('feature');
 
 Route::get('/blog', [BlogController::class, 'blogIndex'])->name('blog');
 Route::get('/blog/{post:slug}', [BlogController::class, 'blogShow'])->name('blog.show');

@@ -11,8 +11,10 @@
   --color-surface: #ffffff;
   --color-surface-elevated: #ffffff;
   --color-surface-muted: #eaf0f8;
-  --color-primary: #0ea5c6;
-  --color-primary-hover: #0891b2;
+  --color-primary: #70A094;
+  --color-primary-hover: #5f8f84;
+  --color-primary-active: #527c72;
+  --color-primary-contrast: #ffffff;
   --color-secondary: #1d4ed8;
   --color-accent: #8b5cf6;
   --color-text-primary: #0f172a;
@@ -21,13 +23,14 @@
   --color-border: #d6deea;
   --color-hover: #dfe9f5;
   --color-overlay: rgba(10, 20, 38, 0.55);
-  --color-overlay-soft: rgba(14, 165, 198, 0.82);
+  --color-overlay-soft: rgba(112, 160, 148, 0.82);
   --color-success: #059669;
   --color-warning: #d97706;
   --color-danger: #dc2626;
   --shadow-sm: 0 4px 14px rgba(15, 23, 42, 0.08);
   --shadow-md: 0 14px 34px rgba(15, 23, 42, 0.12);
   --bs-primary: var(--color-primary);
+  --bs-primary-rgb: 112, 160, 148;
   --bs-secondary: var(--color-secondary);
   --bs-light: var(--color-surface-muted);
   --bs-dark: var(--color-text-primary);
@@ -51,7 +54,7 @@
   --section-footer-text: #c7d2e5;
   --section-footer-heading: #f1f5f9;
   --section-appointment-overlay: rgba(244, 248, 255, 0.86);
-  --section-appointment-form: rgba(14, 165, 198, 0.16);
+  --section-appointment-form: rgba(112, 160, 148, 0.16);
   --section-card-heading: #0f172a;
   --section-card-text: #475569;
   --nav-dropdown-title: #0f172a;
@@ -69,7 +72,7 @@
   --partners-card-title: #0f172a;
   --partners-card-description: #62748d;
   --partners-card-link: var(--color-primary);
-  --partners-card-link-hover: #0b7cdb;
+  --partners-card-link-hover: var(--color-primary-hover);
   --partners-empty-bg: #ffffff;
   --partners-empty-border: rgba(17,24,39,.2);
 }
@@ -80,8 +83,10 @@ body.dark-mode {
   --color-surface: #131d31;
   --color-surface-elevated: #18243b;
   --color-surface-muted: #1d2a44;
-  --color-primary: #38bdf8;
-  --color-primary-hover: #60cdfa;
+  --color-primary: #70A094;
+  --color-primary-hover: #86b4aa;
+  --color-primary-active: #9bc4bb;
+  --color-primary-contrast: #ffffff;
   --color-secondary: #93c5fd;
   --color-accent: #a78bfa;
   --color-text-primary: #e2e8f0;
@@ -97,6 +102,7 @@ body.dark-mode {
   --shadow-sm: 0 8px 22px rgba(2, 8, 22, 0.35);
   --shadow-md: 0 16px 40px rgba(2, 8, 22, 0.45);
   --bs-primary: var(--color-primary);
+  --bs-primary-rgb: 112, 160, 148;
   --bs-secondary: var(--color-secondary);
   --bs-light: var(--color-surface-muted);
   --bs-dark: var(--color-text-primary);
@@ -145,8 +151,8 @@ button, .btn, input, textarea, select {
   transition: background-color .25s ease, border-color .25s ease, color .25s ease, box-shadow .25s ease;
 }
 
-.btn-primary { background-color: var(--color-primary); border-color: var(--color-primary); color: var(--color-text-inverse); }
-.btn-primary:hover, .btn-primary:focus { background-color: var(--color-primary-hover); border-color: var(--color-primary-hover); color: var(--color-text-inverse); }
+.btn-primary { background-color: var(--color-primary); border-color: var(--color-primary); color: var(--color-primary-contrast); }
+.btn-primary:hover, .btn-primary:focus { background-color: var(--color-primary-hover); border-color: var(--color-primary-hover); color: var(--color-primary-contrast); }
 
 .card, .service .service-item, .feature .feature-item, .blog-item, .team-item {
   background-color: var(--color-surface);

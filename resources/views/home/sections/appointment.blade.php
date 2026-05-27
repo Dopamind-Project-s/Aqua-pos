@@ -15,7 +15,6 @@
                 <div class="row g-5 align-items-center">
                     <div class="col-lg-4 wow fadeInLeft" data-wow-delay="0.2">
                         <div class="section-title text-start">
-                            <h4 class="sub-title pe-3 mb-0"><span data-i18n="home.solution.eyebrow">Solutions To Your Pain</span></h4>
                             <h1 class="display-4 mb-4"><span data-i18n="home.solution.title">Best Quality Services With Minimal Pain Rate</span></h1>
                             <p class="mb-4"><span data-i18n="home.common.description">AQUA POS is a cloud-based POS and inventory management platform from Amman, Jordan, helping restaurants and retailers run faster with better control and full visibility.</span></p>
                             <div class="row g-4">

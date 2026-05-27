@@ -272,14 +272,14 @@
     }
 
     body.dark-mode .btn-outline-primary {
-        color: #86ddf2;
-        border-color: #3f6d84;
+        color: var(--color-primary) !important;
+        border-color: var(--color-primary) !important;
     }
 
     body.dark-mode .btn-outline-primary:hover {
-        background: #1b3445;
-        color: #dff8ff;
-        border-color: #4f8da8;
+        background: var(--color-primary) !important;
+        color: var(--color-primary-contrast) !important;
+        border-color: var(--color-primary) !important;
     }
 </style>
 @endpush
@@ -306,7 +306,7 @@
                             </a>
                         @endif
                         <div class="show-cta">
-                            <a href="{{ route('request-product-demo') }}" class="btn btn-light rounded-pill" data-i18n="products.requestDemo">Request Demo</a>
+                            <a href="{{ route('request-product-demo') }}" class="btn btn-primary rounded-pill" data-i18n="products.requestDemo">Request Demo</a>
                             <a href="{{ route('products') }}" class="btn btn-outline-light rounded-pill" data-i18n="products.back">Back to Products</a>
                             <a href="{{ route('products') }}" class="btn btn-primary rounded-pill" data-i18n="products.allProducts">View All Products</a>
                         </div>

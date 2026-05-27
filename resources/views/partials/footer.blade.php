@@ -24,7 +24,7 @@
                                 <span data-cms-key="topbar.address">{{ dynamic_content("global.footer.topbar.address.{$footerLocale}", $siteSetting?->hq_address ?: 'Amman, Jordan') }}</span>
                             </a>
                             <a href="tel:{{ preg_replace('/\D+/', '', $footerPrimaryPhone) }}" class="text-light me-md-4">
-                                <i class="fas fa-phone-alt text-primary me-2"></i><span data-cms-key="topbar.phone">{{ dynamic_content("global.footer.topbar.phone.{$footerLocale}", $footerPrimaryPhone) }}</span>
+                                <i class="fas fa-phone-alt text-primary me-2"></i><span class="footer-ltr-value" dir="ltr" data-cms-key="topbar.phone">{{ dynamic_content("global.footer.topbar.phone.{$footerLocale}", $footerPrimaryPhone) }}</span>
                             </a>
                             <a href="mailto:{{ $footerInfoEmail }}" class="text-light">
                                 <i class="fas fa-envelope text-primary me-2"></i><span data-cms-key="topbar.email">{{ dynamic_content("global.footer.topbar.email.{$footerLocale}", $footerInfoEmail) }}</span>
@@ -69,12 +69,12 @@
 
                             <div class="d-flex align-items-center footer-socials mt-auto">
                                 <i class="fas fa-share-alt text-white me-2" data-cms-key="social.share_icon" data-cms-type="icon"></i>
-                                @if($siteSetting?->facebook_url)<a class="btn-square btn btn-primary text-white rounded-circle mx-1" href="{{ $siteSetting->facebook_url }}" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>@endif
-                                @if($siteSetting?->twitter_url)<a class="btn-square btn btn-primary text-white rounded-circle mx-1" href="{{ $siteSetting->twitter_url }}" target="_blank" rel="noopener" aria-label="Twitter"><i class="fab fa-twitter"></i></a>@endif
-                                @if($siteSetting?->instagram_url)<a class="btn-square btn btn-primary text-white rounded-circle mx-1" href="{{ $siteSetting->instagram_url }}" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>@endif
-                                @if($siteSetting?->linkedin_url)<a class="btn-square btn btn-primary text-white rounded-circle mx-1" href="{{ $siteSetting->linkedin_url }}" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>@endif
-                                @if($siteSetting?->youtube_url)<a class="btn-square btn btn-primary text-white rounded-circle mx-1" href="{{ $siteSetting->youtube_url }}" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>@endif
-                                @if($siteSetting?->tiktok_url)<a class="btn-square btn btn-primary text-white rounded-circle mx-1" href="{{ $siteSetting->tiktok_url }}" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>@endif
+                                @if($siteSetting?->facebook_url)<a class="btn btn-light btn-square border rounded-circle nav-fill topbar-social-btn topbar-social-btn--facebook mx-1" href="{{ $siteSetting->facebook_url }}" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>@endif
+                                @if($siteSetting?->twitter_url)<a class="btn btn-light btn-square border rounded-circle nav-fill topbar-social-btn topbar-social-btn--twitter mx-1" href="{{ $siteSetting->twitter_url }}" target="_blank" rel="noopener" aria-label="Twitter"><i class="fab fa-twitter"></i></a>@endif
+                                @if($siteSetting?->instagram_url)<a class="btn btn-light btn-square border rounded-circle nav-fill topbar-social-btn topbar-social-btn--instagram mx-1" href="{{ $siteSetting->instagram_url }}" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>@endif
+                                @if($siteSetting?->linkedin_url)<a class="btn btn-light btn-square border rounded-circle nav-fill topbar-social-btn topbar-social-btn--linkedin mx-1" href="{{ $siteSetting->linkedin_url }}" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>@endif
+                                @if($siteSetting?->youtube_url)<a class="btn btn-light btn-square border rounded-circle nav-fill topbar-social-btn topbar-social-btn--youtube mx-1" href="{{ $siteSetting->youtube_url }}" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>@endif
+                                @if($siteSetting?->tiktok_url)<a class="btn btn-light btn-square border rounded-circle nav-fill topbar-social-btn topbar-social-btn--tiktok mx-1" href="{{ $siteSetting->tiktok_url }}" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>@endif
                             </div>
                         </div>
                     </div>
@@ -97,9 +97,9 @@
                             <a href="{{ $siteSetting?->google_map_embed ?: '#' }}" target="_blank" rel="noopener"><i class="fa fa-map-marker-alt me-2"></i><span data-cms-key="contact.address">{{ dynamic_content("global.footer.contact.address.{$footerLocale}", $footerAddress) }}</span></a>
                             <a href="mailto:{{ $footerInfoEmail }}"><i class="fas fa-envelope me-2"></i><span data-cms-key="contact.info_email">{{ dynamic_content("global.footer.contact.info_email.{$footerLocale}", $footerInfoEmail) }}</span></a>
                             <a href="mailto:{{ $footerSupportEmail }}"><i class="fas fa-envelope me-2"></i><span data-cms-key="contact.support_email">{{ dynamic_content("global.footer.contact.support_email.{$footerLocale}", $footerSupportEmail) }}</span></a>
-                            <a href="tel:{{ preg_replace('/\s+/', '', $footerPrimaryPhone) }}"><i class="fas fa-phone me-2"></i><span data-cms-key="contact.phone_primary">{{ dynamic_content("global.footer.contact.phone_primary.{$footerLocale}", $footerPrimaryPhone) }}</span></a>
-                            <a href="tel:{{ preg_replace('/\s+/', '', $footerSecondaryPhone) }}" class="mb-2"><i class="fas fa-print me-2"></i><span data-cms-key="contact.phone_secondary">{{ dynamic_content("global.footer.contact.phone_secondary.{$footerLocale}", $footerSecondaryPhone) }}</span></a>
-                            <a href="https://wa.me/{{ preg_replace('/\D+/', '', $footerWhatsapp) }}" target="_blank" rel="noopener"><i class="fab fa-whatsapp me-2"></i><span data-cms-key="contact.whatsapp">{{ dynamic_content("global.footer.contact.whatsapp.{$footerLocale}", $footerWhatsapp) }}</span></a>
+                            <a href="tel:{{ preg_replace('/\s+/', '', $footerPrimaryPhone) }}"><i class="fas fa-phone me-2"></i><span class="footer-ltr-value" dir="ltr" data-cms-key="contact.phone_primary">{{ dynamic_content("global.footer.contact.phone_primary.{$footerLocale}", $footerPrimaryPhone) }}</span></a>
+                            <a href="tel:{{ preg_replace('/\s+/', '', $footerSecondaryPhone) }}"><i class="fas fa-print me-2"></i><span class="footer-ltr-value" dir="ltr" data-cms-key="contact.phone_secondary">{{ dynamic_content("global.footer.contact.phone_secondary.{$footerLocale}", $footerSecondaryPhone) }}</span></a>
+                            <a href="https://wa.me/{{ preg_replace('/\D+/', '', $footerWhatsapp) }}" target="_blank" rel="noopener"><i class="fab fa-whatsapp me-2"></i><span class="footer-ltr-value" dir="ltr" data-cms-key="contact.whatsapp">{{ dynamic_content("global.footer.contact.whatsapp.{$footerLocale}", $footerWhatsapp) }}</span></a>
                         </div>
                     </div>
                 </div>

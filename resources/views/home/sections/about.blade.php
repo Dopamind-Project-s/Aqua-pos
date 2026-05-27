@@ -16,7 +16,7 @@
             </div>
             <div class="col-lg-7 wow fadeInRight" data-wow-delay="0.4s">
                 <div class="section-title text-start mb-5">
-                    <h4 class="sub-title pe-3 mb-0"><span data-i18n="{{ $aboutCmsNamespace }}.eyebrow">About Us</span></h4>
+                    <h4 class="sub-title sub-title--plain pe-3 mb-0"><span data-i18n="{{ $aboutCmsNamespace }}.eyebrow">About Us</span></h4>
                     <h1 class="display-3 mb-4"><span data-i18n="{{ $aboutCmsNamespace }}.title">Jordanian SaaS Team Building Better POS Operations.</span></h1>
                     <p class="mb-4"><span data-i18n="home.common.description">AQUA POS is a cloud-based POS and inventory management platform from Amman, Jordan, helping restaurants and retailers run faster with better control and full visibility.</span></p>
                     <div class="mb-4">
@@ -24,7 +24,6 @@
                         <p class="text-secondary"><i class="{{ dynamic_content($cmsPageKey . '.about.' . $aboutCmsNamespace . '.icon_2.value', 'fa fa-check text-primary me-2') }}" data-cms-key="{{ $aboutCmsNamespace }}.icon_2"></i><span data-i18n="{{ $aboutCmsNamespace }}.point2"> Reduce billing and stock errors across teams.</span></p>
                         <p class="text-secondary"><i class="{{ dynamic_content($cmsPageKey . '.about.' . $aboutCmsNamespace . '.icon_3.value', 'fa fa-check text-primary me-2') }}" data-cms-key="{{ $aboutCmsNamespace }}.icon_3"></i><span data-i18n="{{ $aboutCmsNamespace }}.point3"> Improve speed, control, and daily visibility.</span></p>
                     </div>
-                    <a href="{{ dynamic_content($cmsPageKey . '.about.' . $aboutCmsNamespace . '.cta.link', route('about')) }}" class="btn btn-primary rounded-pill text-white py-3 px-5" data-cms-key="{{ $aboutCmsNamespace }}.cta"><span>{{ dynamic_content($cmsPageKey . '.about.' . $aboutCmsNamespace . '.cta.en', 'Discover More') }}</span></a>
                 </div>
             </div>
         </div>

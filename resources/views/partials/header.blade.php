@@ -101,12 +101,12 @@
                                 <a href="{{ route('news') }}" class="dropdown-item {{ request()->routeIs('news*') ? 'active' : '' }}"><i class="fas fa-rss me-2"></i><span data-i18n="nav.news">News</span></a>
                             </div>
                         </div>
-                        <a href="{{ route('partners.index') }}" class="nav-item nav-link {{ request()->routeIs('partners.*') ? 'active' : '' }} nav-link--partners"><i class="fas fa-handshake me-2"></i><span data-i18n="nav.partners">Partners</span></a>
-                        <a href="{{ route('team') }}" class="nav-item nav-link {{ request()->routeIs('team') ? 'active' : '' }}"><i class="fas fa-users me-2"></i><span data-i18n="nav.team">Our Team</span></a>
                         <a href="{{ route('support') }}" class="nav-item nav-link {{ request()->routeIs('support') ? 'active' : '' }}">
                             <i class="fas fa-life-ring me-2"></i><span data-i18n="nav.support">Support</span>
                         </a>
-                        <a href="{{ route('about') }}" class="nav-item nav-link {{ request()->routeIs('about') ? 'active' : '' }}"><i class="fas fa-circle-info me-2"></i><span data-i18n="nav.about">About</span></a>
+                        <a href="{{ route('team') }}" class="nav-item nav-link {{ request()->routeIs('team') ? 'active' : '' }}"><i class="fas fa-users me-2"></i><span data-i18n="nav.team">Our Team</span></a>
+                        <a href="{{ route('about') }}" class="nav-item nav-link {{ request()->routeIs('about') ? 'active' : '' }}"><i class="fas fa-info-circle me-2"></i><span data-i18n="nav.about">About</span></a>
+                        <a href="{{ route('partners.index') }}" class="nav-item nav-link {{ request()->routeIs('partners.*') ? 'active' : '' }} nav-link--partners"><i class="fas fa-handshake me-2"></i><span data-i18n="nav.partners">Partners</span></a>
                     </div>
                     <div class="nav-toolbar" aria-label="Quick controls">
                         <button class="nav-toolbar__btn nav-toolbar__btn--toggle" id="themeToggle" type="button" aria-label="Toggle theme">

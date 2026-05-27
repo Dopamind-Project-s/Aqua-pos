@@ -4,15 +4,9 @@
 <section class="partners-hero">
     <div class="container">
         <div class="partners-hero__content text-center mx-auto">
-            <p class="partners-hero__eyebrow" data-i18n="partners.eyebrow">Strategic Ecosystem</p>
+            <p class="partners-hero__eyebrow mb-3" data-i18n="partners.eyebrow"><i class="fas fa-handshake"></i> Strategic Ecosystem</p>
             <h1 class="partners-hero__title" data-i18n="partners.title">Enterprise Partnerships That Scale</h1>
             <p class="partners-hero__subtitle" data-i18n="partners.subtitle">We collaborate with high-impact brands and technology leaders to deliver seamless, scalable, and future-ready solutions.</p>
-
-            <div class="partners-hero__metrics d-flex flex-wrap justify-content-center gap-2 mt-4">
-                <span class="partners-metric-pill"><i class="fas fa-handshake"></i><span data-i18n="partners.metric1">Trusted Alliances</span></span>
-                <span class="partners-metric-pill"><i class="fas fa-network-wired"></i><span data-i18n="partners.metric2">Integrated Ecosystem</span></span>
-                <span class="partners-metric-pill"><i class="fas fa-rocket"></i><span data-i18n="partners.metric3">Growth-Focused Delivery</span></span>
-            </div>
         </div>
     </div>
 </section>

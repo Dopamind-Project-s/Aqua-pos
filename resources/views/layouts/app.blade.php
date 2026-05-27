@@ -176,14 +176,15 @@
             const sectionStyle = section.style?.__section || {};
             const sectionNode = document.querySelector('[data-cms-section="' + sectionKey + '"]');
             if (sectionNode) {
+                const locksPlainHeroBackground = sectionNode.matches('.bg-breadcrumb, .support-hero, .contact-hero, .demo-hero, .products-hero, .show-hero, .partners-hero, .blog-slider-shell');
                 if (sectionStyle?.background_color === '__none__' || sectionStyle?.background_image === '__none__') {
                     sectionNode.style.backgroundColor = 'transparent';
                     sectionNode.style.backgroundImage = 'none';
                     sectionNode.style.boxShadow = 'none';
                 } else {
-                    if (sectionStyle?.background_color) sectionNode.style.backgroundColor = themed(sectionStyle.background_color);
-                    if (sectionStyle?.background_image) sectionNode.style.backgroundImage = 'url(' + sectionStyle.background_image + ')';
-                    if (sectionStyle?.overlay) sectionNode.style.boxShadow = 'inset 0 0 0 9999px ' + sectionStyle.overlay;
+                    if (!locksPlainHeroBackground && sectionStyle?.background_color) sectionNode.style.backgroundColor = themed(sectionStyle.background_color);
+                    if (!locksPlainHeroBackground && sectionStyle?.background_image) sectionNode.style.backgroundImage = 'url(' + sectionStyle.background_image + ')';
+                    if (!locksPlainHeroBackground && sectionStyle?.overlay) sectionNode.style.boxShadow = 'inset 0 0 0 9999px ' + sectionStyle.overlay;
                 }
             }
 

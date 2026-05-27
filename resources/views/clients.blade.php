@@ -3,12 +3,10 @@
 @section('content')
 <!-- Header Start -->
 <div class="container-fluid bg-breadcrumb">
-    <div class="container text-center py-5" style="max-width: 900px;">
-        <h1 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s"><span data-i18n="clients.pageTitle">Our Clients</span></h1>
-        <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
-            <li class="breadcrumb-item"><a href="{{ url('/') }}"><span data-i18n="breadcrumb.home">Home</span></a></li>
-            <li class="breadcrumb-item active text-primary"><span data-i18n="clients.pageCrumb">Clients</span></li>
-        </ol>
+    <div class="container text-center py-4" style="max-width: 900px;">
+        <span class="inner-hero-badge mb-3 wow fadeInDown" data-wow-delay="0.05s"><i class="fas fa-building"></i> <span data-i18n="clients.pageEyebrow">Trusted Partnerships</span></span>
+        <h1 class="text-white display-5 fw-bold mb-3 wow fadeInDown" data-wow-delay="0.1s"><span data-i18n="clients.pageTitle">Our Clients</span></h1>
+        <p class="lead mb-0 wow fadeInDown" data-wow-delay="0.2s"><span data-i18n="clients.pageIntro">We work with restaurants and retail businesses that need speed, visibility, and stronger operational control across every branch.</span></p>
     </div>
 </div>
 <!-- Header End -->

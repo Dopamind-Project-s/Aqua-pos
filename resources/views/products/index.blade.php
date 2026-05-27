@@ -21,8 +21,9 @@
     body.dark-mode .product-card,
     body.dark-mode .value-pill { background: #121c2c; border-color: #2a3d5a; color: #dbe8fd; }
     body.dark-mode .products-hero .badge {
-        background: #eef6ff !important;
-        color: #0f172a !important;
+        background: rgba(255, 255, 255, .14) !important;
+        border: 1px solid rgba(255, 255, 255, .28) !important;
+        color: #fff !important;
     }
     body.dark-mode .product-card h3,
     body.dark-mode .products-section-card h5,
@@ -42,23 +43,10 @@
 @section('content')
 <div class="products-page">
     <section class="products-hero py-5 mb-4">
-        <div class="container py-4">
-            <div class="row align-items-center g-4">
-                <div class="col-lg-7">
-                    <span class="badge bg-light text-dark mb-3 px-3 py-2">AQUA POS SUITE</span>
-                    <h1 class="display-5 fw-bold mb-3" data-i18n="products.title">Powerful Products for Retail & Restaurants</h1>
-                    <p class="lead mb-4" data-i18n="products.subtitle">Explore a modular product ecosystem covering sales, operations, finance, and growth across every branch.</p>
-                    <a href="{{ route('request-product-demo') }}" class="btn btn-light rounded-pill px-4 py-2 fw-semibold" data-i18n="products.requestDemo">Request Demo</a>
-                </div>
-                <div class="col-lg-5">
-                    <div class="products-section-card p-4 text-dark">
-                        <h5 class="fw-bold mb-3" data-i18n="products.whyTitle">Why teams pick Aqua</h5>
-                        <div class="value-pill mb-2" data-i18n="products.why1">Unified POS + inventory + reporting</div>
-                        <div class="value-pill mb-2" data-i18n="products.why2">Operational visibility by branch and shift</div>
-                        <div class="value-pill" data-i18n="products.why3">Scale-ready workflows and integrations</div>
-                    </div>
-                </div>
-            </div>
+        <div class="container py-4 text-center">
+            <span class="badge bg-light text-dark mb-3 px-3 py-2">AQUA POS SUITE</span>
+            <h1 class="display-5 fw-bold mb-3" data-i18n="products.title">Powerful Products for Retail & Restaurants</h1>
+            <p class="lead mb-0" data-i18n="products.subtitle">Explore a modular product ecosystem covering sales, operations, finance, and growth across every branch.</p>
         </div>
     </section>
 

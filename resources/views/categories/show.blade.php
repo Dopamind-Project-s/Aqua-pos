@@ -2,9 +2,10 @@
 
 @section('content')
 <div class="container-fluid bg-breadcrumb">
-    <div class="container text-center py-5" style="max-width: 900px;">
-        <h1 class="text-white display-4 mb-3">{{ $category->localized_name }}</h1>
-        <p class="text-white mb-0">{{ \Illuminate\Support\Str::limit($category->localized_description ?: 'Specialized category with ready-to-deploy POS workflows.', 160) }}</p>
+    <div class="container text-center py-4" style="max-width: 900px;">
+        <span class="inner-hero-badge mb-3"><i class="fas fa-layer-group"></i> Category</span>
+        <h1 class="text-white display-5 fw-bold mb-3">{{ $category->localized_name }}</h1>
+        <p class="lead mb-0">{{ \Illuminate\Support\Str::limit($category->localized_description ?: 'Specialized category with ready-to-deploy POS workflows.', 160) }}</p>
     </div>
 </div>
 
