@@ -176,7 +176,7 @@
             const sectionStyle = section.style?.__section || {};
             const sectionNode = document.querySelector('[data-cms-section="' + sectionKey + '"]');
             if (sectionNode) {
-                const locksPlainHeroBackground = sectionNode.matches('.bg-breadcrumb, .support-hero, .contact-hero, .demo-hero, .products-hero, .show-hero, .partners-hero, .blog-slider-shell');
+                const locksPlainHeroBackground = sectionNode.matches('.bg-breadcrumb, .page-hero, .support-hero, .contact-hero, .demo-hero, .products-hero, .show-hero, .partners-hero, .blog-slider-shell');
                 if (sectionStyle?.background_color === '__none__' || sectionStyle?.background_image === '__none__') {
                     sectionNode.style.backgroundColor = 'transparent';
                     sectionNode.style.backgroundImage = 'none';

@@ -166,27 +166,17 @@
 
 @section('content')
 <div class="demo-page">
-<section class="demo-hero py-5">
-    <div class="container py-4">
-        <div class="row align-items-center g-4">
-            <div class="col-lg-7">
-                <span class="demo-hero-badge mb-3"><i class="fas fa-magic"></i><span data-i18n="demo.badge">Aqua POS Demo</span></span>
-                <h1 class="display-5 fw-bold mb-3" data-i18n="demo.title">Book a Personalized POS Demo</h1>
-                <p class="lead mb-0" data-i18n="demo.subtitle">Discover how Aqua POS transforms operations with faster billing, smart inventory, and branch-level control in one connected platform.</p>
-            </div>
-            <div class="col-lg-5">
-                <div class="demo-checklist">
-                    <div class="fw-bold mb-2"><i class="fas fa-check-circle me-2 text-success"></i><span data-i18n="demo.whatYouGet">What you’ll get in the demo</span></div>
-                    <ul class="mb-0 ps-3">
-                        <li><i class="fas fa-circle-check text-primary me-2"></i><span data-i18n="demo.benefit1">Live walkthrough of POS, inventory, and reports</span></li>
-                        <li><i class="fas fa-circle-check text-primary me-2"></i><span data-i18n="demo.benefit2">Branch setup, roles, and permissions flow</span></li>
-                        <li><i class="fas fa-circle-check text-primary me-2"></i><span data-i18n="demo.benefit3">Implementation timeline and pricing options</span></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+@include('partials.page-hero', [
+    'offset' => false,
+    'class' => 'demo-hero',
+    'icon' => 'fas fa-magic',
+    'badge' => 'Aqua POS Demo',
+    'badgeI18n' => 'demo.badge',
+    'title' => 'Book a Personalized POS Demo',
+    'titleI18n' => 'demo.title',
+    'subtitle' => 'Discover how Aqua POS transforms operations with faster billing, smart inventory, and branch-level control in one connected platform.',
+    'subtitleI18n' => 'demo.subtitle',
+])
 
 <section class="py-5">
     <div class="container">

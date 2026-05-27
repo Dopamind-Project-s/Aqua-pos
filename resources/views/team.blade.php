@@ -37,19 +37,16 @@
     $displayTeamMembers = ($teamMembers ?? collect())->isNotEmpty() ? $teamMembers : $fallbackTeamMembers;
 @endphp
 
-<!-- Header Start -->
-<div class="container-fluid bg-breadcrumb" data-cms-section="team-hero">
-    <div class="container text-center py-4" style="max-width: 900px;">
-        <span class="inner-hero-badge mb-3 wow fadeInDown" data-wow-delay="0.05s"><i class="fas fa-users"></i> <span data-i18n="nav.team">Our Team</span></span>
-        <h1 class="text-white display-5 fw-bold mb-3 wow fadeInDown" data-wow-delay="0.1s" data-cms-key="title">
-            {{ dynamic_content("team.team-hero.title.{$locale}", 'Our Team') }}
-        </h1>
-        <p class="lead mb-0 wow fadeInDown" data-wow-delay="0.2s">
-            {{ dynamic_content("team.team-hero.subtitle.{$locale}", 'Meet the people supporting your onboarding, product setup, and daily operations.') }}
-        </p>
-    </div>
-</div>
-<!-- Header End -->
+@include('partials.page-hero', [
+    'section' => 'team-hero',
+    'icon' => 'fas fa-users',
+    'badge' => 'Our Team',
+    'badgeI18n' => 'nav.team',
+    'title' => dynamic_content("team.team-hero.title.{$locale}", 'Our Team'),
+    'titleCmsKey' => 'title',
+    'subtitle' => dynamic_content("team.team-hero.subtitle.{$locale}", 'Meet the people supporting your onboarding, product setup, and daily operations.'),
+    'subtitleCmsKey' => 'subtitle',
+])
 
 <!-- Team Start -->
 <section class="container-fluid team team-page py-5" data-cms-section="team-list">

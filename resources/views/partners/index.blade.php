@@ -1,15 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-<section class="partners-hero">
-    <div class="container">
-        <div class="partners-hero__content text-center mx-auto">
-            <p class="partners-hero__eyebrow mb-3" data-i18n="partners.eyebrow"><i class="fas fa-handshake"></i> Strategic Ecosystem</p>
-            <h1 class="partners-hero__title" data-i18n="partners.title">Enterprise Partnerships That Scale</h1>
-            <p class="partners-hero__subtitle" data-i18n="partners.subtitle">We collaborate with high-impact brands and technology leaders to deliver seamless, scalable, and future-ready solutions.</p>
-        </div>
-    </div>
-</section>
+@include('partials.page-hero', [
+    'icon' => 'fas fa-handshake',
+    'badge' => 'Strategic Ecosystem',
+    'badgeI18n' => 'partners.eyebrow',
+    'title' => 'Enterprise Partnerships That Scale',
+    'titleI18n' => 'partners.title',
+    'subtitle' => 'We collaborate with high-impact brands and technology leaders to deliver seamless, scalable, and future-ready solutions.',
+    'subtitleI18n' => 'partners.subtitle',
+])
 
 <section class="partners-section">
     <div class="container">

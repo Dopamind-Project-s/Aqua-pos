@@ -133,13 +133,16 @@
 
 @section('content')
 <div class="support-page">
-<section class="support-hero py-5">
-    <div class="container py-4 text-center">
-        <span class="support-badge mb-3"><i class="fas fa-life-ring"></i><span data-i18n="support.badge">Support Center</span></span>
-        <h1 class="display-5 fw-bold mb-3" data-i18n="support.title">How can we help you today?</h1>
-        <p class="lead mb-0" data-i18n="support.subtitle">Raise a technical or operational issue and our support team will respond quickly.</p>
-    </div>
-</section>
+@include('partials.page-hero', [
+    'offset' => false,
+    'icon' => 'fas fa-life-ring',
+    'badge' => 'Support Center',
+    'badgeI18n' => 'support.badge',
+    'title' => 'How can we help you today?',
+    'titleI18n' => 'support.title',
+    'subtitle' => 'Raise a technical or operational issue and our support team will respond quickly.',
+    'subtitleI18n' => 'support.subtitle',
+])
 
 <section class="py-5">
     <div class="container">

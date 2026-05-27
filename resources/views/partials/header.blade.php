@@ -4,6 +4,20 @@
                 <span class="sr-only">Loading...</span>
             </div>
         </div>
+        <script>
+            (function () {
+                var hideSpinner = function () {
+                    var spinner = document.getElementById('spinner');
+                    if (spinner) {
+                        spinner.classList.remove('show');
+                    }
+                };
+
+                document.addEventListener('DOMContentLoaded', hideSpinner, { once: true });
+                window.addEventListener('load', hideSpinner, { once: true });
+                setTimeout(hideSpinner, 1800);
+            })();
+        </script>
         <!-- Spinner End -->
 
 

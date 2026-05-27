@@ -138,13 +138,17 @@
 
 @section('content')
 <div class="contact-page">
-<section class="contact-hero py-5">
-    <div class="container py-4 text-center">
-        <span class="contact-badge mb-3"><i class="fas fa-envelope-open-text"></i><span data-i18n="contact.badge">Contact Desk</span></span>
-        <h1 class="display-5 fw-bold mb-3" data-i18n="contact.title">Let’s talk about your business needs</h1>
-        <p class="lead mb-0" data-i18n="contact.subtitle">Send your inquiry and our team will reach out with the best plan for your operations.</p>
-    </div>
-</section>
+@include('partials.page-hero', [
+    'offset' => false,
+    'class' => 'contact-hero',
+    'icon' => 'fas fa-envelope-open-text',
+    'badge' => 'Contact Desk',
+    'badgeI18n' => 'contact.badge',
+    'title' => 'Let’s talk about your business needs',
+    'titleI18n' => 'contact.title',
+    'subtitle' => 'Send your inquiry and our team will reach out with the best plan for your operations.',
+    'subtitleI18n' => 'contact.subtitle',
+])
 
 <section class="py-5">
     <div class="container">

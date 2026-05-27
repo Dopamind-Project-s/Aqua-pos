@@ -1,15 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-<!-- Header Start -->
-<div class="container-fluid bg-breadcrumb">
-    <div class="container text-center py-4" style="max-width: 900px;">
-        <span class="inner-hero-badge mb-3 wow fadeInDown" data-wow-delay="0.05s"><i class="fas fa-building"></i> <span data-i18n="clients.pageEyebrow">Trusted Partnerships</span></span>
-        <h1 class="text-white display-5 fw-bold mb-3 wow fadeInDown" data-wow-delay="0.1s"><span data-i18n="clients.pageTitle">Our Clients</span></h1>
-        <p class="lead mb-0 wow fadeInDown" data-wow-delay="0.2s"><span data-i18n="clients.pageIntro">We work with restaurants and retail businesses that need speed, visibility, and stronger operational control across every branch.</span></p>
-    </div>
-</div>
-<!-- Header End -->
+@include('partials.page-hero', [
+    'icon' => 'fas fa-building',
+    'badge' => 'Trusted Partnerships',
+    'badgeI18n' => 'clients.pageEyebrow',
+    'title' => 'Our Clients',
+    'titleI18n' => 'clients.pageTitle',
+    'subtitle' => 'We work with restaurants and retail businesses that need speed, visibility, and stronger operational control across every branch.',
+    'subtitleI18n' => 'clients.pageIntro',
+])
 
 <!-- Clients Showcase Start -->
 <section class="container-fluid clients-showcase py-5">

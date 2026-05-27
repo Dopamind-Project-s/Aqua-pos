@@ -1,5 +1,11 @@
 
 /*** Spinner Start ***/
+html,
+body {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
 /*** Spinner ***/
 #spinner {
     opacity: 0;
@@ -428,7 +434,7 @@ body.dark-mode .topbar-social-btn:hover {
     .navbar-light {
         position: absolute;
         width: 100%;
-        top: 0;
+        top: 0 !important;
         left: 0;
         border-bottom: 1px solid var(--section-nav-border);
         z-index: 999;
@@ -3208,6 +3214,13 @@ html[lang="ar"] h6,
 }
 
 /* Unified inner-page hero treatment */
+.support-page,
+.contact-page,
+.demo-page,
+.products-page {
+    padding-top: 0 !important;
+}
+
 .bg-breadcrumb,
 .support-hero,
 .contact-hero,
@@ -3216,8 +3229,8 @@ html[lang="ar"] h6,
 .show-hero,
 .partners-hero,
 .blog-slider-shell {
-    height: clamp(300px, 26vw, 370px) !important;
-    min-height: clamp(300px, 26vw, 370px) !important;
+    height: clamp(390px, 32vw, 520px) !important;
+    min-height: clamp(390px, 32vw, 520px) !important;
     display: flex !important;
     align-items: center !important;
     position: relative !important;
@@ -3381,11 +3394,79 @@ html[lang="ar"] h6,
 }
 
 .bg-breadcrumb,
-.partners-hero {
-    margin-top: clamp(5.2rem, 7vw, 6.6rem) !important;
+.partners-hero,
+.page-hero--offset {
+    margin-top: 0 !important;
+}
+
+.page-hero {
+    height: clamp(390px, 32vw, 520px) !important;
+    min-height: clamp(390px, 32vw, 520px) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    isolation: isolate;
+}
+
+.page-hero > .container {
+    width: min(calc(100% - 2rem), 900px) !important;
+    max-width: 900px !important;
+    margin-inline: auto !important;
+    position: relative !important;
+    z-index: 2 !important;
+    text-align: center !important;
+    padding-top: clamp(5.8rem, 8vw, 6.8rem) !important;
+    min-height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.page-hero h1,
+.page-hero p,
+.page-hero .page-hero__badge {
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+.page-hero h1 {
+    color: #ffffff !important;
+    text-shadow: 0 10px 28px rgba(4, 21, 48, .18);
+    max-width: 100%;
+    overflow-wrap: break-word;
+}
+
+.page-hero p {
+    max-width: 760px;
+    margin-inline: auto;
+    color: rgba(255, 255, 255, .9) !important;
+    overflow-wrap: break-word;
 }
 
 @media (max-width: 576px) {
+    .section-title h1,
+    .section-title h2,
+    .section-title h3,
+    .section-title .display-3,
+    .section-title .display-5 {
+        width: min(100%, 18rem);
+        margin-inline: auto;
+        max-width: 100%;
+        overflow-wrap: break-word;
+        font-size: clamp(1.35rem, 6.4vw, 1.7rem) !important;
+        line-height: 1.18 !important;
+    }
+
+    .section-title p {
+        width: min(100%, 18rem);
+        margin-inline: auto;
+        max-width: 100%;
+        overflow-wrap: break-word;
+    }
+
     .bg-breadcrumb,
     .support-hero,
     .contact-hero,
@@ -3394,13 +3475,43 @@ html[lang="ar"] h6,
     .show-hero,
     .partners-hero,
     .blog-slider-shell {
-        height: 300px !important;
-        min-height: 300px !important;
+        height: 390px !important;
+        min-height: 390px !important;
         border-radius: 0 0 18px 18px !important;
     }
 
     .bg-breadcrumb,
-    .partners-hero {
-        margin-top: 4.7rem !important;
+    .partners-hero,
+    .page-hero--offset {
+        margin-top: 0 !important;
+    }
+
+    .page-hero {
+        height: 390px !important;
+        min-height: 390px !important;
+    }
+
+    .page-hero > .container {
+        width: min(calc(100% - 1.5rem), 900px) !important;
+        padding-top: 4.5rem !important;
+    }
+
+    .page-hero h1 {
+        width: min(100%, 18.5rem);
+        margin-inline: auto;
+        font-size: clamp(1.45rem, 7vw, 1.9rem) !important;
+        line-height: 1.16 !important;
+    }
+
+    .page-hero p {
+        width: min(100%, 18rem);
+        margin-inline: auto;
+        font-size: .9rem !important;
+        line-height: 1.55 !important;
+    }
+
+    .page-hero .page-hero__badge {
+        max-width: min(100%, 20rem);
+        white-space: normal !important;
     }
 }

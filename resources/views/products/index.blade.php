@@ -42,13 +42,16 @@
 
 @section('content')
 <div class="products-page">
-    <section class="products-hero py-5 mb-4">
-        <div class="container py-4 text-center">
-            <span class="badge bg-light text-dark mb-3 px-3 py-2">AQUA POS SUITE</span>
-            <h1 class="display-5 fw-bold mb-3" data-i18n="products.title">Powerful Products for Retail & Restaurants</h1>
-            <p class="lead mb-0" data-i18n="products.subtitle">Explore a modular product ecosystem covering sales, operations, finance, and growth across every branch.</p>
-        </div>
-    </section>
+    @include('partials.page-hero', [
+        'offset' => false,
+        'class' => 'products-hero mb-4',
+        'icon' => 'fas fa-box-open',
+        'badge' => 'AQUA POS SUITE',
+        'title' => 'Powerful Products for Retail & Restaurants',
+        'titleI18n' => 'products.title',
+        'subtitle' => 'Explore a modular product ecosystem covering sales, operations, finance, and growth across every branch.',
+        'subtitleI18n' => 'products.subtitle',
+    ])
 
     <section class="pb-5">
         <div class="container">

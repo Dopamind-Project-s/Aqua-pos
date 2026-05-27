@@ -1,38 +1,24 @@
 @extends('blogs.layout')
 
 @section('blog-content')
-<div class="container blog-slider-wrap">
-    <div class="blog-slider-shell">
-    <div class="blog-slider owl-carousel">
-        <div class="blog-slide-item">
-            <img src="{{ asset('img/blog-1.jpg') }}" alt="Blog Slide">
-            <div class="blog-slide-content">
-                <div class="inner">
-                    <span class="blog-hero-badge blog-hero-badge--primary mb-3"><i class="fas fa-sparkles"></i><span data-i18n="blog.hero.badge1">AQUA INSIGHTS</span></span>
-                    <h2 class="display-5 fw-bold mb-3">
-                        @if($type === 'blog')
-                            <span data-i18n="blog.hero.titleBlog">Professional Blog Articles</span>
-                        @else
-                            <span data-i18n="blog.hero.titleNews">Latest Industry News</span>
-                        @endif
-                    </h2>
-                    <p class="mb-0"><span data-i18n="blog.hero.desc1">Professional content that helps you improve sales, customer experience, and branch operations efficiently.</span></p>
-                </div>
-            </div>
-        </div>
-        <div class="blog-slide-item">
-            <img src="{{ asset('img/blog-2.jpg') }}" alt="Blog Slide">
-            <div class="blog-slide-content">
-                <div class="inner">
-                    <span class="blog-hero-badge blog-hero-badge--success mb-3"><i class="fas fa-bolt"></i><span data-i18n="blog.hero.badge2">SMART RETAIL</span></span>
-                    <h2 class="display-5 fw-bold mb-3"><span data-i18n="blog.hero.title2">POS Strategies for Growth</span></h2>
-                    <p class="mb-0"><span data-i18n="blog.hero.desc2">Practical lessons and proven tactics from retail and restaurant operations to improve performance and profitability.</span></p>
-                </div>
-            </div>
+<section class="blog-page-hero">
+    <div class="container">
+        <div class="blog-page-hero__content">
+            <span class="blog-hero-badge mb-3">
+                <i class="fas fa-sparkles"></i>
+                <span data-i18n="blog.hero.badge1">AQUA INSIGHTS</span>
+            </span>
+            <h1>
+                @if($type === 'blog')
+                    <span data-i18n="blog.hero.titleBlog">Professional Blog Articles</span>
+                @else
+                    <span data-i18n="blog.hero.titleNews">Latest Industry News</span>
+                @endif
+            </h1>
+            <p><span data-i18n="blog.hero.desc1">Professional content that helps you improve sales, customer experience, and branch operations efficiently.</span></p>
         </div>
     </div>
-    </div>
-</div>
+</section>
 
 <section>
     <div class="container">

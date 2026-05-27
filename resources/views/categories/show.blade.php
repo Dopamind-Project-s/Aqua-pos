@@ -1,13 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid bg-breadcrumb">
-    <div class="container text-center py-4" style="max-width: 900px;">
-        <span class="inner-hero-badge mb-3"><i class="fas fa-layer-group"></i> Category</span>
-        <h1 class="text-white display-5 fw-bold mb-3">{{ $category->localized_name }}</h1>
-        <p class="lead mb-0">{{ \Illuminate\Support\Str::limit($category->localized_description ?: 'Specialized category with ready-to-deploy POS workflows.', 160) }}</p>
-    </div>
-</div>
+@include('partials.page-hero', [
+    'icon' => 'fas fa-layer-group',
+    'badge' => 'Category',
+    'title' => $category->localized_name,
+    'subtitle' => \Illuminate\Support\Str::limit($category->localized_description ?: 'Specialized category with ready-to-deploy POS workflows.', 160),
+])
 
 <section class="container-fluid category-single py-5">
     <div class="container py-5">
