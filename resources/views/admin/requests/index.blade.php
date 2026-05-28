@@ -68,6 +68,7 @@
                     <th>Phone</th>
                     <th>Company</th>
                     <th>Subject</th>
+                    <th>Partner Pin</th>
                     <th>Status</th>
                     <th>Date</th>
                 </tr>
@@ -81,6 +82,23 @@
                         <td>{{ $row->phone ?? '-' }}</td>
                         <td>{{ $row->company ?? '-' }}</td>
                         <td>{{ $row->subject ?? '-' }}</td>
+                        <td>
+                            @php($snapshot = $row->selected_partner_snapshot ?? [])
+                            @if($row->selectedPartner || $snapshot)
+                                <div class="fw-semibold">{{ $snapshot['name_en'] ?? $row->selectedPartner?->name_en ?? $row->selectedPartner?->name ?? '-' }}</div>
+                                @if(! empty($snapshot['name_ar']) || $row->selectedPartner?->name_ar)
+                                    <small class="text-muted d-block">AR: {{ $snapshot['name_ar'] ?? $row->selectedPartner?->name_ar }}</small>
+                                @endif
+                                @if(! empty($snapshot['map_location_en']) || ! empty($snapshot['map_location_ar']) || $row->selectedPartner?->localized_map_location)
+                                    <small class="text-muted d-block">{{ $snapshot['map_location_en'] ?? $snapshot['map_location_ar'] ?? $row->selectedPartner?->localized_map_location }}</small>
+                                @endif
+                                @if(! empty($snapshot['map_latitude']) && ! empty($snapshot['map_longitude']))
+                                    <small class="text-muted" dir="ltr">{{ $snapshot['map_latitude'] }}, {{ $snapshot['map_longitude'] }}</small>
+                                @endif
+                            @else
+                                <span class="text-muted">-</span>
+                            @endif
+                        </td>
                         <td>
                             <form method="POST" action="{{ route('admin.requests.update-status', $row) }}" class="d-flex gap-2 align-items-center">
                                 @csrf
@@ -97,7 +115,7 @@
                         <td>{{ $row->created_at?->format('Y-m-d H:i') }}</td>
                     </tr>
                 @empty
-                    <tr><td colspan="8" class="text-center">No requests found.</td></tr>
+                    <tr><td colspan="9" class="text-center">No requests found.</td></tr>
                 @endforelse
                 </tbody>
             </table>

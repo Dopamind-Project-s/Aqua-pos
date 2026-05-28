@@ -191,16 +191,36 @@
                     <h3 class="mb-2"><i class="fas fa-paper-plane text-warning me-2"></i><span data-i18n="contact.formTitle">Submit Contact Request</span></h3>
                     <p class="text-muted mb-4" data-i18n="contact.formSubtitle">Share your details and message so we can contact you effectively.</p>
 
+                    @if($selectedPartner)
+                        <div class="contact-info-box mb-4">
+                            <div class="d-flex gap-3 align-items-start">
+                                <span class="contact-icon"><i class="fas fa-map-marker-alt"></i></span>
+                                <div>
+                                    <h6 class="mb-1" data-i18n="contact.selectedPartnerTitle">Selected Partner Pin</h6>
+                                    <small class="text-muted">
+                                        {{ $selectedPartner->localized_name }}
+                                        @if($selectedPartner->localized_map_location)
+                                            - {{ $selectedPartner->localized_map_location }}
+                                        @endif
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+
                     <form method="POST" action="{{ route('requests.store') }}" class="row g-3 contact-form">@csrf
                         <input type="hidden" name="type" value="contact_request">
                         <input type="hidden" name="source_page" value="/contact">
+                        @if($selectedPartner)
+                            <input type="hidden" name="selected_partner_id" value="{{ $selectedPartner->id }}">
+                        @endif
 
-                        <div class="col-md-6"><label class="form-label"><i class="far fa-user"></i><span data-i18n="contact.fullName">Full Name</span></label><input class="form-control" name="full_name" required></div>
-                        <div class="col-md-6"><label class="form-label"><i class="far fa-envelope"></i><span data-i18n="contact.email">Email</span></label><input type="email" class="form-control" name="email"></div>
-                        <div class="col-md-6"><label class="form-label"><i class="fas fa-phone"></i><span data-i18n="contact.phone">Phone</span></label><input class="form-control" name="phone"></div>
-                        <div class="col-md-6"><label class="form-label"><i class="far fa-building"></i><span data-i18n="contact.company">Company</span></label><input class="form-control" name="company"></div>
-                        <div class="col-12"><label class="form-label"><i class="fas fa-heading"></i><span data-i18n="contact.subject">Subject</span></label><input class="form-control" name="subject" data-i18n-placeholder="contact.subjectPlaceholder" placeholder="Your inquiry subject"></div>
-                        <div class="col-12"><label class="form-label"><i class="far fa-comment-dots"></i><span data-i18n="contact.message">Message</span></label><textarea class="form-control" name="message" rows="5"></textarea></div>
+                        <div class="col-md-6"><label class="form-label"><i class="far fa-user"></i><span data-i18n="contact.fullName">Full Name</span></label><input class="form-control" name="full_name" value="{{ old('full_name') }}" required></div>
+                        <div class="col-md-6"><label class="form-label"><i class="far fa-envelope"></i><span data-i18n="contact.email">Email</span></label><input type="email" class="form-control" name="email" value="{{ old('email') }}"></div>
+                        <div class="col-md-6"><label class="form-label"><i class="fas fa-phone"></i><span data-i18n="contact.phone">Phone</span></label><input class="form-control" name="phone" value="{{ old('phone') }}"></div>
+                        <div class="col-md-6"><label class="form-label"><i class="far fa-building"></i><span data-i18n="contact.company">Company</span></label><input class="form-control" name="company" value="{{ old('company') }}"></div>
+                        <div class="col-12"><label class="form-label"><i class="fas fa-heading"></i><span data-i18n="contact.subject">Subject</span></label><input class="form-control" name="subject" value="{{ old('subject', $selectedPartner ? 'Partner location inquiry: '.$selectedPartner->localized_name : '') }}" data-i18n-placeholder="contact.subjectPlaceholder" placeholder="Your inquiry subject"></div>
+                        <div class="col-12"><label class="form-label"><i class="far fa-comment-dots"></i><span data-i18n="contact.message">Message</span></label><textarea class="form-control" name="message" rows="5">{{ old('message') }}</textarea></div>
                         <div class="col-12 d-grid d-md-flex justify-content-md-end"><button class="btn contact-submit px-5 text-white"><i class="fas fa-paper-plane me-2"></i><span data-i18n="contact.submit">Submit Contact Request</span></button></div>
                     </form>
                 </div>

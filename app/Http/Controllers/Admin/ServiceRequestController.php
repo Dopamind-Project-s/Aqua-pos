@@ -67,6 +67,7 @@ class ServiceRequestController extends Controller
     private function queryByType(string $type, array $filters): Builder
     {
         return ServiceRequest::query()
+            ->with('selectedPartner')
             ->where('type', $type)
             ->when(! empty($filters['search']), function (Builder $query) use ($filters): void {
                 $search = trim((string) $filters['search']);
@@ -75,7 +76,13 @@ class ServiceRequestController extends Controller
                         ->orWhere('email', 'like', "%{$search}%")
                         ->orWhere('phone', 'like', "%{$search}%")
                         ->orWhere('company', 'like', "%{$search}%")
-                        ->orWhere('subject', 'like', "%{$search}%");
+                        ->orWhere('subject', 'like', "%{$search}%")
+                        ->orWhereHas('selectedPartner', function (Builder $partnerQuery) use ($search): void {
+                            $partnerQuery->where('name_ar', 'like', "%{$search}%")
+                                ->orWhere('name_en', 'like', "%{$search}%")
+                                ->orWhere('map_location_ar', 'like', "%{$search}%")
+                                ->orWhere('map_location_en', 'like', "%{$search}%");
+                        });
                 });
             })
             ->when(! empty($filters['status']), fn (Builder $query) => $query->where('status', $filters['status']))

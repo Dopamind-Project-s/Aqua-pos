@@ -13,7 +13,7 @@
 
         <div class="table-responsive">
             <table class="table text-nowrap align-middle" id="partnersTable">
-                <thead class="text-dark fs-4"><tr><th>#</th><th>Logo</th><th>Name</th><th>Website</th><th>Status</th><th class="text-end">Actions</th></tr></thead>
+                <thead class="text-dark fs-4"><tr><th>#</th><th>Logo</th><th>Name</th><th>Website</th><th>Map Pin</th><th>Status</th><th class="text-end">Actions</th></tr></thead>
                 <tbody id="partnersSortable">
                 @forelse($partners as $partner)
                     <tr data-id="{{ $partner->id }}">
@@ -36,6 +36,17 @@
                             @endif
                         </td>
                         <td>
+                            @if($partner->hasMapPin())
+                                <span class="badge bg-success">Pinned</span>
+                                <small class="text-muted d-block" dir="ltr">{{ $partner->map_latitude }}, {{ $partner->map_longitude }}</small>
+                                @if($partner->localized_map_location)
+                                    <small class="text-muted d-block">{{ $partner->localized_map_location }}</small>
+                                @endif
+                            @else
+                                <span class="badge bg-secondary">No pin</span>
+                            @endif
+                        </td>
+                        <td>
                             <div class="form-check form-switch">
                                 <input class="form-check-input js-status-toggle" type="checkbox" data-id="{{ $partner->id }}" {{ $partner->is_active ? 'checked' : '' }}>
                                 <label class="form-check-label">{{ $partner->is_active ? 'Active' : 'Inactive' }}</label>
@@ -50,7 +61,7 @@
                         </td>
                     </tr>
                 @empty
-                    <tr><td colspan="6" class="text-center py-4">No partners found.</td></tr>
+                    <tr><td colspan="7" class="text-center py-4">No partners found.</td></tr>
                 @endforelse
                 </tbody>
             </table>

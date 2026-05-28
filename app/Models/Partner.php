@@ -20,6 +20,10 @@ class Partner extends Model
         'description_en',
         'website_url',
         'apply_url',
+        'map_latitude',
+        'map_longitude',
+        'map_location_ar',
+        'map_location_en',
         'facebook_url',
         'instagram_url',
         'linkedin_url',
@@ -33,6 +37,8 @@ class Partner extends Model
     {
         return [
             'is_active' => 'boolean',
+            'map_latitude' => 'decimal:7',
+            'map_longitude' => 'decimal:7',
         ];
     }
 
@@ -56,5 +62,21 @@ class Partner extends Model
         }
 
         return $this->description_en ?: $this->description_ar ?: $this->description;
+    }
+
+    public function getLocalizedMapLocationAttribute(): ?string
+    {
+        $locale = app()->getLocale();
+
+        if ($locale === 'ar') {
+            return $this->map_location_ar ?: $this->map_location_en;
+        }
+
+        return $this->map_location_en ?: $this->map_location_ar;
+    }
+
+    public function hasMapPin(): bool
+    {
+        return $this->map_latitude !== null && $this->map_longitude !== null;
     }
 }

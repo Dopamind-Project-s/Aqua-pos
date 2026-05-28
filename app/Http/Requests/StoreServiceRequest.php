@@ -27,6 +27,7 @@ class StoreServiceRequest extends FormRequest
             'subject' => ['nullable', 'string', 'max:255'],
             'message' => ['nullable', 'string'],
             'source_page' => ['nullable', 'string', 'max:255'],
+            'selected_partner_id' => ['nullable', 'integer', 'exists:partners,id'],
             'status' => ['nullable', Rule::in(['new', 'in_progress', 'closed'])],
         ];
     }

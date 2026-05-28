@@ -11,6 +11,7 @@
     @if(app_is_rtl())
         <link href="{{ asset('css/rtl.css') }}" rel="stylesheet">
     @endif
+    @stack('styles')
     <style>
         :root {
             --admin-topstrip-offset: 84px;
