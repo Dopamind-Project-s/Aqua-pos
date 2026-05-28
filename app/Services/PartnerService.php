@@ -16,8 +16,13 @@ class PartnerService
             $data['name'] = $data['name_en'] ?? $data['name_ar'] ?? null;
             $data['description'] = $data['description_en'] ?? $data['description_ar'] ?? null;
             $data['slug'] = $this->generateUniqueSlug($data['name']);
-            $data['logo'] = $this->storeLogo($data['logo']);
             $data['sort_order'] = $data['sort_order'] ?? (Partner::max('sort_order') + 1);
+
+            if (isset($data['logo']) && $data['logo'] instanceof UploadedFile) {
+                $data['logo'] = $this->storeLogo($data['logo']);
+            } else {
+                unset($data['logo']);
+            }
 
             return Partner::query()->create($data);
         });

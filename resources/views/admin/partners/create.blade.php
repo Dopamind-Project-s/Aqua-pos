@@ -5,7 +5,7 @@
 <div class="card">
     <div class="card-body">
         <h4 class="card-title mb-4">Create Partner</h4>
-        <form action="{{ route('admin.partners.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.partners.store') }}" method="POST">
             @csrf
             @include('admin.partners._form')
             <div class="mt-4 d-flex gap-2">

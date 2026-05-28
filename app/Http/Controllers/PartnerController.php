@@ -8,12 +8,6 @@ class PartnerController extends Controller
 {
     public function index()
     {
-        $partners = Partner::query()
-            ->where('is_active', true)
-            ->orderBy('sort_order')
-            ->orderBy('name_en')
-            ->paginate(12);
-
         $mapPartners = Partner::query()
             ->where('is_active', true)
             ->whereNotNull('map_latitude')
@@ -32,7 +26,6 @@ class PartnerController extends Controller
             ]);
 
         return view('partners.index', [
-            'partners' => $partners,
             'mapPartners' => $mapPartners,
             'metaTitle' => 'Our Trusted Partners | Aqua POS',
             'metaDescription' => 'Meet the trusted partners that empower Aqua POS with world-class integrations and business collaboration.',

@@ -5,7 +5,7 @@
 <div class="card">
     <div class="card-body">
         <h4 class="card-title mb-4">Edit Partner</h4>
-        <form action="{{ route('admin.partners.update', $partner) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.partners.update', $partner) }}" method="POST">
             @csrf
             @method('PUT')
             @include('admin.partners._form')

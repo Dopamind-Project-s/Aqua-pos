@@ -9,39 +9,28 @@
             <a href="{{ route('admin.partners.create') }}" class="btn btn-primary">Create Partner</a>
         </div>
 
-        <div class="alert alert-info">Drag and drop rows to reorder partner cards on the public page.</div>
+        <div class="alert alert-info">Drag and drop rows to control the order of partner pins on the public map.</div>
 
         <div class="table-responsive">
             <table class="table text-nowrap align-middle" id="partnersTable">
-                <thead class="text-dark fs-4"><tr><th>#</th><th>Logo</th><th>Name</th><th>Website</th><th>Map Pin</th><th>Status</th><th class="text-end">Actions</th></tr></thead>
+                <thead class="text-dark fs-4"><tr><th>#</th><th>Name</th><th>Location</th><th>Map Pin</th><th>Status</th><th class="text-end">Actions</th></tr></thead>
                 <tbody id="partnersSortable">
                 @forelse($partners as $partner)
                     <tr data-id="{{ $partner->id }}">
                         <td><i class="ti ti-grip-vertical"></i></td>
-                        <td>
-                            @if($partner->logo)
-                                <img src="{{ public_storage_url($partner->logo) }}" alt="{{ $partner->localized_name }}" class="rounded border object-fit-contain bg-white" width="70" height="54">
-                            @endif
-                        </td>
                         <td>
                             <div class="fw-semibold">{{ $partner->localized_name }}</div>
                             <small class="text-muted d-block">AR: {{ $partner->name_ar ?: '-' }} | EN: {{ $partner->name_en ?: '-' }}</small>
                             <small class="text-muted">Order: {{ $partner->sort_order }}</small>
                         </td>
                         <td>
-                            @if($partner->website_url)
-                                <a href="{{ $partner->website_url }}" target="_blank" rel="noopener">{{ $partner->website_url }}</a>
-                            @else
-                                <span class="text-muted">-</span>
-                            @endif
+                            <div>AR: {{ $partner->map_location_ar ?: '-' }}</div>
+                            <div>EN: {{ $partner->map_location_en ?: '-' }}</div>
                         </td>
                         <td>
                             @if($partner->hasMapPin())
                                 <span class="badge bg-success">Pinned</span>
                                 <small class="text-muted d-block" dir="ltr">{{ $partner->map_latitude }}, {{ $partner->map_longitude }}</small>
-                                @if($partner->localized_map_location)
-                                    <small class="text-muted d-block">{{ $partner->localized_map_location }}</small>
-                                @endif
                             @else
                                 <span class="badge bg-secondary">No pin</span>
                             @endif
@@ -61,7 +50,7 @@
                         </td>
                     </tr>
                 @empty
-                    <tr><td colspan="7" class="text-center py-4">No partners found.</td></tr>
+                    <tr><td colspan="6" class="text-center py-4">No partners found.</td></tr>
                 @endforelse
                 </tbody>
             </table>
