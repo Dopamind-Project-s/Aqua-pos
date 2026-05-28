@@ -140,6 +140,7 @@
 
 
             @if($showCarousel ?? false)
+            @php($heroLocale = app()->getLocale())
 
             <!-- Carousel Start -->
             <div class="header-carousel owl-carousel" data-cms-section="hero">
@@ -150,11 +151,11 @@
                     </button>
                     <div class="carousel-caption">
                         <div class="carousel-caption-content p-3">
-                            <h5 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;" data-cms-key="home.hero.eyebrow">{{ dynamic_content($cmsPageKey . '.hero.home.hero.eyebrow.en', 'Cloud POS Platform') }}</h5>
-                            <h1 class="display-1 text-capitalize text-white mb-4" data-cms-key="home.hero.title">{{ dynamic_content($cmsPageKey . '.hero.home.hero.title.en', 'Powerful POS & Inventory Management Software') }}</h1>
-                            <p class="mb-5 fs-5" data-cms-key="home.hero.description">{{ dynamic_content($cmsPageKey . '.hero.home.hero.description.en', 'Built in Amman, Jordan, AQUA POS helps restaurants and retailers manage sales, stock, and branches with speed, control, and real-time visibility.') }}
+                            <h5 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;" data-cms-key="home.hero.eyebrow">{{ dynamic_content($cmsPageKey . '.hero.home.hero.eyebrow.' . $heroLocale, 'Cloud POS Platform') }}</h5>
+                            <h1 class="display-1 text-capitalize text-white mb-4" data-cms-key="home.hero.title">{{ dynamic_content($cmsPageKey . '.hero.home.hero.title.' . $heroLocale, 'Powerful POS & Inventory Management Software') }}</h1>
+                            <p class="mb-5 fs-5" data-cms-key="home.hero.description">{{ dynamic_content($cmsPageKey . '.hero.home.hero.description.' . $heroLocale, 'Built in Amman, Jordan, AQUA POS helps restaurants and retailers manage sales, stock, and branches with speed, control, and real-time visibility.') }}
                             </p>
-                            <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="{{ route('request-product-demo') }}" data-cms-key="home.hero.cta" data-cms-fixed-href="{{ route('request-product-demo') }}"><span>{{ dynamic_content($cmsPageKey . '.hero.home.hero.cta.en', 'Book Appointment') }}</span></a>
+                            <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="{{ route('request-product-demo') }}" data-cms-key="home.hero.cta" data-cms-fixed-href="{{ route('request-product-demo') }}"><span>{{ dynamic_content($cmsPageKey . '.hero.home.hero.cta.' . $heroLocale, 'Book Appointment') }}</span></a>
                         </div>
                     </div>
                 </div>
@@ -165,11 +166,11 @@
                     </button>
                     <div class="carousel-caption">
                         <div class="carousel-caption-content p-3">
-                            <h5 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;" data-cms-key="home.hero.eyebrow_2">{{ dynamic_content($cmsPageKey . '.hero.home.hero.eyebrow_2.en', 'Cloud POS Platform') }}</h5>
-                            <h1 class="display-1 text-capitalize text-white mb-4" data-cms-key="home.hero.title_2">{{ dynamic_content($cmsPageKey . '.hero.home.hero.title_2.en', 'Powerful POS & Inventory Management Software') }}</h1>
-                            <p class="mb-5 fs-5 animated slideInDown" data-cms-key="home.hero.description_2">{{ dynamic_content($cmsPageKey . '.hero.home.hero.description_2.en', 'Built in Amman, Jordan, AQUA POS helps restaurants and retailers manage sales, stock, and branches with speed, control, and real-time visibility.') }}
+                            <h5 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;" data-cms-key="home.hero.eyebrow_2">{{ dynamic_content($cmsPageKey . '.hero.home.hero.eyebrow_2.' . $heroLocale, 'Cloud POS Platform') }}</h5>
+                            <h1 class="display-1 text-capitalize text-white mb-4" data-cms-key="home.hero.title_2">{{ dynamic_content($cmsPageKey . '.hero.home.hero.title_2.' . $heroLocale, 'Powerful POS & Inventory Management Software') }}</h1>
+                            <p class="mb-5 fs-5 animated slideInDown" data-cms-key="home.hero.description_2">{{ dynamic_content($cmsPageKey . '.hero.home.hero.description_2.' . $heroLocale, 'Built in Amman, Jordan, AQUA POS helps restaurants and retailers manage sales, stock, and branches with speed, control, and real-time visibility.') }}
                             </p>
-                            <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="{{ route('request-product-demo') }}" data-cms-key="home.hero.cta_2" data-cms-fixed-href="{{ route('request-product-demo') }}"><span>{{ dynamic_content($cmsPageKey . '.hero.home.hero.cta_2.en', 'Book Appointment') }}</span></a>
+                            <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="{{ route('request-product-demo') }}" data-cms-key="home.hero.cta_2" data-cms-fixed-href="{{ route('request-product-demo') }}"><span>{{ dynamic_content($cmsPageKey . '.hero.home.hero.cta_2.' . $heroLocale, 'Book Appointment') }}</span></a>
                         </div>
                     </div>
                 </div>
@@ -180,11 +181,11 @@
                     </button>
                     <div class="carousel-caption">
                         <div class="carousel-caption-content p-3">
-                            <h5 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;" data-cms-key="home.hero.eyebrow_3">{{ dynamic_content($cmsPageKey . '.hero.home.hero.eyebrow_3.en', 'Cloud POS Platform') }}</h5>
-                            <h1 class="display-1 text-capitalize text-white mb-4" data-cms-key="home.hero.title_3">{{ dynamic_content($cmsPageKey . '.hero.home.hero.title_3.en', 'Powerful POS & Inventory Management Software') }}</h1>
-                            <p class="mb-5 fs-5 animated slideInDown" data-cms-key="home.hero.description_3">{{ dynamic_content($cmsPageKey . '.hero.home.hero.description_3.en', 'Built in Amman, Jordan, AQUA POS helps restaurants and retailers manage sales, stock, and branches with speed, control, and real-time visibility.') }}
+                            <h5 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;" data-cms-key="home.hero.eyebrow_3">{{ dynamic_content($cmsPageKey . '.hero.home.hero.eyebrow_3.' . $heroLocale, 'Cloud POS Platform') }}</h5>
+                            <h1 class="display-1 text-capitalize text-white mb-4" data-cms-key="home.hero.title_3">{{ dynamic_content($cmsPageKey . '.hero.home.hero.title_3.' . $heroLocale, 'Powerful POS & Inventory Management Software') }}</h1>
+                            <p class="mb-5 fs-5 animated slideInDown" data-cms-key="home.hero.description_3">{{ dynamic_content($cmsPageKey . '.hero.home.hero.description_3.' . $heroLocale, 'Built in Amman, Jordan, AQUA POS helps restaurants and retailers manage sales, stock, and branches with speed, control, and real-time visibility.') }}
                             </p>
-                            <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="{{ route('request-product-demo') }}" data-cms-key="home.hero.cta_3" data-cms-fixed-href="{{ route('request-product-demo') }}"><span>{{ dynamic_content($cmsPageKey . '.hero.home.hero.cta_3.en', 'Book Appointment') }}</span></a>
+                            <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="{{ route('request-product-demo') }}" data-cms-key="home.hero.cta_3" data-cms-fixed-href="{{ route('request-product-demo') }}"><span>{{ dynamic_content($cmsPageKey . '.hero.home.hero.cta_3.' . $heroLocale, 'Book Appointment') }}</span></a>
                         </div>
                     </div>
                 </div>

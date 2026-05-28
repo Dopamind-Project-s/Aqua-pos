@@ -30,6 +30,116 @@
         return el.dataset.cmsKey || 'content';
     };
 
+    var getStoredSection = function (sectionKey) {
+        return (window.AQUA_CMS_PAGE || {})[sectionKey] || {};
+    };
+
+    var getStoredContent = function (sectionKey, fieldKey) {
+        var current = getStoredSection(sectionKey).content?.[fieldKey];
+        if (current && Object.keys(current).length) {
+            return current;
+        }
+
+        var sections = window.AQUA_CMS_PAGE || {};
+        for (var key in sections) {
+            if (sections[key]?.content?.[fieldKey]) {
+                return sections[key].content[fieldKey];
+            }
+        }
+
+        return {};
+    };
+
+    var getStoredStyle = function (sectionKey, fieldKey) {
+        var current = getStoredSection(sectionKey).style?.[fieldKey];
+        if (current && Object.keys(current).length) {
+            return current;
+        }
+
+        var sections = window.AQUA_CMS_PAGE || {};
+        for (var key in sections) {
+            if (sections[key]?.style?.[fieldKey]) {
+                return sections[key].style[fieldKey];
+            }
+        }
+
+        return {};
+    };
+
+    var getStoredSectionStyle = function (sectionKey) {
+        return getStoredSection(sectionKey).style?.__section || {};
+    };
+
+    var storedValue = function (payload, key, fallback) {
+        return Object.prototype.hasOwnProperty.call(payload || {}, key)
+            ? payload[key]
+            : fallback;
+    };
+
+    var hasStoredValue = function (payload, key) {
+        return Object.prototype.hasOwnProperty.call(payload || {}, key);
+    };
+
+    var localizedModalValue = function (payload, locale, currentText) {
+        if (hasStoredValue(payload, locale)) {
+            return payload[locale];
+        }
+
+        var otherLocale = locale === 'ar' ? 'en' : 'ar';
+        if (hasStoredValue(payload, otherLocale)) {
+            return '';
+        }
+
+        return window.CMS_EDITOR.locale === locale ? currentText : '';
+    };
+
+    var themedValue = function (value, fallback) {
+        if (!value || typeof value !== 'object') {
+            return value || fallback;
+        }
+
+        return getMode() === 'dark'
+            ? (value.dark_value || value.light_value || fallback)
+            : (value.light_value || value.dark_value || fallback);
+    };
+
+    var escapeHtml = function (value) {
+        return String(value || '')
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;');
+    };
+
+    var setInitialValues = function () {
+        modalBody.querySelectorAll('input, textarea, select').forEach(function (input) {
+            input.dataset.initialValue = input.type === 'checkbox'
+                ? String(input.checked)
+                : input.value;
+        });
+    };
+
+    var hasChanged = function (id) {
+        var input = document.getElementById(id);
+        if (!input) {
+            return false;
+        }
+
+        var value = input.type === 'checkbox' ? String(input.checked) : input.value;
+        return value !== input.dataset.initialValue;
+    };
+
+    var pruneEmpty = function (payload) {
+        Object.keys(payload).forEach(function (key) {
+            if (payload[key] === undefined) {
+                delete payload[key];
+            }
+        });
+
+        return payload;
+    };
+
     var markEditable = function () {
         document.querySelectorAll('[data-cms-key]').forEach(function (el) {
             if (el.closest('.cms-toolbar, .cms-modal, .cms-editor')) {
@@ -123,27 +233,41 @@
 
     var openTextModal = function () {
         var style = getCurrentStyle(state.current.el);
+        var storedContent = getStoredContent(state.current.sectionKey, state.current.fieldKey);
+        var storedStyle = getStoredStyle(state.current.sectionKey, state.current.fieldKey);
+        var sectionStyle = getStoredSectionStyle(state.current.sectionKey);
         var text = state.current.el.textContent.trim();
+        var ar = localizedModalValue(storedContent, 'ar', text);
+        var en = localizedModalValue(storedContent, 'en', text);
+        var textLight = storedStyle.text_color?.light_value || style.textColor;
+        var textDark = storedStyle.text_color?.dark_value || textLight;
+        var bgLight = storedStyle.background_color?.light_value || style.bgColor;
+        var bgDark = storedStyle.background_color?.dark_value || bgLight;
+        var sectionBgLight = sectionStyle.background_color?.light_value || '#ffffff';
+        var sectionBgDark = sectionStyle.background_color?.dark_value || sectionBgLight;
 
         modalBody.innerHTML = '' +
-            '<div class="mb-3"><label class="form-label">Arabic</label><textarea class="form-control" id="cmsTextAr" rows="2">' + text + '</textarea></div>' +
-            '<div class="mb-3"><label class="form-label">English</label><textarea class="form-control" id="cmsTextEn" rows="2">' + text + '</textarea></div>' +
+            '<div class="mb-3"><label class="form-label">Arabic</label><textarea class="form-control" id="cmsTextAr" rows="2">' + escapeHtml(ar) + '</textarea></div>' +
+            '<div class="mb-3"><label class="form-label">English</label><textarea class="form-control" id="cmsTextEn" rows="2">' + escapeHtml(en) + '</textarea></div>' +
             '<div class="row g-2">' +
-            '<div class="col-6"><label class="form-label">Font Size</label><input class="form-control" id="cmsFontSize" value="' + style.fontSize + '"></div>' +
-            '<div class="col-6"><label class="form-label">Line Height</label><input class="form-control" id="cmsLineHeight" placeholder="1.6"></div>' +
+            '<div class="col-6"><label class="form-label">Font Size</label><input class="form-control" id="cmsFontSize" value="' + escapeHtml(storedStyle.font_size || style.fontSize) + '"></div>' +
+            '<div class="col-6"><label class="form-label">Line Height</label><input class="form-control" id="cmsLineHeight" value="' + escapeHtml(storedStyle.line_height || '') + '" placeholder="1.6"></div>' +
             '<div class="col-6"><label class="form-label">Text Align</label><select class="form-select" id="cmsTextAlign"><option>right</option><option>center</option><option>left</option></select></div>' +
-            '<div class="col-3"><label class="form-label">Text (Light)</label><input type="color" class="form-control form-control-color w-100" id="cmsTextLight" value="' + style.textColor + '"></div>' +
-            '<div class="col-3"><label class="form-label">Text (Dark)</label><input type="color" class="form-control form-control-color w-100" id="cmsTextDark" value="' + style.textColor + '"></div>' +
-            '<div class="col-6"><label class="form-label">Background (Light)</label><input type="color" class="form-control form-control-color w-100" id="cmsBgLight" value="' + style.bgColor + '"></div>' +
-            '<div class="col-6"><label class="form-label">Background (Dark)</label><input type="color" class="form-control form-control-color w-100" id="cmsBgDark" value="' + style.bgColor + '"></div>' +
-            '<div class="col-6"><label class="form-label">Overlay Opacity</label><input type="number" class="form-control" id="cmsOverlayOpacity" step="0.05" min="0" max="1" value="0"></div>' +
-            '<div class="col-6 d-flex align-items-end"><div class="form-check"><input class="form-check-input" type="checkbox" id="cmsVisible" checked><label class="form-check-label" for="cmsVisible">Show element</label></div></div>' +
-            '<div class="col-4"><label class="form-label">Section BG Light</label><input type="color" class="form-control form-control-color w-100" id="cmsSectionBgLight" value="#ffffff"></div>' +
-            '<div class="col-4"><label class="form-label">Section BG Dark</label><input type="color" class="form-control form-control-color w-100" id="cmsSectionBgDark" value="#000000"></div>' +
-            '<div class="col-4"><label class="form-label">Section Overlay</label><input class="form-control" id="cmsSectionOverlay" placeholder="rgba(0,0,0,0.35)"></div>' +
-            '<div class="col-12"><label class="form-label">Section BG Image URL</label><input class="form-control" id="cmsSectionBgImage" placeholder="https://..."></div>' +
+            '<div class="col-3"><label class="form-label">Text (Light)</label><input type="color" class="form-control form-control-color w-100" id="cmsTextLight" value="' + textLight + '"></div>' +
+            '<div class="col-3"><label class="form-label">Text (Dark)</label><input type="color" class="form-control form-control-color w-100" id="cmsTextDark" value="' + textDark + '"></div>' +
+            '<div class="col-6"><label class="form-label">Background (Light)</label><input type="color" class="form-control form-control-color w-100" id="cmsBgLight" value="' + bgLight + '"></div>' +
+            '<div class="col-6"><label class="form-label">Background (Dark)</label><input type="color" class="form-control form-control-color w-100" id="cmsBgDark" value="' + bgDark + '"></div>' +
+            '<div class="col-6"><label class="form-label">Overlay Opacity</label><input type="number" class="form-control" id="cmsOverlayOpacity" step="0.05" min="0" max="1" value="' + escapeHtml(storedStyle.overlay_opacity || '0') + '"></div>' +
+            '<div class="col-6 d-flex align-items-end"><div class="form-check"><input class="form-check-input" type="checkbox" id="cmsVisible" ' + (storedStyle.visible === false ? '' : 'checked') + '><label class="form-check-label" for="cmsVisible">Show element</label></div></div>' +
+            '<div class="col-4"><label class="form-label">Section BG Light</label><input type="color" class="form-control form-control-color w-100" id="cmsSectionBgLight" value="' + sectionBgLight + '"></div>' +
+            '<div class="col-4"><label class="form-label">Section BG Dark</label><input type="color" class="form-control form-control-color w-100" id="cmsSectionBgDark" value="' + sectionBgDark + '"></div>' +
+            '<div class="col-4"><label class="form-label">Section Overlay</label><input class="form-control" id="cmsSectionOverlay" value="' + escapeHtml(sectionStyle.overlay || '') + '" placeholder="rgba(0,0,0,0.35)"></div>' +
+            '<div class="col-12"><label class="form-label">Section BG Image URL</label><input class="form-control" id="cmsSectionBgImage" value="' + escapeHtml(sectionStyle.background_image || '') + '" placeholder="https://..."></div>' +
             '<div class="col-12"><button type="button" class="btn btn-outline-danger btn-sm" id="cmsNoBackgroundBtn">No Background</button></div>' +
             '</div>';
+
+        document.getElementById('cmsTextAlign').value = storedStyle.text_align || getComputedStyle(state.current.el).textAlign || 'right';
+        setInitialValues();
 
         modal.show();
 
@@ -163,18 +287,23 @@
 
     var openButtonModal = function () {
         var style = getCurrentStyle(state.current.el);
+        var storedContent = getStoredContent(state.current.sectionKey, state.current.fieldKey);
+        var storedStyle = getStoredStyle(state.current.sectionKey, state.current.fieldKey);
+        var text = state.current.el.textContent.trim();
         modalBody.innerHTML = '' +
-            '<div class="mb-2"><label class="form-label">Button Text (AR)</label><input class="form-control" id="cmsBtnTextAr" value="' + (state.current.el.textContent.trim()) + '"></div>' +
-            '<div class="mb-2"><label class="form-label">Button Text (EN)</label><input class="form-control" id="cmsBtnTextEn" value="' + (state.current.el.textContent.trim()) + '"></div>' +
-            '<div class="mb-2"><label class="form-label">Link URL</label><input class="form-control" id="cmsBtnLink" value="' + (state.current.el.getAttribute('href') || '#') + '"></div>' +
+            '<div class="mb-2"><label class="form-label">Button Text (AR)</label><input class="form-control" id="cmsBtnTextAr" value="' + escapeHtml(localizedModalValue(storedContent, 'ar', text)) + '"></div>' +
+            '<div class="mb-2"><label class="form-label">Button Text (EN)</label><input class="form-control" id="cmsBtnTextEn" value="' + escapeHtml(localizedModalValue(storedContent, 'en', text)) + '"></div>' +
+            '<div class="mb-2"><label class="form-label">Link URL</label><input class="form-control" id="cmsBtnLink" value="' + escapeHtml(storedValue(storedContent, 'link', state.current.el.getAttribute('href') || '#')) + '"></div>' +
             '<div class="row g-2">' +
-            '<div class="col-6"><label class="form-label">BG Light</label><input type="color" class="form-control form-control-color w-100" id="cmsBtnBgLight" value="' + style.bgColor + '"></div>' +
-            '<div class="col-6"><label class="form-label">BG Dark</label><input type="color" class="form-control form-control-color w-100" id="cmsBtnBgDark" value="' + style.bgColor + '"></div>' +
-            '<div class="col-6"><label class="form-label">Text Light</label><input type="color" class="form-control form-control-color w-100" id="cmsBtnTextLight" value="' + style.textColor + '"></div>' +
-            '<div class="col-6"><label class="form-label">Text Dark</label><input type="color" class="form-control form-control-color w-100" id="cmsBtnTextDark" value="' + style.textColor + '"></div>' +
-            '<div class="col-6"><label class="form-label">Border</label><input type="color" class="form-control form-control-color w-100" id="cmsBtnBorder" value="' + style.borderColor + '"></div>' +
-            '<div class="col-6"><label class="form-label">Hover BG</label><input type="color" class="form-control form-control-color w-100" id="cmsBtnHoverBg" value="' + style.bgColor + '"></div>' +
+            '<div class="col-6"><label class="form-label">BG Light</label><input type="color" class="form-control form-control-color w-100" id="cmsBtnBgLight" value="' + (storedStyle.background_color?.light_value || style.bgColor) + '"></div>' +
+            '<div class="col-6"><label class="form-label">BG Dark</label><input type="color" class="form-control form-control-color w-100" id="cmsBtnBgDark" value="' + (storedStyle.background_color?.dark_value || storedStyle.background_color?.light_value || style.bgColor) + '"></div>' +
+            '<div class="col-6"><label class="form-label">Text Light</label><input type="color" class="form-control form-control-color w-100" id="cmsBtnTextLight" value="' + (storedStyle.text_color?.light_value || style.textColor) + '"></div>' +
+            '<div class="col-6"><label class="form-label">Text Dark</label><input type="color" class="form-control form-control-color w-100" id="cmsBtnTextDark" value="' + (storedStyle.text_color?.dark_value || storedStyle.text_color?.light_value || style.textColor) + '"></div>' +
+            '<div class="col-6"><label class="form-label">Border</label><input type="color" class="form-control form-control-color w-100" id="cmsBtnBorder" value="' + (themedValue(storedStyle.border_color, style.borderColor)) + '"></div>' +
+            '<div class="col-6"><label class="form-label">Hover BG</label><input type="color" class="form-control form-control-color w-100" id="cmsBtnHoverBg" value="' + (themedValue(storedStyle.hover_background_color, style.bgColor)) + '"></div>' +
             '</div>';
+
+        setInitialValues();
 
         modal.show();
     };
@@ -186,6 +315,8 @@
             '<div class="col-6"><label class="form-label">Icon Color</label><input type="color" class="form-control form-control-color w-100" id="cmsIconColor" value="' + rgbToHex(getComputedStyle(state.current.el).color) + '"></div>' +
             '<div class="col-6"><label class="form-label">Icon Size</label><input class="form-control" id="cmsIconSize" value="' + getComputedStyle(state.current.el).fontSize + '"></div>' +
             '</div>';
+
+        setInitialValues();
 
         modal.show();
     };
@@ -205,6 +336,7 @@
             '<canvas id="cmsCropCanvas" class="w-100 mt-2 border" style="max-height:200px;"></canvas>';
 
         bindImagePreview();
+        setInitialValues();
         modal.show();
     };
 
@@ -300,55 +432,68 @@
         var visible = document.getElementById('cmsVisible').checked;
         var noneBackground = document.getElementById('cmsNoBackgroundBtn')?.dataset.noneBackground === '1';
 
-        el.textContent = window.CMS_EDITOR.locale === 'ar' ? ar : en;
-        el.style.fontSize = fontSize;
-        el.style.lineHeight = lineHeight || '';
-        el.style.textAlign = align;
-        el.style.color = getMode() === 'dark' ? textDark : textLight;
+        if (window.CMS_EDITOR.locale === 'ar' && hasChanged('cmsTextAr')) {
+            el.textContent = ar;
+        } else if (window.CMS_EDITOR.locale !== 'ar' && hasChanged('cmsTextEn')) {
+            el.textContent = en;
+        }
+        if (hasChanged('cmsFontSize')) el.style.fontSize = fontSize;
+        if (hasChanged('cmsLineHeight')) el.style.lineHeight = lineHeight || '';
+        if (hasChanged('cmsTextAlign')) el.style.textAlign = align;
+        if (hasChanged('cmsTextLight') || hasChanged('cmsTextDark')) el.style.color = getMode() === 'dark' ? textDark : textLight;
         if (noneBackground) {
             el.style.background = 'none';
             el.style.backgroundImage = 'none';
-        } else {
+        } else if (hasChanged('cmsBgLight') || hasChanged('cmsBgDark')) {
             el.style.backgroundColor = getMode() === 'dark' ? bgDark : bgLight;
         }
-        el.style.display = visible ? '' : 'none';
+        if (hasChanged('cmsVisible')) el.style.display = visible ? '' : 'none';
 
-        queueChange(state.current.sectionKey, {
-            field_key: state.current.fieldKey,
-            content: {
-                type: 'text',
-                ar: ar,
-                en: en,
-            },
-            style: {
-                font_size: fontSize,
-                line_height: lineHeight,
-                text_align: align,
-                overlay_opacity: overlay,
-                visible: visible,
-                text_color: styleForModes(textLight, textDark),
-                background_color: noneBackground ? '__none__' : styleForModes(bgLight, bgDark),
-            }
-        });
+        var content = { type: 'text' };
+        if (hasChanged('cmsTextAr')) content.ar = ar;
+        if (hasChanged('cmsTextEn')) content.en = en;
+
+        var fieldStyle = {};
+        if (hasChanged('cmsFontSize')) fieldStyle.font_size = fontSize;
+        if (hasChanged('cmsLineHeight')) fieldStyle.line_height = lineHeight;
+        if (hasChanged('cmsTextAlign')) fieldStyle.text_align = align;
+        if (hasChanged('cmsOverlayOpacity')) fieldStyle.overlay_opacity = overlay;
+        if (hasChanged('cmsVisible')) fieldStyle.visible = visible;
+        if (hasChanged('cmsTextLight') || hasChanged('cmsTextDark')) fieldStyle.text_color = styleForModes(textLight, textDark);
+        if (noneBackground || hasChanged('cmsBgLight') || hasChanged('cmsBgDark')) {
+            fieldStyle.background_color = noneBackground ? '__none__' : styleForModes(bgLight, bgDark);
+        }
+
+        if (Object.keys(content).length > 1 || Object.keys(fieldStyle).length) {
+            queueChange(state.current.sectionKey, {
+                field_key: state.current.fieldKey,
+                content: content,
+                style: fieldStyle
+            });
+        }
 
         var sectionBgImage = document.getElementById('cmsSectionBgImage').value || null;
         var sectionOverlay = document.getElementById('cmsSectionOverlay').value || null;
-        var sectionBgMode = styleForModes(
-            document.getElementById('cmsSectionBgLight').value,
-            document.getElementById('cmsSectionBgDark').value
-        );
+        var sectionStyle = {};
 
         if (sectionBgImage === '__none__' || sectionOverlay === '__none__') {
-            sectionBgMode = '__none__';
-            sectionBgImage = '__none__';
-            sectionOverlay = '__none__';
+            sectionStyle.background_color = '__none__';
+            sectionStyle.background_image = '__none__';
+            sectionStyle.overlay = '__none__';
+        } else {
+            if (hasChanged('cmsSectionBgLight') || hasChanged('cmsSectionBgDark')) {
+                sectionStyle.background_color = styleForModes(
+                    document.getElementById('cmsSectionBgLight').value,
+                    document.getElementById('cmsSectionBgDark').value
+                );
+            }
+            if (hasChanged('cmsSectionBgImage')) sectionStyle.background_image = sectionBgImage;
+            if (hasChanged('cmsSectionOverlay')) sectionStyle.overlay = sectionOverlay;
         }
 
-        queueSectionStyle(state.current.sectionKey, {
-            background_color: sectionBgMode,
-            background_image: sectionBgImage,
-            overlay: sectionOverlay,
-        });
+        if (Object.keys(sectionStyle).length) {
+            queueSectionStyle(state.current.sectionKey, sectionStyle);
+        }
 
         modal.hide();
     };
@@ -359,24 +504,42 @@
         var en = document.getElementById('cmsBtnTextEn').value;
         var link = el.dataset.cmsFixedHref || document.getElementById('cmsBtnLink').value;
 
-        var style = {
-            background_color: styleForModes(document.getElementById('cmsBtnBgLight').value, document.getElementById('cmsBtnBgDark').value),
-            text_color: styleForModes(document.getElementById('cmsBtnTextLight').value, document.getElementById('cmsBtnTextDark').value),
-            border_color: styleForModes(document.getElementById('cmsBtnBorder').value, document.getElementById('cmsBtnBorder').value),
-            hover_background_color: styleForModes(document.getElementById('cmsBtnHoverBg').value, document.getElementById('cmsBtnHoverBg').value),
-        };
+        var style = {};
+        if (hasChanged('cmsBtnBgLight') || hasChanged('cmsBtnBgDark')) {
+            style.background_color = styleForModes(document.getElementById('cmsBtnBgLight').value, document.getElementById('cmsBtnBgDark').value);
+        }
+        if (hasChanged('cmsBtnTextLight') || hasChanged('cmsBtnTextDark')) {
+            style.text_color = styleForModes(document.getElementById('cmsBtnTextLight').value, document.getElementById('cmsBtnTextDark').value);
+        }
+        if (hasChanged('cmsBtnBorder')) {
+            style.border_color = styleForModes(document.getElementById('cmsBtnBorder').value, document.getElementById('cmsBtnBorder').value);
+        }
+        if (hasChanged('cmsBtnHoverBg')) {
+            style.hover_background_color = styleForModes(document.getElementById('cmsBtnHoverBg').value, document.getElementById('cmsBtnHoverBg').value);
+        }
 
-        el.textContent = window.CMS_EDITOR.locale === 'ar' ? ar : en;
+        if (window.CMS_EDITOR.locale === 'ar' && hasChanged('cmsBtnTextAr')) {
+            el.textContent = ar;
+        } else if (window.CMS_EDITOR.locale !== 'ar' && hasChanged('cmsBtnTextEn')) {
+            el.textContent = en;
+        }
         el.setAttribute('href', link || '#');
-        el.style.backgroundColor = getMode() === 'dark' ? style.background_color.dark_value : style.background_color.light_value;
-        el.style.color = getMode() === 'dark' ? style.text_color.dark_value : style.text_color.light_value;
-        el.style.borderColor = style.border_color.light_value;
+        if (style.background_color) el.style.backgroundColor = getMode() === 'dark' ? style.background_color.dark_value : style.background_color.light_value;
+        if (style.text_color) el.style.color = getMode() === 'dark' ? style.text_color.dark_value : style.text_color.light_value;
+        if (style.border_color) el.style.borderColor = style.border_color.light_value;
 
-        queueChange(state.current.sectionKey, {
-            field_key: state.current.fieldKey,
-            content: { type: 'button', ar: ar, en: en, link: link },
-            style: style,
-        });
+        var content = { type: 'button' };
+        if (hasChanged('cmsBtnTextAr')) content.ar = ar;
+        if (hasChanged('cmsBtnTextEn')) content.en = en;
+        if (hasChanged('cmsBtnLink')) content.link = link;
+
+        if (Object.keys(content).length > 1 || Object.keys(style).length) {
+            queueChange(state.current.sectionKey, {
+                field_key: state.current.fieldKey,
+                content: content,
+                style: style,
+            });
+        }
 
         modal.hide();
     };
@@ -390,14 +553,19 @@
         state.current.el.style.color = iconColor;
         state.current.el.style.fontSize = iconSize;
 
-        queueChange(state.current.sectionKey, {
-            field_key: state.current.fieldKey,
-            content: { type: 'icon', value: iconClass },
-            style: {
-                color: styleForModes(iconColor, iconColor),
-                size: iconSize,
-            },
-        });
+        var content = { type: 'icon' };
+        var style = {};
+        if (hasChanged('cmsIconClass')) content.value = iconClass;
+        if (hasChanged('cmsIconColor')) style.color = styleForModes(iconColor, iconColor);
+        if (hasChanged('cmsIconSize')) style.size = iconSize;
+
+        if (Object.keys(content).length > 1 || Object.keys(style).length) {
+            queueChange(state.current.sectionKey, {
+                field_key: state.current.fieldKey,
+                content: content,
+                style: style,
+            });
+        }
 
         modal.hide();
     };
@@ -622,8 +790,16 @@
             style_json: {},
         };
 
-        state.pending[sectionKey].content_json[change.field_key] = change.content;
-        state.pending[sectionKey].style_json[change.field_key] = change.style;
+        state.pending[sectionKey].content_json[change.field_key] = Object.assign(
+            {},
+            state.pending[sectionKey].content_json[change.field_key] || {},
+            pruneEmpty(change.content || {})
+        );
+        state.pending[sectionKey].style_json[change.field_key] = Object.assign(
+            {},
+            state.pending[sectionKey].style_json[change.field_key] || {},
+            pruneEmpty(change.style || {})
+        );
         syncBrowserCmsSection(sectionKey, change.field_key, change.content, change.style);
     };
 
@@ -637,8 +813,16 @@
         };
         window.AQUA_CMS_PAGE[sectionKey].content = window.AQUA_CMS_PAGE[sectionKey].content || {};
         window.AQUA_CMS_PAGE[sectionKey].style = window.AQUA_CMS_PAGE[sectionKey].style || {};
-        window.AQUA_CMS_PAGE[sectionKey].content[fieldKey] = content;
-        window.AQUA_CMS_PAGE[sectionKey].style[fieldKey] = style || {};
+        window.AQUA_CMS_PAGE[sectionKey].content[fieldKey] = Object.assign(
+            {},
+            window.AQUA_CMS_PAGE[sectionKey].content[fieldKey] || {},
+            pruneEmpty(content || {})
+        );
+        window.AQUA_CMS_PAGE[sectionKey].style[fieldKey] = Object.assign(
+            {},
+            window.AQUA_CMS_PAGE[sectionKey].style[fieldKey] || {},
+            pruneEmpty(style || {})
+        );
     };
 
     var queueSectionStyle = function (sectionKey, style) {
@@ -648,7 +832,25 @@
             style_json: {},
         };
 
-        state.pending[sectionKey].style_json.__section = style;
+        state.pending[sectionKey].style_json.__section = Object.assign(
+            {},
+            state.pending[sectionKey].style_json.__section || {},
+            pruneEmpty(style || {})
+        );
+
+        window.AQUA_CMS_PAGE = window.AQUA_CMS_PAGE || {};
+        window.AQUA_CMS_PAGE[sectionKey] = window.AQUA_CMS_PAGE[sectionKey] || {
+            content: {},
+            style: {},
+            is_visible: true,
+            sort_order: 0,
+        };
+        window.AQUA_CMS_PAGE[sectionKey].style = window.AQUA_CMS_PAGE[sectionKey].style || {};
+        window.AQUA_CMS_PAGE[sectionKey].style.__section = Object.assign(
+            {},
+            window.AQUA_CMS_PAGE[sectionKey].style.__section || {},
+            pruneEmpty(style || {})
+        );
     };
 
     var enableSectionDnD = function () {
@@ -745,4 +947,3 @@
     document.body.classList.add('cms-preview-on');
     markEditable();
 })();
-        var noneBackground = document.getElementById('cmsNoBackgroundBtn')?.dataset.noneBackground === '1';
