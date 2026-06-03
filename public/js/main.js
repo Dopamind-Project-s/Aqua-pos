@@ -996,6 +996,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     collapseEl.querySelectorAll('.nav-link, .dropdown-item, .mega-menu__service').forEach(function (link) {
         link.addEventListener('click', function () {
+            if (link.classList.contains('mega-menu__trigger') || link.getAttribute('data-bs-toggle') === 'dropdown') {
+                return;
+            }
+
             if (window.matchMedia('(max-width: 991.98px)').matches) {
                 bsCollapse.hide();
             }

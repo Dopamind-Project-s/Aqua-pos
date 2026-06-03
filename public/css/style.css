@@ -4,6 +4,8 @@ html,
 body {
     margin: 0 !important;
     padding: 0 !important;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 /*** Spinner ***/
@@ -524,7 +526,36 @@ body.dark-mode .topbar-social-btn:hover {
     }
 
     .header-carousel .header-carousel-item .carousel-caption .carousel-caption-content {
-        width: 95% !important;
+        width: min(100%, 18.75rem) !important;
+        max-width: calc(100vw - 2rem);
+        padding-inline: .75rem !important;
+        overflow-wrap: break-word;
+    }
+
+    .header-carousel .carousel-caption h1 {
+        font-size: clamp(1.7rem, 7vw, 2.05rem) !important;
+        line-height: 1.18 !important;
+        overflow-wrap: break-word;
+    }
+
+    .header-carousel .carousel-caption h5 {
+        font-size: .9rem !important;
+        line-height: 1.35 !important;
+        letter-spacing: .08em;
+        white-space: normal;
+    }
+
+    .header-carousel .carousel-caption p {
+        font-size: .98rem !important;
+        line-height: 1.55 !important;
+        max-width: 18rem;
+        margin-inline: auto;
+        overflow-wrap: break-word;
+    }
+
+    .header-carousel .carousel-caption .btn {
+        width: min(100%, 15rem);
+        padding: .9rem 1.25rem !important;
     }
  
 }
