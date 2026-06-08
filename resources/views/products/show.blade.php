@@ -164,7 +164,84 @@
         background: rgba(6, 35, 51, .45);
     }
 
-    .show-cta { display: flex; flex-wrap: wrap; gap: .6rem; }
+    .show-cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .65rem;
+    }
+
+    .show-cta .btn {
+        min-width: 0;
+        min-height: 46px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: .5rem;
+        border-radius: 999px;
+        padding: .72rem 1.15rem;
+        font-weight: 800;
+        letter-spacing: 0;
+        line-height: 1.15;
+        box-shadow: none;
+        transition: transform .2s ease, background-color .2s ease, border-color .2s ease, color .2s ease, box-shadow .2s ease;
+    }
+
+    .show-cta .btn:hover,
+    .show-cta .btn:focus-visible {
+        transform: translateY(-1px);
+    }
+
+    .product-hero-cta-primary.btn {
+        background-color: var(--color-primary) !important;
+        border-color: var(--color-primary) !important;
+        color: var(--color-primary-contrast) !important;
+        padding: .5rem 1.5rem !important;
+        min-height: auto !important;
+        gap: 0 !important;
+        font-weight: 600 !important;
+        line-height: 1.5 !important;
+        box-shadow: inset 0 0 0 0 var(--color-primary-hover), 0 10px 22px color-mix(in srgb, var(--color-primary) 28%, transparent) !important;
+    }
+
+    .product-hero-cta-primary.btn:hover,
+    .product-hero-cta-primary.btn:focus-visible {
+        transform: none !important;
+        background-color: var(--color-primary-hover) !important;
+        border-color: var(--color-primary-hover) !important;
+        color: var(--color-primary-contrast) !important;
+        box-shadow: inset 600px 0 0 0 var(--color-primary-hover) !important;
+    }
+
+    .product-hero-cta-secondary.btn {
+        background: rgba(255, 255, 255, .08) !important;
+        border-color: rgba(255, 255, 255, .46) !important;
+        color: #ffffff !important;
+    }
+
+    .product-hero-cta-secondary.btn:hover,
+    .product-hero-cta-secondary.btn:focus-visible {
+        background: rgba(255, 255, 255, .16) !important;
+        border-color: rgba(255, 255, 255, .72) !important;
+        color: #ffffff !important;
+    }
+
+    .product-hero-cta-tertiary.btn {
+        background: rgba(255, 255, 255, .18) !important;
+        border-color: rgba(255, 255, 255, .2) !important;
+        color: #ffffff !important;
+    }
+
+    .product-hero-cta-tertiary.btn:hover,
+    .product-hero-cta-tertiary.btn:focus-visible {
+        background: rgba(255, 255, 255, .25) !important;
+        border-color: rgba(255, 255, 255, .36) !important;
+        color: #ffffff !important;
+    }
+
+    .show-cta .btn i {
+        font-size: .9em;
+        line-height: 1;
+    }
 
     .section-card {
         border: 1px solid var(--border-soft);
@@ -281,6 +358,134 @@
         color: var(--color-primary-contrast) !important;
         border-color: var(--color-primary) !important;
     }
+
+    .product-show-page .show-hero {
+        height: auto !important;
+        min-height: auto !important;
+        display: block !important;
+        align-items: initial !important;
+        padding-block: 3rem !important;
+        background: linear-gradient(130deg, var(--aqua-900) 0%, var(--aqua-700) 55%, var(--aqua-500) 100%) !important;
+        background-image: linear-gradient(130deg, var(--aqua-900) 0%, var(--aqua-700) 55%, var(--aqua-500) 100%) !important;
+        border-radius: 0 0 30px 30px !important;
+        overflow: visible !important;
+    }
+
+    .product-show-page .show-hero::before,
+    .product-show-page .show-hero::after {
+        display: none !important;
+    }
+
+    .product-show-page .show-hero .container {
+        max-width: 1140px !important;
+        text-align: start !important;
+        padding-top: 1.5rem !important;
+        padding-bottom: 1.5rem !important;
+    }
+
+    .product-show-page .show-hero .row {
+        display: flex !important;
+    }
+
+    .product-show-page .show-hero .col-lg-8,
+    .product-show-page .show-hero .col-lg-4 {
+        display: block !important;
+        margin-inline: 0 !important;
+        text-align: start !important;
+    }
+
+    .product-show-page .show-hero .col-lg-8 {
+        width: 66.66666667% !important;
+        max-width: none !important;
+    }
+
+    .product-show-page .show-hero .col-lg-4 {
+        width: 33.33333333% !important;
+    }
+
+    .product-show-page .show-hero h1 {
+        color: #ffffff !important;
+        font-size: clamp(2rem, 4vw, 3rem) !important;
+        line-height: 1.18 !important;
+        margin-bottom: .5rem !important;
+    }
+
+    .product-show-page .show-hero p {
+        color: rgba(255, 255, 255, .94) !important;
+        max-width: 760px !important;
+        margin-inline: 0 !important;
+    }
+
+    .product-show-page .show-hero .product-hero-actions {
+        display: flex !important;
+    }
+
+    .product-show-page .product-hero-gallery {
+        display: block !important;
+    }
+
+    @media (max-width: 991.98px) {
+        .product-show-page .show-hero {
+            padding-block: 2.25rem !important;
+        }
+
+        .product-show-page .show-hero .container {
+            max-width: 720px !important;
+            text-align: center !important;
+        }
+
+        .product-show-page .show-hero .row {
+            display: flex !important;
+        }
+
+        .product-show-page .show-hero .col-lg-8,
+        .product-show-page .show-hero .col-lg-4 {
+            width: 100% !important;
+            text-align: center !important;
+        }
+
+        .product-show-page .show-hero p {
+            margin-inline: auto !important;
+        }
+
+        .product-show-page .show-hero .product-hero-actions,
+        .product-show-page .show-cta {
+            justify-content: center;
+        }
+
+        .product-show-page .product-category-badge {
+            margin-inline: auto;
+        }
+
+        .product-show-page .product-hero-gallery {
+            max-width: 520px;
+            margin-inline: auto;
+        }
+    }
+
+    @media (max-width: 575.98px) {
+        .product-show-page .show-hero {
+            padding-block: 1.75rem !important;
+            border-radius: 0 0 22px 22px !important;
+        }
+
+        .product-show-page .show-hero .container {
+            padding-top: 1rem !important;
+            padding-bottom: 1rem !important;
+        }
+
+        .product-show-page .show-hero h1 {
+            font-size: clamp(1.7rem, 9vw, 2.2rem) !important;
+        }
+
+        .product-show-page .show-cta {
+            width: 100%;
+        }
+
+        .product-show-page .show-cta .btn {
+            flex: 1 1 100%;
+        }
+    }
 </style>
 @endpush
 
@@ -306,9 +511,9 @@
                             </a>
                         @endif
                         <div class="show-cta">
-                            <a href="{{ route('request-product-demo') }}" class="btn btn-primary rounded-pill" data-i18n="products.requestDemo">Request Demo</a>
-                            <a href="{{ route('products') }}" class="btn btn-outline-light rounded-pill" data-i18n="products.back">Back to Products</a>
-                            <a href="{{ route('products') }}" class="btn btn-primary rounded-pill" data-i18n="products.allProducts">View All Products</a>
+                            <a href="{{ route('request-product-demo') }}" class="btn btn-primary rounded-pill text-white py-2 px-4 product-hero-cta-primary"><i class="fas fa-calendar-check me-2"></i><span data-i18n="products.requestDemo">Request Demo</span></a>
+                            <a href="{{ route('products') }}" class="btn product-hero-cta-secondary"><i class="fas {{ app_is_rtl() ? 'fa-arrow-right' : 'fa-arrow-left' }}"></i><span data-i18n="products.back">Back to Products</span></a>
+                            <a href="{{ route('products') }}" class="btn product-hero-cta-tertiary"><i class="fas fa-box-open"></i><span data-i18n="products.allProducts">View All Products</span></a>
                         </div>
                     </div>
                 </div>
