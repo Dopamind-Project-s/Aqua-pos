@@ -2766,6 +2766,11 @@ body.dark-mode .nav-toolbar__btn--toggle {
     border-color: #2d3f5c;
 }
 
+body.dark-mode #languageToggle .nav-toggle-pill {
+    color: #fff;
+    opacity: 1;
+}
+
 @media (max-width: 991.98px) {
     .nav-toolbar__btn--toggle {
         min-width: 74px;
