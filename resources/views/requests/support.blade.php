@@ -82,6 +82,17 @@
         min-height: 48px;
     }
 
+    .support-country-chip {
+        min-height: 48px;
+        display: block;
+        padding: 10px 12px;
+        border: 1px solid #d7e3f4;
+        border-radius: 12px;
+        background: #f6f9ff;
+        color: #1f3759;
+        font-weight: 600;
+    }
+
     .support-form textarea.form-control { min-height: 140px; }
 
     .support-form .form-control:focus {
@@ -112,7 +123,8 @@
         color: #dbe7fb !important;
     }
 
-    body.dark-mode .support-form .form-control {
+    body.dark-mode .support-form .form-control,
+    body.dark-mode .support-country-chip {
         background: #101a2a;
         border-color: #2a3f5d;
         color: #e7edf9;
@@ -182,8 +194,14 @@
 
                 <div class="col-md-6"><label class="form-label"><i class="far fa-user"></i><span data-i18n="support.fullName">Full Name</span></label><input class="form-control" name="full_name" required></div>
                 <div class="col-md-6"><label class="form-label"><i class="far fa-envelope"></i><span data-i18n="support.email">Email</span></label><input type="email" class="form-control" name="email"></div>
-                <div class="col-md-6"><label class="form-label"><i class="fas fa-phone"></i><span data-i18n="support.phone">Phone</span></label><input class="form-control" name="phone"></div>
-                <div class="col-md-6"><label class="form-label"><i class="far fa-building"></i><span data-i18n="support.company">Company</span></label><input class="form-control" name="company"></div>
+                @include('requests.partials.country-field', [
+                    'id' => 'supportCountry',
+                    'i18nPrefix' => 'support',
+                    'columnClass' => 'col-md-4',
+                    'chipClass' => 'support-country-chip',
+                ])
+                <div class="col-md-4"><label class="form-label"><i class="fas fa-phone"></i><span data-i18n="support.phone">Phone</span></label><input class="form-control" name="phone" value="{{ old('phone') }}"></div>
+                <div class="col-md-4"><label class="form-label"><i class="far fa-building"></i><span data-i18n="support.company">Company</span></label><input class="form-control" name="company" value="{{ old('company') }}"></div>
                 <div class="col-12"><label class="form-label"><i class="fas fa-heading"></i><span data-i18n="support.subject">Subject</span></label><input class="form-control" name="subject" data-i18n-placeholder="support.subjectPlaceholder" placeholder="Issue title"></div>
                 <div class="col-12"><label class="form-label"><i class="far fa-comment-dots"></i><span data-i18n="support.details">Support Details</span></label><textarea class="form-control" name="message" rows="6"></textarea></div>
                 <div class="col-12 d-grid d-md-flex justify-content-md-end"><button class="btn btn-primary px-5 support-submit"><i class="fas fa-paper-plane me-2"></i><span data-i18n="support.submit">Submit Support Request</span></button></div>

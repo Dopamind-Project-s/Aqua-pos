@@ -136,6 +136,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var panel = megaMenu.querySelector('.mega-menu__panel');
     var categoryItems = megaMenu.querySelectorAll('.mega-menu__category');
     var categoryButtons = megaMenu.querySelectorAll('.mega-menu__category-toggle');
+    var navbarCollapse = megaMenu.closest('.navbar-collapse');
     var closeDelayTimer = null;
     var closeDelayMs = 450;
 
@@ -154,12 +155,18 @@ document.addEventListener('DOMContentLoaded', function () {
         cancelDelayedClose();
         megaMenu.classList.add('is-open');
         trigger.setAttribute('aria-expanded', 'true');
+        if (isMobile() && navbarCollapse) {
+            navbarCollapse.classList.add('products-menu-open');
+        }
     };
 
     var closeMegaMenu = function () {
         cancelDelayedClose();
         megaMenu.classList.remove('is-open');
         trigger.setAttribute('aria-expanded', 'false');
+        if (navbarCollapse) {
+            navbarCollapse.classList.remove('products-menu-open');
+        }
     };
 
     var closeMegaMenuLater = function () {
@@ -395,6 +402,8 @@ document.addEventListener('DOMContentLoaded', function () {
             'support.formSubtitle': 'Please provide as much detail as possible so we can resolve your issue faster.',
             'support.fullName': 'Full Name',
             'support.email': 'Email',
+            'support.country': 'Country',
+            'support.countryDetecting': 'Detecting your country...',
             'support.phone': 'Phone',
             'support.company': 'Company',
             'support.subject': 'Subject',
@@ -414,6 +423,7 @@ document.addEventListener('DOMContentLoaded', function () {
             'contact.formSubtitle': 'Share your details and message so we can contact you effectively.',
             'contact.fullName': 'Full Name',
             'contact.email': 'Email',
+            'contact.country': 'Country',
             'contact.phone': 'Phone',
             'contact.company': 'Company',
             'contact.subject': 'Subject',
@@ -678,6 +688,8 @@ document.addEventListener('DOMContentLoaded', function () {
             'support.formSubtitle': 'يرجى تزويدنا بأكبر قدر من التفاصيل حتى نتمكن من حل المشكلة بشكل أسرع.',
             'support.fullName': 'الاسم الكامل',
             'support.email': 'البريد الإلكتروني',
+            'support.country': 'الدولة',
+            'support.countryDetecting': 'جاري تحديد دولتك...',
             'support.phone': 'الهاتف',
             'support.company': 'الشركة',
             'support.subject': 'عنوان المشكلة',
@@ -697,6 +709,7 @@ document.addEventListener('DOMContentLoaded', function () {
             'contact.formSubtitle': 'شارك بياناتك ورسالتك لنتمكن من التواصل معك بشكل فعّال.',
             'contact.fullName': 'الاسم الكامل',
             'contact.email': 'البريد الإلكتروني',
+            'contact.country': 'الدولة',
             'contact.phone': 'الهاتف',
             'contact.company': 'الشركة',
             'contact.subject': 'عنوان الطلب',
@@ -981,6 +994,77 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 })();
+
+// Shared country selector with automatic detection for service request forms.
+document.addEventListener('DOMContentLoaded', function () {
+    var countryFields = document.querySelectorAll('[data-country-select]');
+
+    if (!countryFields.length) {
+        return;
+    }
+
+    var countryCodes = 'AD,AE,AF,AG,AI,AL,AM,AO,AQ,AR,AS,AT,AU,AW,AX,AZ,BA,BB,BD,BE,BF,BG,BH,BI,BJ,BL,BM,BN,BO,BQ,BR,BS,BT,BV,BW,BY,BZ,CA,CC,CD,CF,CG,CH,CI,CK,CL,CM,CN,CO,CR,CU,CV,CW,CX,CY,CZ,DE,DJ,DK,DM,DO,DZ,EC,EE,EG,EH,ER,ES,ET,FI,FJ,FK,FM,FO,FR,GA,GB,GD,GE,GF,GG,GH,GI,GL,GM,GN,GP,GQ,GR,GS,GT,GU,GW,GY,HK,HM,HN,HR,HT,HU,ID,IE,IL,IM,IN,IO,IQ,IR,IS,IT,JE,JM,JO,JP,KE,KG,KH,KI,KM,KN,KP,KR,KW,KY,KZ,LA,LB,LC,LI,LK,LR,LS,LT,LU,LV,LY,MA,MC,MD,ME,MF,MG,MH,MK,ML,MM,MN,MO,MP,MQ,MR,MS,MT,MU,MV,MW,MX,MY,MZ,NA,NC,NE,NF,NG,NI,NL,NO,NP,NR,NU,NZ,OM,PA,PE,PF,PG,PH,PK,PL,PM,PN,PR,PS,PT,PW,PY,QA,RE,RO,RS,RU,RW,SA,SB,SC,SD,SE,SG,SH,SI,SJ,SK,SL,SM,SN,SO,SR,SS,ST,SV,SX,SY,SZ,TC,TD,TF,TG,TH,TJ,TK,TL,TM,TN,TO,TR,TT,TV,TW,TZ,UA,UG,UM,US,UY,UZ,VA,VC,VE,VG,VI,VN,VU,WF,WS,YE,YT,ZA,ZM,ZW'.split(',');
+    var locale = document.documentElement.getAttribute('lang') === 'ar' ? 'ar' : 'en';
+    var supportsRegionNames = typeof Intl.DisplayNames === 'function';
+    var englishNames = supportsRegionNames ? new Intl.DisplayNames(['en'], { type: 'region' }) : null;
+    var localizedNames = supportsRegionNames ? new Intl.DisplayNames([locale], { type: 'region' }) : null;
+    var countryName = function (code, names) { return names ? names.of(code) : code; };
+
+    var toFlag = function (code) {
+        if (!code || code.length !== 2) return String.fromCodePoint(127760);
+        return String.fromCodePoint.apply(null, code.toUpperCase().split('').map(function (character) {
+            return 127397 + character.charCodeAt(0);
+        }));
+    };
+
+    countryFields.forEach(function (select) {
+        var savedCountry = select.value;
+        select.replaceChildren();
+
+        var globe = String.fromCodePoint(127760);
+        var placeholder = new Option(locale === 'ar' ? globe + ' جاري تحديد دولتك...' : globe + ' Detecting your country...', '');
+        select.add(placeholder);
+
+        countryCodes.forEach(function (code) {
+            var englishName = countryName(code, englishNames);
+            select.add(new Option(toFlag(code) + ' ' + countryName(code, localizedNames), englishName));
+        });
+
+        if (savedCountry) {
+            var matchingOption = Array.from(select.options).find(function (option) {
+                return option.value.toLowerCase() === savedCountry.toLowerCase();
+            });
+            if (!matchingOption) {
+                matchingOption = new Option(savedCountry, savedCountry);
+                select.add(matchingOption);
+            }
+            matchingOption.selected = true;
+        }
+    });
+
+    fetch('https://ipapi.co/json/')
+        .then(function (response) { return response.ok ? response.json() : Promise.reject(); })
+        .then(function (country) {
+            countryFields.forEach(function (select) {
+                if (select.value || !country.country_code) {
+                    return;
+                }
+                var detectedName = countryName(country.country_code.toUpperCase(), englishNames);
+                if (detectedName) select.value = detectedName;
+            });
+        })
+        .catch(function () {
+            var isArabic = document.documentElement.getAttribute('lang') === 'ar';
+            countryFields.forEach(function (select) {
+                if (select.value) {
+                    return;
+                }
+                select.options[0].textContent = isArabic
+                    ? String.fromCodePoint(127760) + ' تعذر التحديد التلقائي — اختر الدولة'
+                    : String.fromCodePoint(127760) + ' Auto-detection unavailable — select country';
+            });
+        });
+});
 
 
 // Mobile navbar UX fixes

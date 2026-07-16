@@ -77,7 +77,8 @@
         font-weight: 600;
     }
 
-    .contact-form .form-control {
+    .contact-form .form-control,
+    .contact-form .form-select {
         border-radius: 12px;
         border-color: #d3e2f6;
         min-height: 48px;
@@ -108,7 +109,8 @@
         box-shadow: 0 12px 26px rgba(0,0,0,.35);
     }
 
-    body.dark-mode .contact-form .form-control {
+    body.dark-mode .contact-form .form-control,
+    body.dark-mode .contact-form .form-select {
         background: #101a2a;
         border-color: #24354f;
         color: #e7edf9;
@@ -217,8 +219,14 @@
 
                         <div class="col-md-6"><label class="form-label"><i class="far fa-user"></i><span data-i18n="contact.fullName">Full Name</span></label><input class="form-control" name="full_name" value="{{ old('full_name') }}" required></div>
                         <div class="col-md-6"><label class="form-label"><i class="far fa-envelope"></i><span data-i18n="contact.email">Email</span></label><input type="email" class="form-control" name="email" value="{{ old('email') }}"></div>
+                        @include('requests.partials.country-field', [
+                            'id' => 'contactCountry',
+                            'i18nPrefix' => 'contact',
+                            'columnClass' => 'col-md-6',
+                            'chipClass' => 'form-select',
+                        ])
                         <div class="col-md-6"><label class="form-label"><i class="fas fa-phone"></i><span data-i18n="contact.phone">Phone</span></label><input class="form-control" name="phone" value="{{ old('phone') }}"></div>
-                        <div class="col-md-6"><label class="form-label"><i class="far fa-building"></i><span data-i18n="contact.company">Company</span></label><input class="form-control" name="company" value="{{ old('company') }}"></div>
+                        <div class="col-12"><label class="form-label"><i class="far fa-building"></i><span data-i18n="contact.company">Company</span></label><input class="form-control" name="company" value="{{ old('company') }}"></div>
                         <div class="col-12"><label class="form-label"><i class="fas fa-heading"></i><span data-i18n="contact.subject">Subject</span></label><input class="form-control" name="subject" value="{{ old('subject', $selectedPartner ? 'Partner location inquiry: '.$selectedPartner->localized_name : '') }}" data-i18n-placeholder="contact.subjectPlaceholder" placeholder="Your inquiry subject"></div>
                         <div class="col-12"><label class="form-label"><i class="far fa-comment-dots"></i><span data-i18n="contact.message">Message</span></label><textarea class="form-control" name="message" rows="5">{{ old('message') }}</textarea></div>
                         <div class="col-12 d-grid d-md-flex justify-content-md-end"><button class="btn contact-submit px-5 text-white"><i class="fas fa-paper-plane me-2"></i><span data-i18n="contact.submit">Submit Contact Request</span></button></div>
