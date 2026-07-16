@@ -3457,6 +3457,11 @@ html[lang="ar"] h6,
     isolation: isolate;
 }
 
+/* Shared inner-page hero surface; the home carousel does not use .page-hero. */
+body.dark-mode .page-hero {
+    background: #121c2c !important;
+}
+
 .page-hero > .container {
     width: min(calc(100% - 2rem), 900px) !important;
     max-width: 900px !important;
