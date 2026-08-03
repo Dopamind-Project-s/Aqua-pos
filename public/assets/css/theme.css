@@ -110,6 +110,7 @@ body.dark-mode {
   --shadow-color: rgba(2, 8, 22, 0.45);
 
   --section-hero-text: #e2e8f0;
+  --section-inner-hero-bg: #121c2c;
   --section-nav-bg: rgba(19, 29, 49, 0.92);
   --section-nav-border: rgba(148, 163, 184, 0.22);
   --section-topbar-bg: #0b1220;

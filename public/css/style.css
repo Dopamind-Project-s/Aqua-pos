@@ -3463,8 +3463,9 @@ html[lang="ar"] h6,
 }
 
 /* Shared inner-page hero surface; the home carousel does not use .page-hero. */
-body.dark-mode .page-hero {
-    background: #121c2c !important;
+body.dark-mode .page-hero,
+body.dark-mode .blog-page-hero {
+    background: var(--section-inner-hero-bg) !important;
 }
 
 .page-hero > .container {
