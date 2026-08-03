@@ -5,10 +5,17 @@
         $gtmContainerId = $siteSetting?->gtm_container_id ?: config('services.gtm.container_id');
         $googleVerification = $siteSetting?->google_site_verification ?: config('services.google.site_verification');
         $clarityProjectId = $siteSetting?->ms_clarity_project_id ?: config('services.clarity.project_id');
+        $cmsPageKey = str_replace('.', '-', Route::currentRouteName() ?? trim(request()->path(), '/') ?: 'home');
+        $defaultLogoSrc = $siteSetting?->primary_logo ? public_storage_url($siteSetting->primary_logo) : asset('img/LOGO.png');
+        $lightLogoSrc = dynamic_content(
+            $cmsPageKey . '.header.site.logo_light.src',
+            dynamic_content($cmsPageKey . '.header.site.logo.src', $defaultLogoSrc)
+        );
     @endphp
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ $lightLogoSrc }}">
 
     <title>{{ app(\App\Support\DynamicContent::class)->get('global.seo.meta_title', $metaTitle ?? "Aqua POS") }}</title>
     <meta name="description" content="{{ app(\App\Support\DynamicContent::class)->get('global.seo.meta_description', $metaDescription ?? "Aqua POS cloud platform for POS, inventory, and business operations.") }}">

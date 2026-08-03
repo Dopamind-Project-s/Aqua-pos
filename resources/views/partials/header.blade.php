@@ -24,12 +24,6 @@
 <!-- Navbar & Hero Start -->
 <div class="container-fluid position-relative p-0" data-cms-section="header">
             @php
-                $cmsPageKey = str_replace('.', '-', Route::currentRouteName() ?? trim(request()->path(), '/') ?: 'home');
-                $defaultLogoSrc = $siteSetting?->primary_logo ? public_storage_url($siteSetting->primary_logo) : asset('img/LOGO.png');
-                $lightLogoSrc = dynamic_content(
-                    $cmsPageKey . '.header.site.logo_light.src',
-                    dynamic_content($cmsPageKey . '.header.site.logo.src', $defaultLogoSrc)
-                );
                 $darkLogoSrc = dynamic_content(
                     $cmsPageKey . '.header.site.logo_dark.src',
                     $siteSetting?->secondary_logo ? public_storage_url($siteSetting->secondary_logo) : $lightLogoSrc
