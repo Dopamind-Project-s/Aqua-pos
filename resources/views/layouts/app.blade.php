@@ -15,7 +15,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="{{ $lightLogoSrc }}">
+    <link rel="icon" type="image/png" href="{{ asset('img/aqua-dark-logo.png') }}">
 
     <title>{{ app(\App\Support\DynamicContent::class)->get('global.seo.meta_title', $metaTitle ?? "Aqua POS") }}</title>
     <meta name="description" content="{{ app(\App\Support\DynamicContent::class)->get('global.seo.meta_description', $metaDescription ?? "Aqua POS cloud platform for POS, inventory, and business operations.") }}">
