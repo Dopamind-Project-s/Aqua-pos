@@ -416,6 +416,41 @@
         color: #0d2344 !important;
     }
 
+    [dir="rtl"] .product-show-page,
+    [dir="rtl"] .product-show-page .section-card,
+    [dir="rtl"] .product-show-page .related-item,
+    [dir="rtl"] .product-show-page .info-tile {
+        direction: rtl;
+        text-align: right !important;
+    }
+
+    [dir="rtl"] .product-show-page .show-hero .container,
+    [dir="rtl"] .product-show-page .show-hero .col-lg-8,
+    [dir="rtl"] .product-show-page .show-hero .col-lg-4,
+    [dir="rtl"] .product-show-page .show-hero h1,
+    [dir="rtl"] .product-show-page .show-hero p {
+        direction: rtl;
+        text-align: right !important;
+    }
+
+    [dir="rtl"] .product-show-page .show-hero p {
+        margin-right: 0 !important;
+        margin-left: auto !important;
+    }
+
+    [dir="rtl"] .product-show-page .product-hero-actions,
+    [dir="rtl"] .product-show-page .show-cta,
+    [dir="rtl"] .product-show-page .section-card .d-flex {
+        direction: rtl;
+    }
+
+    [dir="rtl"] .product-show-page .journey-step {
+        border-right: 3px solid #13a0bc;
+        border-left: 0;
+        padding-right: .9rem;
+        padding-left: 0;
+    }
+
     .product-show-page .show-hero::before,
     .product-show-page .show-hero::after {
         display: none !important;

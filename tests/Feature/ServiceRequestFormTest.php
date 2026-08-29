@@ -9,6 +9,14 @@ class ServiceRequestFormTest extends TestCase
 {
     use RefreshDatabase;
 
+    public function test_rtl_stylesheet_is_available_when_page_starts_in_english(): void
+    {
+        $this->get(route('support'))
+            ->assertOk()
+            ->assertSee('css/rtl.css', false)
+            ->assertSee('dir="ltr"', false);
+    }
+
     public function test_support_form_contains_country_before_phone_and_company_in_one_desktop_row(): void
     {
         $response = $this->get(route('support'));
@@ -65,6 +73,36 @@ class ServiceRequestFormTest extends TestCase
             'country' => 'Jordan',
             'phone' => '+962791234567',
             'company' => 'Aqua Customer',
+        ]);
+    }
+
+    public function test_support_request_can_be_submitted_without_email(): void
+    {
+        $this->post(route('requests.store'), [
+            'type' => 'support_request',
+            'full_name' => 'Support Customer Without Email',
+            'message' => 'Printer requires assistance.',
+        ])->assertRedirect();
+
+        $this->assertDatabaseHas('service_requests', [
+            'type' => 'support_request',
+            'full_name' => 'Support Customer Without Email',
+            'email' => null,
+        ]);
+    }
+
+    public function test_demo_request_can_be_submitted_without_email(): void
+    {
+        $this->post(route('requests.store'), [
+            'type' => 'demo_request',
+            'full_name' => 'Demo Customer Without Email',
+            'phone' => '+962791234567',
+        ])->assertRedirect();
+
+        $this->assertDatabaseHas('service_requests', [
+            'type' => 'demo_request',
+            'full_name' => 'Demo Customer Without Email',
+            'email' => null,
         ]);
     }
 }

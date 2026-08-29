@@ -195,8 +195,8 @@
                         </div>
 
                         <div class="col-md-6 demo-input-group">
-                            <label class="form-label"><i class="far fa-envelope"></i><span data-i18n="demo.email">Email</span></label>
-                            <input type="email" class="form-control demo-input" name="email">
+                            <label class="form-label"><i class="far fa-envelope"></i><span data-i18n="demo.emailOptional">Email (Optional)</span></label>
+                            <input type="email" class="form-control demo-input" name="email" value="{{ old('email') }}">
                         </div>
 
                         @include('requests.partials.country-field', [

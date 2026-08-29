@@ -1,5 +1,5 @@
 <!-- Footer Start -->
-<div class="container-fluid footer py-5 wow fadeIn" data-wow-delay="0.2s" data-cms-section="footer">
+<div class="container-fluid footer py-5 wow fadeIn" dir="{{ app_text_direction() }}" data-wow-delay="0.2s" data-cms-section="footer">
             @php
                 $footerLogo = $siteSetting?->secondary_logo
                     ? public_storage_url($siteSetting->secondary_logo)
@@ -27,7 +27,7 @@
                                 <i class="fas fa-phone-alt text-primary me-2"></i><span class="footer-ltr-value" dir="ltr" data-cms-key="topbar.phone">{{ dynamic_content("global.footer.topbar.phone.{$footerLocale}", $footerPrimaryPhone) }}</span>
                             </a>
                             <a href="mailto:{{ $footerInfoEmail }}" class="text-light">
-                                <i class="fas fa-envelope text-primary me-2"></i><span data-cms-key="topbar.email">{{ dynamic_content("global.footer.topbar.email.{$footerLocale}", $footerInfoEmail) }}</span>
+                                <i class="fas fa-envelope text-primary me-2"></i><span class="footer-ltr-value" dir="ltr" data-cms-key="topbar.email">{{ dynamic_content("global.footer.topbar.email.{$footerLocale}", $footerInfoEmail) }}</span>
                             </a>
                         </div>
                     </div>
@@ -95,8 +95,8 @@
                         <div class="footer-item footer-contact d-flex flex-column">
                             <h4 class="mb-4 text-white" data-cms-key="contact.title">{{ dynamic_content("global.footer.contact.title.{$footerLocale}", $siteSetting?->hq_title ?: 'Head Quarter') }}</h4>
                             <a href="{{ $siteSetting?->google_map_embed ?: '#' }}" target="_blank" rel="noopener"><i class="fa fa-map-marker-alt me-2"></i><span data-cms-key="contact.address">{{ dynamic_content("global.footer.contact.address.{$footerLocale}", $footerAddress) }}</span></a>
-                            <a href="mailto:{{ $footerInfoEmail }}"><i class="fas fa-envelope me-2"></i><span data-cms-key="contact.info_email">{{ dynamic_content("global.footer.contact.info_email.{$footerLocale}", $footerInfoEmail) }}</span></a>
-                            <a href="mailto:{{ $footerSupportEmail }}"><i class="fas fa-envelope me-2"></i><span data-cms-key="contact.support_email">{{ dynamic_content("global.footer.contact.support_email.{$footerLocale}", $footerSupportEmail) }}</span></a>
+                            <a href="mailto:{{ $footerInfoEmail }}"><i class="fas fa-envelope me-2"></i><span class="footer-ltr-value" dir="ltr" data-cms-key="contact.info_email">{{ dynamic_content("global.footer.contact.info_email.{$footerLocale}", $footerInfoEmail) }}</span></a>
+                            <a href="mailto:{{ $footerSupportEmail }}"><i class="fas fa-envelope me-2"></i><span class="footer-ltr-value" dir="ltr" data-cms-key="contact.support_email">{{ dynamic_content("global.footer.contact.support_email.{$footerLocale}", $footerSupportEmail) }}</span></a>
                             <a href="tel:{{ preg_replace('/\s+/', '', $footerPrimaryPhone) }}"><i class="fas fa-phone me-2"></i><span class="footer-ltr-value" dir="ltr" data-cms-key="contact.phone_primary">{{ dynamic_content("global.footer.contact.phone_primary.{$footerLocale}", $footerPrimaryPhone) }}</span></a>
                             <a href="tel:{{ preg_replace('/\s+/', '', $footerSecondaryPhone) }}"><i class="fas fa-print me-2"></i><span class="footer-ltr-value" dir="ltr" data-cms-key="contact.phone_secondary">{{ dynamic_content("global.footer.contact.phone_secondary.{$footerLocale}", $footerSecondaryPhone) }}</span></a>
                             <a href="https://wa.me/{{ preg_replace('/\D+/', '', $footerWhatsapp) }}" target="_blank" rel="noopener"><i class="fab fa-whatsapp me-2"></i><span class="footer-ltr-value" dir="ltr" data-cms-key="contact.whatsapp">{{ dynamic_content("global.footer.contact.whatsapp.{$footerLocale}", $footerWhatsapp) }}</span></a>

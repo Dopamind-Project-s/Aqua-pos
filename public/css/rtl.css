@@ -166,3 +166,41 @@
     [dir="rtl"] .ms-xl-auto { margin-right: auto !important; margin-left: unset !important; }
     [dir="rtl"] .me-xl-auto { margin-left: auto !important; margin-right: unset !important; }
 }
+
+/* Footer follows the Arabic reading flow while technical values stay LTR. */
+[dir="rtl"] .footer,
+[dir="rtl"] .footer .footer-item,
+[dir="rtl"] .footer .footer-about-text,
+[dir="rtl"] .footer .footer-item h4 {
+    direction: rtl;
+    text-align: right !important;
+}
+
+[dir="rtl"] .footer .footer-item a,
+[dir="rtl"] .footer .topbar-contact-list {
+    direction: rtl;
+    justify-content: flex-start;
+    text-align: right !important;
+}
+
+[dir="rtl"] .footer .topbar-contact-list,
+[dir="rtl"] .footer .topbar-social-list,
+[dir="rtl"] .footer .footer-socials,
+[dir="rtl"] .footer .footer-brand {
+    direction: rtl;
+}
+
+[dir="rtl"] .footer .topbar-social-list {
+    justify-content: flex-start !important;
+}
+
+[dir="rtl"] .footer .footer-item > a .fa-angle-right {
+    transform: rotate(180deg);
+}
+
+[dir="rtl"] .footer .footer-ltr-value,
+[dir="rtl"] .footer a[href^="mailto:"] span {
+    direction: ltr;
+    unicode-bidi: isolate;
+    text-align: left !important;
+}

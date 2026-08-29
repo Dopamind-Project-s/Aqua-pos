@@ -114,9 +114,7 @@
 
     <!-- Main Style -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-    @if(app_is_rtl())
-        <link href="{{ asset('css/rtl.css') }}" rel="stylesheet">
-    @endif
+    <link href="{{ asset('css/rtl.css') }}" rel="stylesheet">
 
     @stack('styles')
 </head>

@@ -193,7 +193,7 @@
                 <input type="hidden" name="source_page" value="/support">
 
                 <div class="col-md-6"><label class="form-label"><i class="far fa-user"></i><span data-i18n="support.fullName">Full Name</span></label><input class="form-control" name="full_name" required></div>
-                <div class="col-md-6"><label class="form-label"><i class="far fa-envelope"></i><span data-i18n="support.email">Email</span></label><input type="email" class="form-control" name="email"></div>
+                <div class="col-md-6"><label class="form-label"><i class="far fa-envelope"></i><span data-i18n="support.emailOptional">Email (Optional)</span></label><input type="email" class="form-control" name="email" value="{{ old('email') }}"></div>
                 @include('requests.partials.country-field', [
                     'id' => 'supportCountry',
                     'i18nPrefix' => 'support',
