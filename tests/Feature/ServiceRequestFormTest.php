@@ -2,7 +2,9 @@
 
 namespace Tests\Feature;
 
+use App\Mail\DemoRequestSubmitted;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
 
 class ServiceRequestFormTest extends TestCase
@@ -93,6 +95,8 @@ class ServiceRequestFormTest extends TestCase
 
     public function test_demo_request_can_be_submitted_without_email(): void
     {
+        Mail::fake();
+
         $this->post(route('requests.store'), [
             'type' => 'demo_request',
             'full_name' => 'Demo Customer Without Email',
@@ -104,5 +108,10 @@ class ServiceRequestFormTest extends TestCase
             'full_name' => 'Demo Customer Without Email',
             'email' => null,
         ]);
+
+        Mail::assertSent(DemoRequestSubmitted::class, function (DemoRequestSubmitted $mail): bool {
+            return $mail->hasTo('lami@mega-pos.com')
+                && $mail->serviceRequest->email === null;
+        });
     }
 }

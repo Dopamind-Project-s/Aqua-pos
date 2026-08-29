@@ -2,6 +2,10 @@
 
 return [
 
+    'demo_requests' => [
+        'recipient' => env('DEMO_REQUEST_RECIPIENT', 'lami@mega-pos.com'),
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Third Party Services

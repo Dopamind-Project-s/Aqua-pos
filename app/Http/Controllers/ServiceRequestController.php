@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreServiceRequest;
+use App\Mail\DemoRequestSubmitted;
 use App\Models\Partner;
 use App\Models\ServiceRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
 
 class ServiceRequestController extends Controller
@@ -57,6 +59,11 @@ class ServiceRequestController extends Controller
         }
 
         $serviceRequest = ServiceRequest::query()->create($payload);
+
+        if ($serviceRequest->type === 'demo_request') {
+            Mail::to(config('services.demo_requests.recipient'))
+                ->send(new DemoRequestSubmitted($serviceRequest));
+        }
 
         return back()
             ->with('success', 'Your request has been submitted successfully.')
