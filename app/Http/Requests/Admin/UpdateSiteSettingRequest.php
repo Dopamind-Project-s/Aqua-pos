@@ -3,9 +3,19 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateSiteSettingRequest extends FormRequest
 {
+    protected function prepareForValidation(): void
+    {
+        $this->merge([
+            'tracking_method' => strtolower(trim((string) $this->input('tracking_method', 'none'))),
+            'ga4_measurement_id' => $this->normalizeGoogleId('ga4_measurement_id'),
+            'gtm_container_id' => $this->normalizeGoogleId('gtm_container_id'),
+        ]);
+    }
+
     public function authorize(): bool
     {
         return true;
@@ -22,8 +32,9 @@ class UpdateSiteSettingRequest extends FormRequest
             'meta_title' => ['nullable', 'string', 'max:255'],
             'meta_description' => ['nullable', 'string'],
             'meta_keywords' => ['nullable', 'string', 'max:255'],
-            'gtm_container_id' => ['nullable', 'string', 'max:50'],
-            'ga4_measurement_id' => ['nullable', 'string', 'max:50'],
+            'tracking_method' => ['required', Rule::in(['none', 'ga4', 'gtm'])],
+            'gtm_container_id' => ['nullable', 'required_if:tracking_method,gtm', 'string', 'max:50', 'regex:/^GTM-[A-Z0-9]+$/'],
+            'ga4_measurement_id' => ['nullable', 'required_if:tracking_method,ga4', 'string', 'max:50', 'regex:/^G-[A-Z0-9]+$/'],
             'google_ads_conversion_id' => ['nullable', 'string', 'max:100'],
             'google_ads_conversion_label' => ['nullable', 'string', 'max:100'],
             'meta_pixel_id' => ['nullable', 'string', 'max:100'],
@@ -52,5 +63,24 @@ class UpdateSiteSettingRequest extends FormRequest
             'footer_company_description' => ['nullable', 'string'],
             'about_site_paragraph' => ['nullable', 'string'],
         ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'tracking_method.required' => 'Choose a tracking method. / اختر طريقة التتبع.',
+            'tracking_method.in' => 'The selected tracking method is invalid. / طريقة التتبع المحددة غير صالحة.',
+            'ga4_measurement_id.required_if' => 'GA4 Measurement ID is required for direct tracking. / معرّف GA4 مطلوب للتتبع المباشر.',
+            'ga4_measurement_id.regex' => 'Use a valid GA4 Measurement ID such as G-XXXXXXXXXX. / أدخل معرّف GA4 صحيحًا بالشكل G-XXXXXXXXXX.',
+            'gtm_container_id.required_if' => 'GTM Container ID is required for Tag Manager. / معرّف GTM مطلوب لاستخدام Tag Manager.',
+            'gtm_container_id.regex' => 'Use a valid GTM Container ID such as GTM-XXXXXXX. / أدخل معرّف GTM صحيحًا بالشكل GTM-XXXXXXX.',
+        ];
+    }
+
+    private function normalizeGoogleId(string $key): ?string
+    {
+        $value = trim((string) $this->input($key, ''));
+
+        return $value === '' ? null : strtoupper($value);
     }
 }

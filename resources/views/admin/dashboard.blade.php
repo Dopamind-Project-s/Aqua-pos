@@ -67,18 +67,16 @@
         <div class="card border-0 shadow-sm h-100">
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h5 class="mb-0">Tracking Setup Progress</h5>
-                    <span class="badge bg-primary">{{ $trackingProgress['done'] }} / {{ $trackingProgress['total'] }}</span>
+                    <h5 class="mb-0">Tracking Status</h5>
+                    <span class="badge {{ $trackingStatus['valid'] ? ($trackingStatus['method'] === 'none' ? 'bg-secondary' : 'bg-success') : 'bg-danger' }}">
+                        {{ $trackingStatus['valid'] ? ($trackingStatus['method'] === 'none' ? 'Disabled' : 'Active') : 'Invalid value' }}
+                    </span>
                 </div>
-                <div class="d-flex flex-column gap-2">
-                    @foreach($trackingChecklist as $label => $done)
-                        <div class="d-flex justify-content-between align-items-center border rounded-2 px-2 py-2">
-                            <span>{{ $label }}</span>
-                            <span class="badge {{ $done ? 'bg-success' : 'bg-warning text-dark' }}">{{ $done ? 'Done' : 'Pending' }}</span>
-                        </div>
-                    @endforeach
+                <div class="border rounded-2 px-3 py-3">
+                    <strong>Selected method:</strong>
+                    <span>{{ match ($trackingStatus['method']) { 'ga4' => 'GA4 Direct', 'gtm' => 'Google Tag Manager', default => 'No tracking' } }}</span>
                 </div>
-                <p class="text-muted mb-0 mt-3">Update values from Admin Settings → Tracking Setup.</p>
+                <p class="text-muted mb-0 mt-3">Status reflects local site activation only, not receipt of data by Google.</p>
             </div>
         </div>
     </div>

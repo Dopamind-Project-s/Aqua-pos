@@ -1,4 +1,16 @@
-# بدء التنفيذ الفعلي: إعداد التتبع عبر GTM
+# إعداد التتبع: GA4 المباشر أو Google Tag Manager
+
+## طريقة التتبع من لوحة الإدارة
+
+من **Admin → Settings → Tracking & Marketing Integrations** اختر طريقة واحدة فقط:
+
+- `none`: لا يحمّل الموقع GA4 أو GTM، مع الاحتفاظ بالمعرّفات المحفوظة.
+- `ga4`: الخيار الموصى به؛ أدخل `G-XXXXXXXXXX` ليحمّل الموقع GA4 مباشرة دون GTM.
+- `gtm`: خيار متقدم؛ أدخل `GTM-XXXXXXX` ثم أنشئ وانشر Tags من منصة GTM.
+
+لا يحمّل القالب GA4 المباشر وGTM معًا. عند ترقية موقع قديم، يحوّل الـMigration الصفوف التي تحتوي على GTM إلى طريقة `gtm` حفاظًا على السلوك السابق. وإذا كانت قيمة `tracking_method` القديمة `null`، يعاملها القالب كـGTM عند وجود Container ID صالح.
+
+زر **فحص إعداد الموقع** يفحص الصيغة والتفعيل المحليين فقط. التحقق النهائي يتم بفتح **GA4 → Realtime أو DebugView** ثم زيارة الموقع في نافذة خاصة. لا يدّعي الفحص المحلي أن Google استقبل البيانات.
 
 ## 1) متغيرات البيئة المطلوبة
 أضف القيم التالية في `.env`:
@@ -10,6 +22,9 @@ MS_CLARITY_PROJECT_ID=xxxxxxxxxx
 ```
 
 ## 2) ما تم تنفيذه في الكود
+- [x] حقن GA4 المباشر رسميًا من خلال `ga4_measurement_id` عند اختيار `ga4`.
+- [x] جعل GA4 المباشر وGTM طريقتين حصريتين لمنع ازدواج `page_view` والأحداث.
+- [x] توحيد الأحداث عبر `window.aquaTrackEvent`، بحيث تستخدم `gtag` مع GA4 و`dataLayer` مع GTM ولا تفعل شيئًا مع `none`.
 - [x] حقن كود **Google Tag Manager** (Head + Noscript) من خلال `GTM_CONTAINER_ID` أو إعدادات الأدمن.
 - [x] إضافة `google-site-verification` meta tag تلقائيًا عند توفير القيمة.
 - [x] إضافة **Microsoft Clarity** script عند توفير Project ID.
@@ -67,6 +82,8 @@ MS_CLARITY_PROJECT_ID=xxxxxxxxxx
 - [x] ربط generate_lead من الطلبات الداخلية لتغذية GTM.
 
 ### المتبقي (تنفيذ داخل أدوات Google/Meta)
+- عند استخدام **GA4 المباشر** لا يلزم إعداد GTM؛ يكفي التحقق من Realtime/DebugView وتعيين `generate_lead` كحدث رئيسي.
+- البنود التالية مطلوبة فقط عند اختيار **GTM** أو أدوات الإعلان المقابلة:
 - [ ] إنشاء GA4 Configuration Tag داخل GTM.
 - [ ] إنشاء GA4 Event Tag للحدث `generate_lead`.
 - [ ] إنشاء Google Ads Conversion Tag وربطه بـ `generate_lead`.

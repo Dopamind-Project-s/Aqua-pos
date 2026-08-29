@@ -48,19 +48,16 @@ class DashboardController extends Controller
             ->limit(5)
             ->get();
 
-        $trackingChecklist = [
-            'GTM container configured' => !empty($setting?->gtm_container_id),
-            'GA4 measurement configured' => !empty($setting?->ga4_measurement_id),
-            'Google Ads conversion configured' => !empty($setting?->google_ads_conversion_id) && !empty($setting?->google_ads_conversion_label),
-            'Meta Pixel ID configured' => !empty($setting?->meta_pixel_id),
-            'Google site verification configured' => !empty($setting?->google_site_verification),
-            'Search Console property configured' => !empty($setting?->search_console_property),
-            'Clarity project configured' => !empty($setting?->ms_clarity_project_id),
-        ];
-
-        $trackingProgress = [
-            'done' => collect($trackingChecklist)->filter()->count(),
-            'total' => count($trackingChecklist),
+        $trackingMethod = $setting?->tracking_method ?? ($setting?->gtm_container_id ? 'gtm' : 'none');
+        $trackingIsValid = match ($trackingMethod) {
+            'ga4' => (bool) preg_match('/^G-[A-Z0-9]+$/', (string) $setting?->ga4_measurement_id),
+            'gtm' => (bool) preg_match('/^GTM-[A-Z0-9]+$/', (string) $setting?->gtm_container_id),
+            'none' => true,
+            default => false,
+        };
+        $trackingStatus = [
+            'method' => $trackingMethod,
+            'valid' => $trackingIsValid,
         ];
 
         return view('admin.dashboard', compact(
@@ -68,8 +65,7 @@ class DashboardController extends Controller
             'leadStats',
             'leadByType',
             'leadBySourcePage',
-            'trackingChecklist',
-            'trackingProgress'
+            'trackingStatus'
         ));
     }
 }

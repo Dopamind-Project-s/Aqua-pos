@@ -21,6 +21,7 @@ class SiteSetting extends Model
         'meta_title',
         'meta_description',
         'meta_keywords',
+        'tracking_method',
         'gtm_container_id',
         'ga4_measurement_id',
         'google_ads_conversion_id',
