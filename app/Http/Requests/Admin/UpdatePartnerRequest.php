@@ -16,6 +16,8 @@ class UpdatePartnerRequest extends FormRequest
         return [
             'name_ar' => ['nullable', 'string', 'max:255'],
             'name_en' => ['required', 'string', 'max:255'],
+            'description_ar' => ['nullable', 'string'],
+            'description_en' => ['nullable', 'string'],
             'map_latitude' => ['nullable', 'numeric', 'between:-90,90', 'required_with:map_longitude'],
             'map_longitude' => ['nullable', 'numeric', 'between:-180,180', 'required_with:map_latitude'],
             'map_location_ar' => ['nullable', 'string', 'max:255'],

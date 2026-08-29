@@ -3463,9 +3463,120 @@ html[lang="ar"] h6,
 }
 
 /* Shared inner-page hero surface; the home carousel does not use .page-hero. */
+.bg-breadcrumb,
+.page-hero,
+.show-hero,
+.partners-hero,
+.blog-page-hero,
+.blog-slider-shell {
+    background: #EAF0F8 !important;
+    background-image: none !important;
+    color: #0d2344 !important;
+}
+
+.bg-breadcrumb h1,
+.bg-breadcrumb h2,
+.bg-breadcrumb h3,
+.page-hero h1,
+.page-hero p,
+.show-hero h1,
+.show-hero p,
+.partners-hero__title,
+.partners-hero__subtitle,
+.blog-page-hero h1,
+.blog-page-hero p,
+.blog-slide-content h2,
+.blog-slide-content p {
+    color: #0d2344 !important;
+    text-shadow: none !important;
+}
+
+.page-hero .page-hero__badge,
+.inner-hero-badge,
+.product-category-badge,
+.partners-hero__eyebrow,
+.blog-hero-badge {
+    background: rgba(13, 35, 68, .08) !important;
+    border-color: rgba(13, 35, 68, .14) !important;
+    color: #0d2344 !important;
+}
+
+body.dark-mode .bg-breadcrumb,
 body.dark-mode .page-hero,
-body.dark-mode .blog-page-hero {
+body.dark-mode .show-hero,
+body.dark-mode .partners-hero,
+body.dark-mode .blog-page-hero,
+body.dark-mode .blog-slider-shell {
     background: var(--section-inner-hero-bg) !important;
+    background-image: none !important;
+}
+
+body.dark-mode .bg-breadcrumb::before,
+body.dark-mode .bg-breadcrumb::after,
+body.dark-mode .page-hero::before,
+body.dark-mode .page-hero::after,
+body.dark-mode .show-hero::before,
+body.dark-mode .show-hero::after,
+body.dark-mode .partners-hero::before,
+body.dark-mode .partners-hero::after,
+body.dark-mode .blog-page-hero::before,
+body.dark-mode .blog-page-hero::after,
+body.dark-mode .blog-slider-shell::before,
+body.dark-mode .blog-slider-shell::after {
+    display: none !important;
+}
+
+body.dark-mode .page-hero h1 {
+    color: #ffffff !important;
+}
+
+body.dark-mode .page-hero p {
+    color: rgba(255, 255, 255, .9) !important;
+}
+
+/* Dark heroes need a clearly separated badge surface and readable content. */
+body.dark-mode .page-hero .page-hero__badge,
+body.dark-mode .inner-hero-badge,
+body.dark-mode .support-badge,
+body.dark-mode .contact-badge,
+body.dark-mode .demo-hero-badge,
+body.dark-mode .products-hero .badge,
+body.dark-mode .product-category-badge,
+body.dark-mode .partners-hero__eyebrow,
+body.dark-mode .blog-hero-badge {
+    background: rgba(110, 213, 239, .18) !important;
+    border: 1px solid rgba(139, 225, 245, .72) !important;
+    color: #ffffff !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .18) !important;
+}
+
+body.dark-mode .page-hero .page-hero__badge *,
+body.dark-mode .inner-hero-badge *,
+body.dark-mode .support-badge *,
+body.dark-mode .contact-badge *,
+body.dark-mode .demo-hero-badge *,
+body.dark-mode .products-hero .badge *,
+body.dark-mode .product-category-badge *,
+body.dark-mode .partners-hero__eyebrow *,
+body.dark-mode .blog-hero-badge * {
+    color: #ffffff !important;
+    opacity: 1 !important;
+}
+
+/* Borderless product surfaces in dark mode, including the products mega menu. */
+body.dark-mode .mega-menu__panel,
+body.dark-mode .mega-menu__category,
+body.dark-mode .mega-menu__service,
+body.dark-mode .mega-menu__service:hover,
+body.dark-mode .mega-menu__service:focus-visible,
+body.dark-mode .product-card,
+body.dark-mode .product-card:hover,
+body.dark-mode .product-grid-card,
+body.dark-mode .product-grid-card:hover,
+body.dark-mode .category-single__product-card,
+body.dark-mode .category-single__client-mini {
+    border: 0 !important;
+    outline: 0 !important;
 }
 
 .page-hero > .container {
@@ -3492,8 +3603,8 @@ body.dark-mode .blog-page-hero {
 }
 
 .page-hero h1 {
-    color: #ffffff !important;
-    text-shadow: 0 10px 28px rgba(4, 21, 48, .18);
+    color: #0d2344 !important;
+    text-shadow: none;
     max-width: 100%;
     overflow-wrap: break-word;
 }
@@ -3501,8 +3612,16 @@ body.dark-mode .blog-page-hero {
 .page-hero p {
     max-width: 760px;
     margin-inline: auto;
-    color: rgba(255, 255, 255, .9) !important;
+    color: #0d2344 !important;
     overflow-wrap: break-word;
+}
+
+body.dark-mode .page-hero h1 {
+    color: #ffffff !important;
+}
+
+body.dark-mode .page-hero p {
+    color: rgba(255, 255, 255, .9) !important;
 }
 
 @media (max-width: 576px) {

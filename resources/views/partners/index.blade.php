@@ -63,14 +63,16 @@
 @endpush
 
 @section('content')
+@php
+    $partnersLocale = app_current_locale();
+@endphp
 @include('partials.page-hero', [
+    'section' => 'partners-hero',
     'icon' => 'fas fa-handshake',
-    'badge' => 'Strategic Ecosystem',
-    'badgeI18n' => 'partners.eyebrow',
-    'title' => 'Enterprise Partnerships That Scale',
-    'titleI18n' => 'partners.title',
-    'subtitle' => 'We collaborate with high-impact brands and technology leaders to deliver seamless, scalable, and future-ready solutions.',
-    'subtitleI18n' => 'partners.subtitle',
+    'badge' => dynamic_content("partners-index.partners-hero.hero.badge.{$partnersLocale}", 'Strategic Ecosystem'),
+    'badgeCmsKey' => 'hero.badge',
+    'subtitle' => dynamic_content("partners-index.partners-hero.hero.subtitle.{$partnersLocale}", 'We collaborate with high-impact brands and technology leaders to deliver seamless, scalable, and future-ready solutions.'),
+    'subtitleCmsKey' => 'hero.subtitle',
 ])
 
 <section class="partners-section">

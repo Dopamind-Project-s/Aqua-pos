@@ -16,10 +16,30 @@
     .product-actions { display: flex; gap: .5rem; flex-wrap: wrap; }
     .value-pill { border: 1px dashed #bfd5f6; background: #f5f9ff; border-radius: 14px; padding: 1rem; }
 
+    body:not(.dark-mode) .products-hero {
+        background: #EAF0F8 !important;
+        background-image: none !important;
+        color: #0d2344 !important;
+    }
+
+    body:not(.dark-mode) .products-hero h1,
+    body:not(.dark-mode) .products-hero p {
+        color: #0d2344 !important;
+        text-shadow: none !important;
+    }
+
+    body:not(.dark-mode) .products-hero .page-hero__badge {
+        background: rgba(13, 35, 68, .08) !important;
+        border-color: rgba(13, 35, 68, .14) !important;
+        color: #0d2344 !important;
+    }
+
     body.dark-mode .products-page { background: linear-gradient(180deg, #0e1728 0%, #0b1420 100%); }
     body.dark-mode .products-section-card,
     body.dark-mode .product-card,
     body.dark-mode .value-pill { background: #121c2c; border-color: #2a3d5a; color: #dbe8fd; }
+    body.dark-mode .product-card,
+    body.dark-mode .product-card:hover { border-color: transparent !important; }
     body.dark-mode .products-hero .badge {
         background: rgba(255, 255, 255, .14) !important;
         border: 1px solid rgba(255, 255, 255, .28) !important;

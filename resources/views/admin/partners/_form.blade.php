@@ -11,6 +11,18 @@
         @error('name_en')<div class="invalid-feedback">{{ $message }}</div>@enderror
     </div>
 
+    <div class="col-md-6">
+        <label class="form-label" for="description_ar">Description (AR)</label>
+        <textarea class="form-control @error('description_ar') is-invalid @enderror" id="description_ar" name="description_ar" rows="4">{{ old('description_ar', $partner->description_ar ?? '') }}</textarea>
+        @error('description_ar')<div class="invalid-feedback">{{ $message }}</div>@enderror
+    </div>
+
+    <div class="col-md-6">
+        <label class="form-label" for="description_en">Description (EN)</label>
+        <textarea class="form-control @error('description_en') is-invalid @enderror" id="description_en" name="description_en" rows="4">{{ old('description_en', $partner->description_en ?? $partner->description ?? '') }}</textarea>
+        @error('description_en')<div class="invalid-feedback">{{ $message }}</div>@enderror
+    </div>
+
     <div class="col-12">
         <div class="border rounded p-3 bg-light">
             <div class="d-flex flex-wrap justify-content-between gap-2 mb-3">
