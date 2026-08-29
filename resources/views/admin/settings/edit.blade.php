@@ -6,19 +6,24 @@
     <div class="card-body">
         <h4 class="card-title mb-3">Site Settings</h4>
         @php
-            $trackingChecklist = [
-                'GTM Container ID configured' => !empty($setting->gtm_container_id),
-                'GA4 Measurement ID configured' => !empty($setting->ga4_measurement_id),
-                'Google Ads Conversion ID configured' => !empty($setting->google_ads_conversion_id),
-                'Google Ads Conversion Label configured' => !empty($setting->google_ads_conversion_label),
-                'Meta Pixel ID configured' => !empty($setting->meta_pixel_id),
-                'Google site verification token added' => !empty($setting->google_site_verification),
-                'Search Console property recorded' => !empty($setting->search_console_property),
-                'Microsoft Clarity project ID configured' => !empty($setting->ms_clarity_project_id),
-            ];
-            $trackingDoneCount = collect($trackingChecklist)->filter()->count();
-            $trackingTotalCount = count($trackingChecklist);
-            $trackingRemainingCount = $trackingTotalCount - $trackingDoneCount;
+            $legacyTrackingMethod = $setting->gtm_container_id ? 'gtm' : 'none';
+            $selectedTrackingMethod = old('tracking_method', $setting->tracking_method ?? $legacyTrackingMethod);
+            $displayGa4Id = old('ga4_measurement_id', $setting->ga4_measurement_id);
+            $displayGtmId = old('gtm_container_id', $setting->gtm_container_id);
+            $ga4IsValid = is_string($displayGa4Id) && preg_match('/^G-[A-Z0-9]+$/', strtoupper(trim($displayGa4Id)));
+            $gtmIsValid = is_string($displayGtmId) && preg_match('/^GTM-[A-Z0-9]+$/', strtoupper(trim($displayGtmId)));
+            $activeTrackingIsValid = match ($selectedTrackingMethod) {
+                'ga4' => (bool) $ga4IsValid,
+                'gtm' => (bool) $gtmIsValid,
+                default => true,
+            };
+            $trackingStatus = !$activeTrackingIsValid
+                ? ['Invalid value / قيمة غير صالحة', 'bg-danger']
+                : match ($selectedTrackingMethod) {
+                    'ga4' => ['Active: GA4 Direct / مفعّل مباشرة', 'bg-success'],
+                    'gtm' => ['Active: GTM / مفعّل عبر GTM', 'bg-success'],
+                    default => ['Disabled / غير مفعّل', 'bg-secondary'],
+                };
         @endphp
         <form method="POST" action="{{ route('admin.settings.update') }}" enctype="multipart/form-data">
             @csrf
@@ -55,32 +60,83 @@
                 <div class="col-12 mt-4" id="tracking-settings">
                     <div class="border rounded-3 p-3 bg-light">
                         <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-2">
-                            <h5 class="mb-0">Tracking & Marketing Integrations</h5>
-                            <span class="badge bg-primary">Done: {{ $trackingDoneCount }} / {{ $trackingTotalCount }}</span>
+                            <div>
+                                <h5 class="mb-1">Google Analytics & Tag Manager</h5>
+                                <p class="text-muted mb-0">Choose exactly one tracking method. / اختر طريقة تتبع واحدة فقط.</p>
+                            </div>
+                            <span class="badge {{ $trackingStatus[1] }}" id="tracking-status">{{ $trackingStatus[0] }}</span>
                         </div>
-                        <p class="text-muted mb-3">Remaining tasks: <strong>{{ $trackingRemainingCount }}</strong></p>
-                        <div class="row g-2">
-                            @foreach($trackingChecklist as $taskLabel => $done)
-                                <div class="col-md-6">
-                                    <div class="d-flex justify-content-between align-items-center border rounded-2 px-2 py-2 bg-white">
-                                        <span>{{ $taskLabel }}</span>
-                                        <span class="badge {{ $done ? 'bg-success' : 'bg-warning text-dark' }}">{{ $done ? 'Done' : 'Pending' }}</span>
-                                    </div>
+
+                        <div class="row g-3 mt-1">
+                            <div class="col-lg-4">
+                                <label class="border rounded-3 bg-white p-3 h-100 d-block">
+                                    <span class="d-flex gap-2 align-items-start">
+                                        <input class="form-check-input tracking-method" type="radio" name="tracking_method" value="none" @checked($selectedTrackingMethod === 'none')>
+                                        <span><strong>No tracking / لا يوجد تتبع</strong><br><small class="text-muted">Do not load GA4 or GTM. Saved IDs are retained.</small></span>
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="border border-primary rounded-3 bg-white p-3 h-100 d-block">
+                                    <span class="d-flex gap-2 align-items-start">
+                                        <input class="form-check-input tracking-method" type="radio" name="tracking_method" value="ga4" @checked($selectedTrackingMethod === 'ga4')>
+                                        <span><strong>GA4 Direct / مباشر</strong> <span class="badge bg-primary">Recommended</span><br><small class="text-muted">The easiest option; no Tag Manager setup required.</small></span>
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="border rounded-3 bg-white p-3 h-100 d-block">
+                                    <span class="d-flex gap-2 align-items-start">
+                                        <input class="form-check-input tracking-method" type="radio" name="tracking_method" value="gtm" @checked($selectedTrackingMethod === 'gtm')>
+                                        <span><strong>Google Tag Manager</strong> <span class="badge bg-dark">Advanced</span><br><small class="text-muted">Tags must be configured and published in GTM.</small></span>
+                                    </span>
+                                </label>
+                            </div>
+
+                            @error('tracking_method')<div class="col-12 text-danger small">{{ $message }}</div>@enderror
+
+                            <div class="col-md-6" data-tracking-panel="ga4">
+                                <label class="form-label">GA4 Measurement ID</label>
+                                <input type="text" name="ga4_measurement_id" value="{{ $displayGa4Id }}" class="form-control text-uppercase @error('ga4_measurement_id') is-invalid @enderror" placeholder="G-XXXXXXXXXX" autocomplete="off">
+                                @error('ga4_measurement_id')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                                <div class="form-text">Enter an ID like <code>G-XXXXXXXXXX</code>. Find it at Google Analytics → Admin → Data Streams → Web.</div>
+                                <a href="https://analytics.google.com/" target="_blank" rel="noopener noreferrer" class="small">Open Google Analytics <span aria-hidden="true">↗</span></a>
+                            </div>
+
+                            <div class="col-md-6" data-tracking-panel="gtm">
+                                <label class="form-label">GTM Container ID</label>
+                                <input type="text" name="gtm_container_id" value="{{ $displayGtmId }}" class="form-control text-uppercase @error('gtm_container_id') is-invalid @enderror" placeholder="GTM-XXXXXXX" autocomplete="off">
+                                @error('gtm_container_id')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                                <div class="form-text">Enter an ID like <code>GTM-XXXXXXX</code>. Configure and publish tags in Google Tag Manager.</div>
+                                <a href="https://tagmanager.google.com/" target="_blank" rel="noopener noreferrer" class="small">Open Google Tag Manager <span aria-hidden="true">↗</span></a>
+                            </div>
+
+                            <div class="col-12">
+                                <button type="button" class="btn btn-outline-primary btn-sm" id="tracking-local-check-button">Check site setup / فحص إعداد الموقع</button>
+                                <div class="alert alert-info mt-2 mb-0 d-none" id="tracking-local-check" role="status">
+                                    <strong>Local setup check:</strong>
+                                    <span data-check-result></span>
+                                    <div class="small mt-1">This checks saved format and template activation only; it does not prove that Google received data.</div>
+                                    <div class="small">Final check: open GA4 → Realtime or DebugView, then visit the site in a private window.</div>
                                 </div>
-                            @endforeach
+                            </div>
+
+                            <div class="col-12">
+                                <details class="border rounded-3 bg-white p-3">
+                                    <summary class="fw-semibold">Advanced settings / إعدادات متقدمة</summary>
+                                    <div class="row g-3 mt-1">
+                                        <div class="col-md-3"><label class="form-label">Google Ads Conversion ID</label><input type="text" name="google_ads_conversion_id" value="{{ old('google_ads_conversion_id', $setting->google_ads_conversion_id) }}" class="form-control @error('google_ads_conversion_id') is-invalid @enderror">@error('google_ads_conversion_id')<div class="invalid-feedback">{{ $message }}</div>@enderror</div>
+                                        <div class="col-md-3"><label class="form-label">Google Ads Conversion Label</label><input type="text" name="google_ads_conversion_label" value="{{ old('google_ads_conversion_label', $setting->google_ads_conversion_label) }}" class="form-control @error('google_ads_conversion_label') is-invalid @enderror">@error('google_ads_conversion_label')<div class="invalid-feedback">{{ $message }}</div>@enderror</div>
+                                        <div class="col-md-3"><label class="form-label">Meta Pixel ID</label><input type="text" name="meta_pixel_id" value="{{ old('meta_pixel_id', $setting->meta_pixel_id) }}" class="form-control @error('meta_pixel_id') is-invalid @enderror">@error('meta_pixel_id')<div class="invalid-feedback">{{ $message }}</div>@enderror</div>
+                                        <div class="col-md-3"><label class="form-label">Google Site Verification</label><input type="text" name="google_site_verification" value="{{ old('google_site_verification', $setting->google_site_verification) }}" class="form-control @error('google_site_verification') is-invalid @enderror">@error('google_site_verification')<div class="invalid-feedback">{{ $message }}</div>@enderror</div>
+                                        <div class="col-md-6"><label class="form-label">Search Console Property</label><input type="text" name="search_console_property" value="{{ old('search_console_property', $setting->search_console_property) }}" class="form-control @error('search_console_property') is-invalid @enderror" placeholder="sc-domain:example.com">@error('search_console_property')<div class="invalid-feedback">{{ $message }}</div>@enderror</div>
+                                        <div class="col-md-6"><label class="form-label">Microsoft Clarity Project ID</label><input type="text" name="ms_clarity_project_id" value="{{ old('ms_clarity_project_id', $setting->ms_clarity_project_id) }}" class="form-control @error('ms_clarity_project_id') is-invalid @enderror">@error('ms_clarity_project_id')<div class="invalid-feedback">{{ $message }}</div>@enderror</div>
+                                    </div>
+                                </details>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-md-3"><label class="form-label">GTM Container ID</label><input type="text" name="gtm_container_id" value="{{ old('gtm_container_id', $setting->gtm_container_id) }}" class="form-control @error('gtm_container_id') is-invalid @enderror" placeholder="GTM-XXXXXXX">@error('gtm_container_id')<div class="invalid-feedback">{{ $message }}</div>@enderror</div>
-                <div class="col-md-3"><label class="form-label">GA4 Measurement ID</label><input type="text" name="ga4_measurement_id" value="{{ old('ga4_measurement_id', $setting->ga4_measurement_id) }}" class="form-control @error('ga4_measurement_id') is-invalid @enderror" placeholder="G-XXXXXXXXXX">@error('ga4_measurement_id')<div class="invalid-feedback">{{ $message }}</div>@enderror</div>
-                <div class="col-md-3"><label class="form-label">Google Ads Conversion ID</label><input type="text" name="google_ads_conversion_id" value="{{ old('google_ads_conversion_id', $setting->google_ads_conversion_id) }}" class="form-control @error('google_ads_conversion_id') is-invalid @enderror">@error('google_ads_conversion_id')<div class="invalid-feedback">{{ $message }}</div>@enderror</div>
-                <div class="col-md-3"><label class="form-label">Google Ads Conversion Label</label><input type="text" name="google_ads_conversion_label" value="{{ old('google_ads_conversion_label', $setting->google_ads_conversion_label) }}" class="form-control @error('google_ads_conversion_label') is-invalid @enderror">@error('google_ads_conversion_label')<div class="invalid-feedback">{{ $message }}</div>@enderror</div>
-
-                <div class="col-md-3"><label class="form-label">Meta Pixel ID</label><input type="text" name="meta_pixel_id" value="{{ old('meta_pixel_id', $setting->meta_pixel_id) }}" class="form-control @error('meta_pixel_id') is-invalid @enderror">@error('meta_pixel_id')<div class="invalid-feedback">{{ $message }}</div>@enderror</div>
-                <div class="col-md-3"><label class="form-label">Google Site Verification</label><input type="text" name="google_site_verification" value="{{ old('google_site_verification', $setting->google_site_verification) }}" class="form-control @error('google_site_verification') is-invalid @enderror">@error('google_site_verification')<div class="invalid-feedback">{{ $message }}</div>@enderror</div>
-                <div class="col-md-3"><label class="form-label">Search Console Property</label><input type="text" name="search_console_property" value="{{ old('search_console_property', $setting->search_console_property) }}" class="form-control @error('search_console_property') is-invalid @enderror" placeholder="sc-domain:example.com">@error('search_console_property')<div class="invalid-feedback">{{ $message }}</div>@enderror</div>
-                <div class="col-md-3"><label class="form-label">Microsoft Clarity Project ID</label><input type="text" name="ms_clarity_project_id" value="{{ old('ms_clarity_project_id', $setting->ms_clarity_project_id) }}" class="form-control @error('ms_clarity_project_id') is-invalid @enderror">@error('ms_clarity_project_id')<div class="invalid-feedback">{{ $message }}</div>@enderror</div>
 
                 <div class="col-md-6"><label class="form-label">Footer Company Title</label><input type="text" name="footer_company_title" value="{{ old('footer_company_title', $setting->footer_company_title) }}" class="form-control"></div>
                 <div class="col-md-6"><label class="form-label">Head Quarter Title</label><input type="text" name="hq_title" value="{{ old('hq_title', $setting->hq_title) }}" class="form-control"></div>
@@ -117,3 +173,58 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+    (function () {
+        const methodInputs = document.querySelectorAll('.tracking-method');
+        const ga4Input = document.querySelector('[name="ga4_measurement_id"]');
+        const gtmInput = document.querySelector('[name="gtm_container_id"]');
+        const checkButton = document.getElementById('tracking-local-check-button');
+        const checkPanel = document.getElementById('tracking-local-check');
+        const checkResult = checkPanel?.querySelector('[data-check-result]');
+
+        const selectedMethod = function () {
+            return document.querySelector('.tracking-method:checked')?.value || 'none';
+        };
+
+        const normalizeId = function (input) {
+            if (input) input.value = input.value.trim().toUpperCase();
+        };
+
+        const updatePanels = function () {
+            const method = selectedMethod();
+            document.querySelectorAll('[data-tracking-panel]').forEach(function (panel) {
+                const active = panel.dataset.trackingPanel === method;
+                panel.classList.toggle('opacity-50', !active);
+                panel.querySelector('input').setAttribute('aria-disabled', active ? 'false' : 'true');
+            });
+        };
+
+        methodInputs.forEach(function (input) {
+            input.addEventListener('change', updatePanels);
+        });
+        [ga4Input, gtmInput].forEach(function (input) {
+            input?.addEventListener('blur', function () { normalizeId(input); });
+        });
+
+        checkButton?.addEventListener('click', function () {
+            normalizeId(ga4Input);
+            normalizeId(gtmInput);
+
+            const method = selectedMethod();
+            const valid = method === 'none'
+                || (method === 'ga4' && /^G-[A-Z0-9]+$/.test(ga4Input?.value || ''))
+                || (method === 'gtm' && /^GTM-[A-Z0-9]+$/.test(gtmInput?.value || ''));
+
+            checkPanel.classList.remove('d-none', 'alert-info', 'alert-danger', 'alert-success');
+            checkPanel.classList.add(valid ? 'alert-success' : 'alert-danger');
+            checkResult.textContent = valid
+                ? (method === 'none' ? 'Tracking is disabled; the public template will load neither GA4 nor GTM.' : 'The selected ID format is valid. Save settings to activate it in the public template.')
+                : 'The selected method is missing a valid ID. Correct it before saving.';
+        });
+
+        updatePanels();
+    })();
+</script>
+@endpush

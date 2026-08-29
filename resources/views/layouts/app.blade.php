@@ -3,6 +3,17 @@
 <head>
     @php
         $gtmContainerId = $siteSetting?->gtm_container_id ?: config('services.gtm.container_id');
+        $ga4MeasurementId = $siteSetting?->ga4_measurement_id;
+        $storedTrackingMethod = $siteSetting?->tracking_method;
+        $trackingMethod = in_array($storedTrackingMethod, ['none', 'ga4', 'gtm'], true)
+            ? $storedTrackingMethod
+            : ($gtmContainerId ? 'gtm' : 'none');
+        $activeGtmId = $trackingMethod === 'gtm' && preg_match('/^GTM-[A-Z0-9]+$/', (string) $gtmContainerId)
+            ? $gtmContainerId
+            : null;
+        $activeGa4Id = $trackingMethod === 'ga4' && preg_match('/^G-[A-Z0-9]+$/', (string) $ga4MeasurementId)
+            ? $ga4MeasurementId
+            : null;
         $googleVerification = $siteSetting?->google_site_verification ?: config('services.google.site_verification');
         $clarityProjectId = $siteSetting?->ms_clarity_project_id ?: config('services.clarity.project_id');
         $cmsPageKey = str_replace('.', '-', Route::currentRouteName() ?? trim(request()->path(), '/') ?: 'home');
@@ -23,23 +34,54 @@
         <meta name="google-site-verification" content="{{ $googleVerification }}">
     @endif
 
-    @if($gtmContainerId)
+    <script>
+        window.AQUA_TRACKING_METHOD = @json($activeGa4Id ? 'ga4' : ($activeGtmId ? 'gtm' : 'none'));
+        window.dataLayer = window.dataLayer || [];
+        window.aquaTrackEvent = function (eventName, parameters) {
+            if (!eventName || window.AQUA_TRACKING_METHOD === 'none') {
+                return;
+            }
+
+            const safeParameters = parameters && typeof parameters === 'object' ? parameters : {};
+
+            if (window.AQUA_TRACKING_METHOD === 'ga4' && typeof window.gtag === 'function') {
+                window.gtag('event', eventName, safeParameters);
+                return;
+            }
+
+            if (window.AQUA_TRACKING_METHOD === 'gtm') {
+                window.dataLayer.push({ event: eventName, ...safeParameters });
+            }
+        };
+    </script>
+
+    @if($activeGa4Id)
+        <!-- Google Analytics 4 (direct) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id={{ rawurlencode($activeGa4Id) }}"></script>
+        <script>
+            window.gtag = function () { window.dataLayer.push(arguments); };
+            window.gtag('js', new Date());
+            window.gtag('config', @json($activeGa4Id));
+        </script>
+        <!-- End Google Analytics 4 (direct) -->
+    @elseif($activeGtmId)
         <!-- Google Tag Manager -->
         <script>
-            window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push({
-                event: 'page_context',
-                page_type: '{{ Route::currentRouteName() ?? 'unknown' }}',
-                page_path: '{{ request()->path() }}',
-            });
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
             j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','{{ $gtmContainerId }}');
+            })(window,document,'script','dataLayer',@json($activeGtmId));
         </script>
         <!-- End Google Tag Manager -->
     @endif
+
+    <script>
+        window.aquaTrackEvent('page_context', {
+            page_type: @json(Route::currentRouteName() ?? 'unknown'),
+            page_path: @json(request()->path()),
+        });
+    </script>
 
     <script>
         (function () {
@@ -80,9 +122,9 @@
 </head>
 
 <body>
-@if($gtmContainerId)
+@if($activeGtmId)
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ $gtmContainerId }}"
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ rawurlencode($activeGtmId) }}"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 @endif
@@ -109,8 +151,12 @@
 
 @if(session('tracking_event'))
     <script>
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push(@json(session('tracking_event')));
+        @php
+            $trackingEvent = session('tracking_event');
+            $trackingEventName = is_array($trackingEvent) ? ($trackingEvent['event'] ?? null) : null;
+            $trackingEventParameters = is_array($trackingEvent) ? collect($trackingEvent)->except('event')->all() : [];
+        @endphp
+        window.aquaTrackEvent(@json($trackingEventName), @json($trackingEventParameters));
     </script>
 @endif
 
