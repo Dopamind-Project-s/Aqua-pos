@@ -9,6 +9,7 @@ use App\Models\ServiceRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
 
 class ServiceRequestController extends Controller
@@ -60,17 +61,35 @@ class ServiceRequestController extends Controller
 
         $serviceRequest = ServiceRequest::query()->create($payload);
 
-        if ($serviceRequest->type === 'demo_request') {
-            Mail::to(config('services.demo_requests.recipient'))
-                ->send(new DemoRequestSubmitted($serviceRequest));
+        $mailSent = true;
+        if (in_array($serviceRequest->type, ['demo_request', 'support_request'], true)) {
+            try {
+                Mail::to(config('services.demo_requests.recipient'))
+                    ->send(new DemoRequestSubmitted($serviceRequest));
+            } catch (\Throwable $exception) {
+                $mailSent = false;
+                try {
+                    Log::error('Service request notification email failed.', [
+                        'service_request_id' => $serviceRequest->id,
+                        'type' => $serviceRequest->type,
+                        'exception' => $exception,
+                    ]);
+                } catch (\Throwable) {
+                    // A logging backend issue must not undo or interrupt the stored request.
+                }
+            }
         }
 
-        return back()
-            ->with('success', 'Your request has been submitted successfully.')
+        $response = back()
+            ->with('success', $mailSent
+                ? 'Your request has been submitted successfully.'
+                : 'Your request was saved, but the email notification could not be sent. Please contact us if this is urgent.')
             ->with('tracking_event', [
                 'event' => 'generate_lead',
                 'form_type' => $serviceRequest->type,
                 'source_page' => $serviceRequest->source_page,
             ]);
+
+        return $response;
     }
 }

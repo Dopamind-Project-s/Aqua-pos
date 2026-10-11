@@ -26,7 +26,7 @@ class DemoRequestSubmitted extends Mailable
 
         return new Envelope(
             replyTo: $replyTo,
-            subject: 'New Demo Request - '.$this->serviceRequest->full_name,
+            subject: 'New '.($this->serviceRequest->type === 'support_request' ? 'Support' : 'Demo').' Request - '.$this->serviceRequest->full_name,
         );
     }
 

@@ -163,7 +163,7 @@
 @endpush
 
 @section('content')
-<div class="demo-page">
+<div class="demo-page" data-cms-section="demo">
 @include('partials.page-hero', [
     'offset' => false,
     'class' => 'demo-hero',

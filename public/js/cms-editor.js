@@ -437,9 +437,9 @@
         } else if (window.CMS_EDITOR.locale !== 'ar' && hasChanged('cmsTextEn')) {
             el.textContent = en;
         }
-        if (hasChanged('cmsFontSize')) el.style.fontSize = fontSize;
-        if (hasChanged('cmsLineHeight')) el.style.lineHeight = lineHeight || '';
-        if (hasChanged('cmsTextAlign')) el.style.textAlign = align;
+        if (hasChanged('cmsFontSize')) el.style.setProperty('font-size', fontSize, 'important');
+        if (hasChanged('cmsLineHeight')) el.style.setProperty('line-height', lineHeight || '', 'important');
+        if (hasChanged('cmsTextAlign')) el.style.setProperty('text-align', align, 'important');
         if (hasChanged('cmsTextLight') || hasChanged('cmsTextDark')) el.style.color = getMode() === 'dark' ? textDark : textLight;
         if (noneBackground) {
             el.style.background = 'none';

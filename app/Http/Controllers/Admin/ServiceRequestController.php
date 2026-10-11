@@ -76,7 +76,12 @@ class ServiceRequestController extends Controller
                         ->orWhere('email', 'like', "%{$search}%")
                         ->orWhere('phone', 'like', "%{$search}%")
                         ->orWhere('company', 'like', "%{$search}%")
+                        ->orWhere('country', 'like', "%{$search}%")
+                        ->orWhere('product_interest', 'like', "%{$search}%")
+                        ->orWhere('preferred_contact_time', 'like', "%{$search}%")
                         ->orWhere('subject', 'like', "%{$search}%")
+                        ->orWhere('message', 'like', "%{$search}%")
+                        ->orWhere('source_page', 'like', "%{$search}%")
                         ->orWhereHas('selectedPartner', function (Builder $partnerQuery) use ($search): void {
                             $partnerQuery->where('name_ar', 'like', "%{$search}%")
                                 ->orWhere('name_en', 'like', "%{$search}%")

@@ -202,9 +202,9 @@
                 el.textContent = value;
             }
 
-            if (data?.style?.font_size) el.style.fontSize = data.style.font_size;
-            if (data?.style?.line_height) el.style.lineHeight = data.style.line_height;
-            if (data?.style?.text_align) el.style.textAlign = data.style.text_align;
+            if (data?.style?.font_size) el.style.setProperty('font-size', data.style.font_size, 'important');
+            if (data?.style?.line_height) el.style.setProperty('line-height', data.style.line_height, 'important');
+            if (data?.style?.text_align) el.style.setProperty('text-align', data.style.text_align, 'important');
             if (data?.style?.visible === false) el.style.display = 'none';
             if (data?.style?.text_color) el.style.color = themed(data.style.text_color);
             if (data?.style?.background_color === '__none__') {

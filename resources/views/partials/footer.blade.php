@@ -67,15 +67,6 @@
 
                             <p class="footer-about-text mb-3" data-cms-key="brand.description">{{ dynamic_content("global.footer.brand.description.{$footerLocale}", $footerAboutText) }}</p>
 
-                            <div class="d-flex align-items-center footer-socials mt-auto">
-                                <i class="fas fa-share-alt text-white me-2" data-cms-key="social.share_icon" data-cms-type="icon"></i>
-                                @if($siteSetting?->facebook_url)<a class="btn btn-light btn-square border rounded-circle nav-fill topbar-social-btn topbar-social-btn--facebook mx-1" href="{{ $siteSetting->facebook_url }}" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>@endif
-                                @if($siteSetting?->twitter_url)<a class="btn btn-light btn-square border rounded-circle nav-fill topbar-social-btn topbar-social-btn--twitter mx-1" href="{{ $siteSetting->twitter_url }}" target="_blank" rel="noopener" aria-label="Twitter"><i class="fab fa-twitter"></i></a>@endif
-                                @if($siteSetting?->instagram_url)<a class="btn btn-light btn-square border rounded-circle nav-fill topbar-social-btn topbar-social-btn--instagram mx-1" href="{{ $siteSetting->instagram_url }}" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>@endif
-                                @if($siteSetting?->linkedin_url)<a class="btn btn-light btn-square border rounded-circle nav-fill topbar-social-btn topbar-social-btn--linkedin mx-1" href="{{ $siteSetting->linkedin_url }}" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>@endif
-                                @if($siteSetting?->youtube_url)<a class="btn btn-light btn-square border rounded-circle nav-fill topbar-social-btn topbar-social-btn--youtube mx-1" href="{{ $siteSetting->youtube_url }}" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>@endif
-                                @if($siteSetting?->tiktok_url)<a class="btn btn-light btn-square border rounded-circle nav-fill topbar-social-btn topbar-social-btn--tiktok mx-1" href="{{ $siteSetting->tiktok_url }}" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>@endif
-                            </div>
                         </div>
                     </div>
 

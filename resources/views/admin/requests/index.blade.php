@@ -15,7 +15,7 @@
                     name="search"
                     value="{{ $filters['search'] ?? '' }}"
                     class="form-control"
-                    placeholder="Search by name, email, phone, company, subject"
+                    placeholder="Search by name, email, phone, company, country, subject, message"
                 >
             </div>
 
@@ -59,7 +59,7 @@
         @endphp
 
         <div class="table-responsive">
-            <table class="table text-nowrap mb-0 align-middle">
+            <table class="table mb-0 align-middle">
                 <thead>
                 <tr>
                     <th>ID</th>
@@ -67,7 +67,13 @@
                     <th>Email</th>
                     <th>Phone</th>
                     <th>Company</th>
+                    <th>Country</th>
+                    <th>Product Interest</th>
+                    <th>Branches</th>
+                    <th>Preferred Contact</th>
                     <th>Subject</th>
+                    <th>Message</th>
+                    <th>Source Page</th>
                     <th>Partner Pin</th>
                     <th>Status</th>
                     <th>Date</th>
@@ -81,7 +87,15 @@
                         <td>{{ $row->email ?? '-' }}</td>
                         <td>{{ $row->phone ?? '-' }}</td>
                         <td>{{ $row->company ?? '-' }}</td>
+                        <td>{{ $row->country ?? '-' }}</td>
+                        <td>{{ $row->product_interest ?? '-' }}</td>
+                        <td>{{ $row->branch_count ?? '-' }}</td>
+                        <td>{{ $row->preferred_contact_time ?? '-' }}</td>
                         <td>{{ $row->subject ?? '-' }}</td>
+                        <td style="min-width: 260px; max-width: 360px; white-space: normal;">
+                            {{ $row->message ?? '-' }}
+                        </td>
+                        <td>{{ $row->source_page ?? '-' }}</td>
                         <td>
                             @php($snapshot = $row->selected_partner_snapshot ?? [])
                             @if($row->selectedPartner || $snapshot)
@@ -115,7 +129,7 @@
                         <td>{{ $row->created_at?->format('Y-m-d H:i') }}</td>
                     </tr>
                 @empty
-                    <tr><td colspan="9" class="text-center">No requests found.</td></tr>
+                    <tr><td colspan="15" class="text-center">No requests found.</td></tr>
                 @endforelse
                 </tbody>
             </table>

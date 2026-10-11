@@ -144,7 +144,7 @@
 @endpush
 
 @section('content')
-<div class="support-page">
+<div class="support-page" data-cms-section="support">
 @include('partials.page-hero', [
     'offset' => false,
     'icon' => 'fas fa-life-ring',

@@ -80,6 +80,8 @@ class ServiceRequestFormTest extends TestCase
 
     public function test_support_request_can_be_submitted_without_email(): void
     {
+        Mail::fake();
+
         $this->post(route('requests.store'), [
             'type' => 'support_request',
             'full_name' => 'Support Customer Without Email',
@@ -91,6 +93,11 @@ class ServiceRequestFormTest extends TestCase
             'full_name' => 'Support Customer Without Email',
             'email' => null,
         ]);
+
+        Mail::assertSent(DemoRequestSubmitted::class, function (DemoRequestSubmitted $mail): bool {
+            return $mail->hasTo('lami@mega-pos.com')
+                && $mail->serviceRequest->type === 'support_request';
+        });
     }
 
     public function test_demo_request_can_be_submitted_without_email(): void
