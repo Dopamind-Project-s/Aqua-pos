@@ -16,6 +16,9 @@
             : null;
         $googleVerification = $siteSetting?->google_site_verification ?: config('services.google.site_verification');
         $clarityProjectId = $siteSetting?->ms_clarity_project_id ?: config('services.clarity.project_id');
+        $clarityProjectId = preg_match('/^[A-Za-z0-9]+$/', (string) $clarityProjectId) ? $clarityProjectId : null;
+        $metaPixelId = $siteSetting?->meta_pixel_id;
+        $metaPixelId = preg_match('/^[0-9]+$/', (string) $metaPixelId) ? $metaPixelId : null;
         $cmsPageKey = str_replace('.', '-', Route::currentRouteName() ?? trim(request()->path(), '/') ?: 'home');
         $defaultLogoSrc = $siteSetting?->primary_logo ? public_storage_url($siteSetting->primary_logo) : asset('img/LOGO.png');
         $lightLogoSrc = dynamic_content(
@@ -38,11 +41,26 @@
         window.AQUA_TRACKING_METHOD = @json($activeGa4Id ? 'ga4' : ($activeGtmId ? 'gtm' : 'none'));
         window.dataLayer = window.dataLayer || [];
         window.aquaTrackEvent = function (eventName, parameters) {
-            if (!eventName || window.AQUA_TRACKING_METHOD === 'none') {
+            if (!eventName) {
                 return;
             }
 
             const safeParameters = parameters && typeof parameters === 'object' ? parameters : {};
+
+            const metaPixelId = @json($metaPixelId);
+            if (metaPixelId && typeof window.fbq === 'function' && eventName === 'generate_lead'
+                && safeParameters.form_type === 'demo_request' && safeParameters.event_id) {
+                window.aquaTrackedMetaLeads = window.aquaTrackedMetaLeads || {};
+                const eventId = String(safeParameters.event_id);
+                if (!window.aquaTrackedMetaLeads[eventId]) {
+                    window.fbq('trackSingle', metaPixelId, 'Lead', { form_type: 'demo_request' }, { eventID: eventId });
+                    window.aquaTrackedMetaLeads[eventId] = true;
+                }
+            }
+
+            if (window.AQUA_TRACKING_METHOD === 'none') {
+                return;
+            }
 
             if (window.AQUA_TRACKING_METHOD === 'ga4' && typeof window.gtag === 'function') {
                 window.gtag('event', eventName, safeParameters);
@@ -74,6 +92,34 @@
             })(window,document,'script','dataLayer',@json($activeGtmId));
         </script>
         <!-- End Google Tag Manager -->
+    @endif
+
+    @if($metaPixelId)
+        <!-- Meta Pixel: independent of the GA4/GTM selector. -->
+        <script>
+            !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;
+            s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+            (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+            window.aquaInitializedMetaPixels = window.aquaInitializedMetaPixels || {};
+            if (!window.aquaInitializedMetaPixels[@json($metaPixelId)]) {
+                window.fbq('init', @json($metaPixelId));
+                window.fbq('trackSingle', @json($metaPixelId), 'PageView');
+                window.aquaInitializedMetaPixels[@json($metaPixelId)] = true;
+            }
+        </script>
+    @endif
+
+    @if($clarityProjectId)
+        <script>
+            (function(c,l,a,r,i,t,y){
+                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", @json($clarityProjectId));
+        </script>
     @endif
 
     <script>
@@ -126,6 +172,10 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 @endif
+@if($metaPixelId)
+    <noscript><img height="1" width="1" style="display:none" alt=""
+        src="https://www.facebook.com/tr?id={{ rawurlencode($metaPixelId) }}&amp;ev=PageView&amp;noscript=1"></noscript>
+@endif
 
 <script>
     (function () {
@@ -136,16 +186,6 @@
         } catch (error) {}
     })();
 </script>
-
-@if($clarityProjectId)
-    <script type="text/javascript">
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", "{{ $clarityProjectId }}");
-    </script>
-@endif
 
 @if(session('tracking_event'))
     <script>

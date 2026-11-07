@@ -179,6 +179,10 @@
 <section class="py-5">
     <div class="container">
         @if(session('success'))<div class="alert alert-success">{{ session('success') }}</div>@endif
+        @if(session('warning'))<div class="alert alert-warning" role="alert">{{ session('warning') }}</div>@endif
+        @if($errors->any())
+            <div class="alert alert-danger" role="alert"><ul class="mb-0">@foreach($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul></div>
+        @endif
         <div class="row g-4">
             <div class="col-lg-7">
                 <div class="demo-layout-card p-4 p-lg-5">
@@ -191,7 +195,7 @@
 
                         <div class="col-md-6 demo-input-group">
                             <label class="form-label"><i class="far fa-user"></i><span data-i18n="demo.fullName">Full Name</span></label>
-                            <input class="form-control demo-input" name="full_name" required>
+                            <input class="form-control demo-input" name="full_name" value="{{ old('full_name') }}" required>
                         </div>
 
                         <div class="col-md-6 demo-input-group">
@@ -219,22 +223,22 @@
 
                         <div class="col-md-6 demo-input-group">
                             <label class="form-label"><i class="fas fa-code-branch"></i><span data-i18n="demo.branches">Branches</span></label>
-                            <input type="number" min="1" class="form-control demo-input" name="branch_count">
+                            <input type="number" min="1" class="form-control demo-input" name="branch_count" value="{{ old('branch_count') }}">
                         </div>
 
                         <div class="col-md-6 demo-input-group">
                             <label class="form-label"><i class="fas fa-box-open"></i><span data-i18n="demo.productInterest">Product Interest</span></label>
-                            <input class="form-control demo-input" name="product_interest">
+                            <input class="form-control demo-input" name="product_interest" value="{{ old('product_interest') }}">
                         </div>
 
                         <div class="col-md-6 demo-input-group">
                             <label class="form-label"><i class="far fa-clock"></i><span data-i18n="demo.preferredContactTime">Preferred Contact Time</span></label>
-                            <input class="form-control demo-input" name="preferred_contact_time" data-i18n-placeholder="demo.preferredContactPlaceholder" placeholder="e.g. 10:00 AM">
+                            <input class="form-control demo-input" name="preferred_contact_time" value="{{ old('preferred_contact_time') }}" data-i18n-placeholder="demo.preferredContactPlaceholder" placeholder="e.g. 10:00 AM">
                         </div>
 
                         <div class="col-12 demo-input-group">
                             <label class="form-label"><i class="far fa-comment-dots"></i><span data-i18n="demo.notes">Notes</span></label>
-                            <textarea class="form-control demo-textarea" name="message" rows="5"></textarea>
+                            <textarea class="form-control demo-textarea" name="message" rows="5">{{ old('message') }}</textarea>
                         </div>
 
                         <div class="col-12 d-grid">

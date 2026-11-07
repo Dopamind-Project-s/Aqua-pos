@@ -11,6 +11,13 @@ class ServiceRequestFormTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+        config()->set('services.demo_requests.recipient', 'notifications@example.test');
+        Mail::fake();
+    }
+
     public function test_rtl_stylesheet_is_available_when_page_starts_in_english(): void
     {
         $this->get(route('support'))
@@ -95,7 +102,7 @@ class ServiceRequestFormTest extends TestCase
         ]);
 
         Mail::assertSent(DemoRequestSubmitted::class, function (DemoRequestSubmitted $mail): bool {
-            return $mail->hasTo('lami@mega-pos.com')
+            return $mail->hasTo('notifications@example.test')
                 && $mail->serviceRequest->type === 'support_request';
         });
     }
@@ -117,7 +124,7 @@ class ServiceRequestFormTest extends TestCase
         ]);
 
         Mail::assertSent(DemoRequestSubmitted::class, function (DemoRequestSubmitted $mail): bool {
-            return $mail->hasTo('lami@mega-pos.com')
+            return $mail->hasTo('notifications@example.test')
                 && $mail->serviceRequest->email === null;
         });
     }

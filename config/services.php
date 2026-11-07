@@ -3,7 +3,7 @@
 return [
 
     'demo_requests' => [
-        'recipient' => env('DEMO_REQUEST_RECIPIENT', 'lami@mega-pos.com'),
+        'recipient' => env('DEMO_REQUEST_RECIPIENT'),
     ],
 
     /*

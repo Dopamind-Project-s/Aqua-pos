@@ -2,19 +2,29 @@
 
 namespace Tests\Feature;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class PublicRoutesTest extends TestCase
 {
+    use RefreshDatabase;
+
     public function test_core_public_named_routes_are_accessible(): void
     {
-        $this->get(route('home'))->assertOk();
-        $this->get(route('about'))->assertOk();
-        $this->get(route('service'))->assertOk();
-        $this->get(route('appointment'))->assertOk();
-        $this->get(route('feature'))->assertOk();
-        $this->get(route('testimonial'))->assertOk();
-        $this->get(route('clients.index'))->assertOk();
+        foreach ([
+            'home',
+            'about',
+            'blog',
+            'news',
+            'products',
+            'clients.index',
+            'partners.index',
+            'contact',
+            'support',
+            'request-product-demo',
+        ] as $routeName) {
+            $this->get(route($routeName))->assertOk();
+        }
     }
 
     public function test_team_path_is_accessible(): void

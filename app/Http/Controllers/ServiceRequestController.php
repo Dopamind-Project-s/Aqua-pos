@@ -8,8 +8,8 @@ use App\Models\Partner;
 use App\Models\ServiceRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
 
 class ServiceRequestController extends Controller
@@ -63,8 +63,14 @@ class ServiceRequestController extends Controller
 
         $mailSent = true;
         if (in_array($serviceRequest->type, ['demo_request', 'support_request'], true)) {
+            $recipient = config('services.demo_requests.recipient');
+            $recipientIsValid = is_string($recipient) && filter_var($recipient, FILTER_VALIDATE_EMAIL) !== false;
             try {
-                Mail::to(config('services.demo_requests.recipient'))
+                if (! $recipientIsValid) {
+                    throw new \InvalidArgumentException('DEMO_REQUEST_RECIPIENT must contain a valid email address.');
+                }
+
+                Mail::to($recipient)
                     ->send(new DemoRequestSubmitted($serviceRequest));
             } catch (\Throwable $exception) {
                 $mailSent = false;
@@ -72,7 +78,8 @@ class ServiceRequestController extends Controller
                     Log::error('Service request notification email failed.', [
                         'service_request_id' => $serviceRequest->id,
                         'type' => $serviceRequest->type,
-                        'exception' => $exception,
+                        'reason' => $recipientIsValid ? 'mail_dispatch_failed' : 'invalid_recipient_configuration',
+                        'exception_class' => $exception::class,
                     ]);
                 } catch (\Throwable) {
                     // A logging backend issue must not undo or interrupt the stored request.
@@ -81,13 +88,14 @@ class ServiceRequestController extends Controller
         }
 
         $response = back()
-            ->with('success', $mailSent
+            ->with($mailSent ? 'success' : 'warning', $mailSent
                 ? 'Your request has been submitted successfully.'
                 : 'Your request was saved, but the email notification could not be sent. Please contact us if this is urgent.')
             ->with('tracking_event', [
                 'event' => 'generate_lead',
                 'form_type' => $serviceRequest->type,
                 'source_page' => $serviceRequest->source_page,
+                'event_id' => 'service_request_'.$serviceRequest->id,
             ]);
 
         return $response;

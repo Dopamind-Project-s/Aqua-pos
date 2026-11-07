@@ -62,7 +62,7 @@
                         <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-2">
                             <div>
                                 <h5 class="mb-1">Google Analytics & Tag Manager</h5>
-                                <p class="text-muted mb-0">Choose exactly one tracking method. / اختر طريقة تتبع واحدة فقط.</p>
+                                <p class="text-muted mb-0">Choose exactly one Google tracking method. Meta Pixel, verification and Clarity remain independent.</p>
                             </div>
                             <span class="badge {{ $trackingStatus[1] }}" id="tracking-status">{{ $trackingStatus[0] }}</span>
                         </div>
@@ -72,7 +72,7 @@
                                 <label class="border rounded-3 bg-white p-3 h-100 d-block">
                                     <span class="d-flex gap-2 align-items-start">
                                         <input class="form-check-input tracking-method" type="radio" name="tracking_method" value="none" @checked($selectedTrackingMethod === 'none')>
-                                        <span><strong>No tracking / لا يوجد تتبع</strong><br><small class="text-muted">Do not load GA4 or GTM. Saved IDs are retained.</small></span>
+                                        <span><strong>Disabled (GA4/GTM) / تعطيل GA4 وGTM</strong><br><small class="text-muted">Do not load GA4 or GTM. Saved IDs are retained.</small></span>
                                     </span>
                                 </label>
                             </div>
@@ -124,6 +124,8 @@
                             <div class="col-12">
                                 <details class="border rounded-3 bg-white p-3">
                                     <summary class="fw-semibold">Advanced settings / إعدادات متقدمة</summary>
+                                    <div class="small text-muted mt-2">Enter IDs only. For Google Site Verification, paste only the HTML tag's content token. Domain properties require a separate DNS TXT record; Search Console Property is a reference field.</div>
+                                    <div class="small text-muted mt-1">Meta Pixel and Clarity load directly when configured. If managed in GTM, leave their fields and environment fallbacks empty to avoid duplicate events. Google Ads fields are stored for reference; configure the conversion tag and trigger in GTM.</div>
                                     <div class="row g-3 mt-1">
                                         <div class="col-md-3"><label class="form-label">Google Ads Conversion ID</label><input type="text" name="google_ads_conversion_id" value="{{ old('google_ads_conversion_id', $setting->google_ads_conversion_id) }}" class="form-control @error('google_ads_conversion_id') is-invalid @enderror">@error('google_ads_conversion_id')<div class="invalid-feedback">{{ $message }}</div>@enderror</div>
                                         <div class="col-md-3"><label class="form-label">Google Ads Conversion Label</label><input type="text" name="google_ads_conversion_label" value="{{ old('google_ads_conversion_label', $setting->google_ads_conversion_label) }}" class="form-control @error('google_ads_conversion_label') is-invalid @enderror">@error('google_ads_conversion_label')<div class="invalid-feedback">{{ $message }}</div>@enderror</div>

@@ -37,10 +37,10 @@ class UpdateSiteSettingRequest extends FormRequest
             'ga4_measurement_id' => ['nullable', 'required_if:tracking_method,ga4', 'string', 'max:50', 'regex:/^G-[A-Z0-9]+$/'],
             'google_ads_conversion_id' => ['nullable', 'string', 'max:100'],
             'google_ads_conversion_label' => ['nullable', 'string', 'max:100'],
-            'meta_pixel_id' => ['nullable', 'string', 'max:100'],
-            'google_site_verification' => ['nullable', 'string', 'max:255'],
+            'meta_pixel_id' => ['nullable', 'string', 'max:100', 'regex:/^[0-9]+$/'],
+            'google_site_verification' => ['nullable', 'string', 'max:255', 'regex:/^[A-Za-z0-9_-]+$/'],
             'search_console_property' => ['nullable', 'string', 'max:255'],
-            'ms_clarity_project_id' => ['nullable', 'string', 'max:100'],
+            'ms_clarity_project_id' => ['nullable', 'string', 'max:100', 'regex:/^[A-Za-z0-9]+$/'],
 
             'facebook_url' => ['nullable', 'url', 'max:255'],
             'instagram_url' => ['nullable', 'url', 'max:255'],
@@ -68,6 +68,9 @@ class UpdateSiteSettingRequest extends FormRequest
     public function messages(): array
     {
         return [
+            'meta_pixel_id.regex' => 'Enter the numeric Pixel ID only, not the Pixel script.',
+            'google_site_verification.regex' => 'Enter only the HTML meta tag content token, not the full tag or DNS TXT record.',
+            'ms_clarity_project_id.regex' => 'Enter the alphanumeric Clarity project ID only, not the tracking script.',
             'tracking_method.required' => 'Choose a tracking method. / اختر طريقة التتبع.',
             'tracking_method.in' => 'The selected tracking method is invalid. / طريقة التتبع المحددة غير صالحة.',
             'ga4_measurement_id.required_if' => 'GA4 Measurement ID is required for direct tracking. / معرّف GA4 مطلوب للتتبع المباشر.',

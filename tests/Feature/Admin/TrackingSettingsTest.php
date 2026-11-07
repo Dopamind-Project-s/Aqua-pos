@@ -5,6 +5,9 @@ namespace Tests\Feature\Admin;
 use App\Models\SiteSetting;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Mail;
+use Symfony\Component\Process\ExecutableFinder;
+use Symfony\Component\Process\Process;
 use Tests\TestCase;
 
 class TrackingSettingsTest extends TestCase
@@ -191,6 +194,7 @@ class TrackingSettingsTest extends TestCase
 
     public function test_generate_lead_uses_the_central_tracker_once_after_success(): void
     {
+        Mail::fake();
         $this->setting([
             'tracking_method' => 'ga4',
             'ga4_measurement_id' => 'G-DIRECT123',
@@ -209,9 +213,126 @@ class TrackingSettingsTest extends TestCase
         $this->assertStringContainsString('window.aquaTrackEvent("generate_lead",', $content);
         $this->assertSame(1, substr_count($content, 'window.aquaTrackEvent("generate_lead",'));
         $this->assertStringContainsString('"form_type":"support_request"', $content);
-        $this->assertStringContainsString('"source_page":"/support"', $content);
+        $this->assertStringContainsString('"source_page":"\\/support"', $content);
         $this->assertStringNotContainsString('Tracking Test', $content);
         $this->assertStringNotContainsString('+962791234567', $content);
+    }
+
+    public function test_independent_integrations_render_once_on_public_pages_in_every_google_mode(): void
+    {
+        $setting = $this->setting([
+            'ga4_measurement_id' => 'G-DIRECT123',
+            'gtm_container_id' => 'GTM-ACTIVE123',
+            'meta_pixel_id' => '123456789012345',
+            'google_site_verification' => 'Test_token-123',
+            'search_console_property' => 'sc-domain:example.com',
+            'ms_clarity_project_id' => 'abc123xyz',
+        ]);
+
+        foreach (['none', 'ga4', 'gtm'] as $method) {
+            $setting->update(['tracking_method' => $method]);
+            foreach (['/', '/about', '/blog', '/news', '/products', '/contact', '/support'] as $path) {
+                $html = $this->get($path)->assertOk()->getContent();
+                $head = substr($html, 0, strpos($html, '</head>'));
+                $this->assertSame(1, substr_count($head, '<meta name="google-site-verification" content="Test_token-123">'));
+                $this->assertSame(1, substr_count($head, 'https://connect.facebook.net/en_US/fbevents.js'));
+                $this->assertSame(1, substr_count($head, "window.fbq('init', \"123456789012345\")"));
+                $this->assertSame(1, substr_count($head, "window.fbq('trackSingle', \"123456789012345\", 'PageView')"));
+                $this->assertSame(1, substr_count($html, 'facebook.com/tr?id=123456789012345&amp;ev=PageView&amp;noscript=1'));
+                $this->assertSame(1, substr_count($head, 'https://www.clarity.ms/tag/'));
+                $this->assertStringNotContainsString('sc-domain:example.com', $head);
+                $this->assertSame($method === 'ga4' ? 1 : 0, substr_count($html, 'gtag/js?id='));
+                $this->assertSame($method === 'gtm' ? 1 : 0, substr_count($html, 'ns.html?id='));
+            }
+        }
+    }
+
+    public function test_admin_saves_independent_values_and_next_public_response_uses_updates(): void
+    {
+        $this->setting(['meta_pixel_id' => '111111111', 'google_site_verification' => 'old-token']);
+        $admin = User::factory()->admin()->create();
+        $this->actingAs($admin)->put(route('admin.settings.update'), [
+            'site_name' => 'AQUA POS',
+            'tracking_method' => 'none',
+            'meta_pixel_id' => '222222222',
+            'google_site_verification' => 'new_token-123',
+            'search_console_property' => 'https://example.com/',
+            'ms_clarity_project_id' => 'new123',
+        ])->assertSessionHasNoErrors();
+        $this->assertDatabaseHas('site_settings', [
+            'meta_pixel_id' => '222222222',
+            'google_site_verification' => 'new_token-123',
+            'search_console_property' => 'https://example.com/',
+            'ms_clarity_project_id' => 'new123',
+        ]);
+        $this->app['auth']->forgetGuards();
+        $this->get('/')->assertOk()
+            ->assertSee('facebook.com/tr?id=222222222', false)
+            ->assertSee('content="new_token-123"', false)
+            ->assertDontSee('old-token', false)
+            ->assertDontSee('facebook.com/tr?id=111111111', false);
+    }
+
+    public function test_full_snippets_and_dns_records_are_rejected_in_token_and_id_fields(): void
+    {
+        $this->setting();
+        $this->actingAs(User::factory()->admin()->create())
+            ->put(route('admin.settings.update'), [
+                'site_name' => 'AQUA POS',
+                'tracking_method' => 'none',
+                'meta_pixel_id' => '<script>fbq()</script>',
+                'google_site_verification' => 'google-site-verification=abc123',
+                'ms_clarity_project_id' => 'abc\\xyz',
+            ])->assertSessionHasErrors(['meta_pixel_id', 'google_site_verification', 'ms_clarity_project_id']);
+    }
+
+    public function test_legacy_invalid_ids_do_not_generate_scripts_and_tokens_remain_html_escaped(): void
+    {
+        $this->setting([
+            'meta_pixel_id' => '123</script>',
+            'ms_clarity_project_id' => 'abc\\xyz',
+            'google_site_verification' => 'a"&<b',
+        ]);
+        $this->get('/')->assertOk()
+            ->assertDontSee('connect.facebook.net', false)
+            ->assertDontSee('clarity.ms/tag/', false)
+            ->assertSee('content="a&quot;&amp;&lt;b"', false);
+    }
+
+    public function test_environment_fallbacks_and_database_precedence(): void
+    {
+        config()->set('services.google.site_verification', 'env_token');
+        config()->set('services.clarity.project_id', 'env123');
+        $setting = $this->setting();
+        $this->get('/')->assertOk()->assertSee('content="env_token"', false)->assertSee('"env123"', false);
+        $setting->update(['google_site_verification' => 'db_token', 'ms_clarity_project_id' => 'db123']);
+        $this->get('/')->assertOk()->assertSee('content="db_token"', false)->assertSee('"db123"', false)
+            ->assertDontSee('content="env_token"', false)->assertDontSee('"env123"', false);
+    }
+
+    public function test_rendered_tracking_javascript_executes_and_meta_bootstrap_is_idempotent(): void
+    {
+        $node = (new ExecutableFinder)->find('node');
+        if (! $node) {
+            $this->markTestSkipped('Node.js is required for the tracking runtime check.');
+        }
+        $setting = $this->setting([
+            'ga4_measurement_id' => 'G-DIRECT123',
+            'gtm_container_id' => 'GTM-ACTIVE123',
+            'meta_pixel_id' => '123456789012345',
+            'ms_clarity_project_id' => 'abc123xyz',
+        ]);
+        $pages = [];
+        foreach (['none', 'ga4', 'gtm'] as $method) {
+            $setting->update(['tracking_method' => $method]);
+            $pages[$method] = $this->get('/')->assertOk()->getContent();
+        }
+        $setting->update(['tracking_method' => 'none', 'meta_pixel_id' => null]);
+        $pages['withoutPixel'] = $this->get('/')->assertOk()->getContent();
+        $process = new Process([$node, base_path('tests/Support/tracking-runtime.cjs')]);
+        $process->setInput(json_encode($pages, JSON_THROW_ON_ERROR));
+        $process->run();
+        $this->assertTrue($process->isSuccessful(), $process->getOutput().$process->getErrorOutput());
     }
 
     private function setting(array $attributes = []): SiteSetting

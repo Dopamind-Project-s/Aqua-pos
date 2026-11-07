@@ -159,6 +159,7 @@
 <section class="py-5">
     <div class="container">
         @if(session('success'))<div class="alert alert-success">{{ session('success') }}</div>@endif
+        @if(session('warning'))<div class="alert alert-warning" role="alert">{{ session('warning') }}</div>@endif
 
         <div class="row g-4 mb-4">
             <div class="col-md-4">
